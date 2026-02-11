@@ -1,0 +1,5 @@
+return [
+    'Migrations' => [
+        'connection' => 'default',
+    ],
+];

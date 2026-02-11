@@ -1,0 +1,758 @@
+2026-02-11 05:59:00 error: [Error] Class "Cake\Http\Middleware\SessionMiddleware" not found in /var/www/html/src/Application.php on line 41
+Stack Trace:
+- CORE/src/Http/Server.php:97
+- ROOT/webroot/index.php:11
+- [main]:
+
+2026-02-11 05:59:00 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 05:59:12 error: [Error] Class "Cake\Http\Middleware\SessionMiddleware" not found in /var/www/html/src/Application.php on line 41
+Stack Trace:
+- CORE/src/Http/Server.php:97
+- ROOT/webroot/index.php:11
+- [main]:
+
+2026-02-11 05:59:12 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 05:59:21 error: [Error] Class "Cake\Http\Middleware\SessionMiddleware" not found in /var/www/html/src/Application.php on line 41
+Stack Trace:
+- CORE/src/Http/Server.php:97
+- ROOT/webroot/index.php:11
+- [main]:
+
+2026-02-11 05:59:21 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 05:59:26 error: [Error] Class "Cake\Http\Middleware\SessionMiddleware" not found in /var/www/html/src/Application.php on line 41
+Stack Trace:
+- CORE/src/Http/Server.php:97
+- ROOT/webroot/index.php:11
+- [main]:
+
+2026-02-11 05:59:26 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 05:59:26 error: [Error] Class "Cake\Http\Middleware\SessionMiddleware" not found in /var/www/html/src/Application.php on line 41
+Stack Trace:
+- CORE/src/Http/Server.php:97
+- ROOT/webroot/index.php:11
+- [main]:
+
+2026-02-11 05:59:26 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 06:00:38 error: [TypeError] Authentication\Middleware\AuthenticationMiddleware::__construct(): Argument #1 ($subject) must be of type Authentication\AuthenticationServiceInterface|Authentication\AuthenticationServiceProviderInterface, App\Application given, called in /var/www/html/src/Application.php on line 40 in /var/www/html/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php on line 60
+Stack Trace:
+- ROOT/src/Application.php:40
+- CORE/src/Http/Server.php:97
+- ROOT/webroot/index.php:11
+- [main]:
+
+2026-02-11 06:00:38 warning: MissingTemplateException - Failed to render error template `typeError` . Error: Template file `Error/type_error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/type_error.php`
+- `/var/www/html/templates/Error/type_error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/type_error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/type_erro...')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('typeError')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('typeError')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(TypeError))
+#6 {main}
+2026-02-11 06:00:44 error: [TypeError] Authentication\Middleware\AuthenticationMiddleware::__construct(): Argument #1 ($subject) must be of type Authentication\AuthenticationServiceInterface|Authentication\AuthenticationServiceProviderInterface, App\Application given, called in /var/www/html/src/Application.php on line 40 in /var/www/html/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php on line 60
+Stack Trace:
+- ROOT/src/Application.php:40
+- CORE/src/Http/Server.php:97
+- ROOT/webroot/index.php:11
+- [main]:
+
+2026-02-11 06:00:44 warning: MissingTemplateException - Failed to render error template `typeError` . Error: Template file `Error/type_error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/type_error.php`
+- `/var/www/html/templates/Error/type_error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/type_error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/type_erro...')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('typeError')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('typeError')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(TypeError))
+#6 {main}
+2026-02-11 06:01:02 error: [Error] Call to undefined method Authentication\AuthenticationService::loadIdentifier() in /var/www/html/src/Application.php on line 57
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:136
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:77
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /login
+Client IP: 138.199.24.218
+2026-02-11 06:01:02 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 06:01:17 error: [Error] Call to undefined method Authentication\AuthenticationService::loadIdentifier() in /var/www/html/src/Application.php on line 57
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:136
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:77
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /login
+Client IP: 138.199.24.218
+2026-02-11 06:01:17 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 06:01:41 error: [Error] Call to undefined method Authentication\AuthenticationService::loadIdentifier() in /var/www/html/src/Application.php on line 57
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:136
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:77
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 06:01:41 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 06:01:43 error: [Error] Call to undefined method Authentication\AuthenticationService::loadIdentifier() in /var/www/html/src/Application.php on line 57
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:136
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:77
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /login
+Referer URL: http://localhost:8080/
+Client IP: 138.199.24.218
+2026-02-11 06:01:43 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 06:01:44 error: [Error] Call to undefined method Authentication\AuthenticationService::loadIdentifier() in /var/www/html/src/Application.php on line 57
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:136
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:77
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /login
+Referer URL: http://localhost:8080/login
+Client IP: 138.199.24.218
+2026-02-11 06:01:44 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 06:01:44 error: [Error] Call to undefined method Authentication\AuthenticationService::loadIdentifier() in /var/www/html/src/Application.php on line 57
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:136
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:77
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /login
+Referer URL: http://localhost:8080/login
+Client IP: 138.199.24.218
+2026-02-11 06:01:44 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 06:01:45 error: [Error] Call to undefined method Authentication\AuthenticationService::loadIdentifier() in /var/www/html/src/Application.php on line 57
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:136
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:77
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /register
+Referer URL: http://localhost:8080/login
+Client IP: 138.199.24.218
+2026-02-11 06:01:45 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 06:01:45 error: [Error] Call to undefined method Authentication\AuthenticationService::loadIdentifier() in /var/www/html/src/Application.php on line 57
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:136
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:77
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /register
+Referer URL: http://localhost:8080/register
+Client IP: 138.199.24.218
+2026-02-11 06:01:45 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 06:01:45 error: [Error] Call to undefined method Authentication\AuthenticationService::loadIdentifier() in /var/www/html/src/Application.php on line 57
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:136
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:77
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /register
+Referer URL: http://localhost:8080/register
+Client IP: 138.199.24.218
+2026-02-11 06:01:45 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 06:01:45 error: [Error] Call to undefined method Authentication\AuthenticationService::loadIdentifier() in /var/www/html/src/Application.php on line 57
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:136
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:77
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /register
+Referer URL: http://localhost:8080/register
+Client IP: 138.199.24.218
+2026-02-11 06:01:45 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 06:01:45 error: [Error] Call to undefined method Authentication\AuthenticationService::loadIdentifier() in /var/www/html/src/Application.php on line 57
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:136
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:77
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /register
+Referer URL: http://localhost:8080/register
+Client IP: 138.199.24.218
+2026-02-11 06:01:46 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 06:02:23 error: [RuntimeException] Identifier configuration must specify a class name. in /var/www/html/vendor/cakephp/authentication/src/Identifier/IdentifierFactory.php on line 53
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Authenticator/AuthenticatorCollection.php:43
+- CORE/src/Core/ObjectRegistry.php:115
+- ROOT/vendor/cakephp/authentication/src/AbstractCollection.php:51
+- ROOT/vendor/cakephp/authentication/src/AuthenticationService.php:134
+- ROOT/vendor/cakephp/authentication/src/AuthenticationService.php:164
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:87
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /login
+Client IP: 138.199.24.218
+2026-02-11 06:02:23 warning: MissingTemplateException - Failed to render error template `runtime` . Error: Template file `Error/runtime.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/runtime.php`
+- `/var/www/html/templates/Error/runtime.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/runtime.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/runtime.p...')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('runtime')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('runtime')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(RuntimeException))
+#6 {main}
+2026-02-11 06:02:34 error: [RuntimeException] Identifier configuration must specify a class name. in /var/www/html/vendor/cakephp/authentication/src/Identifier/IdentifierFactory.php on line 53
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Authenticator/AuthenticatorCollection.php:43
+- CORE/src/Core/ObjectRegistry.php:115
+- ROOT/vendor/cakephp/authentication/src/AbstractCollection.php:51
+- ROOT/vendor/cakephp/authentication/src/AuthenticationService.php:134
+- ROOT/vendor/cakephp/authentication/src/AuthenticationService.php:164
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:87
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /login
+Client IP: 138.199.24.218
+2026-02-11 06:02:34 warning: MissingTemplateException - Failed to render error template `runtime` . Error: Template file `Error/runtime.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/runtime.php`
+- `/var/www/html/templates/Error/runtime.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/runtime.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/runtime.p...')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('runtime')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('runtime')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(RuntimeException))
+#6 {main}
+2026-02-11 06:02:50 error: [Error] Typed static property Cake\Routing\Router::$_collection must not be accessed before initialization in /var/www/html/vendor/cakephp/cakephp/src/Routing/Router.php on line 747
+Stack Trace:
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:70
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:89
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /login
+Client IP: 138.199.24.218
+2026-02-11 06:02:50 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 06:02:56 error: [Error] Typed static property Cake\Routing\Router::$_collection must not be accessed before initialization in /var/www/html/vendor/cakephp/cakephp/src/Routing/Router.php on line 747
+Stack Trace:
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:70
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:89
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 06:02:56 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 06:03:44 error: [Error] Typed static property Cake\Routing\Router::$_collection must not be accessed before initialization in /var/www/html/vendor/cakephp/cakephp/src/Routing/Router.php on line 747
+Stack Trace:
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:70
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:89
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /login
+Client IP: 138.199.24.218
+2026-02-11 06:03:44 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 06:04:03 error: [Error] Typed static property Cake\Routing\Router::$_collection must not be accessed before initialization in /var/www/html/vendor/cakephp/cakephp/src/Routing/Router.php on line 747
+Stack Trace:
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:70
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:89
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 06:04:03 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 06:04:35 error: [Error] Typed static property Cake\Routing\Router::$_collection must not be accessed before initialization in /var/www/html/vendor/cakephp/cakephp/src/Routing/Router.php on line 747
+Stack Trace:
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:70
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:89
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /login
+Client IP: 138.199.24.218
+2026-02-11 06:04:35 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}
+2026-02-11 06:05:44 error: [Error] Typed static property Cake\Routing\Router::$_collection must not be accessed before initialization in /var/www/html/vendor/cakephp/cakephp/src/Routing/Router.php on line 747
+Stack Trace:
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:70
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:89
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:69
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:104
+- ROOT/webroot/index.php:11
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 06:05:44 warning: MissingTemplateException - Failed to render error template `error` . Error: Template file `Error/error.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/templates/Error/error.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error.php`
+
+Stack Trace
+: #0 /var/www/html/vendor/cakephp/cakephp/src/View/View.php(782): Cake\View\View->_getTemplateFileName('Error/error.php')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php(712): Cake\View\View->render()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(419): Cake\Controller\Controller->render('error')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Error/Renderer/WebExceptionRenderer.php(290): Cake\Error\Renderer\WebExceptionRenderer->_outputMessage('error')
+#4 /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php(240): Cake\Error\Renderer\WebExceptionRenderer->render()
+#5 [internal function]: Cake\Error\ExceptionTrap->handleException(Object(Error))
+#6 {main}

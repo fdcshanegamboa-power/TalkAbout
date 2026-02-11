@@ -1,0 +1,1968 @@
+2026-02-11 06:11:03 error: [Cake\Http\Exception\MissingControllerException] Controller class `Register` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => 'Register',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:77
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/CsrfProtectionMiddleware.php:169
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /register
+Referer URL: http://localhost:8080/register
+Client IP: 138.199.24.218
+2026-02-11 06:15:24 error: [Error] Call to undefined method Authentication\AuthenticationService::loadIdentifier() in /var/www/html/src/Application.php on line 143
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:136
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:77
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /register
+Referer URL: http://localhost:8080/register
+Client IP: 138.199.24.218
+2026-02-11 06:15:57 error: [Error] Call to undefined method Authentication\AuthenticationService::loadIdentifier() in /var/www/html/src/Application.php on line 140
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:136
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:77
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- ROOT/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php:60
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:37
+- [main]:
+
+Request URL: /users/login
+Client IP: 138.199.24.218
+[11-Feb-2026 06:30:23 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'mysqli' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli.so: No such file or directory)) in Unknown on line 0
+[11-Feb-2026 06:30:23 UTC] PHP Warning:  Module "mbstring" is already loaded in Unknown on line 0
+[11-Feb-2026 06:30:23 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'openssl' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl.so: No such file or directory)) in Unknown on line 0
+[11-Feb-2026 06:30:23 UTC] PHP Warning:  Module "intl" is already loaded in Unknown on line 0
+[11-Feb-2026 06:30:23 UTC] PHP Warning:  Module "pdo_mysql" is already loaded in Unknown on line 0
+[11-Feb-2026 06:30:28 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'mysqli' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli.so: No such file or directory)) in Unknown on line 0
+[11-Feb-2026 06:30:28 UTC] PHP Warning:  Module "mbstring" is already loaded in Unknown on line 0
+[11-Feb-2026 06:30:28 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'openssl' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl.so: No such file or directory)) in Unknown on line 0
+[11-Feb-2026 06:30:28 UTC] PHP Warning:  Module "intl" is already loaded in Unknown on line 0
+[11-Feb-2026 06:30:28 UTC] PHP Warning:  Module "pdo_mysql" is already loaded in Unknown on line 0
+[11-Feb-2026 06:30:34 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'mysqli' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli.so: No such file or directory)) in Unknown on line 0
+[11-Feb-2026 06:30:34 UTC] PHP Warning:  Module "mbstring" is already loaded in Unknown on line 0
+[11-Feb-2026 06:30:34 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'openssl' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl.so: No such file or directory)) in Unknown on line 0
+[11-Feb-2026 06:30:34 UTC] PHP Warning:  Module "intl" is already loaded in Unknown on line 0
+[11-Feb-2026 06:30:34 UTC] PHP Warning:  Module "pdo_mysql" is already loaded in Unknown on line 0
+[11-Feb-2026 06:30:48 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'mysqli' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli.so: No such file or directory)) in Unknown on line 0
+[11-Feb-2026 06:30:48 UTC] PHP Warning:  Module "mbstring" is already loaded in Unknown on line 0
+[11-Feb-2026 06:30:48 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'openssl' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl.so: No such file or directory)) in Unknown on line 0
+[11-Feb-2026 06:30:48 UTC] PHP Warning:  Module "intl" is already loaded in Unknown on line 0
+[11-Feb-2026 06:30:48 UTC] PHP Warning:  Module "pdo_mysql" is already loaded in Unknown on line 0
+[11-Feb-2026 06:30:48 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'mysqli' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli.so: No such file or directory)) in Unknown on line 0
+[11-Feb-2026 06:30:48 UTC] PHP Warning:  Module "mbstring" is already loaded in Unknown on line 0
+[11-Feb-2026 06:30:48 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'openssl' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl.so: No such file or directory)) in Unknown on line 0
+[11-Feb-2026 06:30:48 UTC] PHP Warning:  Module "intl" is already loaded in Unknown on line 0
+[11-Feb-2026 06:30:48 UTC] PHP Warning:  Module "pdo_mysql" is already loaded in Unknown on line 0
+[11-Feb-2026 06:30:48 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'mysqli' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli.so: No such file or directory)) in Unknown on line 0
+[11-Feb-2026 06:30:48 UTC] PHP Warning:  Module "mbstring" is already loaded in Unknown on line 0
+[11-Feb-2026 06:30:48 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'openssl' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl.so: No such file or directory)) in Unknown on line 0
+[11-Feb-2026 06:30:48 UTC] PHP Warning:  Module "intl" is already loaded in Unknown on line 0
+[11-Feb-2026 06:30:48 UTC] PHP Warning:  Module "pdo_mysql" is already loaded in Unknown on line 0
+[11-Feb-2026 06:31:24 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'mysqli' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli.so: No such file or directory)) in Unknown on line 0
+[11-Feb-2026 06:31:24 UTC] PHP Warning:  Module "mbstring" is already loaded in Unknown on line 0
+[11-Feb-2026 06:31:24 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'openssl' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl.so: No such file or directory)) in Unknown on line 0
+[11-Feb-2026 06:31:24 UTC] PHP Warning:  Module "intl" is already loaded in Unknown on line 0
+[11-Feb-2026 06:31:24 UTC] PHP Warning:  Module "pdo_mysql" is already loaded in Unknown on line 0
+[11-Feb-2026 06:31:25 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'mysqli' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli.so: No such file or directory)) in Unknown on line 0
+[11-Feb-2026 06:31:25 UTC] PHP Warning:  Module "mbstring" is already loaded in Unknown on line 0
+[11-Feb-2026 06:31:25 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'openssl' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl.so: No such file or directory)) in Unknown on line 0
+[11-Feb-2026 06:31:25 UTC] PHP Warning:  Module "intl" is already loaded in Unknown on line 0
+[11-Feb-2026 06:31:25 UTC] PHP Warning:  Module "pdo_mysql" is already loaded in Unknown on line 0
+[11-Feb-2026 06:31:59 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'mysqli' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/mysqli.so: No such file or directory)) in Unknown on line 0
+[11-Feb-2026 06:31:59 UTC] PHP Warning:  Module "mbstring" is already loaded in Unknown on line 0
+[11-Feb-2026 06:31:59 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'openssl' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl.so (Error loading shared library /usr/local/lib/php/extensions/no-debug-non-zts-20220829/openssl.so: No such file or directory)) in Unknown on line 0
+[11-Feb-2026 06:31:59 UTC] PHP Warning:  Module "intl" is already loaded in Unknown on line 0
+[11-Feb-2026 06:31:59 UTC] PHP Warning:  Module "pdo_mysql" is already loaded in Unknown on line 0
+[11-Feb-2026 06:33:34 UTC] PHP Fatal error:  Trait "Cake\Event\EventDispatcherTrait" not found in /var/www/html/vendor/cakephp/cakephp/src/Console/CommandRunner.php on line 40
+[11-Feb-2026 06:36:29 UTC] PHP Fatal error:  Trait "Cake\Event\EventDispatcherTrait" not found in /var/www/html/vendor/cakephp/cakephp/src/Console/CommandRunner.php on line 40
+[11-Feb-2026 06:38:23 UTC] PHP Fatal error:  Trait "Cake\Event\EventDispatcherTrait" not found in /var/www/html/vendor/cakephp/cakephp/src/Console/CommandRunner.php on line 40
+[11-Feb-2026 06:38:38 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "Cake\Core\Configure\Engine\CONFIG" in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php:65
+Stack trace:
+#0 /var/www/html/config/bootstrap.php(22): Cake\Core\Configure\Engine\PhpConfig->__construct()
+#1 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once('/var/www/html/c...')
+#2 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#5 /var/www/html/webroot/index.php(13): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php on line 65
+[11-Feb-2026 06:41:34 UTC] PHP Fatal error:  Trait "Cake\Event\EventDispatcherTrait" not found in /var/www/html/vendor/cakephp/cakephp/src/Console/CommandRunner.php on line 40
+[11-Feb-2026 06:45:34 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "Cake\Core\Configure\Engine\CONFIG" in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php:65
+Stack trace:
+#0 /var/www/html/config/bootstrap.php(22): Cake\Core\Configure\Engine\PhpConfig->__construct()
+#1 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once('/var/www/html/c...')
+#2 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#5 /var/www/html/webroot/index.php(13): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php on line 65
+[11-Feb-2026 06:45:36 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "Cake\Core\Configure\Engine\CONFIG" in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php:65
+Stack trace:
+#0 /var/www/html/config/bootstrap.php(22): Cake\Core\Configure\Engine\PhpConfig->__construct()
+#1 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once('/var/www/html/c...')
+#2 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#5 /var/www/html/webroot/index.php(13): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php on line 65
+[11-Feb-2026 06:45:36 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "Cake\Core\Configure\Engine\CONFIG" in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php:65
+Stack trace:
+#0 /var/www/html/config/bootstrap.php(22): Cake\Core\Configure\Engine\PhpConfig->__construct()
+#1 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once('/var/www/html/c...')
+#2 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#5 /var/www/html/webroot/index.php(13): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php on line 65
+[11-Feb-2026 06:45:37 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "Cake\Core\Configure\Engine\CONFIG" in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php:65
+Stack trace:
+#0 /var/www/html/config/bootstrap.php(22): Cake\Core\Configure\Engine\PhpConfig->__construct()
+#1 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once('/var/www/html/c...')
+#2 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#5 /var/www/html/webroot/index.php(13): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php on line 65
+[11-Feb-2026 06:45:37 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "Cake\Core\Configure\Engine\CONFIG" in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php:65
+Stack trace:
+#0 /var/www/html/config/bootstrap.php(22): Cake\Core\Configure\Engine\PhpConfig->__construct()
+#1 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once('/var/www/html/c...')
+#2 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#5 /var/www/html/webroot/index.php(13): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php on line 65
+[11-Feb-2026 06:45:37 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "Cake\Core\Configure\Engine\CONFIG" in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php:65
+Stack trace:
+#0 /var/www/html/config/bootstrap.php(22): Cake\Core\Configure\Engine\PhpConfig->__construct()
+#1 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once('/var/www/html/c...')
+#2 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#5 /var/www/html/webroot/index.php(13): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php on line 65
+[11-Feb-2026 06:45:37 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "Cake\Core\Configure\Engine\CONFIG" in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php:65
+Stack trace:
+#0 /var/www/html/config/bootstrap.php(22): Cake\Core\Configure\Engine\PhpConfig->__construct()
+#1 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once('/var/www/html/c...')
+#2 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#5 /var/www/html/webroot/index.php(13): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php on line 65
+[11-Feb-2026 06:45:37 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "Cake\Core\Configure\Engine\CONFIG" in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php:65
+Stack trace:
+#0 /var/www/html/config/bootstrap.php(22): Cake\Core\Configure\Engine\PhpConfig->__construct()
+#1 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once('/var/www/html/c...')
+#2 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#5 /var/www/html/webroot/index.php(13): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php on line 65
+[11-Feb-2026 06:45:39 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "Cake\Core\Configure\Engine\CONFIG" in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php:65
+Stack trace:
+#0 /var/www/html/config/bootstrap.php(22): Cake\Core\Configure\Engine\PhpConfig->__construct()
+#1 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once('/var/www/html/c...')
+#2 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#5 /var/www/html/webroot/index.php(13): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php on line 65
+[11-Feb-2026 06:45:56 UTC] PHP Fatal error:  Trait "Cake\Event\EventDispatcherTrait" not found in /var/www/html/vendor/cakephp/cakephp/src/Console/CommandRunner.php on line 40
+[11-Feb-2026 06:48:13 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "CONFIG" in /var/www/html/config/bootstrap.php:22
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(13): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 22
+[11-Feb-2026 06:49:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/app.php:11
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php(84): include()
+#1 /var/www/html/vendor/cakephp/cakephp/src/Core/Configure.php(339): Cake\Core\Configure\Engine\PhpConfig->read('app')
+#2 /var/www/html/config/bootstrap.php(23): Cake\Core\Configure::load('app', 'default', false)
+#3 /var/www/html/webroot/index.php(11): require('/var/www/html/c...')
+#4 {main}
+  thrown in /var/www/html/config/app.php on line 11
+[11-Feb-2026 06:49:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/app.php:11
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php(84): include()
+#1 /var/www/html/vendor/cakephp/cakephp/src/Core/Configure.php(339): Cake\Core\Configure\Engine\PhpConfig->read('app')
+#2 /var/www/html/config/bootstrap.php(23): Cake\Core\Configure::load('app', 'default', false)
+#3 /var/www/html/webroot/index.php(11): require('/var/www/html/c...')
+#4 {main}
+  thrown in /var/www/html/config/app.php on line 11
+[11-Feb-2026 06:50:38 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "Cake\Core\Configure\Engine\CONFIG" in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php:65
+Stack trace:
+#0 /var/www/html/config/bootstrap.php(22): Cake\Core\Configure\Engine\PhpConfig->__construct()
+#1 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once('/var/www/html/c...')
+#2 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#5 /var/www/html/webroot/index.php(14): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php on line 65
+[11-Feb-2026 06:50:41 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "Cake\Core\Configure\Engine\CONFIG" in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php:65
+Stack trace:
+#0 /var/www/html/config/bootstrap.php(22): Cake\Core\Configure\Engine\PhpConfig->__construct()
+#1 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once('/var/www/html/c...')
+#2 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#5 /var/www/html/webroot/index.php(14): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php on line 65
+[11-Feb-2026 06:51:14 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "Cake\Core\Configure\Engine\CONFIG" in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php:65
+Stack trace:
+#0 /var/www/html/config/bootstrap.php(22): Cake\Core\Configure\Engine\PhpConfig->__construct()
+#1 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once('/var/www/html/c...')
+#2 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#5 /var/www/html/webroot/index.php(14): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php on line 65
+[11-Feb-2026 06:54:58 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "Cake\Core\Configure\Engine\CONFIG" in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php:65
+Stack trace:
+#0 /var/www/html/config/bootstrap.php(22): Cake\Core\Configure\Engine\PhpConfig->__construct()
+#1 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once('/var/www/html/c...')
+#2 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#5 /var/www/html/webroot/index.php(14): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php on line 65
+[11-Feb-2026 06:56:50 UTC] PHP Fatal error:  Uncaught Error: Class "Cake\Error\ErrorHandler" not found in /var/www/html/config/bootstrap.php:68
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 68
+[11-Feb-2026 06:58:37 UTC] PHP Fatal error:  Uncaught Error: Class "Cake\Error\ErrorHandler" not found in /var/www/html/config/bootstrap.php:68
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 68
+[11-Feb-2026 07:01:05 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Cake\Http\ServerRequest::getVar() in /var/www/html/config/bootstrap.php:89
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 89
+[11-Feb-2026 07:01:41 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Cake\Http\ServerRequest::getVar() in /var/www/html/config/bootstrap.php:89
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 89
+[11-Feb-2026 07:06:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Cake\Http\ServerRequest::getVar() in /var/www/html/config/bootstrap.php:89
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 89
+[11-Feb-2026 07:09:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/bootstrap.php:85
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 85
+[11-Feb-2026 07:12:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/bootstrap.php:85
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 85
+[11-Feb-2026 07:12:46 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/bootstrap.php:85
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 85
+[11-Feb-2026 07:12:46 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/bootstrap.php:85
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 85
+[11-Feb-2026 07:15:06 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/bootstrap.php:85
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 85
+[11-Feb-2026 07:20:21 UTC] PHP Fatal error:  Trait "Cake\Event\EventDispatcherTrait" not found in /var/www/html/vendor/cakephp/cakephp/src/Console/CommandRunner.php on line 40
+[11-Feb-2026 07:24:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/bootstrap.php:85
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 85
+[11-Feb-2026 07:31:24 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/bootstrap.php:85
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 85
+[11-Feb-2026 07:31:24 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/bootstrap.php:85
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 85
+[11-Feb-2026 07:31:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/bootstrap.php:85
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 85
+[11-Feb-2026 07:31:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/bootstrap.php:85
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 85
+[11-Feb-2026 07:32:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/bootstrap.php:85
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 85
+[11-Feb-2026 07:32:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/bootstrap.php:85
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 85
+[11-Feb-2026 07:32:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/bootstrap.php:85
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 85
+[11-Feb-2026 07:32:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/bootstrap.php:85
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 85
+[11-Feb-2026 07:32:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/bootstrap.php:85
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 85
+[11-Feb-2026 07:32:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/bootstrap.php:85
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 85
+[11-Feb-2026 07:32:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /var/www/html/config/bootstrap.php:85
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once()
+#1 /var/www/html/src/Application.php(27): Cake\Http\BaseApplication->bootstrap()
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(117): App\Application->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(79): Cake\Http\Server->bootstrap()
+#4 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#5 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 85
+[11-Feb-2026 07:38:12 UTC] PHP Fatal error:  Uncaught Error: Class "Cake\Core\Configure" not found in /var/www/html/config/bootstrap.php:23
+Stack trace:
+#0 Command line code(1): require()
+#1 {main}
+  thrown in /var/www/html/config/bootstrap.php on line 23
+[11-Feb-2026 07:38:19 UTC] PHP Fatal error:  Trait "Cake\Event\EventDispatcherTrait" not found in /var/www/html/vendor/cakephp/cakephp/src/Console/CommandRunner.php on line 40
+[11-Feb-2026 07:38:53 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "Cake\Core\Configure\Engine\CONFIG" in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php:65
+Stack trace:
+#0 /var/www/html/config/bootstrap.php(23): Cake\Core\Configure\Engine\PhpConfig->__construct()
+#1 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(186): require_once('/var/www/html/c...')
+#2 /var/www/html/src/Application.php(28): Cake\Http\BaseApplication->bootstrap()
+#3 /var/www/html/vendor/cakephp/cakephp/src/Console/CommandRunner.php(215): App\Application->bootstrap()
+#4 /var/www/html/vendor/cakephp/cakephp/src/Console/CommandRunner.php(139): Cake\Console\CommandRunner->bootstrap()
+#5 /var/www/html/bin/cake(25): Cake\Console\CommandRunner->run(Array)
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Core/Configure/Engine/PhpConfig.php on line 65
+[11-Feb-2026 07:39:22 UTC] PHP Fatal error:  Uncaught Cake\Core\Exception\MissingPluginException: Plugin `DebugKit` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Core/PluginCollection.php:162
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Core/PluginCollection.php(295): Cake\Core\PluginCollection->findPath('DebugKit')
+#1 /var/www/html/vendor/cakephp/cakephp/src/Http/BaseApplication.php(142): Cake\Core\PluginCollection->create('DebugKit', Array)
+#2 /var/www/html/src/Application.php(40): Cake\Http\BaseApplication->addPlugin('DebugKit')
+#3 /var/www/html/vendor/cakephp/cakephp/src/Console/CommandRunner.php(215): App\Application->bootstrap()
+#4 /var/www/html/vendor/cakephp/cakephp/src/Console/CommandRunner.php(139): Cake\Console\CommandRunner->bootstrap()
+#5 /var/www/html/bin/cake(26): Cake\Console\CommandRunner->run(Array)
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Core/PluginCollection.php on line 162
+[11-Feb-2026 07:40:00 UTC] PHP Deprecated:  Since 5.0.0: Using `false` to disable logging scopes is deprecated. Use `null` instead.
+/var/www/html/vendor/cakephp/cakephp/src/Log/Engine/FileLog.php, line: 91
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/Log/Engine/FileLog.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+[11-Feb-2026 07:40:44 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:40:44 error: [Cake\Controller\Exception\MissingComponentException] Component class `RequestHandlerComponent` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php on line 139
+Exception Attributes: array (
+  'class' => 'RequestHandlerComponent',
+  'plugin' => NULL,
+)
+Stack Trace:
+- CORE/src/Core/ObjectRegistry.php:108
+- CORE/src/Controller/Controller.php:284
+- APP/Controller/AppController.php:15
+- APP/Controller/UsersController.php:14
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:40:44 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:41:18 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:41:18 error: [Cake\Controller\Exception\MissingComponentException] Component class `RequestHandlerComponent` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php on line 139
+Exception Attributes: array (
+  'class' => 'RequestHandlerComponent',
+  'plugin' => NULL,
+)
+Stack Trace:
+- CORE/src/Core/ObjectRegistry.php:108
+- CORE/src/Controller/Controller.php:284
+- APP/Controller/AppController.php:15
+- APP/Controller/UsersController.php:14
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:41:18 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:41:18 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:41:18 error: [Cake\Controller\Exception\MissingComponentException] Component class `RequestHandlerComponent` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php on line 139
+Exception Attributes: array (
+  'class' => 'RequestHandlerComponent',
+  'plugin' => NULL,
+)
+Stack Trace:
+- CORE/src/Core/ObjectRegistry.php:108
+- CORE/src/Controller/Controller.php:284
+- APP/Controller/AppController.php:15
+- APP/Controller/UsersController.php:14
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:41:18 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:41:20 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:41:20 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+[11-Feb-2026 07:41:20 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Http\Exception\MissingControllerException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Http\Exception\MissingControllerException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:41:24 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:41:24 error: [Cake\Controller\Exception\MissingComponentException] Component class `RequestHandlerComponent` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php on line 139
+Exception Attributes: array (
+  'class' => 'RequestHandlerComponent',
+  'plugin' => NULL,
+)
+Stack Trace:
+- CORE/src/Core/ObjectRegistry.php:108
+- CORE/src/Controller/Controller.php:284
+- APP/Controller/AppController.php:15
+- APP/Controller/UsersController.php:14
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:41:24 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:41:24 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:41:24 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+[11-Feb-2026 07:41:24 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Http\Exception\MissingControllerException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Http\Exception\MissingControllerException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:41:24 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:41:24 error: [Cake\Controller\Exception\MissingComponentException] Component class `RequestHandlerComponent` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php on line 139
+Exception Attributes: array (
+  'class' => 'RequestHandlerComponent',
+  'plugin' => NULL,
+)
+Stack Trace:
+- CORE/src/Core/ObjectRegistry.php:108
+- CORE/src/Controller/Controller.php:284
+- APP/Controller/AppController.php:15
+- APP/Controller/UsersController.php:14
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:41:24 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:41:24 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:41:24 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+[11-Feb-2026 07:41:24 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Http\Exception\MissingControllerException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Http\Exception\MissingControllerException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:41:24 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:41:24 error: [Cake\Controller\Exception\MissingComponentException] Component class `RequestHandlerComponent` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php on line 139
+Exception Attributes: array (
+  'class' => 'RequestHandlerComponent',
+  'plugin' => NULL,
+)
+Stack Trace:
+- CORE/src/Core/ObjectRegistry.php:108
+- CORE/src/Controller/Controller.php:284
+- APP/Controller/AppController.php:15
+- APP/Controller/UsersController.php:14
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:41:24 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:41:24 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:41:24 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+[11-Feb-2026 07:41:24 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Http\Exception\MissingControllerException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Http\Exception\MissingControllerException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:41:25 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:41:25 error: [Cake\Controller\Exception\MissingComponentException] Component class `RequestHandlerComponent` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php on line 139
+Exception Attributes: array (
+  'class' => 'RequestHandlerComponent',
+  'plugin' => NULL,
+)
+Stack Trace:
+- CORE/src/Core/ObjectRegistry.php:108
+- CORE/src/Controller/Controller.php:284
+- APP/Controller/AppController.php:15
+- APP/Controller/UsersController.php:14
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:41:25 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:41:25 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:41:25 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+[11-Feb-2026 07:41:25 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Http\Exception\MissingControllerException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Http\Exception\MissingControllerException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:41:25 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:41:25 error: [Cake\Controller\Exception\MissingComponentException] Component class `RequestHandlerComponent` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php on line 139
+Exception Attributes: array (
+  'class' => 'RequestHandlerComponent',
+  'plugin' => NULL,
+)
+Stack Trace:
+- CORE/src/Core/ObjectRegistry.php:108
+- CORE/src/Controller/Controller.php:284
+- APP/Controller/AppController.php:15
+- APP/Controller/UsersController.php:14
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:41:25 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:41:25 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:41:25 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+[11-Feb-2026 07:41:25 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Http\Exception\MissingControllerException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Http\Exception\MissingControllerException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:41:25 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:41:25 error: [Cake\Controller\Exception\MissingComponentException] Component class `RequestHandlerComponent` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php on line 139
+Exception Attributes: array (
+  'class' => 'RequestHandlerComponent',
+  'plugin' => NULL,
+)
+Stack Trace:
+- CORE/src/Core/ObjectRegistry.php:108
+- CORE/src/Controller/Controller.php:284
+- APP/Controller/AppController.php:15
+- APP/Controller/UsersController.php:14
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:41:25 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:41:25 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:41:25 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+[11-Feb-2026 07:41:25 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Http\Exception\MissingControllerException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Http\Exception\MissingControllerException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:41:25 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:41:25 error: [Cake\Controller\Exception\MissingComponentException] Component class `RequestHandlerComponent` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php on line 139
+Exception Attributes: array (
+  'class' => 'RequestHandlerComponent',
+  'plugin' => NULL,
+)
+Stack Trace:
+- CORE/src/Core/ObjectRegistry.php:108
+- CORE/src/Controller/Controller.php:284
+- APP/Controller/AppController.php:15
+- APP/Controller/UsersController.php:14
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:41:25 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:41:25 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:41:25 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+[11-Feb-2026 07:41:25 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Http\Exception\MissingControllerException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Http\Exception\MissingControllerException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:43:53 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:43:53 error: [Cake\Controller\Exception\MissingComponentException] Component class `RequestHandlerComponent` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php on line 139
+Exception Attributes: array (
+  'class' => 'RequestHandlerComponent',
+  'plugin' => NULL,
+)
+Stack Trace:
+- CORE/src/Core/ObjectRegistry.php:108
+- CORE/src/Controller/Controller.php:284
+- APP/Controller/AppController.php:15
+- APP/Controller/UsersController.php:14
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:43:53 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:44:02 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:44:02 error: [Cake\Controller\Exception\MissingComponentException] Component class `RequestHandlerComponent` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php on line 139
+Exception Attributes: array (
+  'class' => 'RequestHandlerComponent',
+  'plugin' => NULL,
+)
+Stack Trace:
+- CORE/src/Core/ObjectRegistry.php:108
+- CORE/src/Controller/Controller.php:284
+- APP/Controller/AppController.php:15
+- APP/Controller/UsersController.php:14
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:44:02 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\ExceptionRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Cake\Controller\Exception\MissingComponentException), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:44:54 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:44:54 error: [Error] Call to undefined method App\Controller\UsersController::loadModel() in /var/www/html/src/Controller/UsersController.php on line 15
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:44:54 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\Renderer\HtmlErrorRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Error), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Error), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:44:59 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:44:59 error: [Error] Call to undefined method App\Controller\UsersController::loadModel() in /var/www/html/src/Controller/UsersController.php on line 15
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:44:59 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\Renderer\HtmlErrorRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Error), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Error), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:45:25 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:45:25 error: [Error] Call to undefined method App\Controller\UsersController::loadModel() in /var/www/html/src/Controller/UsersController.php on line 15
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:45:25 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\Renderer\HtmlErrorRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Error), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Error), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:45:26 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:45:26 error: [Error] Call to undefined method App\Controller\UsersController::loadModel() in /var/www/html/src/Controller/UsersController.php on line 15
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:45:26 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\Renderer\HtmlErrorRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Error), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Error), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:45:26 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:45:26 error: [Error] Call to undefined method App\Controller\UsersController::loadModel() in /var/www/html/src/Controller/UsersController.php on line 15
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:45:26 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\Renderer\HtmlErrorRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Error), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Error), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:45:26 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:45:26 error: [Error] Call to undefined method App\Controller\UsersController::loadModel() in /var/www/html/src/Controller/UsersController.php on line 15
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:45:26 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\Renderer\HtmlErrorRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Error), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Error), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:45:30 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:45:30 error: [Error] Call to undefined method App\Controller\UsersController::loadModel() in /var/www/html/src/Controller/UsersController.php on line 15
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:45:30 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Cannot use `Cake\Error\Renderer\HtmlErrorRenderer` as an `exceptionRenderer`. It must be an instance of `Cake\Error\ExceptionRendererInterface`. in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php:126
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(145): Cake\Error\ExceptionTrap->renderer(Object(Error), Object(Cake\Http\ServerRequest))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(119): Cake\Error\Middleware\ErrorHandlerMiddleware->handleException(Object(Error), Object(Cake\Http\ServerRequest))
+#2 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(82): Cake\Error\Middleware\ErrorHandlerMiddleware->process(Object(Cake\Http\ServerRequest), Object(Cake\Http\Runner))
+#3 /var/www/html/vendor/cakephp/cakephp/src/Http/Runner.php(60): Cake\Http\Runner->handle(Object(Cake\Http\ServerRequest))
+#4 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(App\Application))
+#5 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#6 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Error/ExceptionTrap.php on line 126
+[11-Feb-2026 07:46:07 UTC] PHP Deprecated:  Since 3.3.0: loadIdentifier() usage is deprecated. Directly pass `'identifier'` config to the Authenticator.
+/var/www/html/vendor/cakephp/authentication/src/AuthenticationService.php, line: 162
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/authentication/src/AuthenticationService.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 07:46:07 error: [Error] Call to undefined method App\Controller\UsersController::loadModel() in /var/www/html/src/Controller/UsersController.php on line 15
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:46:08 UTC] PHP Fatal error:  Type of App\View\Helper\FlashHelper::$helpers must be array (as in class Cake\View\Helper) in /var/www/html/src/View/Helper/FlashHelper.php on line 8
+2026-02-11 07:47:22 error: [Error] Call to undefined method App\Controller\UsersController::loadModel() in /var/www/html/src/Controller/UsersController.php on line 15
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:47:22 UTC] PHP Fatal error:  Type of App\View\Helper\FlashHelper::$helpers must be array (as in class Cake\View\Helper) in /var/www/html/src/View/Helper/FlashHelper.php on line 8
+2026-02-11 07:47:33 error: [Error] Call to undefined method App\Controller\UsersController::loadModel() in /var/www/html/src/Controller/UsersController.php on line 15
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:47:33 UTC] PHP Fatal error:  Type of App\View\Helper\FlashHelper::$helpers must be array (as in class Cake\View\Helper) in /var/www/html/src/View/Helper/FlashHelper.php on line 8
+2026-02-11 07:47:35 error: [Error] Call to undefined method App\Controller\UsersController::loadModel() in /var/www/html/src/Controller/UsersController.php on line 15
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:47:35 UTC] PHP Fatal error:  Type of App\View\Helper\FlashHelper::$helpers must be array (as in class Cake\View\Helper) in /var/www/html/src/View/Helper/FlashHelper.php on line 8
+2026-02-11 07:47:36 error: [Error] Call to undefined method App\Controller\UsersController::loadModel() in /var/www/html/src/Controller/UsersController.php on line 15
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:47:36 UTC] PHP Fatal error:  Type of App\View\Helper\FlashHelper::$helpers must be array (as in class Cake\View\Helper) in /var/www/html/src/View/Helper/FlashHelper.php on line 8
+2026-02-11 07:47:37 error: [Error] Call to undefined method App\Controller\UsersController::loadModel() in /var/www/html/src/Controller/UsersController.php on line 15
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 07:47:37 UTC] PHP Fatal error:  Type of App\View\Helper\FlashHelper::$helpers must be array (as in class Cake\View\Helper) in /var/www/html/src/View/Helper/FlashHelper.php on line 8
+2026-02-11 07:47:45 error: [Error] Call to undefined method App\Controller\UsersController::loadModel() in /var/www/html/src/Controller/UsersController.php on line 15
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 07:47:45 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 07:47:46 error: [Error] Call to undefined method App\Controller\UsersController::loadModel() in /var/www/html/src/Controller/UsersController.php on line 15
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 07:47:46 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 07:47:48 error: [Error] Call to undefined method App\Controller\UsersController::loadModel() in /var/www/html/src/Controller/UsersController.php on line 15
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 07:47:48 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
