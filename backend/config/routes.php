@@ -19,6 +19,10 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/profile', ['controller' => 'Dashboard', 'action' => 'profile']);
         $builder->connect('/profile/edit', ['controller' => 'Dashboard', 'action' => 'editProfile']);
         
+        // API routes for posts
+        $builder->connect('/api/posts/list', ['controller' => 'Dashboard', 'action' => 'getPosts']);
+        $builder->connect('/api/posts/create', ['controller' => 'Dashboard', 'action' => 'createPost']);
+        
         $builder->fallbacks();
     });
 };

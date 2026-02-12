@@ -37,7 +37,6 @@ CREATE TABLE posts (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT NOT NULL,
     content_text TEXT NULL,
-    content_image_path VARCHAR(255) NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
     deleted_at DATETIME NULL,
@@ -45,18 +44,30 @@ CREATE TABLE posts (
     CONSTRAINT fk_posts_user
         FOREIGN KEY (user_id)
         REFERENCES users(id)
-        ON DELETE CASCADE,
-
-    -- Validation rule: at least one content field must exist
-    CONSTRAINT chk_posts_content
-        CHECK (
-            content_text IS NOT NULL
-            OR content_image_path IS NOT NULL
-        )
+        ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE INDEX idx_posts_user_id ON posts(user_id);
 CREATE INDEX idx_posts_created_at ON posts(created_at);
+
+-- =====================================================
+-- Table: post_images
+-- =====================================================
+CREATE TABLE post_images (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    post_id BIGINT NOT NULL,
+    image_path VARCHAR(255) NOT NULL,
+    display_order INT NOT NULL DEFAULT 0,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_post_images_post
+        FOREIGN KEY (post_id)
+        REFERENCES posts(id)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE INDEX idx_post_images_post_id ON post_images(post_id);
+CREATE INDEX idx_post_images_order ON post_images(post_id, display_order);
 
 -- =====================================================
 -- Table: comments
