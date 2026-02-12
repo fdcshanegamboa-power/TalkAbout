@@ -19,7 +19,26 @@ class DashboardController extends AppController
 
     public function home()
     {
-        $user = $this->Authentication->getIdentity();
+        // Load full user entity so sidebar has access to profile_photo_path
+        $usersTable = $this->getTableLocator()->get('Users');
+        $identity = $this->Authentication->getIdentity();
+        
+        $user = null;
+        if ($identity) {
+            $id = null;
+            if (method_exists($identity, 'getIdentifier')) {
+                $id = $identity->getIdentifier();
+            } elseif (method_exists($identity, 'get')) {
+                $id = $identity->get('id');
+            } elseif (isset($identity->id)) {
+                $id = $identity->id;
+            }
+            
+            if (!empty($id)) {
+                $user = $usersTable->get($id);
+            }
+        }
+        
         $this->set(compact('user'));
     }
 

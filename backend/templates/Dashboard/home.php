@@ -29,17 +29,13 @@ $this->assign('title', 'Home');
 
             <!-- Header -->
             <div class="bg-white/90 backdrop-blur rounded-2xl shadow-xl border border-blue-100 p-6">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-blue-700">
-                            Welcome, <?= htmlspecialchars((string)($user['full_name'] ?? $user['username'] ?? 'You'), ENT_QUOTES, 'UTF-8') ?>!
-                        </h1>
-                        <p class="text-sm text-blue-600 mt-1">
-                            @<?= htmlspecialchars((string)($user['username'] ?? ''), ENT_QUOTES, 'UTF-8') ?>
-                        </p>
-                    </div>
-
-                    <div class="text-sm text-blue-500">&nbsp;</div>
+                <div>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-blue-700">
+                        Home Feed
+                    </h1>
+                    <p class="text-sm text-blue-600 mt-1">
+                        What's happening now
+                    </p>
                 </div>
             </div>
 
