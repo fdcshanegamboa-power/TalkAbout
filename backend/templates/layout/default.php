@@ -32,7 +32,7 @@
         <?php endif; ?>
         
         <!-- Main Content -->
-        <main class="min-h-screen py-8">
+        <main class="min-h-screen">
             <?= $this->fetch('content') ?>
         </main>
     </div>

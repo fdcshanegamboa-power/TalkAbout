@@ -15,6 +15,8 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/register', ['controller' => 'Users', 'action' => 'register']);
         $builder->connect('/logout', ['controller' => 'Sessions', 'action' => 'logout']);
         $builder->connect('/dashboard', ['controller' => 'Dashboard', 'action' => 'dashboard']);
+        $builder->connect('/home', ['controller' => 'Dashboard', 'action' => 'dashboard']);
+        $builder->connect('/profile', ['controller' => 'Dashboard', 'action' => 'profile']);
         
         $builder->fallbacks();
     });

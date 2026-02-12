@@ -12,6 +12,17 @@ class DashboardController extends AppController
 
     public function dashboard()
     {
+        return $this->redirect(['action' => 'home']);
+    }
+
+    public function home()
+    {
+        $user = $this->Authentication->getIdentity();
+        $this->set(compact('user'));
+    }
+
+    public function profile()
+    {
         $user = $this->Authentication->getIdentity();
         $this->set(compact('user'));
     }
