@@ -18,9 +18,8 @@ class UsersController extends AppController
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         parent::beforeFilter($event);
-        // Allow unauthenticated access to login and register
         if (isset($this->Authentication)) {
-            $this->Authentication->addUnauthenticatedActions(['login', 'register']);
+            $this->Authentication->addUnauthenticatedActions(['register']);
         }
     }
 
@@ -58,32 +57,12 @@ class UsersController extends AppController
             
             if ($this->Users->save($user)) {
                     $this->Flash->success('Registration successful! You can now login.');
-                return $this->redirect(['action' => 'login']);
+                return $this->redirect(['controller' => 'Sessions', 'action' => 'login']);
             }
             
                 $this->Flash->error('Registration failed. Please check the form errors and try again.');
         }
         
-        $this->set(compact('user'));
-    }
-
-    public function logout()
-    {
-        $result = $this->Authentication->getResult();
-
-        if ($result && $result->isValid()) {
-            $this->Authentication->logout();
-            // Destroy the session to avoid leftover session data/cookies
-            $this->getRequest()->getSession()->destroy();
-            $this->Flash->success('You have been logged out.');
-        }
-
-        return $this->redirect(['action' => 'login']);
-    }
-
-    public function dashboard()
-    {
-        $user = $this->Authentication->getIdentity();
         $this->set(compact('user'));
     }
 }

@@ -63,7 +63,7 @@ $this->assign('title', 'Login');
             <div class="text-center mt-6">
                 <p class="text-sm text-gray-600">
                     Don't have an account? 
-                    <?= $this->Html->link('Register here', ['action' => 'register'], [
+                    <?= $this->Html->link('Register here', ['controller' => 'Users', 'action' => 'register'], [
                         'class' => 'text-blue-600 hover:text-blue-800 font-medium'
                     ]) ?>
                 </p>

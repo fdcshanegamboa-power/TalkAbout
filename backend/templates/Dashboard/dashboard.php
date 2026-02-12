@@ -16,7 +16,7 @@ $this->assign('title', 'Dashboard');
                     <p class="text-gray-600 mt-1">@{{ userName }}</p>
                 </div>
                 <div>
-                    <?= $this->Html->link('Logout', ['action' => 'logout'], [
+                    <?= $this->Html->link('Logout', ['controller' => 'Sessions', 'action' => 'logout'], [
                         'class' => 'bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-700 transition-colors'
                     ]) ?>
                 </div>

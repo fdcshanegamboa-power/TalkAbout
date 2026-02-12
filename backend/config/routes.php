@@ -8,13 +8,13 @@ return function (RouteBuilder $routes): void {
     $routes->setRouteClass(DashedRoute::class);
 
     $routes->scope('/', function (RouteBuilder $builder): void {
-        $builder->connect('/', ['controller' => 'Users', 'action' => 'login']);
+        $builder->connect('/', ['controller' => 'Sessions', 'action' => 'login']);
         
-        // User authentication routes
-        $builder->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+        // Authentication & app routes
+        $builder->connect('/login', ['controller' => 'Sessions', 'action' => 'login']);
         $builder->connect('/register', ['controller' => 'Users', 'action' => 'register']);
-        $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
-        $builder->connect('/dashboard', ['controller' => 'Users', 'action' => 'dashboard']);
+        $builder->connect('/logout', ['controller' => 'Sessions', 'action' => 'logout']);
+        $builder->connect('/dashboard', ['controller' => 'Dashboard', 'action' => 'dashboard']);
         
         $builder->fallbacks();
     });
