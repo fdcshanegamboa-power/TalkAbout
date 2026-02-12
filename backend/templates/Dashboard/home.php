@@ -18,7 +18,7 @@ $this->assign('title', 'Home');
 </style>
 
 <div class="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-100">
-    <div id="dashboard-app" class="max-w-9xl mx-auto px-4 sm:px-6 flex gap-6 py-6 min-h-screen">
+    <div id="dashboard-app" v-cloak class="max-w-9xl mx-auto px-4 sm:px-6 flex gap-6 py-6 min-h-screen">
 
 
         <!-- Sidebar -->
@@ -32,10 +32,10 @@ $this->assign('title', 'Home');
                 <div class="flex justify-between items-center">
                     <div>
                         <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-blue-700">
-                            Welcome, {{ userFullName }}!
+                            Welcome, <?= htmlspecialchars((string)($user['full_name'] ?? $user['username'] ?? 'You'), ENT_QUOTES, 'UTF-8') ?>!
                         </h1>
                         <p class="text-sm text-blue-600 mt-1">
-                            @{{ userName }}
+                            @<?= htmlspecialchars((string)($user['username'] ?? ''), ENT_QUOTES, 'UTF-8') ?>
                         </p>
                     </div>
 
@@ -131,9 +131,9 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
-            userFullName: '<?= htmlspecialchars((string)($user['full_name'] ?? ''), ENT_QUOTES, 'UTF-8') ?>',
-            userName: '<?= htmlspecialchars((string)($user['username'] ?? ''), ENT_QUOTES, 'UTF-8') ?>',
-            userAbout: '<?= htmlspecialchars((string)($user['about'] ?? ''), ENT_QUOTES, 'UTF-8') ?>',
+            userFullName: <?= json_encode($user['full_name'] ?? '') ?>,
+            userName: <?= json_encode($user['username'] ?? '') ?>,
+            userAbout: <?= json_encode($user['about'] ?? '') ?>,
             composer: {
                 text: '',
                 imageFile: null,

@@ -17,6 +17,7 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/dashboard', ['controller' => 'Dashboard', 'action' => 'dashboard']);
         $builder->connect('/home', ['controller' => 'Dashboard', 'action' => 'dashboard']);
         $builder->connect('/profile', ['controller' => 'Dashboard', 'action' => 'profile']);
+        $builder->connect('/profile/edit', ['controller' => 'Dashboard', 'action' => 'editProfile']);
         
         $builder->fallbacks();
     });

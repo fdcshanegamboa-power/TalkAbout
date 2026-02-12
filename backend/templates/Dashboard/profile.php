@@ -11,21 +11,25 @@ $this->assign('title', 'Profile');
 $fullName = '';
 $username = '';
 $about = '';
+$profilePhoto = '';
 
 if (!empty($user)) {
     if (is_array($user)) {
         $fullName = $user['full_name'] ?? '';
         $username = $user['username'] ?? '';
             $about = $user['about'] ?? '';
+            $profilePhoto = $user['profile_photo_path'] ?? '';
     } elseif (is_object($user)) {
         if (method_exists($user, 'get')) {
             $fullName = $user->get('full_name') ?? '';
             $username = $user->get('username') ?? '';
                 $about = $user->get('about') ?? '';
+                $profilePhoto = $user->get('profile_photo_path') ?? '';
         } else {
             $fullName = $user->full_name ?? '';
             $username = $user->username ?? '';
                 $about = $user->about ?? '';
+                $profilePhoto = $user->profile_photo_path ?? '';
         }
     }
 }
@@ -44,7 +48,6 @@ if (!empty($user)) {
 
 <div class="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-100">
     <div
-        id="dashboard-app"
         class="max-w-9xl mx-auto px-4 sm:px-6 flex gap-6 py-6 min-h-screen"
     >
 
@@ -61,8 +64,13 @@ if (!empty($user)) {
                 <!-- Avatar -->
                 <div class="w-28 h-28 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600
                        flex items-center justify-center text-white text-4xl font-extrabold
-                       shadow-lg">
-                    <?= strtoupper(substr($fullName ?: $username ?: 'U', 0, 1)) ?>
+                       shadow-lg overflow-hidden">
+                    <?php if (!empty($profilePhoto)): ?>
+                        <img src="<?= $this->Url->build('/img/profiles/' . htmlspecialchars($profilePhoto, ENT_QUOTES, 'UTF-8')) ?>" 
+                             alt="Profile" class="w-full h-full object-cover" />
+                    <?php else: ?>
+                        <?= strtoupper(substr($fullName ?: $username ?: 'U', 0, 1)) ?>
+                    <?php endif; ?>
                 </div>
     
                 <!-- Name -->
@@ -86,12 +94,13 @@ if (!empty($user)) {
     
                 <!-- Actions -->
                 <div class="mt-5">
-                    <button type="button" class="px-6 py-2 rounded-full border border-blue-500
-                           text-blue-600 font-semibold text-sm
-                           hover:bg-blue-50 transition
-                           focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
-                        Edit profile
-                    </button>
+                    <?= $this->Html->link(
+                        'Edit profile',
+                        '/profile/edit',
+                        [
+                            'class' => 'px-6 py-2 rounded-full border border-blue-500 text-blue-600 font-semibold text-sm hover:bg-blue-50 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2'
+                        ]
+                    ) ?>
                 </div>
     
             </div>
