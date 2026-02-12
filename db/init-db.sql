@@ -23,6 +23,7 @@ CREATE TABLE users (
     username VARCHAR(50) NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     profile_photo_path VARCHAR(255) NULL,
+    about TEXT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
 
@@ -123,12 +124,14 @@ CREATE INDEX idx_likes_target ON likes(target_type, target_id);
 -- Username: admin
 -- Password: admin123
 -- =====================================================
-INSERT INTO users (full_name, username, password_hash, created_at, updated_at) VALUES
-	('Admin User', 'admin', '$2y$10$vxMJJlmSEg6BItmenrzt7OVLD6wEhRzlK7i1P4qJMQn/T2IhbqJ4u', NOW(), NOW())
+INSERT INTO users (full_name, username, password_hash, about, created_at, updated_at) VALUES
+    ('Admin User', 'admin', '$2y$10$vxMJJlmSEg6BItmenrzt7OVLD6wEhRzlK7i1P4qJMQn/T2IhbqJ4u', 'Administrator account for TalkAbout', NOW(), NOW())
+
 ON DUPLICATE KEY UPDATE
-	full_name = VALUES(full_name),
-	password_hash = VALUES(password_hash),
-	updated_at = VALUES(updated_at);
+    full_name = VALUES(full_name),
+    password_hash = VALUES(password_hash),
+    about = VALUES(about),
+    updated_at = VALUES(updated_at);
 
 -- =====================================================
 -- End of init-db.sql

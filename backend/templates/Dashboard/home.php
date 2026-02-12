@@ -91,7 +91,7 @@ $this->assign('title', 'Home');
                                 </div>
 
                                 <div class="flex items-center gap-3">
-                                    <button @click="toggleLike(post)" :class="post.liked ? 'text-red-500' : 'text-blue-500'" class="flex items-center gap-2 text-sm font-semibold">
+                                    <button @click="toggleLike(post)" :class="post.liked ? 'text-indigo-600' : 'text-blue-500'" class="flex items-center gap-2 text-sm font-semibold">
                                         <span v-if="!post.liked" class="inline-flex items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 w-5 h-5">
                                               <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
@@ -108,6 +108,7 @@ $this->assign('title', 'Home');
                             </div>
 
                             <div class="text-blue-700 mt-1">{{ post.text }}</div>
+                            <div v-if="post.about" class="text-sm text-blue-600 mt-2">{{ post.about }}</div>
                             <div v-if="post.image" class="mt-3">
                                 <img :src="post.image" class="rounded-lg max-h-64 object-cover w-full" />
                             </div>
@@ -132,6 +133,7 @@ createApp({
         return {
             userFullName: '<?= htmlspecialchars((string)($user['full_name'] ?? ''), ENT_QUOTES, 'UTF-8') ?>',
             userName: '<?= htmlspecialchars((string)($user['username'] ?? ''), ENT_QUOTES, 'UTF-8') ?>',
+            userAbout: '<?= htmlspecialchars((string)($user['about'] ?? ''), ENT_QUOTES, 'UTF-8') ?>',
             composer: {
                 text: '',
                 imageFile: null,
@@ -163,6 +165,7 @@ createApp({
             this.posts.unshift({
                 id,
                 author: authorLabel,
+                about: this.userAbout || '',
                 initial,
                 text: this.composer.text,
                 image: this.composer.imagePreview,
