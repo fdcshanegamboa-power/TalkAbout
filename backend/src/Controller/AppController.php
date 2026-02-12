@@ -14,12 +14,14 @@ class AppController extends BaseController
 
         $this->loadComponent('Flash');
         $this->loadComponent('Authentication.Authentication');
+        // Allow login/register without identity by default
+        $this->Authentication->addUnauthenticatedActions(['login', 'register']);
     }
 
     public function beforeFilter(EventInterface $event)
     {
         parent::beforeFilter($event);
-        // Configure the login action to not require authentication
+        // Ensure login/register are available without authentication
         $this->Authentication->addUnauthenticatedActions(['login', 'register']);
     }
 }

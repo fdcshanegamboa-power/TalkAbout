@@ -9,23 +9,24 @@ use Cake\ORM\Entity;
 class User extends Entity
 {
     protected array $_accessible = [
+        'full_name' => true,
         'username' => true,
-        'email' => true,
         'password' => true,
-        'created' => true,
-        'modified' => true,
+        'profile_photo_path' => true,
+        'created_at' => true,
+        'updated_at' => true,
     ];
 
     protected array $_hidden = [
-        'password',
+        'password_hash',
     ];
 
+    // Intercept 'password' field and hash it into 'password_hash' column
     protected function _setPassword(string $password): ?string
     {
         if (strlen($password) > 0) {
-            return (new DefaultPasswordHasher())->hash($password);
+            $this->set('password_hash', (new DefaultPasswordHasher())->hash($password));
         }
-        
         return null;
     }
 }

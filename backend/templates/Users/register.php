@@ -21,6 +21,24 @@ $this->assign('title', 'Register');
             ]) ?>
             
             <div>
+                <label for="full-name" class="block text-sm font-medium text-gray-700 mb-2">
+                    Full Name
+                </label>
+                <?= $this->Form->control('full_name', [
+                    'label' => false,
+                    'class' => 'w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent',
+                    'placeholder' => 'Enter your full name',
+                    'required' => true,
+                    'v-model' => 'form.full_name'
+                ]) ?>
+                <?php if ($user->getError('full_name')): ?>
+                    <p class="text-red-500 text-sm mt-1">
+                        <?= htmlspecialchars(implode(', ', $user->getError('full_name')), ENT_QUOTES, 'UTF-8') ?>
+                    </p>
+                <?php endif; ?>
+            </div>
+            
+            <div>
                 <label for="username" class="block text-sm font-medium text-gray-700 mb-2">
                     Username
                 </label>
@@ -33,26 +51,7 @@ $this->assign('title', 'Register');
                 ]) ?>
                 <?php if ($user->getError('username')): ?>
                     <p class="text-red-500 text-sm mt-1">
-                        <?= h(implode(', ', $user->getError('username'))) ?>
-                    </p>
-                <?php endif; ?>
-            </div>
-            
-            <div>
-                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                    Email Address
-                </label>
-                <?= $this->Form->control('email', [
-                    'type' => 'email',
-                    'label' => false,
-                    'class' => 'w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent',
-                    'placeholder' => 'Enter your email',
-                    'required' => true,
-                    'v-model' => 'form.email'
-                ]) ?>
-                <?php if ($user->getError('email')): ?>
-                    <p class="text-red-500 text-sm mt-1">
-                        <?= h(implode(', ', $user->getError('email'))) ?>
+                        <?= htmlspecialchars(implode(', ', $user->getError('username')), ENT_QUOTES, 'UTF-8') ?>
                     </p>
                 <?php endif; ?>
             </div>
@@ -72,7 +71,7 @@ $this->assign('title', 'Register');
                 ]) ?>
                 <?php if ($user->getError('password')): ?>
                     <p class="text-red-500 text-sm mt-1">
-                        <?= h(implode(', ', $user->getError('password'))) ?>
+                        <?= htmlspecialchars(implode(', ', $user->getError('password')), ENT_QUOTES, 'UTF-8') ?>
                     </p>
                 <?php endif; ?>
                 <div v-if="form.password" class="mt-2">
@@ -143,8 +142,8 @@ createApp({
     data() {
         return {
             form: {
-                username: '<?= h($user->username ?? '') ?>',
-                email: '<?= h($user->email ?? '') ?>',
+                full_name: '<?= htmlspecialchars($user->full_name ?? '', ENT_QUOTES, 'UTF-8') ?>',
+                username: '<?= htmlspecialchars($user->username ?? '', ENT_QUOTES, 'UTF-8') ?>',
                 password: ''
             },
             confirmPassword: '',
@@ -162,8 +161,8 @@ createApp({
             return this.form.password === this.confirmPassword;
         },
         isFormValid() {
-            return this.form.username && 
-                   this.form.email && 
+            return this.form.full_name && 
+                   this.form.username && 
                    this.form.password && 
                    this.form.password.length >= 8 &&
                    this.passwordsMatch;

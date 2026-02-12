@@ -1966,3 +1966,3434 @@ Stack Trace:
 
 Request URL: /
 Client IP: 138.199.24.218
+2026-02-11 08:19:20 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:19:20 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:19:31 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:19:31 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:19:32 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:19:32 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:20:04 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:20:04 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:21:13 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:21:13 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:21:14 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:21:14 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:21:15 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:21:15 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:24:12 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:24:12 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:24:12 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:24:12 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:24:12 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:24:12 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:24:13 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:24:13 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:24:13 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:24:13 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:24:14 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:24:14 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 08:25:50 UTC] PHP Notice:  Undefined property `UsersController::$Authentication` in `/var/www/html/src/Controller/UsersController.php` on line 22 in /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php on line 313
+2026-02-11 08:25:50 error: [Error] Call to a member function addUnauthenticatedActions() on null in /var/www/html/src/Controller/UsersController.php on line 22
+Stack Trace:
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:25:50 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 08:25:50 UTC] PHP Warning:  Unable to emit headers. Headers sent in file=/var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php line=313 in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 65
+[11-Feb-2026 08:25:50 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php:313) in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 158
+[11-Feb-2026 08:25:50 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php:313) in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 191
+[11-Feb-2026 08:26:54 UTC] PHP Notice:  Undefined property `UsersController::$Authentication` in `/var/www/html/src/Controller/UsersController.php` on line 22 in /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php on line 313
+2026-02-11 08:26:54 error: [Error] Call to a member function addUnauthenticatedActions() on null in /var/www/html/src/Controller/UsersController.php on line 22
+Stack Trace:
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:26:54 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 08:26:54 UTC] PHP Warning:  Unable to emit headers. Headers sent in file=/var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php line=313 in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 65
+[11-Feb-2026 08:26:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php:313) in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 158
+[11-Feb-2026 08:26:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php:313) in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 191
+[11-Feb-2026 08:26:54 UTC] PHP Notice:  Undefined property `UsersController::$Authentication` in `/var/www/html/src/Controller/UsersController.php` on line 22 in /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php on line 313
+2026-02-11 08:26:54 error: [Error] Call to a member function addUnauthenticatedActions() on null in /var/www/html/src/Controller/UsersController.php on line 22
+Stack Trace:
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:26:54 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 08:26:54 UTC] PHP Warning:  Unable to emit headers. Headers sent in file=/var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php line=313 in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 65
+[11-Feb-2026 08:26:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php:313) in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 158
+[11-Feb-2026 08:26:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php:313) in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 191
+2026-02-11 08:36:43 error: [Error] Call to undefined function App\Controller\__() in /var/www/html/src/Controller/UsersController.php on line 49
+Stack Trace:
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+2026-02-11 08:36:43 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+2026-02-11 08:36:55 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+2026-02-11 08:37:11 error: [Error] Call to undefined function App\Controller\__() in /var/www/html/src/Controller/UsersController.php on line 49
+Stack Trace:
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+2026-02-11 08:37:11 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+2026-02-11 08:37:41 error: [Error] Call to undefined function App\Controller\__() in /var/www/html/src/Controller/UsersController.php on line 49
+Stack Trace:
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+2026-02-11 08:37:41 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+2026-02-11 08:42:47 error: [Error] Call to undefined function App\View\Helper\h() in /var/www/html/src/View/Helper/FlashHelper.php on line 43
+Stack Trace:
+- ROOT/templates/layout/default.php:27
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:852
+- CORE/src/View/View.php:811
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:42:47 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 08:46:38 UTC] PHP Deprecated:  Since 5.1.0: Cache config `_cake_core_` is deprecated. Use `_cake_translations_` instead
+/var/www/html/vendor/cakephp/cakephp/src/I18n/I18n.php, line: 152
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/I18n/I18n.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 08:46:38 error: [Error] Call to undefined function h() in /var/www/html/templates/Users/register.php on line 146
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /register
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+2026-02-11 08:46:38 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /register
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+[11-Feb-2026 08:46:40 UTC] PHP Deprecated:  Since 5.1.0: Cache config `_cake_core_` is deprecated. Use `_cake_translations_` instead
+/var/www/html/vendor/cakephp/cakephp/src/I18n/I18n.php, line: 152
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/I18n/I18n.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+2026-02-11 08:46:40 error: [Error] Call to undefined function h() in /var/www/html/templates/Users/register.php on line 146
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /register
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+2026-02-11 08:46:40 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /register
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+2026-02-11 08:51:17 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-11 08:51:18 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+[11-Feb-2026 08:56:43 UTC] PHP Fatal error:  Uncaught Error: Class "Cake\Http\Middleware\SessionMiddleware" not found in /var/www/html/src/Application.php:52
+Stack trace:
+#0 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(91): App\Application->middleware(Object(Cake\Http\MiddlewareQueue))
+#1 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#2 {main}
+  thrown in /var/www/html/src/Application.php on line 52
+2026-02-11 08:57:18 error: [Error] Call to undefined function h() in /var/www/html/templates/Users/dashboard.php on line 80
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /dashboard
+Client IP: 138.199.24.218
+2026-02-11 08:57:18 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:15
+- [main]:
+
+Request URL: /dashboard
+Client IP: 138.199.24.218
+[11-Feb-2026 09:23:49 UTC] PHP Fatal error:  Uncaught TypeError: Cake\Http\MiddlewareQueue::add(): Argument #1 ($middleware) must be of type Psr\Http\Server\MiddlewareInterface|Closure|array|string, App\Middleware\SimpleSessionMiddleware given, called in /var/www/html/src/Application.php on line 55 and defined in /var/www/html/vendor/cakephp/cakephp/src/Http/MiddlewareQueue.php:107
+Stack trace:
+#0 /var/www/html/src/Application.php(55): Cake\Http\MiddlewareQueue->add(Object(App\Middleware\SimpleSessionMiddleware))
+#1 /var/www/html/vendor/cakephp/cakephp/src/Http/Server.php(91): App\Application->middleware(Object(Cake\Http\MiddlewareQueue))
+#2 /var/www/html/webroot/index.php(15): Cake\Http\Server->run()
+#3 {main}
+  thrown in /var/www/html/vendor/cakephp/cakephp/src/Http/MiddlewareQueue.php on line 107
+[11-Feb-2026 09:27:39 UTC] PHP Deprecated:  Since 5.1.0: Cache config `_cake_core_` is deprecated. Use `_cake_translations_` instead
+/var/www/html/vendor/cakephp/cakephp/src/I18n/I18n.php, line: 152
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/I18n/I18n.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+[11-Feb-2026 09:27:39 UTC] PHP Warning:  Unable to emit headers. Headers sent in file=/var/www/html/vendor/cakephp/cakephp/src/Core/functions.php line=377 in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 65
+[11-Feb-2026 09:27:39 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php:377) in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 158
+[11-Feb-2026 09:27:39 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php:377) in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 191
+[12-Feb-2026 00:41:13 UTC] PHP Deprecated:  Since 5.1.0: Cache config `_cake_core_` is deprecated. Use `_cake_translations_` instead
+/var/www/html/vendor/cakephp/cakephp/src/I18n/I18n.php, line: 152
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/I18n/I18n.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+[12-Feb-2026 00:41:13 UTC] PHP Warning:  Unable to emit headers. Headers sent in file=/var/www/html/vendor/cakephp/cakephp/src/Core/functions.php line=377 in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 65
+[12-Feb-2026 00:41:13 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php:377) in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 158
+[12-Feb-2026 00:41:13 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php:377) in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 191
+[12-Feb-2026 00:41:51 UTC] PHP Deprecated:  Since 5.1.0: Cache config `_cake_core_` is deprecated. Use `_cake_translations_` instead
+/var/www/html/vendor/cakephp/cakephp/src/I18n/I18n.php, line: 152
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/I18n/I18n.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only. in /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php on line 377
+[12-Feb-2026 00:41:51 UTC] PHP Warning:  Unable to emit headers. Headers sent in file=/var/www/html/vendor/cakephp/cakephp/src/Core/functions.php line=377 in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 65
+[12-Feb-2026 00:41:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php:377) in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 158
+[12-Feb-2026 00:41:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/vendor/cakephp/cakephp/src/Core/functions.php:377) in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 191
+[12-Feb-2026 00:47:05 UTC] AUTH BODY: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 00:47:05 UTC] AUTH RESULT: false
+[12-Feb-2026 00:49:33 UTC] AUTH BODY: {"email":"admin@talkabout.local","password":"admin@!passwqord"}
+[12-Feb-2026 00:49:33 UTC] AUTH RESULT: false
+[12-Feb-2026 00:49:55 UTC] AUTH BODY: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 00:49:55 UTC] AUTH RESULT: false
+[12-Feb-2026 00:50:06 UTC] AUTH BODY: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 00:50:06 UTC] AUTH RESULT: false
+2026-02-12 00:50:34 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+[12-Feb-2026 00:50:45 UTC] AUTH BODY: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 00:50:45 UTC] AUTH RESULT: false
+2026-02-12 00:50:45 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+[12-Feb-2026 00:55:21 UTC] AUTH LOG: authenticate() called. Parsed body: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 00:55:21 UTC] AUTH LOG: authenticate() result valid=true data={"id":1,"username":"admin","email":"admin@talkabout.local","created":"2026-02-11T08:47:49+00:00","modified":"2026-02-11T08:47:49+00:00"}
+[12-Feb-2026 00:55:21 UTC] AUTH BODY: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 00:55:21 UTC] AUTH RESULT: false
+[12-Feb-2026 00:55:21 UTC] AUTH LOG: persistIdentity called for identity: {"id":1,"username":"admin","email":"admin@talkabout.local","created":"2026-02-11T08:47:49+00:00","modified":"2026-02-11T08:47:49+00:00"}
+[12-Feb-2026 00:56:29 UTC] AUTH BODY: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 00:56:29 UTC] AUTH RESULT: false
+[12-Feb-2026 00:57:52 UTC] AUTH BODY: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 00:57:52 UTC] AUTH RESULT: false
+[12-Feb-2026 00:58:35 UTC] AUTH BODY: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 00:59:21 UTC] AUTH BODY: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+2026-02-12 00:59:21 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+2026-02-12 00:59:28 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+[12-Feb-2026 01:00:03 UTC] AUTH BODY: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+2026-02-12 01:00:03 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+2026-02-12 01:00:25 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+[12-Feb-2026 01:00:47 UTC] AUTH BODY: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+2026-02-12 01:00:47 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+2026-02-12 01:10:37 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+[12-Feb-2026 01:10:44 UTC] AUTH BODY: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+2026-02-12 01:10:44 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+2026-02-12 01:13:09 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+[12-Feb-2026 01:13:51 UTC] AUTH BODY: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+2026-02-12 01:13:51 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+2026-02-12 01:15:09 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+2026-02-12 01:15:13 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+2026-02-12 01:15:19 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+2026-02-12 01:15:45 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+2026-02-12 01:18:40 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+2026-02-12 01:18:50 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+2026-02-12 01:18:50 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+2026-02-12 01:19:09 error: [Cake\Http\Exception\MissingControllerException] Controller class `.wellKnown` could not be found. in /var/www/html/vendor/cakephp/cakephp/src/Controller/ControllerFactory.php on line 335
+Exception Attributes: array (
+  'controller' => '.wellKnown',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:320
+- CORE/src/Controller/ControllerFactory.php:75
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:75
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /.well-known/appspecific/com.chrome.devtools.json
+Client IP: 138.199.24.218
+[12-Feb-2026 01:21:57 UTC] LOGIN ATTEMPT: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 01:21:57 UTC] LOGIN RESULT: false
+[12-Feb-2026 01:23:39 UTC] LOGIN ATTEMPT: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 01:23:39 UTC] LOGIN RESULT: false
+[12-Feb-2026 01:23:40 UTC] LOGIN ATTEMPT: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 01:23:40 UTC] LOGIN RESULT: false
+[12-Feb-2026 01:23:40 UTC] LOGIN ATTEMPT: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 01:23:40 UTC] LOGIN RESULT: false
+[12-Feb-2026 01:23:40 UTC] LOGIN ATTEMPT: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 01:23:40 UTC] LOGIN RESULT: false
+[12-Feb-2026 01:23:40 UTC] LOGIN ATTEMPT: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 01:23:40 UTC] LOGIN RESULT: false
+[12-Feb-2026 01:23:40 UTC] LOGIN ATTEMPT: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 01:23:40 UTC] LOGIN RESULT: false
+[12-Feb-2026 01:23:41 UTC] LOGIN ATTEMPT: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 01:23:41 UTC] LOGIN RESULT: false
+[12-Feb-2026 01:23:41 UTC] LOGIN ATTEMPT: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 01:23:41 UTC] LOGIN RESULT: false
+[12-Feb-2026 01:23:41 UTC] LOGIN ATTEMPT: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 01:23:41 UTC] LOGIN RESULT: false
+[12-Feb-2026 01:23:41 UTC] LOGIN ATTEMPT: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 01:23:41 UTC] LOGIN RESULT: false
+[12-Feb-2026 01:23:44 UTC] LOGIN ATTEMPT: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 01:23:44 UTC] LOGIN RESULT: false
+[12-Feb-2026 01:24:32 UTC] LOGIN ATTEMPT: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+[12-Feb-2026 01:24:32 UTC] LOGIN RESULT: false
+2026-02-12 01:25:24 error: [Error] Call to undefined function h() in /var/www/html/templates/Users/register.php on line 146
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /register
+Client IP: 138.199.24.218
+[12-Feb-2026 01:26:31 UTC] PHP Warning:  Undefined variable $IbdThB5WNMTHVLkdolaMCu in Command line code on line 1
+[12-Feb-2026 01:27:51 UTC] LOGIN ATTEMPT: {"email":"admin@talkabout.local","password":"iZE^Sb7?GszRGA"}
+2026-02-12 01:33:42 error: [Error] Call to undefined function h() in /var/www/html/templates/Users/register.php on line 146
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /register
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+2026-02-12 01:38:16 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /login
+Client IP: 138.199.24.218
+2026-02-12 01:38:16 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /login
+Client IP: 138.199.24.218
+2026-02-12 01:38:16 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard
+Client IP: 138.199.24.218
+2026-02-12 01:38:16 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard
+Client IP: 138.199.24.218
+2026-02-12 01:41:48 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /login
+Client IP: 138.199.24.218
+2026-02-12 01:41:48 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /login
+Client IP: 138.199.24.218
+2026-02-12 01:41:48 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /login
+Client IP: 138.199.24.218
+2026-02-12 01:41:48 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /login
+Client IP: 138.199.24.218
+2026-02-12 01:42:16 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /login
+Client IP: 138.199.24.218
+2026-02-12 01:42:16 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /login
+Client IP: 138.199.24.218
+2026-02-12 01:42:16 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /login
+Client IP: 138.199.24.218
+2026-02-12 01:42:16 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /login
+Client IP: 138.199.24.218
+2026-02-12 01:43:33 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:43:33 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:44:01 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:44:01 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:44:07 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:44:07 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:44:20 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:44:20 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:44:28 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:44:28 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:44:57 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:44:57 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:45:01 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:45:01 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:45:30 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:45:30 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:46:07 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:46:07 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:46:34 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:46:34 error: [Cake\View\Exception\MissingTemplateException] Template file `Error/error500.php` could not be found.
+
+The following paths were searched:
+
+- `/var/www/html/templates/Error/error500.php`
+- `/var/www/html/vendor/cakephp/cakephp/templates/Error/error500.php`
+ in /var/www/html/vendor/cakephp/cakephp/src/View/View.php on line 1391
+Exception Attributes: array (
+  'file' => 'Error/error500.php',
+  'paths' => 
+  array (
+    0 => '/var/www/html/templates/',
+    1 => '/var/www/html/vendor/cakephp/cakephp/templates/',
+  ),
+)
+Stack Trace:
+- CORE/src/View/View.php:797
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:505
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:448
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:47:11 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:47:11 error: [Error] Call to undefined function h() in /var/www/html/templates/Error/error500.php on line 11
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:433
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Client IP: 138.199.24.218
+2026-02-12 01:48:42 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+2026-02-12 01:48:42 error: [Error] Call to undefined function h() in /var/www/html/templates/Error/error500.php on line 11
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:433
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+2026-02-12 01:48:43 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+2026-02-12 01:48:43 error: [Error] Call to undefined function h() in /var/www/html/templates/Error/error500.php on line 11
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:433
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+2026-02-12 01:48:48 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+2026-02-12 01:48:48 error: [Error] Call to undefined function h() in /var/www/html/templates/Error/error500.php on line 11
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:433
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+2026-02-12 01:48:49 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+2026-02-12 01:48:49 error: [Error] Call to undefined function h() in /var/www/html/templates/Error/error500.php on line 11
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:433
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /
+Referer URL: http://localhost/
+Client IP: 138.199.24.218
+2026-02-12 01:48:52 error: [Exception] The request object does not contain the required `authentication` attribute. Verify the AuthenticationMiddleware has been added. in /var/www/html/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php on line 151
+Stack Trace:
+- ROOT/vendor/cakephp/authentication/src/Controller/Component/AuthenticationComponent.php:102
+- CORE/src/Event/EventManager.php:332
+- CORE/src/Event/EventManager.php:316
+- CORE/src/Event/EventDispatcherTrait.php:88
+- CORE/src/Controller/Controller.php:600
+- CORE/src/Controller/ControllerFactory.php:156
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /users/login
+Client IP: 138.199.24.218
+2026-02-12 01:48:52 error: [Error] Call to undefined function h() in /var/www/html/templates/Error/error500.php on line 11
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:433
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /users/login
+Client IP: 138.199.24.218
+[12-Feb-2026 01:57:16 UTC] === LOGIN ATTEMPT ===
+[12-Feb-2026 01:57:16 UTC] Email: admin@talkabout.local
+[12-Feb-2026 01:57:16 UTC] Password length: 14
+[12-Feb-2026 01:57:16 UTC] Result valid: YES
+[12-Feb-2026 01:57:16 UTC] Result errors: []
+[12-Feb-2026 01:57:25 UTC] === LOGIN ATTEMPT ===
+[12-Feb-2026 01:57:25 UTC] Email: admin@talkabout.local
+[12-Feb-2026 01:57:25 UTC] Password length: 14
+[12-Feb-2026 01:57:25 UTC] Result valid: NO
+[12-Feb-2026 01:57:25 UTC] Result errors: ["Login URL `\/users\/login` did not match `\/login`."]
+[12-Feb-2026 01:57:56 UTC] === LOGIN ATTEMPT ===
+[12-Feb-2026 01:57:56 UTC] Email: admin@talkabout.local
+[12-Feb-2026 01:57:56 UTC] Password length: 14
+[12-Feb-2026 01:57:56 UTC] Result valid: YES
+[12-Feb-2026 01:57:56 UTC] Result errors: []
+2026-02-12 02:07:20 error: [Error] Call to undefined function h() in /var/www/html/templates/Users/register.php on line 146
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /users/register
+Client IP: 138.199.24.218

@@ -20,6 +20,10 @@ return [
      */
     'debug' => filter_var(env('DEBUG', true), FILTER_VALIDATE_BOOLEAN),
 
+    'Error' => [
+        'errorLevel' => E_ALL & ~E_USER_DEPRECATED,
+    ],
+
     /*
      * Security and encryption configuration
      *

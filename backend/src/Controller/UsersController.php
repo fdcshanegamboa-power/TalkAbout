@@ -19,26 +19,32 @@ class UsersController extends AppController
     {
         parent::beforeFilter($event);
         // Allow unauthenticated access to login and register
-        $this->Authentication->addUnauthenticatedActions(['login', 'register']);
+        if (isset($this->Authentication)) {
+            $this->Authentication->addUnauthenticatedActions(['login', 'register']);
+        }
     }
 
     public function login()
     {
         $this->request->allowMethod(['get', 'post']);
-        $result = $this->Authentication->getResult();
-        
-        // If user is already authenticated, redirect
-        if ($result && $result->isValid()) {
-            $redirect = $this->request->getQuery('redirect', [
-                'controller' => 'Users',
-                'action' => 'dashboard',
-            ]);
-            return $this->redirect($redirect);
-        }
-        
-        // Display authentication errors
-        if ($this->request->is('post') && !$result->isValid()) {
-            $this->Flash->error(__('Invalid username or password'));
+        if ($this->request->is('post')) {
+            // Prefer the request attribute set by the middleware, fall back to the component result
+            $result = $this->request->getAttribute('authenticationResult') ?? $this->Authentication->getResult();
+
+            if ($result && $result->isValid()) {
+                $redirect = $this->Authentication->getLoginRedirect([
+                    'controller' => 'Users',
+                    'action' => 'dashboard',
+                ]);
+
+                if (is_string($redirect)) {
+                    return $this->redirect($redirect);
+                }
+
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard']);
+            }
+
+            $this->Flash->error('Invalid username or password');
         }
     }
 
@@ -51,11 +57,11 @@ class UsersController extends AppController
             $user = $this->Users->patchEntity($user, $this->request->getData());
             
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('Registration successful! You can now login.'));
+                    $this->Flash->success('Registration successful! You can now login.');
                 return $this->redirect(['action' => 'login']);
             }
             
-            $this->Flash->error(__('Registration failed. Please check the form errors and try again.'));
+                $this->Flash->error('Registration failed. Please check the form errors and try again.');
         }
         
         $this->set(compact('user'));
@@ -64,12 +70,14 @@ class UsersController extends AppController
     public function logout()
     {
         $result = $this->Authentication->getResult();
-        
+
         if ($result && $result->isValid()) {
             $this->Authentication->logout();
-            $this->Flash->success(__('You have been logged out.'));
+            // Destroy the session to avoid leftover session data/cookies
+            $this->getRequest()->getSession()->destroy();
+            $this->Flash->success('You have been logged out.');
         }
-        
+
         return $this->redirect(['action' => 'login']);
     }
 

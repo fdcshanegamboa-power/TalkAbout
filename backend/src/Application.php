@@ -14,12 +14,14 @@ use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
 use Cake\Http\Middleware\BodyParserMiddleware;
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
+use Cake\Http\Middleware\SessionMiddleware;
 use Cake\Http\MiddlewareQueue;
 use Cake\ORM\Locator\TableLocator;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 use Cake\Routing\Router;
 use Psr\Http\Message\ServerRequestInterface;
+use App\Middleware\SimpleSessionMiddleware;
 
 class Application extends BaseApplication implements AuthenticationServiceProviderInterface
 {
@@ -43,13 +45,20 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 
     public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue
     {
+        // Ensure Router's route collection is initialized before any
+        // middleware attempts to access it.
+        Router::reload();
+
         $middlewareQueue
             ->add(new ErrorHandlerMiddleware(Configure::read('Error'), $this))
+            // Short-circuit special paths before routing
+            ->add(new \App\Middleware\WellKnownMiddleware())
             ->add(new AssetMiddleware([
                 'cacheTime' => Configure::read('Asset.cacheTime'),
             ]))
             ->add(new RoutingMiddleware($this))
             ->add(new BodyParserMiddleware())
+            ->add(new SimpleSessionMiddleware())
             ->add(new AuthenticationMiddleware($this));
 
         return $middlewareQueue;
@@ -61,27 +70,39 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 
     public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
     {
-        $loginUrl = Router::url('/login');
-        $fields = [
-            'username' => 'email',
-            'password' => 'password',
-        ];
+        // Avoid calling Router::url() here because Router may not be
+        // initialized when the authentication middleware asks for the
+        // service. Use a literal path instead.
+        $loginUrl = '/login';
 
-        return new AuthenticationService([
+        $service = new AuthenticationService([
             'unauthenticatedRedirect' => $loginUrl,
             'queryParam' => 'redirect',
             'authenticators' => [
                 'Authentication.Session',
                 'Authentication.Form' => [
-                    'fields' => $fields,
-                    'loginUrl' => $loginUrl,
-                    'identifier' => [
-                        'Authentication.Password' => [
-                            'fields' => $fields,
-                        ],
+                    'fields' => [
+                        'username' => 'username',
+                        'password' => 'password',
+                    ],
+                    'loginUrl' => null, // Allow login from any URL
+                ],
+            ],
+            'identifiers' => [
+                'Authentication.Password' => [
+                    'fields' => [
+                        'username' => 'username',
+                        'password' => 'password_hash',
+                    ],
+                    'resolver' => [
+                        'className' => 'Authentication.Orm',
+                        'userModel' => 'Users',
                     ],
                 ],
             ],
         ]);
+
+        // Return the configured service directly.
+        return $service;
     }
 }

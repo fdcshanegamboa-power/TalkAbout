@@ -12,8 +12,8 @@ $this->assign('title', 'Dashboard');
         <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
             <div class="flex justify-between items-center">
                 <div>
-                    <h1 class="text-3xl font-bold text-gray-800">Welcome, {{ userName }}!</h1>
-                    <p class="text-gray-600 mt-1">{{ userEmail }}</p>
+                    <h1 class="text-3xl font-bold text-gray-800">Welcome, {{ userFullName }}!</h1>
+                    <p class="text-gray-600 mt-1">@{{ userName }}</p>
                 </div>
                 <div>
                     <?= $this->Html->link('Logout', ['action' => 'logout'], [
@@ -77,8 +77,8 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
-            userName: '<?= h($user->get('username')) ?>',
-            userEmail: '<?= h($user->get('email')) ?>',
+            userFullName: '<?= htmlspecialchars((string)($user['full_name'] ?? ''), ENT_QUOTES, 'UTF-8') ?>',
+            userName: '<?= htmlspecialchars((string)($user['username'] ?? ''), ENT_QUOTES, 'UTF-8') ?>',
             stats: [
                 {
                     title: 'Messages',
@@ -133,7 +133,7 @@ createApp({
         }
     },
     mounted() {
-        console.log('Dashboard mounted for user:', this.userName);
+        console.log('Dashboard mounted for user:', this.userName, '(' + this.userFullName + ')');
     }
 }).mount('#dashboard-app');
 </script>

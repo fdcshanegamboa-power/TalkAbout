@@ -1,30 +1,135 @@
--- TalkAbout Database Initialization Script
+-- =====================================================
+-- Database Initialization Script
+-- Simple Social Media Web Application (OJT Mini Project)
+-- =====================================================
 
-CREATE DATABASE IF NOT EXISTS talkabout_db;
+-- Optional: create and use database
+CREATE DATABASE IF NOT EXISTS talkabout_db
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
 USE talkabout_db;
 
 -- Grant privileges to the application user
 GRANT ALL PRIVILEGES ON talkabout_db.* TO 'talkabout_user'@'%';
 FLUSH PRIVILEGES;
 
--- Application tables
-CREATE TABLE IF NOT EXISTS users (
-	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-	username VARCHAR(50) NOT NULL,
-	email VARCHAR(255) NOT NULL,
-	password VARCHAR(255) NOT NULL,
-	created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	modified DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	PRIMARY KEY (id),
-	UNIQUE KEY uq_users_username (username),
-	UNIQUE KEY uq_users_email (email)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- =====================================================
+-- Table: users
+-- =====================================================
+CREATE TABLE users (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(150) NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    profile_photo_path VARCHAR(255) NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
 
--- Seed default application users (admin + test)
-INSERT INTO users (username, email, password, created, modified) VALUES
-	('admin', 'admin@talkabout.local', '$2y$12$IbdThB5WNMTHVLkdolaMCu/19cKMpm0ujIGqRHv3QvjR5dby75Rum', NOW(), NOW()),
-	('testuser', 'test@talkabout.local', '$2y$12$DLVaiOqQJ7NqML1QUQc5teGaxQ.UrBQrepJ7hTcI4wVt1UPQ3JCW2', NOW(), NOW())
+    CONSTRAINT uq_users_username UNIQUE (username)
+) ENGINE=InnoDB;
+
+-- =====================================================
+-- Table: posts
+-- =====================================================
+CREATE TABLE posts (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    content_text TEXT NULL,
+    content_image_path VARCHAR(255) NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at DATETIME NULL,
+
+    CONSTRAINT fk_posts_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE,
+
+    -- Validation rule: at least one content field must exist
+    CONSTRAINT chk_posts_content
+        CHECK (
+            content_text IS NOT NULL
+            OR content_image_path IS NOT NULL
+        )
+) ENGINE=InnoDB;
+
+CREATE INDEX idx_posts_user_id ON posts(user_id);
+CREATE INDEX idx_posts_created_at ON posts(created_at);
+
+-- =====================================================
+-- Table: comments
+-- =====================================================
+CREATE TABLE comments (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    post_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    content_text TEXT NULL,
+    content_image_path VARCHAR(255) NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at DATETIME NULL,
+
+    CONSTRAINT fk_comments_post
+        FOREIGN KEY (post_id)
+        REFERENCES posts(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_comments_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE,
+
+    -- Validation rule: at least one content field must exist
+    CONSTRAINT chk_comments_content
+        CHECK (
+            content_text IS NOT NULL
+            OR content_image_path IS NOT NULL
+        )
+) ENGINE=InnoDB;
+
+CREATE INDEX idx_comments_post_id ON comments(post_id);
+CREATE INDEX idx_comments_created_at ON comments(created_at);
+
+-- =====================================================
+-- Table: likes
+-- =====================================================
+CREATE TABLE likes (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    target_type ENUM('post', 'comment') NOT NULL,
+    target_id BIGINT NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_likes_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE,
+
+    -- Prevent duplicate likes
+    CONSTRAINT uq_likes_unique
+        UNIQUE (user_id, target_type, target_id)
+
+    -- NOTE:
+    -- target_id cannot have a foreign key because it is polymorphic
+    -- (references posts.id OR comments.id depending on target_type)
+) ENGINE=InnoDB;
+
+CREATE INDEX idx_likes_user_id ON likes(user_id);
+CREATE INDEX idx_likes_target ON likes(target_type, target_id);
+
+-- =====================================================
+-- Seed default admin user
+-- Username: admin
+-- Password: admin123
+-- =====================================================
+INSERT INTO users (full_name, username, password_hash, created_at, updated_at) VALUES
+	('Admin User', 'admin', '$2y$10$vxMJJlmSEg6BItmenrzt7OVLD6wEhRzlK7i1P4qJMQn/T2IhbqJ4u', NOW(), NOW())
 ON DUPLICATE KEY UPDATE
-	email = VALUES(email),
-	password = VALUES(password),
-	modified = VALUES(modified);
+	full_name = VALUES(full_name),
+	password_hash = VALUES(password_hash),
+	updated_at = VALUES(updated_at);
+
+-- =====================================================
+-- End of init-db.sql
+-- =====================================================

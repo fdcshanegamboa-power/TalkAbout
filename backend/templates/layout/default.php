@@ -22,7 +22,7 @@
     </style>
 </head>
 <body class="bg-gray-100">
-    <div id="app" v-cloak>
+    <div id="app">
         <!-- Flash Messages -->
         <?php $flash = $this->Flash->render() ?>
         <?php if ($flash): ?>

@@ -35,12 +35,13 @@ class FlashHelper extends Helper
                 default => 'bg-blue-100 border-blue-400 text-blue-700',
             };
             
+            $escaped = htmlspecialchars((string)$text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
             $out .= sprintf(
                 '<div class="border-l-4 p-4 mb-4 rounded %s" role="alert">
                     <p>%s</p>
                 </div>',
                 $class,
-                h($text)
+                $escaped
             );
         }
 

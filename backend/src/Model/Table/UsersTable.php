@@ -18,7 +18,14 @@ class UsersTable extends Table
         $this->setDisplayField('username');
         $this->setPrimaryKey('id');
 
-        $this->addBehavior('Timestamp');
+        $this->addBehavior('Timestamp', [
+            'events' => [
+                'Model.beforeSave' => [
+                    'created_at' => 'new',
+                    'updated_at' => 'always',
+                ]
+            ]
+        ]);
     }
 
     public function validationDefault(Validator $validator): Validator
@@ -28,17 +35,17 @@ class UsersTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
+            ->scalar('full_name')
+            ->maxLength('full_name', 150)
+            ->requirePresence('full_name', 'create')
+            ->notEmptyString('full_name');
+
+        $validator
             ->scalar('username')
             ->maxLength('username', 50)
             ->requirePresence('username', 'create')
             ->notEmptyString('username')
             ->add('username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
-
-        $validator
-            ->email('email')
-            ->requirePresence('email', 'create')
-            ->notEmptyString('email')
-            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
             ->scalar('password')
@@ -47,13 +54,17 @@ class UsersTable extends Table
             ->notEmptyString('password')
             ->minLength('password', 8, 'Password must be at least 8 characters long');
 
+        $validator
+            ->scalar('profile_photo_path')
+            ->maxLength('profile_photo_path', 255)
+            ->allowEmptyString('profile_photo_path');
+
         return $validator;
     }
 
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->isUnique(['username']), ['errorField' => 'username']);
-        $rules->add($rules->isUnique(['email']), ['errorField' => 'email']);
 
         return $rules;
     }
