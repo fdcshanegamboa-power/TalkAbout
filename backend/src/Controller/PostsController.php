@@ -32,6 +32,7 @@ class PostsController extends AppController
 
         $postsTable = $this->getTableLocator()->get('Posts');
         $likesTable = $this->getTableLocator()->get('Likes');
+        $commentsTable = $this->getTableLocator()->get('Comments');
         
         // Get posts with user info and images, ordered by most recent first
         $posts = $postsTable->find()
@@ -88,6 +89,14 @@ class PostsController extends AppController
                 ]);
             }
 
+            // Get comment count for this post
+            $commentCount = $commentsTable->find()
+                ->where([
+                    'post_id' => $post->id,
+                    'deleted_at IS' => null
+                ])
+                ->count();
+
             $result[] = [
                 'id' => $post->id,
                 'author' => $authorName,
@@ -99,6 +108,7 @@ class PostsController extends AppController
                 'time' => $timeAgo,
                 'likes' => $likeCount,
                 'liked' => $userLiked,
+                'comments' => $commentCount,
             ];
         }
 

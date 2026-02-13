@@ -13,6 +13,8 @@ class CommentsController extends AppController
     public function initialize(): void
     {
         parent::initialize();
+        // Allow public read access to comments
+        $this->Authentication->addUnauthenticatedActions(['getComments']);
     }
 
     /**
@@ -52,6 +54,7 @@ class CommentsController extends AppController
 
         $postId = $this->request->getData('post_id');
         $contentText = $this->request->getData('content_text');
+        $imageFile = $this->request->getData('image');
 
         // Validation
         if (empty($postId)) {
@@ -61,10 +64,10 @@ class CommentsController extends AppController
             ]));
         }
 
-        if (empty($contentText)) {
+        if (empty($contentText) && empty($imageFile)) {
             return $this->response->withStringBody(json_encode([
                 'success' => false,
-                'message' => 'Comment text is required'
+                'message' => 'Comment must have text or an image'
             ]));
         }
 
@@ -89,6 +92,48 @@ class CommentsController extends AppController
         $comment->user_id = $userId;
         $comment->content_text = $contentText;
 
+        // Handle image upload (limit 1 image per comment)
+        $uploadedImagePath = null;
+        if ($imageFile && $imageFile->getError() === UPLOAD_ERR_OK) {
+            // Create directory if it doesn't exist
+            if (!is_dir(WWW_ROOT . 'img' . DS . 'comments')) {
+                mkdir(WWW_ROOT . 'img' . DS . 'comments', 0755, true);
+            }
+
+            $fileType = $imageFile->getClientMediaType();
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+            
+            if (!in_array($fileType, $allowedTypes)) {
+                return $this->response->withStringBody(json_encode([
+                    'success' => false,
+                    'message' => 'Invalid image type. Only JPEG, PNG, GIF, and WebP are allowed.'
+                ]));
+            }
+
+            $fileSize = $imageFile->getSize();
+            if ($fileSize > 5 * 1024 * 1024) { // 5MB limit
+                return $this->response->withStringBody(json_encode([
+                    'success' => false,
+                    'message' => 'Image size must be less than 5MB'
+                ]));
+            }
+
+            $extension = pathinfo($imageFile->getClientFilename(), PATHINFO_EXTENSION);
+            $newFilename = uniqid('comment_') . '.' . $extension;
+            $targetPath = WWW_ROOT . 'img' . DS . 'comments' . DS . $newFilename;
+
+            try {
+                $imageFile->moveTo($targetPath);
+                $uploadedImagePath = $newFilename;
+                $comment->content_image_path = $uploadedImagePath;
+            } catch (\Exception $e) {
+                return $this->response->withStringBody(json_encode([
+                    'success' => false,
+                    'message' => 'Failed to upload image: ' . $e->getMessage()
+                ]));
+            }
+        }
+
         if ($commentsTable->save($comment)) {
             // Dispatch event for notification
             $event = new Event('Model.Post.commented', $this, [
@@ -106,13 +151,25 @@ class CommentsController extends AppController
                 ])
                 ->count();
 
+            // Get user info for the response
+            $usersTable = $this->getTableLocator()->get('Users');
+            $user = $usersTable->get($userId);
+            $authorName = $user->full_name ?? $user->username ?? 'Unknown';
+            $initial = strtoupper(substr($authorName, 0, 1));
+
             return $this->response->withStringBody(json_encode([
                 'success' => true,
                 'message' => 'Comment added',
                 'comment' => [
                     'id' => $comment->id,
+                    'user_id' => $userId,
+                    'author' => $authorName,
+                    'initial' => $initial,
+                    'profile_photo' => $user->profile_photo_path ?? '',
                     'content_text' => $comment->content_text,
-                    'created_at' => $comment->created_at
+                    'content_image_path' => $uploadedImagePath,
+                    'created_at' => $comment->created_at->format('Y-m-d H:i:s'),
+                    'time' => 'Just now'
                 ],
                 'comment_count' => $commentCount
             ]));
@@ -205,5 +262,81 @@ class CommentsController extends AppController
                 'message' => 'Failed to delete comment'
             ]));
         }
+    }
+
+    /**
+     * API: Get comments for a post
+     */
+    public function getComments()
+    {
+        $this->autoRender = false;
+        $this->response = $this->response->withType('application/json');
+
+        // Get postId from passed arguments or request params
+        $postId = null;
+        $passedArgs = $this->request->getParam('pass');
+        if (!empty($passedArgs) && isset($passedArgs[0])) {
+            $postId = $passedArgs[0];
+        }
+
+        if (empty($postId)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Post ID is required'
+            ]));
+        }
+
+        $commentsTable = $this->getTableLocator()->get('Comments');
+        $usersTable = $this->getTableLocator()->get('Users');
+
+        // Get comments with user info, ordered by most recent first
+        $comments = $commentsTable->find()
+            ->contain(['Users'])
+            ->where([
+                'Comments.post_id' => $postId,
+                'Comments.deleted_at IS' => null
+            ])
+            ->order(['Comments.created_at' => 'DESC'])
+            ->all();
+
+        $result = [];
+        foreach ($comments as $comment) {
+            $user = $comment->user;
+            $authorName = $user->full_name ?? $user->username ?? 'Unknown';
+            $initial = strtoupper(substr($authorName, 0, 1));
+            
+            // Calculate relative time
+            $createdAt = $comment->created_at;
+            $now = new \DateTime();
+            $diff = $now->diff($createdAt);
+            
+            if ($diff->days > 0) {
+                $timeAgo = $diff->days . ' day' . ($diff->days > 1 ? 's' : '') . ' ago';
+            } elseif ($diff->h > 0) {
+                $timeAgo = $diff->h . ' hour' . ($diff->h > 1 ? 's' : '') . ' ago';
+            } elseif ($diff->i > 0) {
+                $timeAgo = $diff->i . ' minute' . ($diff->i > 1 ? 's' : '') . ' ago';
+            } else {
+                $timeAgo = 'Just now';
+            }
+
+            $result[] = [
+                'id' => $comment->id,
+                'user_id' => $comment->user_id,
+                'author' => $authorName,
+                'initial' => $initial,
+                'profile_photo' => $user->profile_photo_path ?? '',
+                'content_text' => $comment->content_text ?? '',
+                'content_image_path' => $comment->content_image_path ?? null,
+                'time' => $timeAgo,
+                'created_at' => $comment->created_at->format('Y-m-d H:i:s')
+            ];
+        }
+
+        return $this->response->withStringBody(json_encode([
+            'success' => true,
+            'comments' => $result,
+            'count' => count($result)
+        ]));
     }
 }

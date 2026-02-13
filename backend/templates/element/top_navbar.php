@@ -177,14 +177,6 @@ if ($identity) {
                                         </p>
                                         <p class="text-xs text-blue-500 mt-1">{{ formatNotificationTime(notification.created_at) }}</p>
                                     </div>
-                                    
-                                    <!-- Delete button -->
-                                    <button @click.stop="deleteNotification(notification.id)"
-                                            class="flex-shrink-0 p-1 hover:bg-red-100 rounded-full transition-colors">
-                                        <svg class="w-4 h-4 text-blue-400 hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
-                                    </button>
                                 </div>
                             </div>
                         </div>

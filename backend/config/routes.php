@@ -33,6 +33,11 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/api/posts/like', ['controller' => 'Likes', 'action' => 'likePost']);
         $builder->connect('/api/posts/unlike', ['controller' => 'Likes', 'action' => 'unlikePost']);
         
+        // API routes for comments
+        $builder->connect('/api/comments/add', ['controller' => 'Comments', 'action' => 'addComment']);
+        $builder->connect('/api/comments/list/*', ['controller' => 'Comments', 'action' => 'getComments']);
+        $builder->connect('/api/comments/delete/:id', ['controller' => 'Comments', 'action' => 'deleteComment'], ['pass' => ['id']]);
+        
         // API routes for notifications
         $builder->connect('/api/notifications', ['controller' => 'Notifications', 'action' => 'index']);
         $builder->connect('/api/notifications/unread', ['controller' => 'Notifications', 'action' => 'unread']);

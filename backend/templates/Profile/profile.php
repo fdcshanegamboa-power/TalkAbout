@@ -12,6 +12,7 @@ $fullName = '';
 $username = '';
 $about = '';
 $profilePhoto = '';
+$userId = null;
 
 if (!empty($user)) {
     if (is_array($user)) {
@@ -19,17 +20,20 @@ if (!empty($user)) {
         $username = $user['username'] ?? '';
         $about = $user['about'] ?? '';
         $profilePhoto = $user['profile_photo_path'] ?? '';
+        $userId = $user['id'] ?? null;
     } elseif (is_object($user)) {
         if (method_exists($user, 'get')) {
             $fullName = $user->get('full_name') ?? '';
             $username = $user->get('username') ?? '';
             $about = $user->get('about') ?? '';
             $profilePhoto = $user->get('profile_photo_path') ?? '';
+            $userId = $user->get('id') ?? null;
         } else {
             $fullName = $user->full_name ?? '';
             $username = $user->username ?? '';
             $about = $user->about ?? '';
             $profilePhoto = $user->profile_photo_path ?? '';
+            $userId = $user->id ?? null;
         }
     }
 }
@@ -196,6 +200,7 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
+            currentUserId: <?= json_encode($userId) ?>,
             composer: {
                 text: '',
                 imageFiles: [],
@@ -236,7 +241,14 @@ createApp({
                         showMenu: false,
                         isEditing: false,
                         editText: post.text,
-                        isSaving: false
+                        isSaving: false,
+                        showComments: false,
+                        commentsList: [],
+                        newCommentText: '',
+                        commentImageFile: null,
+                        commentImagePreview: null,
+                        loadingComments: false,
+                        isSubmittingComment: false
                     }));
                 }
             } catch (error) {
@@ -455,7 +467,14 @@ createApp({
                         showMenu: false,
                         isEditing: false,
                         editText: data.post.text,
-                        isSaving: false
+                        isSaving: false,
+                        showComments: false,
+                        commentsList: [],
+                        newCommentText: '',
+                        commentImageFile: null,
+                        commentImagePreview: null,
+                        loadingComments: false,
+                        isSubmittingComment: false
                     };
                     this.posts.unshift(newPost);
                     
@@ -590,6 +609,139 @@ createApp({
             if (diffDays < 7) return `${diffDays}d ago`;
             
             return date.toLocaleDateString();
+        },
+        
+        // Comment methods
+        async toggleComments(post) {
+            post.showComments = !post.showComments;
+            
+            // Load comments if opening for the first time
+            if (post.showComments && post.commentsList.length === 0) {
+                await this.loadComments(post);
+            }
+        },
+        
+        async loadComments(post) {
+            post.loadingComments = true;
+            try {
+                const response = await fetch(`/api/comments/list/${post.id}`);
+                const data = await response.json();
+                if (data.success) {
+                    post.commentsList = data.comments;
+                }
+            } catch (error) {
+                console.error('Error loading comments:', error);
+            } finally {
+                post.loadingComments = false;
+            }
+        },
+        
+        handleCommentImageSelect(event, post) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                alert('Please select an image file');
+                return;
+            }
+            
+            // Validate file size (5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Image must be less than 5MB');
+                return;
+            }
+            
+            post.commentImageFile = file;
+            
+            // Create preview
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                post.commentImagePreview = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        },
+        
+        removeCommentImage(post) {
+            post.commentImageFile = null;
+            post.commentImagePreview = null;
+            // Reset file input
+            const input = document.getElementById(`comment-image-${post.id}`);
+            if (input) input.value = '';
+        },
+        
+        async submitComment(post) {
+            if (post.isSubmittingComment) return;
+            if (!post.newCommentText && !post.commentImageFile) return;
+            
+            post.isSubmittingComment = true;
+            
+            try {
+                const formData = new FormData();
+                formData.append('post_id', post.id);
+                formData.append('content_text', post.newCommentText || '');
+                
+                if (post.commentImageFile) {
+                    formData.append('image', post.commentImageFile);
+                }
+                
+                const response = await fetch('/api/comments/add', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Add comment to the list
+                    post.commentsList.unshift(data.comment);
+                    post.comments = data.comment_count;
+                    
+                    // Clear form
+                    post.newCommentText = '';
+                    post.commentImageFile = null;
+                    post.commentImagePreview = null;
+                    
+                    // Reset file input
+                    const input = document.getElementById(`comment-image-${post.id}`);
+                    if (input) input.value = '';
+                } else {
+                    alert('Failed to post comment: ' + (data.message || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Error posting comment:', error);
+                alert('Failed to post comment. Please try again.');
+            } finally {
+                post.isSubmittingComment = false;
+            }
+        },
+        
+        async deleteComment(post, comment) {
+            if (!confirm('Are you sure you want to delete this comment?')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/comments/delete/${comment.id}`, {
+                    method: 'POST'
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Remove comment from list
+                    const index = post.commentsList.findIndex(c => c.id === comment.id);
+                    if (index !== -1) {
+                        post.commentsList.splice(index, 1);
+                        post.comments = Math.max(0, (post.comments || 0) - 1);
+                    }
+                } else {
+                    alert('Failed to delete comment: ' + (data.message || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Error deleting comment:', error);
+                alert('Failed to delete comment. Please try again.');
+            }
         }
     },
     computed: {

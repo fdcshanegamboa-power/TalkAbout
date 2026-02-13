@@ -185,6 +185,7 @@ class ProfileController extends AppController
 
         $postsTable = $this->getTableLocator()->get('Posts');
         $likesTable = $this->getTableLocator()->get('Likes');
+        $commentsTable = $this->getTableLocator()->get('Comments');
         
         // Get posts only for this user, with user info and images, ordered by most recent first
         $posts = $postsTable->find()
@@ -241,6 +242,14 @@ class ProfileController extends AppController
                 'target_id' => $post->id
             ]);
 
+            // Get comment count for this post
+            $commentCount = $commentsTable->find()
+                ->where([
+                    'post_id' => $post->id,
+                    'deleted_at IS' => null
+                ])
+                ->count();
+
             $result[] = [
                 'id' => $post->id,
                 'author' => $authorName,
@@ -252,6 +261,7 @@ class ProfileController extends AppController
                 'time' => $timeAgo,
                 'likes' => $likeCount,
                 'liked' => $userLiked,
+                'comments' => $commentCount,
             ];
         }
 

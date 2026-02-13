@@ -116,12 +116,98 @@ $profilePhoto = $profilePhoto ?? '';
                         <span>{{ post.likes }}</span>
                     </button>
                     
-                    <button class="flex items-center gap-1.5 lg:gap-2 text-xs lg:text-sm font-semibold text-blue-500 hover:scale-105 transition hover:text-blue-600">
+                    <button @click="toggleComments(post)" class="flex items-center gap-1.5 lg:gap-2 text-xs lg:text-sm font-semibold text-blue-500 hover:scale-105 transition hover:text-blue-600">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 lg:w-5 lg:h-5">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />
                         </svg>
                         <span>{{ post.comments || 0 }}</span>
                     </button>
+                </div>
+
+                <!-- Comments Section -->
+                <div v-if="post.showComments" class="mt-3 pt-3 border-t border-blue-100">
+                    <!-- Add Comment Form -->
+                    <div class="mb-3">
+                        <textarea v-model="post.newCommentText" 
+                                  rows="2"
+                                  placeholder="Write a comment..."
+                                  class="w-full resize-none border border-blue-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent text-blue-800"></textarea>
+                        
+                        <!-- Image preview -->
+                        <div v-if="post.commentImagePreview" class="mt-2 relative inline-block">
+                            <img :src="post.commentImagePreview" class="h-20 rounded-lg border border-blue-200" />
+                            <button @click="removeCommentImage(post)" 
+                                    class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div class="mt-2 flex items-center gap-2">
+                            <!-- Image upload button -->
+                            <label :for="'comment-image-' + post.id" class="cursor-pointer px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg text-xs font-semibold hover:bg-gray-200 flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                                </svg>
+                                Image
+                            </label>
+                            <input :id="'comment-image-' + post.id" 
+                                   type="file" 
+                                   accept="image/*"
+                                   @change="handleCommentImageSelect($event, post)"
+                                   class="hidden" />
+                            
+                            <button @click="submitComment(post)" 
+                                    :disabled="post.isSubmittingComment || (!post.newCommentText && !post.commentImageFile)"
+                                    class="px-3 py-1.5 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed">
+                                {{ post.isSubmittingComment ? 'Posting...' : 'Post Comment' }}
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Comments List -->
+                    <div v-if="post.loadingComments" class="text-center py-4 text-blue-500 text-sm">
+                        Loading comments...
+                    </div>
+                    
+                    <div v-else-if="post.commentsList && post.commentsList.length > 0" class="space-y-3 max-h-96 overflow-y-auto">
+                        <div v-for="comment in post.commentsList" :key="comment.id" class="flex gap-2 bg-blue-50/50 rounded-lg p-2">
+                            <div class="flex-shrink-0">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center text-white text-xs font-bold overflow-hidden">
+                                    <template v-if="comment.profile_photo">
+                                        <img :src="'/img/profiles/' + comment.profile_photo" 
+                                             alt="Profile" class="w-full h-full object-cover" />
+                                    </template>
+                                    <template v-else>
+                                        {{ comment.initial }}
+                                    </template>
+                                </div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="text-xs font-semibold text-blue-800">{{ comment.author }}</span>
+                                    <span class="text-xs text-blue-400">{{ comment.time }}</span>
+                                    <button v-if="comment.user_id === currentUserId" 
+                                            @click="deleteComment(post, comment)"
+                                            class="ml-auto text-red-500 hover:text-red-700 text-xs">
+                                        Delete
+                                    </button>
+                                </div>
+                                <div v-if="comment.content_text" class="text-sm text-blue-700 break-words">
+                                    {{ comment.content_text }}
+                                </div>
+                                <div v-if="comment.content_image_path" class="mt-1">
+                                    <img :src="'/img/comments/' + comment.content_image_path" 
+                                         class="rounded-lg max-h-40 border border-blue-200" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div v-else class="text-center py-3 text-blue-400 text-sm">
+                        No comments yet. Be the first to comment!
+                    </div>
                 </div>
             </div>
         </div>
