@@ -22,6 +22,8 @@ use Cake\Routing\Middleware\RoutingMiddleware;
 use Cake\Routing\Router;
 use Psr\Http\Message\ServerRequestInterface;
 use App\Middleware\SimpleSessionMiddleware;
+use Cake\Event\EventManager;
+use App\Event\NotificationListener;
 
 class Application extends BaseApplication implements AuthenticationServiceProviderInterface
 {
@@ -41,6 +43,9 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         if (Configure::read('debug') && class_exists('DebugKit\\Plugin')) {
             $this->addPlugin('DebugKit');
         }
+
+        // Register event listeners
+        EventManager::instance()->on(new NotificationListener());
     }
 
     public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue

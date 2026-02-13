@@ -53,13 +53,131 @@ if ($identity) {
         </a>
 
         <!-- Hamburger Menu Button (Right) -->
-        <button id="mobile-menu-toggle" 
-                class="p-2 rounded-lg text-blue-700 hover:bg-blue-50 transition-colors"
-                aria-label="Open menu">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-        </button>
+        <div class="flex items-center gap-2">
+            <!-- Notifications -->
+            <div v-if="typeof notifications !== 'undefined'" data-notification-container>
+                <button @click="toggleNotifications"
+                        class="relative p-2 rounded-lg text-blue-700 hover:bg-blue-50 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                    <span v-if="notificationCount > 0" 
+                          class="absolute top-1 right-1 min-w-[16px] h-[16px] bg-red-500 text-white text-xs 
+                                 font-bold rounded-full flex items-center justify-center px-1">
+                        {{ notificationCount > 9 ? '9+' : notificationCount }}
+                    </span>
+                </button>
+            </div>
+            
+            <button id="mobile-menu-toggle" 
+                    class="p-2 rounded-lg text-blue-700 hover:bg-blue-50 transition-colors"
+                    aria-label="Open menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Notifications Panel -->
+<div v-if="typeof notifications !== 'undefined' && showNotifications" 
+     @click="showNotifications = false"
+     class="md:hidden fixed inset-0 z-50 bg-black/40"
+     data-notification-container>
+    <div @click.stop 
+         class="absolute inset-x-0 top-0 max-h-[80vh] bg-white rounded-b-2xl shadow-2xl overflow-hidden">
+        <!-- Header -->
+        <div class="p-4 border-b border-blue-100 bg-gradient-to-r from-blue-50 to-indigo-50">
+            <div class="flex items-center justify-between">
+                <h3 class="font-bold text-blue-900 text-lg">Notifications</h3>
+                <div class="flex items-center gap-2">
+                    <button v-if="notifications.length > 0" 
+                            @click="markAllAsRead"
+                            class="text-xs text-blue-600 hover:text-blue-800 font-semibold">
+                        Mark all read
+                    </button>
+                    <button @click="showNotifications = false"
+                            class="p-1 hover:bg-blue-100 rounded-full">
+                        <svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Notification List -->
+        <div class="overflow-y-auto max-h-[calc(80vh-4rem)]">
+            <div v-if="notifications.length === 0" 
+                 class="p-8 text-center text-blue-400">
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                     class="h-12 w-12 mx-auto mb-3 text-blue-300" 
+                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                          d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+                <p class="text-sm font-medium">No notifications yet</p>
+                <p class="text-xs mt-1">We'll notify you when something happens</p>
+            </div>
+            
+            <div v-for="notification in notifications" 
+                 :key="notification.id"
+                 @click="handleNotificationClick(notification)"
+                 class="p-4 border-b border-blue-50 active:bg-blue-100 transition-colors relative"
+                 :class="{ 'bg-blue-50/50': !notification.is_read }">
+                
+                <!-- Unread indicator -->
+                <div v-if="!notification.is_read" 
+                     class="absolute left-2 top-1/2 -translate-y-1/2 w-2 h-2 bg-blue-500 rounded-full"></div>
+                
+                <div class="flex items-start gap-3 ml-3">
+                    <!-- Icon -->
+                    <div class="flex-shrink-0 mt-1">
+                        <div v-if="notification.type === 'post_liked'" 
+                             class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                            <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
+                            </svg>
+                        </div>
+                        <div v-else-if="notification.type === 'post_commented'" 
+                             class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                      d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            </svg>
+                        </div>
+                        <div v-else 
+                             class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
+                            <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                      d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm text-blue-900">
+                            <span class="font-semibold">{{ notification.actor?.full_name || notification.actor?.username || 'Someone' }}</span>
+                            <span v-if="notification.type === 'post_liked'"> liked your post</span>
+                            <span v-else-if="notification.type === 'post_commented'"> commented on your post</span>
+                            <span v-else> interacted with your content</span>
+                        </p>
+                        <p class="text-xs text-blue-500 mt-1">{{ formatNotificationTime(notification.created_at) }}</p>
+                    </div>
+                    
+                    <!-- Delete button -->
+                    <button @click.stop="deleteNotification(notification.id)"
+                            class="flex-shrink-0 p-1 hover:bg-red-100 rounded-full transition-colors">
+                        <svg class="w-4 h-4 text-blue-400 hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -107,7 +225,7 @@ if ($identity) {
         <nav class="p-4">
             <ul class="space-y-2">
                 <li>
-                    <a href="<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'profile']) ?>"
+                    <a href="<?= $this->Url->build(['controller' => 'Profile', 'action' => 'profile']) ?>"
                        class="flex items-center gap-3 px-4 py-3 rounded-lg text-blue-800 hover:bg-blue-50 transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -116,7 +234,7 @@ if ($identity) {
                     </a>
                 </li>
                 <li>
-                    <a href="<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'editProfile']) ?>"
+                    <a href="<?= $this->Url->build(['controller' => 'Profile', 'action' => 'editProfile']) ?>"
                        class="flex items-center gap-3 px-4 py-3 rounded-lg text-blue-800 hover:bg-blue-50 transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />

@@ -59,7 +59,7 @@ if ($identity) {
               md:self-start">
     
     <!-- User Profile Section - Enlarged and Emphasized -->
-    <a href="<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'profile']) ?>"
+    <a href="<?= $this->Url->build(['controller' => 'Profile', 'action' => 'profile']) ?>"
         class="block mb-8 p-4 rounded-xl hover:bg-blue-50 transition group">
         <div class="flex flex-col items-center gap-3">
             <!-- Profile Image - Larger and more prominent -->
@@ -108,7 +108,7 @@ if ($identity) {
             </li>
 
             <li>
-                <a href="<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'profile']) ?>"
+                <a href="<?= $this->Url->build(['controller' => 'Profile', 'action' => 'profile']) ?>"
                     class="<?= $profileClass ?>"
                     title="Profile">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"

@@ -131,6 +131,40 @@ CREATE INDEX idx_likes_user_id ON likes(user_id);
 CREATE INDEX idx_likes_target ON likes(target_type, target_id);
 
 -- =====================================================
+-- Table: notifications
+-- =====================================================
+CREATE TABLE notifications (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    type ENUM('friend_request', 'post_liked', 'post_commented', 'comment_liked', 'mention') NOT NULL,
+    actor_id BIGINT NULL,
+    target_type ENUM('post', 'comment', 'user') NULL,
+    target_id BIGINT NULL,
+    message TEXT NULL,
+    is_read BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_notifications_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_notifications_actor
+        FOREIGN KEY (actor_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+
+    -- NOTE:
+    -- target_id cannot have a foreign key because it is polymorphic
+    -- (references posts.id OR comments.id OR users.id depending on target_type)
+) ENGINE=InnoDB;
+
+CREATE INDEX idx_notifications_user_id ON notifications(user_id);
+CREATE INDEX idx_notifications_created_at ON notifications(created_at);
+CREATE INDEX idx_notifications_is_read ON notifications(user_id, is_read);
+
+-- =====================================================
 -- Seed default admin user
 -- Username: admin
 -- Password: admin123

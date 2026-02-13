@@ -16,17 +16,30 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/logout', ['controller' => 'Sessions', 'action' => 'logout']);
         $builder->connect('/dashboard', ['controller' => 'Dashboard', 'action' => 'dashboard']);
         $builder->connect('/home', ['controller' => 'Dashboard', 'action' => 'dashboard']);
-        $builder->connect('/profile', ['controller' => 'Dashboard', 'action' => 'profile']);
-        $builder->connect('/profile/edit', ['controller' => 'Dashboard', 'action' => 'editProfile']);
+        $builder->connect('/settings', ['controller' => 'Dashboard', 'action' => 'settings']);
+        
+        // Profile routes
+        $builder->connect('/profile', ['controller' => 'Profile', 'action' => 'profile']);
+        $builder->connect('/profile/edit', ['controller' => 'Profile', 'action' => 'editProfile']);
         
         // API routes for posts
-        $builder->connect('/api/posts/list', ['controller' => 'Dashboard', 'action' => 'getPosts']);
-        $builder->connect('/api/posts/user', ['controller' => 'Dashboard', 'action' => 'getUserPosts']);
-        $builder->connect('/api/posts/create', ['controller' => 'Dashboard', 'action' => 'createPost']);
-        $builder->connect('/api/posts/update', ['controller' => 'Dashboard', 'action' => 'updatePost']);
-        $builder->connect('/api/posts/delete', ['controller' => 'Dashboard', 'action' => 'deletePost']);
-        $builder->connect('/api/posts/like', ['controller' => 'Dashboard', 'action' => 'likePost']);
-        $builder->connect('/api/posts/unlike', ['controller' => 'Dashboard', 'action' => 'unlikePost']);
+        $builder->connect('/api/posts/list', ['controller' => 'Posts', 'action' => 'getPosts']);
+        $builder->connect('/api/posts/user', ['controller' => 'Profile', 'action' => 'getUserPosts']);
+        $builder->connect('/api/posts/create', ['controller' => 'Posts', 'action' => 'createPost']);
+        $builder->connect('/api/posts/update', ['controller' => 'Posts', 'action' => 'updatePost']);
+        $builder->connect('/api/posts/delete', ['controller' => 'Posts', 'action' => 'deletePost']);
+        
+        // API routes for likes
+        $builder->connect('/api/posts/like', ['controller' => 'Likes', 'action' => 'likePost']);
+        $builder->connect('/api/posts/unlike', ['controller' => 'Likes', 'action' => 'unlikePost']);
+        
+        // API routes for notifications
+        $builder->connect('/api/notifications', ['controller' => 'Notifications', 'action' => 'index']);
+        $builder->connect('/api/notifications/unread', ['controller' => 'Notifications', 'action' => 'unread']);
+        $builder->connect('/api/notifications/count', ['controller' => 'Notifications', 'action' => 'count']);
+        $builder->connect('/api/notifications/mark-as-read/:id', ['controller' => 'Notifications', 'action' => 'markAsRead'], ['pass' => ['id']]);
+        $builder->connect('/api/notifications/mark-all-as-read', ['controller' => 'Notifications', 'action' => 'markAllAsRead']);
+        $builder->connect('/api/notifications/delete/:id', ['controller' => 'Notifications', 'action' => 'delete'], ['pass' => ['id']]);
         
         $builder->fallbacks();
     });
