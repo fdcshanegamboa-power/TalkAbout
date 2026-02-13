@@ -99,6 +99,8 @@ class PostsController extends AppController
 
             $result[] = [
                 'id' => $post->id,
+                'user_id' => $user->id,
+                'username' => $user->username ?? '',
                 'author' => $authorName,
                 'about' => $user->about ?? '',
                 'initial' => $initial,
@@ -285,6 +287,8 @@ class PostsController extends AppController
 
         $postId = $this->request->getData('post_id');
         $contentText = $this->request->getData('content_text');
+        $imagesToDelete = $this->request->getData('images_to_delete');
+        $newImages = $this->request->getData('new_images');
 
         if (empty($postId)) {
             return $this->response->withStringBody(json_encode([
@@ -294,9 +298,12 @@ class PostsController extends AppController
         }
 
         $postsTable = $this->getTableLocator()->get('Posts');
+        $postImagesTable = $this->getTableLocator()->get('PostImages');
         
         try {
-            $post = $postsTable->get($postId);
+            $post = $postsTable->get($postId, [
+                'contain' => ['PostImages']
+            ]);
             
             // Verify the post belongs to the current user
             if ($post->user_id != $userId) {
@@ -306,26 +313,120 @@ class PostsController extends AppController
                 ]));
             }
 
+            // Update text content
             $post->content_text = $contentText;
             
-            if ($postsTable->save($post)) {
-                return $this->response->withStringBody(json_encode([
-                    'success' => true,
-                    'post' => [
-                        'id' => $post->id,
-                        'text' => $post->content_text
-                    ]
-                ]));
-            } else {
+            if (!$postsTable->save($post)) {
                 return $this->response->withStringBody(json_encode([
                     'success' => false,
                     'message' => 'Failed to update post'
                 ]));
             }
+
+            // Handle image deletions
+            if (!empty($imagesToDelete)) {
+                $imagesToDeleteArray = is_string($imagesToDelete) ? json_decode($imagesToDelete, true) : $imagesToDelete;
+                
+                if (is_array($imagesToDeleteArray)) {
+                    foreach ($imagesToDeleteArray as $imagePath) {
+                        // Extract filename from path (e.g., "/img/posts/filename.jpg" -> "filename.jpg")
+                        $filename = basename($imagePath);
+                        
+                        // Find and delete from database
+                        $imageRecord = $postImagesTable->find()
+                            ->where([
+                                'post_id' => $postId,
+                                'image_path' => $filename
+                            ])
+                            ->first();
+                        
+                        if ($imageRecord) {
+                            $postImagesTable->delete($imageRecord);
+                            
+                            // Delete physical file
+                            $filePath = WWW_ROOT . 'img' . DS . 'posts' . DS . $filename;
+                            if (file_exists($filePath)) {
+                                unlink($filePath);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Handle new image uploads
+            $uploadedImages = [];
+            if (!empty($newImages) && is_array($newImages)) {
+                // Create directory if it doesn't exist
+                if (!is_dir(WWW_ROOT . 'img' . DS . 'posts')) {
+                    mkdir(WWW_ROOT . 'img' . DS . 'posts', 0755, true);
+                }
+
+                // Get max display order
+                $maxOrder = $postImagesTable->find()
+                    ->where(['post_id' => $postId])
+                    ->select(['max_order' => $postImagesTable->find()->func()->max('display_order')])
+                    ->first();
+                $displayOrder = ($maxOrder && isset($maxOrder->max_order)) ? $maxOrder->max_order + 1 : 0;
+
+                foreach ($newImages as $imageFile) {
+                    if ($imageFile && $imageFile->getError() === UPLOAD_ERR_OK) {
+                        $fileType = $imageFile->getClientMediaType();
+                        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+                        
+                        if (!in_array($fileType, $allowedTypes)) {
+                            continue;
+                        }
+
+                        $fileSize = $imageFile->getSize();
+                        if ($fileSize > 5 * 1024 * 1024) {
+                            continue;
+                        }
+
+                        $extension = pathinfo($imageFile->getClientFilename(), PATHINFO_EXTENSION);
+                        $newFilename = uniqid('post_' . $postId . '_') . '.' . $extension;
+                        $targetPath = WWW_ROOT . 'img' . DS . 'posts' . DS . $newFilename;
+
+                        try {
+                            $imageFile->moveTo($targetPath);
+                            
+                            // Save to post_images table
+                            $postImage = $postImagesTable->newEmptyEntity();
+                            $postImage->post_id = $postId;
+                            $postImage->image_path = $newFilename;
+                            $postImage->display_order = $displayOrder++;
+                            $postImagesTable->save($postImage);
+                            
+                            $uploadedImages[] = '/img/posts/' . $newFilename;
+                        } catch (\Exception $e) {
+                            continue;
+                        }
+                    }
+                }
+            }
+
+            // Get all current images for the post
+            $currentImages = $postImagesTable->find()
+                ->where(['post_id' => $postId])
+                ->order(['display_order' => 'ASC'])
+                ->all();
+            
+            $allImages = [];
+            foreach ($currentImages as $img) {
+                $allImages[] = '/img/posts/' . $img->image_path;
+            }
+
+            return $this->response->withStringBody(json_encode([
+                'success' => true,
+                'post' => [
+                    'id' => $post->id,
+                    'text' => $post->content_text,
+                    'images' => $allImages
+                ]
+            ]));
         } catch (\Exception $e) {
             return $this->response->withStringBody(json_encode([
                 'success' => false,
-                'message' => 'Post not found'
+                'message' => 'Post not found: ' . $e->getMessage()
             ]));
         }
     }

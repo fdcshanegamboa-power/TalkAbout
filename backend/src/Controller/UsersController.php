@@ -49,6 +49,12 @@ class UsersController extends AppController
 
     public function register()
     {
+        // If user is already authenticated, redirect to dashboard
+        $result = $this->Authentication->getResult();
+        if ($result && $result->isValid()) {
+            return $this->redirect(['controller' => 'Dashboard', 'action' => 'dashboard']);
+        }
+
         $this->request->allowMethod(['get', 'post']);
         $user = $this->Users->newEmptyEntity();
         

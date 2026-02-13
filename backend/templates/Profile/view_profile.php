@@ -2,8 +2,43 @@
 /**
  * @var \App\View\AppView $this
  * @var \Authentication\Identity|null $user
+ * @var int|null $currentUserId
+ * @var bool $isOwnProfile
  */
-$this->assign('title', 'Home');
+$this->assign('title', 'Profile');
+
+/**
+ * Safely extract user info
+ */
+$fullName = '';
+$username = '';
+$about = '';
+$profilePhoto = '';
+$userId = null;
+
+if (!empty($user)) {
+    if (is_array($user)) {
+        $fullName = $user['full_name'] ?? '';
+        $username = $user['username'] ?? '';
+        $about = $user['about'] ?? '';
+        $profilePhoto = $user['profile_photo_path'] ?? '';
+        $userId = $user['id'] ?? null;
+    } elseif (is_object($user)) {
+        if (method_exists($user, 'get')) {
+            $fullName = $user->get('full_name') ?? '';
+            $username = $user->get('username') ?? '';
+            $about = $user->get('about') ?? '';
+            $profilePhoto = $user->get('profile_photo_path') ?? '';
+            $userId = $user->get('id') ?? null;
+        } else {
+            $fullName = $user->full_name ?? '';
+            $username = $user->username ?? '';
+            $about = $user->about ?? '';
+            $profilePhoto = $user->profile_photo_path ?? '';
+            $userId = $user->id ?? null;
+        }
+    }
+}
 ?>
 
 <style>
@@ -17,7 +52,7 @@ $this->assign('title', 'Home');
 }
 </style>
 
-<div id="dashboard-app" v-cloak class="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-100">
+<div id="profile-app" v-cloak class="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-100">
     <!-- Mobile Header -->
     <?= $this->element('mobile_header') ?>
 
@@ -29,28 +64,68 @@ $this->assign('title', 'Home');
         <div class="md:flex md:gap-4 lg:gap-6">
 
             <!-- Sidebar -->
-            <?= $this->element('left_sidebar', ['active' => 'home']) ?>
-
+            <?= $this->element('left_sidebar', ['active' => 'profile']) ?>
+        
             <!-- Main content (scrollable) -->
             <main class="flex-1 space-y-4 lg:space-y-6 mt-4 md:mt-0">
-
-            <!-- Header - Always visible on all screens -->
-            <div class="bg-white/90 backdrop-blur rounded-xl lg:rounded-2xl shadow-xl border border-blue-100 p-4 lg:p-6">
-                <div>
-                    <h1 class="text-xl lg:text-2xl xl:text-3xl font-extrabold tracking-tight text-blue-700">
-                        Home Feed
+        
+            <!-- Profile Header -->
+            <div class="bg-white/90 backdrop-blur rounded-xl lg:rounded-2xl shadow-xl p-6 lg:p-8">
+                <div class="flex flex-col items-center text-center">
+        
+                    <!-- Avatar -->
+                    <div class="w-20 h-20 lg:w-28 lg:h-28 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600
+                           flex items-center justify-center text-white text-3xl lg:text-4xl font-extrabold
+                           shadow-lg overflow-hidden">
+                        <?php if (!empty($profilePhoto)): ?>
+                            <img src="<?= $this->Url->build('/img/profiles/' . htmlspecialchars($profilePhoto, ENT_QUOTES, 'UTF-8')) ?>" 
+                                 alt="Profile" class="w-full h-full object-cover" />
+                        <?php else: ?>
+                            <?= strtoupper(substr($fullName ?: $username ?: 'U', 0, 1)) ?>
+                        <?php endif; ?>
+                    </div>
+        
+                    <!-- Name -->
+                    <h1 class="mt-4 text-xl lg:text-2xl font-extrabold text-blue-800">
+                        <?= htmlspecialchars($fullName ?: 'User', ENT_QUOTES, 'UTF-8') ?>
                     </h1>
-                    <p class="text-sm text-blue-600 mt-1">
-                        What's happening now
+        
+                    <!-- Username -->
+                    <p class="text-blue-500 text-xs lg:text-sm">
+                        @<?= htmlspecialchars($username ?: 'username', ENT_QUOTES, 'UTF-8') ?>
                     </p>
+        
+                    <!-- Bio -->
+                    <p class="mt-3 text-xs lg:text-sm text-blue-600 max-w-xl px-4">
+                        <?= htmlspecialchars(
+                            $about ?: 'No bio yet.',
+                            ENT_QUOTES,
+                            'UTF-8'
+                        ) ?>
+                    </p>
+        
+                    <!-- Actions -->
+                    <?php if ($isOwnProfile): ?>
+                    <div class="mt-5">
+                        <?= $this->Html->link(
+                            'Edit profile',
+                            '/profile/edit',
+                            [
+                                'class' => 'px-4 lg:px-6 py-2 rounded-full border border-blue-500 text-blue-600 font-semibold text-xs lg:text-sm hover:bg-blue-50 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2'
+                            ]
+                        ) ?>
+                    </div>
+                    <?php endif; ?>
+        
                 </div>
             </div>
 
-            <!-- Post composer -->
+            <!-- Post composer (only for own profile) -->
+            <?php if ($isOwnProfile): ?>
             <div class="bg-white/90 backdrop-blur rounded-xl lg:rounded-2xl shadow-xl border border-blue-100 p-4 lg:p-6">
                 <div class="flex items-start gap-3 lg:gap-4">
                     <div class="flex-1">
-                        <textarea v-model="composer.text" rows="3" placeholder="What's happening?"
+                        <textarea v-model="composer.text" rows="3" placeholder="Share something with your followers..."
                                   class="w-full resize-none border-0 focus:ring-0 text-sm lg:text-base text-blue-800 placeholder-blue-400 bg-transparent"></textarea>
 
                         <!-- Multiple image previews -->
@@ -88,6 +163,15 @@ $this->assign('title', 'Home');
                     </div>
                 </div>
             </div>
+            <?php endif; ?>
+
+            <!-- Posts Section Header -->
+            <div class="bg-white/90 backdrop-blur rounded-xl lg:rounded-2xl shadow-xl border border-blue-100 p-4 lg:p-6">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-lg lg:text-xl font-extrabold text-blue-700"><?= $isOwnProfile ? 'My Posts' : 'Posts' ?></h2>
+                    <span v-if="!isLoading" class="text-xs lg:text-sm text-blue-600">{{ posts.length }} post{{ posts.length !== 1 ? 's' : '' }}</span>
+                </div>
+            </div>
 
             <!-- Feed / Posts -->
             <div v-if="isLoading" class="text-center py-8">
@@ -97,14 +181,13 @@ $this->assign('title', 'Home');
 
             <div v-else class="space-y-4">
                 <div v-if="posts.length === 0" class="bg-white/90 backdrop-blur rounded-2xl shadow-lg border border-blue-100 p-8 text-center">
-                    <p class="text-blue-600">No posts yet. Be the first to share something!</p>
+                    <p class="text-blue-600"><?= $isOwnProfile ? "You haven't posted anything yet. Share your first post above!" : "This user hasn't posted anything yet." ?></p>
                 </div>
 
                 <div v-for="post in posts" :key="post.id">
-                    <?= $this->element('post_card', ['canEdit' => false]) ?>
+                    <?= $this->element('post_card', ['canEdit' => $isOwnProfile, 'profilePhoto' => $profilePhoto]) ?>
                 </div>
             </div>
-
 
         </main>
 
@@ -114,7 +197,7 @@ $this->assign('title', 'Home');
     </div>
 
     <!-- Mobile Bottom Navigation -->
-    <?= $this->element('mobile_nav', ['active' => 'home']) ?>
+    <?= $this->element('mobile_nav', ['active' => 'profile']) ?>
 </div>
 
 <script>
@@ -123,9 +206,9 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
-            userFullName: <?= json_encode($user['full_name'] ?? '') ?>,
-            userName: <?= json_encode($user['username'] ?? '') ?>,
-            currentUserId: <?= json_encode($user['id'] ?? null) ?>,
+            profileUsername: <?= json_encode($username) ?>,
+            currentUserId: <?= json_encode($currentUserId) ?>,
+            isOwnProfile: <?= json_encode($isOwnProfile) ?>,
             composer: {
                 text: '',
                 imageFiles: [],
@@ -142,40 +225,217 @@ createApp({
         };
     },
     mounted() {
-        this.fetchPosts();
+        this.fetchUserPosts();
         this.fetchNotifications();
         this.startNotificationPolling();
-        
-        // Close notifications dropdown when clicking outside
+        // Close menu when clicking outside
+        document.addEventListener('click', this.closeAllMenus);
         document.addEventListener('click', this.handleClickOutside);
     },
     beforeUnmount() {
         this.stopNotificationPolling();
+        document.removeEventListener('click', this.closeAllMenus);
         document.removeEventListener('click', this.handleClickOutside);
     },
     methods: {
-        async fetchPosts() {
+        async fetchUserPosts() {
             this.isLoading = true;
             try {
-                const response = await fetch('/api/posts/list');
+                const response = await fetch(`/api/posts/user/${this.profileUsername}`);
                 const data = await response.json();
                 if (data.success) {
-                    // Initialize comment properties for each post
+                    // Initialize additional properties for each post
                     this.posts = data.posts.map(post => ({
                         ...post,
+                        showMenu: false,
+                        isEditing: false,
+                        editText: post.text,
+                        isSaving: false,
                         showComments: false,
+                        loadingComments: false,
                         commentsList: [],
                         newCommentText: '',
                         commentImageFile: null,
                         commentImagePreview: null,
-                        loadingComments: false,
-                        isSubmittingComment: false
+                        isSubmittingComment: false,
+                        // Edit images
+                        editImages: [],
+                        newEditImages: [],
+                        newEditImageFiles: [],
+                        imagesToDelete: []
                     }));
                 }
             } catch (error) {
                 console.error('Error fetching posts:', error);
             } finally {
                 this.isLoading = false;
+            }
+        },
+        
+        closeAllMenus() {
+            this.posts.forEach(post => {
+                post.showMenu = false;
+            });
+        },
+        
+        toggleMenu(post) {
+            event.stopPropagation();
+            // Close other menus
+            this.posts.forEach(p => {
+                if (p.id !== post.id) {
+                    p.showMenu = false;
+                }
+            });
+            post.showMenu = !post.showMenu;
+        },
+        
+        startEdit(post) {
+            post.editText = post.text;
+            post.isEditing = true;
+            post.showMenu = false;
+            
+            // Initialize image editing data
+            post.editImages = post.images ? post.images.map((path, idx) => ({
+                path: path,
+                originalIndex: idx
+            })) : [];
+            post.newEditImages = [];
+            post.newEditImageFiles = [];
+            post.imagesToDelete = [];
+        },
+        
+        cancelEdit(post) {
+            post.isEditing = false;
+            post.editText = post.text;
+            
+            // Clear image editing data
+            post.editImages = [];
+            post.newEditImages = [];
+            post.newEditImageFiles = [];
+            post.imagesToDelete = [];
+        },
+        
+        removeExistingImage(post, index) {
+            const removedImage = post.editImages[index];
+            post.imagesToDelete.push(removedImage.path);
+            post.editImages.splice(index, 1);
+        },
+        
+        removeNewEditImage(post, index) {
+            post.newEditImages.splice(index, 1);
+            post.newEditImageFiles.splice(index, 1);
+        },
+        
+        handleEditImageSelect(event, post) {
+            const files = Array.from(event.target.files);
+            
+            files.forEach(file => {
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        post.newEditImages.push({
+                            preview: e.target.result
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                    post.newEditImageFiles.push(file);
+                }
+            });
+            
+            // Reset input
+            event.target.value = '';
+        },
+        
+        async saveEdit(post) {
+            if (!post.editText || post.editText.trim() === '') {
+                alert('Post content cannot be empty');
+                return;
+            }
+            
+            post.isSaving = true;
+            
+            try {
+                const formData = new FormData();
+                formData.append('post_id', post.id);
+                formData.append('content_text', post.editText);
+                
+                // Add images to delete
+                if (post.imagesToDelete && post.imagesToDelete.length > 0) {
+                    formData.append('images_to_delete', JSON.stringify(post.imagesToDelete));
+                }
+                
+                // Add new images
+                if (post.newEditImageFiles && post.newEditImageFiles.length > 0) {
+                    post.newEditImageFiles.forEach((file, index) => {
+                        formData.append('images[]', file);
+                    });
+                }
+                
+                const response = await fetch('/api/posts/update', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    post.text = post.editText;
+                    post.isEditing = false;
+                    
+                    // Update images
+                    if (data.images) {
+                        post.images = data.images;
+                    } else {
+                        // Reconstruct images from remaining editImages and new images
+                        const remainingImages = post.editImages.map(img => img.path);
+                        post.images = remainingImages;
+                    }
+                    post.newEditImages = [];
+                    post.newEditImageFiles = [];
+                    post.imagesToDelete = [];
+                } else {
+                    alert(data.message || 'Failed to update post');
+                }
+            } catch (error) {
+                console.error('Error updating post:', error);
+                alert('Failed to update post. Please try again.');
+            } finally {
+                post.isSaving = false;
+            }
+        },
+        
+        async deletePost(post) {
+            if (!confirm('Are you sure you want to delete this post? This action cannot be undone.')) {
+                return;
+            }
+            
+            post.showMenu = false;
+            
+            try {
+                const response = await fetch('/api/posts/delete', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        post_id: post.id
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Remove post from list
+                    const index = this.posts.findIndex(p => p.id === post.id);
+                    if (index > -1) {
+                        this.posts.splice(index, 1);
+                    }
+                } else {
+                    alert(data.message || 'Failed to delete post');
+                }
+            } catch (error) {
+                console.error('Error deleting post:', error);
+                alert('Failed to delete post. Please try again.');
             }
         },
         
@@ -206,10 +466,9 @@ createApp({
                     // Update with actual count from server
                     post.likes = data.likes;
                 } else {
-                    // Revert on error
+                    // Revert on failure
                     post.liked = wasLiked;
                     post.likes = previousLikes;
-                    console.error('Failed to toggle like:', data.message);
                 }
             })
             .catch(error => {
@@ -238,7 +497,7 @@ createApp({
                 
                 // Validate file size (5MB)
                 if (file.size > 5 * 1024 * 1024) {
-                    alert('Image must be less than 5MB: ' + file.name);
+                    alert('Each image must be less than 5MB');
                     return;
                 }
                 
@@ -283,32 +542,15 @@ createApp({
                 const data = await response.json();
                 
                 if (data.success) {
-                    // Initialize comment properties for the new post
-                    const newPost = {
-                        ...data.post,
-                        showComments: false,
-                        commentsList: [],
-                        newCommentText: '',
-                        commentImageFile: null,
-                        commentImagePreview: null,
-                        loadingComments: false,
-                        isSubmittingComment: false
-                    };
-                    
-                    // Add new post to the top of the feed
-                    this.posts.unshift(newPost);
-                    
                     // Clear composer
                     this.composer.text = '';
                     this.composer.imageFiles = [];
                     this.composer.imagePreviews = [];
                     
-                    // Reset file input
-                    if (this.$refs.fileInput) {
-                        this.$refs.fileInput.value = '';
-                    }
+                    // Refresh posts
+                    await this.fetchUserPosts();
                 } else {
-                    alert('Failed to create post: ' + (data.message || 'Unknown error'));
+                    alert(data.message || 'Failed to create post');
                 }
             } catch (error) {
                 console.error('Error creating post:', error);
@@ -325,7 +567,7 @@ createApp({
                 const data = await response.json();
                 if (data.success) {
                     this.notifications = data.notifications;
-                    this.notificationCount = data.count || 0;
+                    this.notificationCount = data.unread_count;
                 }
             } catch (error) {
                 console.error('Error fetching notifications:', error);
@@ -337,20 +579,15 @@ createApp({
         },
         
         handleClickOutside(event) {
-            // Close notifications dropdown when clicking outside
             if (this.showNotifications && !event.target.closest('[data-notification-container]')) {
                 this.showNotifications = false;
             }
         },
         
         async handleNotificationClick(notification) {
-            // Mark as read
             if (!notification.is_read) {
                 await this.markNotificationAsRead(notification.id);
             }
-            
-            // Navigate to the relevant post/content if needed
-            // For now, just close the dropdown
             this.showNotifications = false;
         },
         
@@ -361,7 +598,6 @@ createApp({
                 });
                 const data = await response.json();
                 if (data.success) {
-                    // Update notification in the list
                     const notification = this.notifications.find(n => n.id === notificationId);
                     if (notification) {
                         notification.is_read = true;
@@ -380,7 +616,6 @@ createApp({
                 });
                 const data = await response.json();
                 if (data.success) {
-                    // Update all notifications
                     this.notifications.forEach(n => n.is_read = true);
                     this.notificationCount = 0;
                 }
@@ -396,9 +631,8 @@ createApp({
                 });
                 const data = await response.json();
                 if (data.success) {
-                    // Remove from list
                     const index = this.notifications.findIndex(n => n.id === notificationId);
-                    if (index !== -1) {
+                    if (index > -1) {
                         const wasUnread = !this.notifications[index].is_read;
                         this.notifications.splice(index, 1);
                         if (wasUnread) {
@@ -412,7 +646,6 @@ createApp({
         },
         
         startNotificationPolling() {
-            // Poll for new notifications every 30 seconds
             this.notificationPolling = setInterval(() => {
                 this.fetchNotifications();
             }, 30000);
@@ -511,7 +744,7 @@ createApp({
                 formData.append('content_text', post.newCommentText || '');
                 
                 if (post.commentImageFile) {
-                    formData.append('image', post.commentImageFile);
+                    formData.append('content_image', post.commentImageFile);
                 }
                 
                 const response = await fetch('/api/comments/add', {
@@ -522,20 +755,22 @@ createApp({
                 const data = await response.json();
                 
                 if (data.success) {
-                    // Add comment to the list
-                    post.commentsList.unshift(data.comment);
-                    post.comments = data.comment_count;
-                    
-                    // Clear form
+                    // Clear comment form
                     post.newCommentText = '';
                     post.commentImageFile = null;
                     post.commentImagePreview = null;
+                    
+                    // Reload comments
+                    await this.loadComments(post);
+                    
+                    // Update comment count
+                    post.comments = (post.comments || 0) + 1;
                     
                     // Reset file input
                     const input = document.getElementById(`comment-image-${post.id}`);
                     if (input) input.value = '';
                 } else {
-                    alert('Failed to post comment: ' + (data.message || 'Unknown error'));
+                    alert(data.message || 'Failed to post comment');
                 }
             } catch (error) {
                 console.error('Error posting comment:', error);
@@ -560,12 +795,12 @@ createApp({
                 if (data.success) {
                     // Remove comment from list
                     const index = post.commentsList.findIndex(c => c.id === comment.id);
-                    if (index !== -1) {
+                    if (index > -1) {
                         post.commentsList.splice(index, 1);
                         post.comments = Math.max(0, (post.comments || 0) - 1);
                     }
                 } else {
-                    alert('Failed to delete comment: ' + (data.message || 'Unknown error'));
+                    alert(data.message || 'Failed to delete comment');
                 }
             } catch (error) {
                 console.error('Error deleting comment:', error);
@@ -575,12 +810,7 @@ createApp({
         
         viewProfile(username) {
             if (!username) return;
-            // Check if viewing own profile by comparing usernames
-            if (username === this.userName) {
-                window.location.href = '/profile';
-            } else {
-                window.location.href = `/profile/${username}`;
-            }
+            window.location.href = `/profile/${username}`;
         }
     },
     computed: {
@@ -589,5 +819,5 @@ createApp({
                    this.composer.imageFiles.length > 0;
         }
     }
-}).mount('#dashboard-app');
+}).mount('#profile-app');
 </script>

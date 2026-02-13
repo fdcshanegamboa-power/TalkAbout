@@ -248,7 +248,12 @@ createApp({
                         commentImageFile: null,
                         commentImagePreview: null,
                         loadingComments: false,
-                        isSubmittingComment: false
+                        isSubmittingComment: false,
+                        // Image editing properties
+                        editImages: [],
+                        newEditImages: [],
+                        newEditImageFiles: [],
+                        imagesToDelete: []
                     }));
                 }
             } catch (error) {
@@ -279,11 +284,59 @@ createApp({
             post.editText = post.text;
             post.isEditing = true;
             post.showMenu = false;
+            
+            // Initialize image editing data
+            post.editImages = post.images ? post.images.map((path, idx) => ({
+                path: path,
+                originalIndex: idx
+            })) : [];
+            post.newEditImages = [];
+            post.newEditImageFiles = [];
+            post.imagesToDelete = [];
         },
         
         cancelEdit(post) {
             post.isEditing = false;
             post.editText = post.text;
+            
+            // Clear image editing data
+            post.editImages = [];
+            post.newEditImages = [];
+            post.newEditImageFiles = [];
+            post.imagesToDelete = [];
+        },
+        
+        removeExistingImage(post, index) {
+            const removedImage = post.editImages[index];
+            post.imagesToDelete.push(removedImage.path);
+            post.editImages.splice(index, 1);
+        },
+        
+        removeNewEditImage(post, index) {
+            post.newEditImages.splice(index, 1);
+            post.newEditImageFiles.splice(index, 1);
+        },
+        
+        handleEditImageSelect(event, post) {
+            const files = Array.from(event.target.files);
+            
+            files.forEach(file => {
+                if (file && file.type.startsWith('image/')) {
+                    post.newEditImageFiles.push(file);
+                    
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        post.newEditImages.push({
+                            preview: e.target.result,
+                            file: file
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Reset input
+            event.target.value = '';
         },
         
         async saveEdit(post) {
@@ -295,15 +348,25 @@ createApp({
             post.isSaving = true;
             
             try {
+                const formData = new FormData();
+                formData.append('post_id', post.id);
+                formData.append('content_text', post.editText);
+                
+                // Add images to delete
+                if (post.imagesToDelete && post.imagesToDelete.length > 0) {
+                    formData.append('images_to_delete', JSON.stringify(post.imagesToDelete));
+                }
+                
+                // Add new images
+                if (post.newEditImageFiles && post.newEditImageFiles.length > 0) {
+                    post.newEditImageFiles.forEach((file, index) => {
+                        formData.append('new_images[]', file);
+                    });
+                }
+                
                 const response = await fetch('/api/posts/update', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        post_id: post.id,
-                        content_text: post.editText
-                    })
+                    body: formData
                 });
                 
                 const data = await response.json();
@@ -311,6 +374,17 @@ createApp({
                 if (data.success) {
                     post.text = post.editText;
                     post.isEditing = false;
+                    
+                    // Update images if returned from server
+                    if (data.post && data.post.images) {
+                        post.images = data.post.images;
+                    }
+                    
+                    // Clear editing data
+                    post.editImages = [];
+                    post.newEditImages = [];
+                    post.newEditImageFiles = [];
+                    post.imagesToDelete = [];
                 } else {
                     alert('Failed to update post: ' + (data.message || 'Unknown error'));
                 }
@@ -742,6 +816,11 @@ createApp({
                 console.error('Error deleting comment:', error);
                 alert('Failed to delete comment. Please try again.');
             }
+        },
+        
+        viewProfile(username) {
+            if (!username) return;
+            window.location.href = `/profile/${username}`;
         }
     },
     computed: {

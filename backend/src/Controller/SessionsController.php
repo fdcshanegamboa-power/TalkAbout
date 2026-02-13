@@ -20,6 +20,12 @@ class SessionsController extends AppController
 
     public function login()
     {
+        // If user is already authenticated, redirect to dashboard
+        $result = $this->Authentication->getResult();
+        if ($result && $result->isValid()) {
+            return $this->redirect(['controller' => 'Dashboard', 'action' => 'dashboard']);
+        }
+
         $this->request->allowMethod(['get', 'post']);
         if ($this->request->is('post')) {
             $result = $this->request->getAttribute('authenticationResult') ?? $this->Authentication->getResult();

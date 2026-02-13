@@ -252,6 +252,195 @@ class ProfileController extends AppController
 
             $result[] = [
                 'id' => $post->id,
+                'user_id' => $user->id,
+                'username' => $user->username ?? '',
+                'author' => $authorName,
+                'about' => $user->about ?? '',
+                'initial' => $initial,
+                'profile_photo' => $user->profile_photo_path ?? '',
+                'text' => $post->content_text ?? '',
+                'images' => $images,
+                'time' => $timeAgo,
+                'likes' => $likeCount,
+                'liked' => $userLiked,
+                'comments' => $commentCount,
+            ];
+        }
+
+        return $this->response->withStringBody(json_encode([
+            'success' => true,
+            'posts' => $result,
+            'count' => count($result)
+        ]));
+    }
+
+    /**
+     * View any user's profile by username
+     */
+    public function viewProfile()
+    {
+        // Get username from passed parameters
+        $passedArgs = $this->request->getParam('pass', []);
+        $username = !empty($passedArgs) ? $passedArgs[0] : null;
+
+        if (empty($username)) {
+            $this->Flash->error('Invalid user.');
+            return $this->redirect(['action' => 'profile']);
+        }
+
+        $usersTable = $this->getTableLocator()->get('Users');
+        
+        // Find user by username
+        $user = $usersTable->find()
+            ->where(['username' => $username])
+            ->first();
+
+        if (!$user) {
+            $this->Flash->error('User not found.');
+            return $this->redirect(['controller' => 'Dashboard', 'action' => 'home']);
+        }
+
+        $userId = $user->id;
+
+        // Get current logged-in user ID to check if viewing own profile
+        $identity = $this->Authentication->getIdentity();
+        $currentUserId = null;
+        if ($identity) {
+            if (method_exists($identity, 'getIdentifier')) {
+                $currentUserId = $identity->getIdentifier();
+            } elseif (method_exists($identity, 'get')) {
+                $currentUserId = $identity->get('id');
+            } elseif (isset($identity->id)) {
+                $currentUserId = $identity->id;
+            }
+        }
+
+        $isOwnProfile = ($currentUserId == $userId);
+        
+        $this->set(compact('user', 'currentUserId', 'isOwnProfile'));
+    }
+
+    /**
+     * API: Get posts for any user by username
+     */
+    public function getAnyUserPosts()
+    {
+        $this->autoRender = false;
+        $this->response = $this->response->withType('application/json');
+
+        // Get username from passed parameters
+        $passedArgs = $this->request->getParam('pass', []);
+        $username = !empty($passedArgs) ? $passedArgs[0] : null;
+
+        if (empty($username)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Username is required'
+            ]));
+        }
+
+        // Find user by username
+        $usersTable = $this->getTableLocator()->get('Users');
+        $targetUser = $usersTable->find()
+            ->where(['username' => $username])
+            ->first();
+
+        if (!$targetUser) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'User not found'
+            ]));
+        }
+
+        $userId = $targetUser->id;
+
+        // Get current user ID
+        $identity = $this->Authentication->getIdentity();
+        $currentUserId = null;
+        if ($identity) {
+            if (method_exists($identity, 'getIdentifier')) {
+                $currentUserId = $identity->getIdentifier();
+            } elseif (method_exists($identity, 'get')) {
+                $currentUserId = $identity->get('id');
+            } elseif (isset($identity->id)) {
+                $currentUserId = $identity->id;
+            }
+        }
+
+        $postsTable = $this->getTableLocator()->get('Posts');
+        $likesTable = $this->getTableLocator()->get('Likes');
+        $commentsTable = $this->getTableLocator()->get('Comments');
+        
+        // Get posts for the specified user
+        $posts = $postsTable->find()
+            ->contain(['Users', 'PostImages'])
+            ->where([
+                'Posts.deleted_at IS' => null,
+                'Posts.user_id' => $userId
+            ])
+            ->order(['Posts.created_at' => 'DESC'])
+            ->limit(100)
+            ->all();
+
+        $result = [];
+        foreach ($posts as $post) {
+            $user = $post->user;
+            $authorName = $user->full_name ?? $user->username ?? 'Unknown';
+            $initial = strtoupper(substr($authorName, 0, 1));
+            
+            // Calculate relative time
+            $createdAt = $post->created_at;
+            $now = new \DateTime();
+            $diff = $now->diff($createdAt);
+            
+            if ($diff->days > 0) {
+                $timeAgo = $diff->days . ' day' . ($diff->days > 1 ? 's' : '') . ' ago';
+            } elseif ($diff->h > 0) {
+                $timeAgo = $diff->h . ' hour' . ($diff->h > 1 ? 's' : '') . ' ago';
+            } elseif ($diff->i > 0) {
+                $timeAgo = $diff->i . ' minute' . ($diff->i > 1 ? 's' : '') . ' ago';
+            } else {
+                $timeAgo = 'Just now';
+            }
+
+            // Collect all images
+            $images = [];
+            if (!empty($post->post_images)) {
+                foreach ($post->post_images as $img) {
+                    $images[] = '/img/posts/' . $img->image_path;
+                }
+            }
+
+            // Get like count for this post
+            $likeCount = $likesTable->find()
+                ->where([
+                    'target_type' => 'post',
+                    'target_id' => $post->id
+                ])
+                ->count();
+
+            // Check if current user liked this post
+            $userLiked = false;
+            if ($currentUserId) {
+                $userLiked = $likesTable->exists([
+                    'user_id' => $currentUserId,
+                    'target_type' => 'post',
+                    'target_id' => $post->id
+                ]);
+            }
+
+            // Get comment count for this post
+            $commentCount = $commentsTable->find()
+                ->where([
+                    'post_id' => $post->id,
+                    'deleted_at IS' => null
+                ])
+                ->count();
+
+            $result[] = [
+                'id' => $post->id,
+                'user_id' => $user->id,
+                'username' => $user->username ?? '',
                 'author' => $authorName,
                 'about' => $user->about ?? '',
                 'initial' => $initial,
