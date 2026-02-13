@@ -26,7 +26,7 @@ $username = $user->username ?? '';
     >
 
         <!-- Sidebar -->
-        <?= $this->element('sidebar', ['active' => 'profile']) ?>
+        <?= $this->element('left_sidebar', ['active' => 'profile']) ?>
 
         <!-- Main content -->
         <main class="flex-1 space-y-6 overflow-y-auto max-h-[calc(100vh-3rem)] no-scrollbar">
@@ -150,68 +150,6 @@ $username = $user->username ?? '';
                     ]) ?>
                 </div>
 
-                <!-- Change password (toggle) -->
-                <div class="mt-8 pt-6 border-t-2 border-blue-100">
-                    <button id="toggle-password" type="button" 
-                            class="flex items-center gap-2 text-sm text-blue-600 font-semibold hover:text-blue-700 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-                        </svg>
-                        Change password
-                        <svg id="toggle-icon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-
-                    <div id="password-section" class="mt-5 hidden">
-                        <div class="bg-blue-50/50 rounded-xl p-5 space-y-4">
-                            <?= $this->Form->create(null, ['url' => ['action' => 'editProfile'], 'type' => 'post']) ?>
-
-                            <div>
-                                <label class="block text-sm font-semibold text-blue-700 mb-2">Current password</label>
-                                <?= $this->Form->control('current_password', [
-                                    'label' => false, 
-                                    'type' => 'password', 
-                                    'class' => 'w-full px-4 py-2.5 rounded-lg border-2 border-blue-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white',
-                                    'placeholder' => 'Enter current password'
-                                ]) ?>
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-semibold text-blue-700 mb-2">New password</label>
-                                <?= $this->Form->control('new_password', [
-                                    'label' => false, 
-                                    'type' => 'password', 
-                                    'class' => 'w-full px-4 py-2.5 rounded-lg border-2 border-blue-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white',
-                                    'placeholder' => 'Enter new password'
-                                ]) ?>
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-semibold text-blue-700 mb-2">Confirm new password</label>
-                                <?= $this->Form->control('confirm_password', [
-                                    'label' => false, 
-                                    'type' => 'password', 
-                                    'class' => 'w-full px-4 py-2.5 rounded-lg border-2 border-blue-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white',
-                                    'placeholder' => 'Confirm new password'
-                                ]) ?>
-                            </div>
-
-                            <div class="flex justify-end gap-3 pt-2">
-                                <button type="button" onclick="document.getElementById('toggle-password').click()" 
-                                        class="px-5 py-2.5 rounded-lg border-2 border-blue-200 text-blue-700 font-medium hover:bg-blue-50 transition">
-                                    Cancel
-                                </button>
-                                <?= $this->Form->button('Update Password', [
-                                    'class' => 'px-5 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:from-blue-700 hover:to-indigo-700 transition shadow-md'
-                                ]) ?>
-                            </div>
-
-                            <?= $this->Form->end() ?>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Actions -->
                 <div class="flex justify-between items-center pt-4">
                     <?= $this->Html->link(
@@ -221,16 +159,15 @@ $username = $user->username ?? '';
                     ) ?>
 
                     <?= $this->Form->button('Save changes', [
+                        'type' => 'submit',
                         'class' => 'px-6 py-2.5 rounded-full
                                     bg-gradient-to-r from-blue-600 to-indigo-600
                                     text-white font-semibold text-sm
-                                    hover:from-blue-700 hover:to-indigo-700 transition'
+                                    hover:from-blue-700 hover:to-indigo-700 transition shadow-lg'
                     ]) ?>
                 </div>
 
                 <?= $this->Form->end() ?>
-
-                
 
             </div>
         </main>
@@ -281,20 +218,4 @@ $username = $user->username ?? '';
         };
         reader.readAsDataURL(file);
     }
-    
-    // Password toggle
-    document.addEventListener('DOMContentLoaded', function () {
-        const toggle = document.getElementById('toggle-password');
-        const section = document.getElementById('password-section');
-        const icon = document.getElementById('toggle-icon');
-        
-        if (!toggle || !section) return;
-        
-        toggle.addEventListener('click', function () {
-            section.classList.toggle('hidden');
-            if (icon) {
-                icon.style.transform = section.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
-            }
-        });
-    });
 </script>

@@ -29,7 +29,7 @@ if ($identity) {
     } elseif (isset($identity->id)) {
         $userId = $identity->id;
     }
-    
+
     if ($userId) {
         $usersTable = \Cake\ORM\TableRegistry::getTableLocator()->get('Users');
         try {
@@ -53,29 +53,31 @@ if ($identity) {
          sticky top-6 self-start h-[calc(100vh-3rem)] overflow-y-auto">
     <!-- Brand -->
     <div class="mb-6">
-        <h3 class="text-2xl font-extrabold tracking-tight text-blue-700">
+        <a href="<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'dashboard']) ?>"
+        class="text-2xl font-extrabold tracking-tight text-blue-700">
             Talk<span class="text-indigo-600">About</span>
-        </h3>
+        </a>
     </div>
 
     <!-- User Profile Section -->
-    <a href="<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'profile']) ?>" 
-       class="block mb-6 p-3 rounded-xl hover:bg-blue-50 transition group">
+    <a href="<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'profile']) ?>"
+        class="block mb-6 p-3 rounded-xl hover:bg-blue-50 transition group">
         <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold shadow-md overflow-hidden flex-shrink-0">
+            <div
+                class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold shadow-md overflow-hidden flex-shrink-0">
                 <?php if (!empty($profilePhoto)): ?>
-                    <img src="<?= $this->Url->build('/img/profiles/' . htmlspecialchars($profilePhoto, ENT_QUOTES, 'UTF-8')) ?>" 
-                         alt="Profile" class="w-full h-full object-cover" />
+                    <img src="<?= $this->Url->build('/img/profiles/' . htmlspecialchars($profilePhoto, ENT_QUOTES, 'UTF-8')) ?>"
+                        alt="Profile" class="w-full h-full object-cover" />
                 <?php else: ?>
                     <?= strtoupper(substr($displayName ?: 'U', 0, 1)) ?>
                 <?php endif; ?>
             </div>
             <div class="flex-1 min-w-0">
                 <div class="text-sm font-semibold text-blue-800 truncate group-hover:text-blue-900">
-                    <?= htmlspecialchars((string)$displayName, ENT_QUOTES, 'UTF-8') ?>
+                    <?= htmlspecialchars((string) $displayName, ENT_QUOTES, 'UTF-8') ?>
                 </div>
                 <div class="text-xs text-blue-500 truncate">
-                    @<?= htmlspecialchars((string)$username, ENT_QUOTES, 'UTF-8') ?>
+                    @<?= htmlspecialchars((string) $username, ENT_QUOTES, 'UTF-8') ?>
                 </div>
             </div>
         </div>
@@ -85,26 +87,41 @@ if ($identity) {
     <nav>
         <ul class="space-y-2">
             <li>
-                <a
-                    href="<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'dashboard']) ?>"
-                    class="<?= $homeClass ?>"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                <a href="<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'dashboard']) ?>"
+                    class="<?= $homeClass ?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
                     <span>Home</span>
                 </a>
             </li>
 
             <li>
-                <a
-                    href="<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'profile']) ?>"
-                    class="<?= $profileClass ?>"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                <a href="<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'profile']) ?>"
+                    class="<?= $profileClass ?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                     <span>Profile</span>
+                </a>
+            </li>
+            <li>
+                <?php
+                $settingsClass = $baseItem . ' ' . (($active === 'settings') ? $activeItem : $inactiveItem);
+                ?>
+                <a href="<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'settings']) ?>"
+                    class="<?= $settingsClass ?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>Settings</span>
                 </a>
             </li>
         </ul>

@@ -202,7 +202,20 @@ class DashboardController extends AppController
         $this->autoRender = false;
         $this->response = $this->response->withType('application/json');
 
+        $identity = $this->Authentication->getIdentity();
+        $currentUserId = null;
+        if ($identity) {
+            if (method_exists($identity, 'getIdentifier')) {
+                $currentUserId = $identity->getIdentifier();
+            } elseif (method_exists($identity, 'get')) {
+                $currentUserId = $identity->get('id');
+            } elseif (isset($identity->id)) {
+                $currentUserId = $identity->id;
+            }
+        }
+
         $postsTable = $this->getTableLocator()->get('Posts');
+        $likesTable = $this->getTableLocator()->get('Likes');
         
         // Get posts with user info and images, ordered by most recent first
         $posts = $postsTable->find()
@@ -241,6 +254,24 @@ class DashboardController extends AppController
                 }
             }
 
+            // Get like count for this post
+            $likeCount = $likesTable->find()
+                ->where([
+                    'target_type' => 'post',
+                    'target_id' => $post->id
+                ])
+                ->count();
+
+            // Check if current user liked this post
+            $userLiked = false;
+            if ($currentUserId) {
+                $userLiked = $likesTable->exists([
+                    'user_id' => $currentUserId,
+                    'target_type' => 'post',
+                    'target_id' => $post->id
+                ]);
+            }
+
             $result[] = [
                 'id' => $post->id,
                 'author' => $authorName,
@@ -249,14 +280,116 @@ class DashboardController extends AppController
                 'text' => $post->content_text ?? '',
                 'images' => $images,
                 'time' => $timeAgo,
-                'likes' => 0, // We'll implement this later
-                'liked' => false,
+                'likes' => $likeCount,
+                'liked' => $userLiked,
             ];
         }
 
         return $this->response->withStringBody(json_encode([
             'success' => true,
             'posts' => $result
+        ]));
+    }
+
+    public function getUserPosts()
+    {
+        $this->autoRender = false;
+        $this->response = $this->response->withType('application/json');
+
+        $identity = $this->Authentication->getIdentity();
+        $userId = null;
+        if ($identity) {
+            if (method_exists($identity, 'getIdentifier')) {
+                $userId = $identity->getIdentifier();
+            } elseif (method_exists($identity, 'get')) {
+                $userId = $identity->get('id');
+            } elseif (isset($identity->id)) {
+                $userId = $identity->id;
+            }
+        }
+
+        if (empty($userId)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'User not authenticated'
+            ]));
+        }
+
+        $postsTable = $this->getTableLocator()->get('Posts');
+        $likesTable = $this->getTableLocator()->get('Likes');
+        
+        // Get posts only for this user, with user info and images, ordered by most recent first
+        $posts = $postsTable->find()
+            ->contain(['Users', 'PostImages'])
+            ->where([
+                'Posts.deleted_at IS' => null,
+                'Posts.user_id' => $userId
+            ])
+            ->order(['Posts.created_at' => 'DESC'])
+            ->limit(100)
+            ->all();
+
+        $result = [];
+        foreach ($posts as $post) {
+            $user = $post->user;
+            $authorName = $user->full_name ?? $user->username ?? 'Unknown';
+            $initial = strtoupper(substr($authorName, 0, 1));
+            
+            // Calculate relative time
+            $createdAt = $post->created_at;
+            $now = new \DateTime();
+            $diff = $now->diff($createdAt);
+            
+            if ($diff->days > 0) {
+                $timeAgo = $diff->days . ' day' . ($diff->days > 1 ? 's' : '') . ' ago';
+            } elseif ($diff->h > 0) {
+                $timeAgo = $diff->h . ' hour' . ($diff->h > 1 ? 's' : '') . ' ago';
+            } elseif ($diff->i > 0) {
+                $timeAgo = $diff->i . ' minute' . ($diff->i > 1 ? 's' : '') . ' ago';
+            } else {
+                $timeAgo = 'Just now';
+            }
+
+            // Collect all images
+            $images = [];
+            if (!empty($post->post_images)) {
+                foreach ($post->post_images as $img) {
+                    $images[] = '/img/posts/' . $img->image_path;
+                }
+            }
+
+            // Get like count for this post
+            $likeCount = $likesTable->find()
+                ->where([
+                    'target_type' => 'post',
+                    'target_id' => $post->id
+                ])
+                ->count();
+
+            // Check if current user liked this post
+            $userLiked = $likesTable->exists([
+                'user_id' => $userId,
+                'target_type' => 'post',
+                'target_id' => $post->id
+            ]);
+
+            $result[] = [
+                'id' => $post->id,
+                'author' => $authorName,
+                'about' => $user->about ?? '',
+                'initial' => $initial,
+                'text' => $post->content_text ?? '',
+                'images' => $images,
+                'time' => $timeAgo,
+                'likes' => $likeCount,
+                'liked' => $userLiked,
+            ];
+        }
+
+        return $this->response->withStringBody(json_encode([
+            'success' => true,
+            'posts' => $result,
+            'count' => count($result)
         ]));
     }
 
@@ -367,6 +500,7 @@ class DashboardController extends AppController
                 }
             }
         }
+        
 
         // Load user info for response
         $user = $usersTable->get($userId);
@@ -388,4 +522,389 @@ class DashboardController extends AppController
             ]
         ]));
     }
+    /**
+     * API: Update a post
+     */
+    public function updatePost()
+    {
+        $this->autoRender = false;
+        $this->response = $this->response->withType('application/json');
+
+        if (!$this->request->is(['post', 'put', 'patch'])) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Invalid request method'
+            ]));
+        }
+
+        $identity = $this->Authentication->getIdentity();
+        $userId = null;
+        if ($identity) {
+            if (method_exists($identity, 'getIdentifier')) {
+                $userId = $identity->getIdentifier();
+            } elseif (method_exists($identity, 'get')) {
+                $userId = $identity->get('id');
+            } elseif (isset($identity->id)) {
+                $userId = $identity->id;
+            }
+        }
+
+        if (empty($userId)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'User not authenticated'
+            ]));
+        }
+
+        $postId = $this->request->getData('post_id');
+        $contentText = $this->request->getData('content_text');
+
+        if (empty($postId)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Post ID is required'
+            ]));
+        }
+
+        $postsTable = $this->getTableLocator()->get('Posts');
+        
+        try {
+            $post = $postsTable->get($postId);
+            
+            // Verify the post belongs to the current user
+            if ($post->user_id != $userId) {
+                return $this->response->withStringBody(json_encode([
+                    'success' => false,
+                    'message' => 'You can only edit your own posts'
+                ]));
+            }
+
+            $post->content_text = $contentText;
+            
+            if ($postsTable->save($post)) {
+                return $this->response->withStringBody(json_encode([
+                    'success' => true,
+                    'post' => [
+                        'id' => $post->id,
+                        'text' => $post->content_text
+                    ]
+                ]));
+            } else {
+                return $this->response->withStringBody(json_encode([
+                    'success' => false,
+                    'message' => 'Failed to update post'
+                ]));
+            }
+        } catch (\Exception $e) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Post not found'
+            ]));
+        }
+    }
+
+    /**
+     * API: Delete a post (soft delete)
+     */
+    public function deletePost()
+    {
+        $this->autoRender = false;
+        $this->response = $this->response->withType('application/json');
+
+        if (!$this->request->is(['post', 'delete'])) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Invalid request method'
+            ]));
+        }
+
+        $identity = $this->Authentication->getIdentity();
+        $userId = null;
+        if ($identity) {
+            if (method_exists($identity, 'getIdentifier')) {
+                $userId = $identity->getIdentifier();
+            } elseif (method_exists($identity, 'get')) {
+                $userId = $identity->get('id');
+            } elseif (isset($identity->id)) {
+                $userId = $identity->id;
+            }
+        }
+
+        if (empty($userId)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'User not authenticated'
+            ]));
+        }
+
+        $postId = $this->request->getData('post_id');
+
+        if (empty($postId)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Post ID is required'
+            ]));
+        }
+
+        $postsTable = $this->getTableLocator()->get('Posts');
+        
+        try {
+            $post = $postsTable->get($postId);
+            
+            // Verify the post belongs to the current user
+            if ($post->user_id != $userId) {
+                return $this->response->withStringBody(json_encode([
+                    'success' => false,
+                    'message' => 'You can only delete your own posts'
+                ]));
+            }
+
+            // Soft delete - set deleted_at timestamp
+            $post->deleted_at = new \DateTime();
+            
+            if ($postsTable->save($post)) {
+                return $this->response->withStringBody(json_encode([
+                    'success' => true,
+                    'message' => 'Post deleted successfully'
+                ]));
+            } else {
+                return $this->response->withStringBody(json_encode([
+                    'success' => false,
+                    'message' => 'Failed to delete post'
+                ]));
+            }
+        } catch (\Exception $e) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Post not found'
+            ]));
+        }
+    }
+
+    /**
+     * API: Like a post
+     */
+    public function likePost()
+    {
+        $this->autoRender = false;
+        $this->response = $this->response->withType('application/json');
+
+        if (!$this->request->is('post')) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Invalid request method'
+            ]));
+        }
+
+        $identity = $this->Authentication->getIdentity();
+        $userId = null;
+        if ($identity) {
+            if (method_exists($identity, 'getIdentifier')) {
+                $userId = $identity->getIdentifier();
+            } elseif (method_exists($identity, 'get')) {
+                $userId = $identity->get('id');
+            } elseif (isset($identity->id)) {
+                $userId = $identity->id;
+            }
+        }
+
+        if (empty($userId)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'User not authenticated'
+            ]));
+        }
+
+        $postId = $this->request->getData('post_id');
+
+        if (empty($postId)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Post ID is required'
+            ]));
+        }
+
+        $likesTable = $this->getTableLocator()->get('Likes');
+        
+        // Check if already liked
+        $existingLike = $likesTable->find()
+            ->where([
+                'user_id' => $userId,
+                'target_type' => 'post',
+                'target_id' => $postId
+            ])
+            ->first();
+
+        if ($existingLike) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Post already liked'
+            ]));
+        }
+
+        // Create new like
+        $like = $likesTable->newEmptyEntity();
+        $like->user_id = $userId;
+        $like->target_type = 'post';
+        $like->target_id = $postId;
+
+        if ($likesTable->save($like)) {
+            // Get updated like count
+            $likeCount = $likesTable->find()
+                ->where([
+                    'target_type' => 'post',
+                    'target_id' => $postId
+                ])
+                ->count();
+
+            return $this->response->withStringBody(json_encode([
+                'success' => true,
+                'likes' => $likeCount
+            ]));
+        } else {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Failed to like post'
+            ]));
+        }
+    }
+
+    /**
+     * API: Unlike a post
+     */
+    public function unlikePost()
+    {
+        $this->autoRender = false;
+        $this->response = $this->response->withType('application/json');
+
+        if (!$this->request->is('post')) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Invalid request method'
+            ]));
+        }
+
+        $identity = $this->Authentication->getIdentity();
+        $userId = null;
+        if ($identity) {
+            if (method_exists($identity, 'getIdentifier')) {
+                $userId = $identity->getIdentifier();
+            } elseif (method_exists($identity, 'get')) {
+                $userId = $identity->get('id');
+            } elseif (isset($identity->id)) {
+                $userId = $identity->id;
+            }
+        }
+
+        if (empty($userId)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'User not authenticated'
+            ]));
+        }
+
+        $postId = $this->request->getData('post_id');
+
+        if (empty($postId)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Post ID is required'
+            ]));
+        }
+
+        $likesTable = $this->getTableLocator()->get('Likes');
+        
+        // Find the like
+        $like = $likesTable->find()
+            ->where([
+                'user_id' => $userId,
+                'target_type' => 'post',
+                'target_id' => $postId
+            ])
+            ->first();
+
+        if (!$like) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Like not found'
+            ]));
+        }
+
+        if ($likesTable->delete($like)) {
+            // Get updated like count
+            $likeCount = $likesTable->find()
+                ->where([
+                    'target_type' => 'post',
+                    'target_id' => $postId
+                ])
+                ->count();
+
+            return $this->response->withStringBody(json_encode([
+                'success' => true,
+                'likes' => $likeCount
+            ]));
+        } else {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Failed to unlike post'
+            ]));
+        }
+    }
+    public function settings()
+{
+    $usersTable = $this->getTableLocator()->get('Users');
+
+    $identity = $this->Authentication->getIdentity();
+    $id = null;
+    if ($identity) {
+        if (method_exists($identity, 'getIdentifier')) {
+            $id = $identity->getIdentifier();
+        } elseif (method_exists($identity, 'get')) {
+            $id = $identity->get('id');
+        } elseif (isset($identity->id)) {
+            $id = $identity->id;
+        }
+    }
+
+    if (empty($id)) {
+        $this->Flash->error('User not found.');
+        return $this->redirect(['action' => 'profile']);
+    }
+
+    try {
+        $user = $usersTable->get($id);
+    } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+        $this->Authentication->logout();
+        $this->Flash->error('Your session has expired. Please login again.');
+        return $this->redirect(['controller' => 'Sessions', 'action' => 'login']);
+    }
+
+    if ($this->request->is(['post', 'put', 'patch'])) {
+        $current = (string)$this->request->getData('current_password');
+        $new = (string)$this->request->getData('new_password');
+        $confirm = (string)$this->request->getData('confirm_password');
+
+        $hasher = new DefaultPasswordHasher();
+        $hash = $user->get('password_hash') ?? '';
+
+        if (empty($current) || empty($new) || empty($confirm)) {
+            $this->Flash->error('All password fields are required.');
+        } elseif (!$hasher->check($current, $hash)) {
+            $this->Flash->error('Current password is incorrect.');
+        } elseif (strlen($new) < 8) {
+            $this->Flash->error('New password must be at least 8 characters.');
+        } elseif ($new !== $confirm) {
+            $this->Flash->error('New password and confirmation do not match.');
+        } else {
+            $user->set('password', $new);
+            if ($usersTable->save($user)) {
+                $this->Flash->success('Password changed successfully.');
+                return $this->redirect(['action' => 'profile']);
+            }
+            $this->Flash->error('Unable to change password. Please try again.');
+        }
+    }
+
+    $this->set(compact('user'));
+}
 }

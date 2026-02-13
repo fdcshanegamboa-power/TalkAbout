@@ -21,7 +21,12 @@ return function (RouteBuilder $routes): void {
         
         // API routes for posts
         $builder->connect('/api/posts/list', ['controller' => 'Dashboard', 'action' => 'getPosts']);
+        $builder->connect('/api/posts/user', ['controller' => 'Dashboard', 'action' => 'getUserPosts']);
         $builder->connect('/api/posts/create', ['controller' => 'Dashboard', 'action' => 'createPost']);
+        $builder->connect('/api/posts/update', ['controller' => 'Dashboard', 'action' => 'updatePost']);
+        $builder->connect('/api/posts/delete', ['controller' => 'Dashboard', 'action' => 'deletePost']);
+        $builder->connect('/api/posts/like', ['controller' => 'Dashboard', 'action' => 'likePost']);
+        $builder->connect('/api/posts/unlike', ['controller' => 'Dashboard', 'action' => 'unlikePost']);
         
         $builder->fallbacks();
     });
