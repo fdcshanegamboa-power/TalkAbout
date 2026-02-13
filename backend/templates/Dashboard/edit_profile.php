@@ -21,15 +21,21 @@ $username = $user->username ?? '';
 </style>
 
 <div class="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-100">
-    <div
-        class="max-w-9xl mx-auto px-4 sm:px-6 flex gap-6 py-6 min-h-screen"
-    >
+    <!-- Mobile Header -->
+    <?= $this->element('mobile_header') ?>
 
-        <!-- Sidebar -->
-        <?= $this->element('left_sidebar', ['active' => 'profile']) ?>
+    <!-- Top Navbar (Desktop/Tablet) -->
+    <?= $this->element('top_navbar') ?>
 
-        <!-- Main content -->
-        <main class="flex-1 space-y-6 overflow-y-auto max-h-[calc(100vh-3rem)] no-scrollbar">
+    <!-- Main Container with proper padding for fixed navbar and bottom nav -->
+    <div class="max-w-9xl mx-auto px-4 sm:px-6 pt-4 pb-20 md:pt-20 md:pb-6 lg:pb-6">
+        <div class="md:flex md:gap-4 lg:gap-6">
+
+            <!-- Sidebar -->
+            <?= $this->element('left_sidebar', ['active' => 'profile']) ?>
+
+            <!-- Main content -->
+            <main class="flex-1 space-y-4 lg:space-y-6 mt-4 md:mt-0">
 
             <!-- Context Header / Breadcrumb -->
             <div class="flex items-center gap-2 text-sm text-blue-600 font-medium">
@@ -43,7 +49,7 @@ $username = $user->username ?? '';
             </div>
 
             <!-- Edit Card -->
-            <div class="bg-white/90 backdrop-blur rounded-2xl shadow-xl p-8">
+            <div class="bg-white/90 backdrop-blur rounded-xl lg:rounded-2xl shadow-xl p-6 lg:p-8">
 
                 <?= $this->Form->create($user, [
                     'type' => 'file',
@@ -54,8 +60,8 @@ $username = $user->username ?? '';
                 <div class="flex flex-col items-center pb-6 border-b border-blue-100">
                     <div class="relative group">
                         <!-- Avatar Display -->
-                        <div id="avatar-preview" class="w-32 h-32 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600
-                               flex items-center justify-center text-white text-4xl font-extrabold
+                        <div id="avatar-preview" class="w-24 h-24 lg:w-32 lg:h-32 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600
+                               flex items-center justify-center text-white text-3xl lg:text-4xl font-extrabold
                                shadow-lg overflow-hidden">
                             <?php if (!empty($user->profile_photo_path)): ?>
                                 <img src="<?= $this->Url->build('/img/profiles/' . htmlspecialchars($user->profile_photo_path, ENT_QUOTES, 'UTF-8')) ?>" 
@@ -69,7 +75,7 @@ $username = $user->username ?? '';
                         <label for="profile-picture-input" 
                                class="absolute inset-0 rounded-full bg-black/50 flex items-center justify-center
                                       opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 lg:h-8 lg:w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
@@ -83,7 +89,7 @@ $username = $user->username ?? '';
                         ]) ?>
                     </div>
                     
-                    <p class="mt-3 text-sm text-blue-600">
+                    <p class="mt-3 text-xs lg:text-sm text-blue-600">
                         Click to upload a new profile picture
                     </p>
                     <p class="text-xs text-blue-400 mt-1">
@@ -151,19 +157,19 @@ $username = $user->username ?? '';
                 </div>
 
                 <!-- Actions -->
-                <div class="flex justify-between items-center pt-4">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-3 pt-4">
                     <?= $this->Html->link(
                         'Cancel',
                         ['action' => 'profile'],
-                        ['class' => 'text-sm font-medium text-blue-600 hover:underline']
+                        ['class' => 'text-sm font-medium text-blue-600 hover:underline order-2 sm:order-1']
                     ) ?>
 
                     <?= $this->Form->button('Save changes', [
                         'type' => 'submit',
-                        'class' => 'px-6 py-2.5 rounded-full
+                        'class' => 'w-full sm:w-auto px-6 py-2.5 rounded-full
                                     bg-gradient-to-r from-blue-600 to-indigo-600
                                     text-white font-semibold text-sm
-                                    hover:from-blue-700 hover:to-indigo-700 transition shadow-lg'
+                                    hover:from-blue-700 hover:to-indigo-700 transition shadow-lg order-1 sm:order-2'
                     ]) ?>
                 </div>
 
@@ -172,10 +178,13 @@ $username = $user->username ?? '';
             </div>
         </main>
 
-        <!-- Right sidebar -->
-        <?= $this->element('right_sidebar') ?>
-
+            <!-- Right sidebar -->
+            <?= $this->element('right_sidebar') ?>
+        </div>
     </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <?= $this->element('mobile_nav', ['active' => 'profile']) ?>
 </div>
 
 <script>
