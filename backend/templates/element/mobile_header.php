@@ -4,38 +4,6 @@
  * @var \App\View\AppView $this
  * @var string|null $pageTitle
  */
-
-$identity = $this->request->getAttribute('identity');
-$displayName = '';
-$username = '';
-$profilePhoto = '';
-
-if ($identity) {
-    $userId = null;
-    if (method_exists($identity, 'getIdentifier')) {
-        $userId = $identity->getIdentifier();
-    } elseif (method_exists($identity, 'get')) {
-        $userId = $identity->get('id');
-    } elseif (isset($identity->id)) {
-        $userId = $identity->id;
-    }
-
-    if ($userId) {
-        $usersTable = \Cake\ORM\TableRegistry::getTableLocator()->get('Users');
-        try {
-            $user = $usersTable->get($userId);
-            $displayName = $user->full_name ?? $user->username ?? '';
-            $username = $user->username ?? '';
-            $profilePhoto = $user->profile_photo_path ?? '';
-        } catch (\Exception $e) {
-            $displayName = $identity->get('full_name') ?? $identity->get('username') ?? '';
-            $username = $identity->get('username') ?? '';
-        }
-    } else {
-        $displayName = $identity->get('full_name') ?? $identity->get('username') ?? '';
-        $username = $identity->get('username') ?? '';
-    }
-}
 ?>
 
 <!-- Mobile Header - Only visible on mobile (< 768px) -->
@@ -201,21 +169,22 @@ if ($identity) {
             </div>
             
             <!-- User Info -->
-            <div class="flex items-center gap-3">
+            <div v-if="profileUser" class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white font-bold shadow overflow-hidden flex-shrink-0">
-                    <?php if (!empty($profilePhoto)): ?>
-                        <img src="<?= $this->Url->build('/img/profiles/' . htmlspecialchars($profilePhoto, ENT_QUOTES, 'UTF-8')) ?>"
+                    <template v-if="profileUser.profile_photo">
+                        <img :src="'/img/profiles/' + profileUser.profile_photo"
                             alt="Profile" class="w-full h-full object-cover" />
-                    <?php else: ?>
-                        <?= strtoupper(substr($displayName ?: 'U', 0, 1)) ?>
-                    <?php endif; ?>
+                    </template>
+                    <template v-else>
+                        {{ profileUser.initial }}
+                    </template>
                 </div>
                 <div class="flex-1 min-w-0">
                     <div class="text-white font-semibold truncate">
-                        <?= htmlspecialchars((string) $displayName, ENT_QUOTES, 'UTF-8') ?>
+                        {{ profileUser.full_name || 'User' }}
                     </div>
                     <div class="text-white/80 text-sm truncate">
-                        @<?= htmlspecialchars((string) $username, ENT_QUOTES, 'UTF-8') ?>
+                        @{{ profileUser.username || 'username' }}
                     </div>
                 </div>
             </div>

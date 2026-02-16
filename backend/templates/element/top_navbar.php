@@ -3,46 +3,12 @@
  * Top Navigation Bar (Desktop/Tablet only)
  * @var \App\View\AppView $this
  */
-
-$identity = $this->request->getAttribute('identity');
-$displayName = '';
-$username = '';
-$profilePhoto = '';
-
-if ($identity) {
-    $userId = null;
-    if (method_exists($identity, 'getIdentifier')) {
-        $userId = $identity->getIdentifier();
-    } elseif (method_exists($identity, 'get')) {
-        $userId = $identity->get('id');
-    } elseif (isset($identity->id)) {
-        $userId = $identity->id;
-    }
-
-    if ($userId) {
-        $usersTable = \Cake\ORM\TableRegistry::getTableLocator()->get('Users');
-        try {
-            $user = $usersTable->get($userId);
-            $displayName = $user->full_name ?? $user->username ?? '';
-            $username = $user->username ?? '';
-            $profilePhoto = $user->profile_photo_path ?? '';
-        } catch (\Exception $e) {
-            $displayName = $identity->get('full_name') ?? $identity->get('username') ?? '';
-            $username = $identity->get('username') ?? '';
-        }
-    } else {
-        $displayName = $identity->get('full_name') ?? $identity->get('username') ?? '';
-        $username = $identity->get('username') ?? '';
-    }
-}
 ?>
 
-<!-- Top Navbar - Hidden on mobile, visible on tablet/desktop (768px+) -->
 <nav class="hidden md:block fixed top-0 left-0 right-0 z-50 bg-white border-b border-blue-100 shadow-sm">
     <div class="max-w-9xl mx-auto px-4 sm:px-6">
         <div class="flex items-center justify-between h-16">
             
-            <!-- Logo & Brand Name (always visible on tablet/desktop) -->
             <a href="<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'dashboard']) ?>"
                class="flex items-center gap-2">
                 <img src="<?= $this->Url->build('/logo/telupuluh-05.jpg') ?>" 
@@ -53,7 +19,6 @@ if ($identity) {
                 </span>
             </a>
 
-            <!-- Search Bar -->
             <div class="flex-1 max-w-xl mx-4">
                 <div class="relative">
                     <input type="text" 
@@ -70,10 +35,8 @@ if ($identity) {
                 </div>
             </div>
 
-            <!-- Right Actions -->
             <div class="flex items-center gap-3">
                 
-                <!-- Create Post Button -->
                 <button onclick="focusPostComposer()" 
                         class="hidden lg:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 
                                text-white rounded-full hover:shadow-lg transition-all font-semibold text-sm">
@@ -83,7 +46,6 @@ if ($identity) {
                     <span>Create Post</span>
                 </button>
 
-                <!-- Notifications -->
                 <div class="relative" v-if="typeof notifications !== 'undefined'" data-notification-container>
                     <button @click="toggleNotifications" 
                             class="p-2 rounded-full hover:bg-blue-50 transition-colors relative group">
@@ -93,7 +55,6 @@ if ($identity) {
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                                   d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                         </svg>
-                        <!-- Notification Badge -->
                         <span v-if="notificationCount > 0" 
                               class="absolute top-1 right-1 min-w-[18px] h-[18px] bg-red-500 text-white text-xs 
                                      font-bold rounded-full flex items-center justify-center px-1">
@@ -101,12 +62,10 @@ if ($identity) {
                         </span>
                     </button>
                     
-                    <!-- Notification Dropdown -->
                     <div v-if="showNotifications" 
                          @click.stop
                          class="absolute right-0 mt-2 w-80 sm:w-96 bg-white rounded-xl shadow-2xl border border-blue-100 
                                 overflow-hidden z-50 max-h-[500px] flex flex-col">
-                        <!-- Header -->
                         <div class="p-4 border-b border-blue-100 bg-gradient-to-r from-blue-50 to-indigo-50">
                             <div class="flex items-center justify-between">
                                 <h3 class="font-bold text-blue-900 text-lg">Notifications</h3>
@@ -118,7 +77,6 @@ if ($identity) {
                             </div>
                         </div>
                         
-                        <!-- Notification List -->
                         <div class="overflow-y-auto flex-1">
                             <div v-if="notifications.length === 0" 
                                  class="p-8 text-center text-blue-400">
@@ -138,12 +96,10 @@ if ($identity) {
                                  class="p-4 border-b border-blue-50 hover:bg-blue-50 transition-colors cursor-pointer relative"
                                  :class="{ 'bg-blue-50/50': !notification.is_read }">
                                 
-                                <!-- Unread indicator -->
                                 <div v-if="!notification.is_read" 
                                      class="absolute left-2 top-1/2 -translate-y-1/2 w-2 h-2 bg-blue-500 rounded-full"></div>
                                 
                                 <div class="flex items-start gap-3 ml-3">
-                                    <!-- Icon based on type -->
                                     <div class="flex-shrink-0 mt-1">
                                         <div v-if="notification.type === 'post_liked'" 
                                              class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
@@ -167,7 +123,6 @@ if ($identity) {
                                         </div>
                                     </div>
                                     
-                                    <!-- Content -->
                                     <div class="flex-1 min-w-0">
                                         <p class="text-sm text-blue-900">
                                             <span class="font-semibold">{{ notification.actor?.full_name || notification.actor?.username || 'Someone' }}</span>
@@ -194,17 +149,18 @@ if ($identity) {
                 </button>
 
                 <!-- User Profile Dropdown -->
-                <div class="relative" id="user-menu-container">
-                    <button id="user-menu-button" 
+                <div v-if="profileUser" class="relative" id="user-menu-container" data-user-menu>
+                    <button @click="toggleUserMenu" 
                             class="flex items-center gap-2 p-1 rounded-full hover:bg-blue-50 transition-colors">
                         <div class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 
                                     flex items-center justify-center text-white font-bold shadow overflow-hidden">
-                            <?php if (!empty($profilePhoto)): ?>
-                                <img src="<?= $this->Url->build('/img/profiles/' . htmlspecialchars($profilePhoto, ENT_QUOTES, 'UTF-8')) ?>"
+                            <template v-if="profileUser.profile_photo">
+                                <img :src="'/img/profiles/' + profileUser.profile_photo"
                                      alt="Profile" class="w-full h-full object-cover" />
-                            <?php else: ?>
-                                <?= strtoupper(substr($displayName ?: 'U', 0, 1)) ?>
-                            <?php endif; ?>
+                            </template>
+                            <template v-else>
+                                {{ profileUser.initial }}
+                            </template>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" 
                              class="h-4 w-4 text-blue-700" 
@@ -214,15 +170,15 @@ if ($identity) {
                     </button>
 
                     <!-- Dropdown Menu -->
-                    <div id="user-dropdown" 
-                         class="hidden absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-2xl border border-blue-100 py-2 z-50">
+                    <div v-if="showUserMenu" @click.stop
+                         class="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-2xl border border-blue-100 py-2 z-50">
                         <!-- User Info -->
                         <div class="px-4 py-3 border-b border-blue-100">
                             <p class="text-sm font-semibold text-blue-900">
-                                <?= htmlspecialchars((string) $displayName, ENT_QUOTES, 'UTF-8') ?>
+                                {{ profileUser.full_name || 'User' }}
                             </p>
                             <p class="text-xs text-blue-500">
-                                @<?= htmlspecialchars((string) $username, ENT_QUOTES, 'UTF-8') ?>
+                                @{{ profileUser.username || 'username' }}
                             </p>
                         </div>
 
@@ -271,36 +227,6 @@ if ($identity) {
 </nav>
 
 <script>
-// User menu dropdown toggle
-(function() {
-    function initUserMenu() {
-        const menuButton = document.getElementById('user-menu-button');
-        const dropdown = document.getElementById('user-dropdown');
-        const container = document.getElementById('user-menu-container');
-        
-        if (!menuButton || !dropdown) return;
-        
-        menuButton.addEventListener('click', function(e) {
-            e.stopPropagation();
-            dropdown.classList.toggle('hidden');
-        });
-        
-        // Close when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!container.contains(e.target)) {
-                dropdown.classList.add('hidden');
-            }
-        });
-    }
-    
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initUserMenu);
-    } else {
-        initUserMenu();
-    }
-})();
-
-// Focus post composer function
 function focusPostComposer() {
     const composer = document.querySelector('textarea[placeholder*="What\'s happening"]');
     if (composer) {

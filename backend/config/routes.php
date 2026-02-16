@@ -27,6 +27,7 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/api/posts/delete', ['controller' => 'Posts', 'action' => 'deletePost']);
         
         // API routes for profile
+        $builder->connect('/api/profile/current', ['controller' => 'Profile', 'action' => 'getCurrentUserProfile']);
         $builder->connect('/api/profile/user/*', ['controller' => 'Profile', 'action' => 'getUserProfile']);
         
         // API routes for likes

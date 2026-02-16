@@ -63,46 +63,47 @@ if (!empty($user)) {
         
             <main class="flex-1 space-y-4 lg:space-y-6 mt-4 md:mt-0">
         
-            <div class="bg-white/90 backdrop-blur rounded-xl lg:rounded-2xl shadow-xl p-6 lg:p-8">
+            <div v-if="profileUser" class="bg-white/90 backdrop-blur rounded-xl lg:rounded-2xl shadow-xl p-6 lg:p-8">
                 <div class="flex flex-col items-center text-center">
         
                     <div class="w-20 h-20 lg:w-28 lg:h-28 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600
                            flex items-center justify-center text-white text-3xl lg:text-4xl font-extrabold
                            shadow-lg overflow-hidden">
-                        <?php if (!empty($profilePhoto)): ?>
-                            <img src="<?= $this->Url->build('/img/profiles/' . htmlspecialchars($profilePhoto, ENT_QUOTES, 'UTF-8')) ?>" 
+                        <template v-if="profileUser.profile_photo">
+                            <img :src="'/img/profiles/' + profileUser.profile_photo" 
                                  alt="Profile" class="w-full h-full object-cover" />
-                        <?php else: ?>
-                            <?= strtoupper(substr($fullName ?: $username ?: 'U', 0, 1)) ?>
-                        <?php endif; ?>
+                        </template>
+                        <template v-else>
+                            {{ profileUser.initial }}
+                        </template>
                     </div>
         
                     <h1 class="mt-4 text-xl lg:text-2xl font-extrabold text-blue-800">
-                        <?= htmlspecialchars($fullName ?: 'Your Name', ENT_QUOTES, 'UTF-8') ?>
+                        {{ profileUser.full_name || 'Your Name' }}
                     </h1>
         
                     <p class="text-blue-500 text-xs lg:text-sm">
-                        @<?= htmlspecialchars($username ?: 'username', ENT_QUOTES, 'UTF-8') ?>
+                        @{{ profileUser.username || 'username' }}
                     </p>
         
                     <p class="mt-3 text-xs lg:text-sm text-blue-600 max-w-xl px-4">
-                        <?= htmlspecialchars(
-                            $about ?: 'Add a short bio here — tell people about yourself.',
-                            ENT_QUOTES,
-                            'UTF-8'
-                        ) ?>
+                        {{ profileUser.about || 'Add a short bio here — tell people about yourself.' }}
                     </p>
         
                     <div class="mt-5">
-                        <?= $this->Html->link(
-                            'Edit profile',
-                            '/profile/edit',
-                            [
-                                'class' => 'px-4 lg:px-6 py-2 rounded-full border border-blue-500 text-blue-600 font-semibold text-xs lg:text-sm hover:bg-blue-50 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2'
-                            ]
-                        ) ?>
+                        <a href="/profile/edit" 
+                           class="px-4 lg:px-6 py-2 rounded-full border border-blue-500 text-blue-600 font-semibold text-xs lg:text-sm hover:bg-blue-50 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
+                            Edit profile
+                        </a>
                     </div>
         
+                </div>
+            </div>
+            
+            <div v-else class="bg-white/90 backdrop-blur rounded-xl lg:rounded-2xl shadow-xl p-6 lg:p-8">
+                <div class="flex flex-col items-center text-center">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                    <p class="mt-4 text-blue-600">Loading profile...</p>
                 </div>
             </div>
 

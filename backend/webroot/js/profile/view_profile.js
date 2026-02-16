@@ -28,6 +28,7 @@ if (el) {
                 notifications: [],
                 notificationCount: 0,
                 showNotifications: false,
+                showUserMenu: false,
                 notificationPolling: null
             };
         },
@@ -454,6 +455,13 @@ if (el) {
                 if (this.showNotifications && !event.target.closest('[data-notification-container]')) {
                     this.showNotifications = false;
                 }
+                if (this.showUserMenu && !event.target.closest('[data-user-menu]')) {
+                    this.showUserMenu = false;
+                }
+            },
+            
+            toggleUserMenu() {
+                this.showUserMenu = !this.showUserMenu;
             },
             
             async handleNotificationClick(notification) {

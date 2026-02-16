@@ -92,7 +92,6 @@ if (!empty($user)) {
                 </div>
             </div>
             
-            <!-- Loading state -->
             <div v-else class="bg-white/90 backdrop-blur rounded-xl lg:rounded-2xl shadow-xl p-6 lg:p-8">
                 <div class="flex flex-col items-center text-center">
                     <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
@@ -100,14 +99,12 @@ if (!empty($user)) {
                 </div>
             </div>
 
-            <!-- Post composer (only for own profile) -->
             <div v-if="isOwnProfile" class="bg-white/90 backdrop-blur rounded-xl lg:rounded-2xl shadow-xl border border-blue-100 p-4 lg:p-6">
                 <div class="flex items-start gap-3 lg:gap-4">
                     <div class="flex-1">
                         <textarea v-model="composer.text" rows="3" placeholder="Share something with your followers..."
                                   class="w-full resize-none border-0 focus:ring-0 text-sm lg:text-base text-blue-800 placeholder-blue-400 bg-transparent"></textarea>
 
-                        <!-- Multiple image previews -->
                         <div v-if="composer.imagePreviews.length > 0" class="mt-3 lg:mt-4 grid grid-cols-2 gap-2">
                             <div v-for="(preview, index) in composer.imagePreviews" :key="index" class="relative">
                                 <img :src="preview" alt="preview" class="rounded-lg h-24 lg:h-32 w-full object-cover" />
@@ -143,7 +140,6 @@ if (!empty($user)) {
                 </div>
             </div>
 
-            <!-- Posts Section Header -->
             <div class="bg-white/90 backdrop-blur rounded-xl lg:rounded-2xl shadow-xl border border-blue-100 p-4 lg:p-6">
                 <div class="flex items-center justify-between">
                     <h2 class="text-lg lg:text-xl font-extrabold text-blue-700">{{ isOwnProfile ? 'My Posts' : 'Posts' }}</h2>
@@ -151,7 +147,6 @@ if (!empty($user)) {
                 </div>
             </div>
 
-            <!-- Feed / Posts -->
             <div v-if="isLoading" class="text-center py-8">
                 <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
                 <p class="text-blue-600 mt-2">Loading posts...</p>
@@ -169,11 +164,9 @@ if (!empty($user)) {
 
         </main>
 
-            <!-- Right sidebar -->
             <?= $this->element('right_sidebar') ?>
         </div>
     </div>
 
-    <!-- Mobile Bottom Navigation -->
     <?= $this->element('mobile_nav', ['active' => 'profile']) ?>
 </div>

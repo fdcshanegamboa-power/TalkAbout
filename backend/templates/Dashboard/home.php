@@ -21,10 +21,7 @@ $this->assign('title', 'Home');
     }
 </style>
 
-<div id="dashboard-app" v-cloak class="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-100"
-    data-user-full-name="<?= htmlspecialchars($user?->full_name ?? '', ENT_QUOTES, 'UTF-8') ?>"
-    data-user-name="<?= htmlspecialchars($user?->username ?? '', ENT_QUOTES, 'UTF-8') ?>"
-    data-current-user-id="<?= (int) ($user?->id ?? 0) ?>">
+<div id="dashboard-app" v-cloak class="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-100">
     <?= $this->element('mobile_header') ?>
 
     <?= $this->element('top_navbar') ?>

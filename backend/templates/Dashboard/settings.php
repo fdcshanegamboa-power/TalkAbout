@@ -4,10 +4,6 @@
  * @var \App\Model\Entity\User $user
  */
 $this->assign('title', 'Settings');
-
-
-$fullName = $user->full_name ?? '';
-$username = $user->username ?? '';
 ?>
 <?= $this->Html->script('dashboard/settings', ['block' => 'script']) ?>
 

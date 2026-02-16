@@ -3,6 +3,7 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
+            profileUser: null, // Will hold current user's profile data
             // Notification data
             notifications: [],
             notificationCount: 0,
@@ -11,6 +12,7 @@ createApp({
         };
     },
     mounted() {
+        this.fetchCurrentUserProfile();
         this.fetchNotifications();
         this.startNotificationPolling();
         document.addEventListener('click', this.handleClickOutside);
@@ -20,6 +22,46 @@ createApp({
         document.removeEventListener('click', this.handleClickOutside);
     },
     methods: {
+        async fetchCurrentUserProfile() {
+            try {
+                const response = await fetch('/api/profile/current');
+                if (!response.ok) {
+                    console.error('Failed to fetch profile:', response.status);
+                    // Set a fallback profile
+                    this.profileUser = {
+                        full_name: '',
+                        username: '',
+                        about: '',
+                        profile_photo: '',
+                        initial: 'U'
+                    };
+                    return;
+                }
+                
+                const data = await response.json();
+                if (data.success) {
+                    const user = data.user;
+                    this.profileUser = {
+                        full_name: user.full_name || '',
+                        username: user.username || '',
+                        about: user.about || '',
+                        profile_photo: user.profile_photo_path || '',
+                        initial: (user.full_name || user.username || 'U').charAt(0).toUpperCase()
+                    };
+                }
+            } catch (error) {
+                console.error('Error fetching current user profile:', error);
+                // Set a fallback profile
+                this.profileUser = {
+                    full_name: '',
+                    username: '',
+                    about: '',
+                    profile_photo: '',
+                    initial: 'U'
+                };
+            }
+        },
+        
         async fetchNotifications() {
             try {
                 const response = await fetch('/api/notifications/unread');
@@ -41,6 +83,13 @@ createApp({
             if (this.showNotifications && !event.target.closest('[data-notification-container]')) {
                 this.showNotifications = false;
             }
+            if (this.showUserMenu && !event.target.closest('[data-user-menu]')) {
+                this.showUserMenu = false;
+            }
+        },
+        
+        toggleUserMenu() {
+            this.showUserMenu = !this.showUserMenu;
         },
         
         async handleNotificationClick(notification) {

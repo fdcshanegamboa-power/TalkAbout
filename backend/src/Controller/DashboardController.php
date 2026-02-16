@@ -19,7 +19,6 @@ class DashboardController extends AppController
 
     public function home()
     {
-        // Load full user entity so sidebar has access to profile_photo_path
         $usersTable = $this->getTableLocator()->get('Users');
         $identity = $this->Authentication->getIdentity();
         

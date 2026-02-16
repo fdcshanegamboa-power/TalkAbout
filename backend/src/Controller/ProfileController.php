@@ -328,6 +328,65 @@ class ProfileController extends AppController
     }
 
     /**
+     * API: Get current logged-in user's profile data
+     */
+    public function getCurrentUserProfile()
+    {
+        $this->autoRender = false;
+        $this->response = $this->response->withType('application/json');
+
+        $identity = $this->Authentication->getIdentity();
+        if (!$identity) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Not authenticated'
+            ]));
+        }
+
+        $id = null;
+        if (method_exists($identity, 'getIdentifier')) {
+            $id = $identity->getIdentifier();
+        } elseif (method_exists($identity, 'get')) {
+            $id = $identity->get('id');
+        } elseif (isset($identity->id)) {
+            $id = $identity->id;
+        }
+
+        if (empty($id)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'User ID not found'
+            ]));
+        }
+
+        $usersTable = $this->getTableLocator()->get('Users');
+        try {
+            $user = $usersTable->get($id);
+        } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'User not found'
+            ]));
+        }
+
+        $fullName = $user->get('full_name') ?? '';
+        $username = $user->get('username') ?? '';
+        $initial = strtoupper(substr($fullName ?: $username ?: 'U', 0, 1));
+
+        return $this->response->withStringBody(json_encode([
+            'success' => true,
+            'user' => [
+                'id' => $user->get('id'),
+                'username' => $username,
+                'full_name' => $fullName,
+                'about' => $user->get('about') ?? '',
+                'profile_photo_path' => $user->get('profile_photo_path') ?? '',
+                'initial' => $initial
+            ]
+        ]));
+    }
+
+    /**
      * API: Get user profile data by username
      */
     public function getUserProfile()

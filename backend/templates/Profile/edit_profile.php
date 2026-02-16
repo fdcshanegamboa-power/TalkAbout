@@ -10,7 +10,6 @@ $username = $user->username ?? '';
 ?>
 
 <style>
-/* Hide scrollbar but keep scrolling */
 .no-scrollbar {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
@@ -21,34 +20,25 @@ $username = $user->username ?? '';
 </style>
 
 <div id="edit-profile-app" v-cloak class="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-100">
-    <!-- Mobile Header -->
     <?= $this->element('mobile_header') ?>
 
-    <!-- Top Navbar (Desktop/Tablet) -->
     <?= $this->element('top_navbar') ?>
 
-    <!-- Main Container with proper padding for fixed navbar and bottom nav -->
     <div class="max-w-9xl mx-auto px-4 sm:px-6 pt-4 pb-20 md:pt-20 md:pb-6 lg:pb-6">
         <div class="md:flex md:gap-4 lg:gap-6">
 
-            <!-- Sidebar -->
             <?= $this->element('left_sidebar', ['active' => 'profile']) ?>
 
-            <!-- Main content -->
             <main class="flex-1 space-y-4 lg:space-y-6 mt-4 md:mt-0">
 
-            <!-- Context Header / Breadcrumb -->
-            <div class="flex items-center gap-2 text-sm text-blue-600 font-medium">
-                <?= $this->Html->link(
-                    htmlspecialchars($fullName ?: 'Account', ENT_QUOTES, 'UTF-8'),
-                    ['controller' => 'Profile', 'action' => 'profile'],
-                    ['class' => 'text-blue-800 font-semibold hover:text-blue-900 hover:underline transition', 'escape' => false]
-                ) ?>
+            <div v-if="profileUser" class="flex items-center gap-2 text-sm text-blue-600 font-medium">
+                <a href="/profile" class="text-blue-800 font-semibold hover:text-blue-900 hover:underline transition">
+                    {{ profileUser.full_name || 'Account' }}
+                </a>
                 <span class="text-blue-400">→</span>
                 <span class="text-blue-700">Edit profile</span>
             </div>
 
-            <!-- Edit Card -->
             <div class="bg-white/90 backdrop-blur rounded-xl lg:rounded-2xl shadow-xl p-6 lg:p-8">
 
                 <?= $this->Form->create($user, [
@@ -56,22 +46,20 @@ $username = $user->username ?? '';
                     'class' => 'space-y-6'
                 ]) ?>
 
-                <!-- Profile Picture Section -->
-                <div class="flex flex-col items-center pb-6 border-b border-blue-100">
+                <div v-if="profileUser" class="flex flex-col items-center pb-6 border-b border-blue-100">
                     <div class="relative group">
-                        <!-- Avatar Display -->
                         <div id="avatar-preview" class="w-24 h-24 lg:w-32 lg:h-32 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600
                                flex items-center justify-center text-white text-3xl lg:text-4xl font-extrabold
                                shadow-lg overflow-hidden">
-                            <?php if (!empty($user->profile_photo_path)): ?>
-                                <img src="<?= $this->Url->build('/img/profiles/' . htmlspecialchars($user->profile_photo_path, ENT_QUOTES, 'UTF-8')) ?>" 
+                            <template v-if="profileUser.profile_photo">
+                                <img :src="'/img/profiles/' + profileUser.profile_photo" 
                                      alt="Profile" class="w-full h-full object-cover" id="current-avatar" />
-                            <?php else: ?>
-                                <span id="avatar-initial"><?= strtoupper(substr($fullName ?: $username ?: 'U', 0, 1)) ?></span>
-                            <?php endif; ?>
+                            </template>
+                            <template v-else>
+                                <span id="avatar-initial">{{ profileUser.initial }}</span>
+                            </template>
                         </div>
                         
-                        <!-- Upload Button Overlay -->
                         <label for="profile-picture-input" 
                                class="absolute inset-0 rounded-full bg-black/50 flex items-center justify-center
                                       opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
@@ -97,7 +85,6 @@ $username = $user->username ?? '';
                     </p>
                 </div>
 
-                <!-- Full name -->
                 <div>
                     <label class="block text-sm font-semibold text-blue-700 mb-2">
                         <span class="flex items-center gap-2">
@@ -116,7 +103,6 @@ $username = $user->username ?? '';
                     ]) ?>
                 </div>
 
-                <!-- Username -->
                 <div>
                     <label class="block text-sm font-semibold text-blue-700 mb-2">
                         <span class="flex items-center gap-2">
@@ -135,7 +121,6 @@ $username = $user->username ?? '';
                     ]) ?>
                 </div>
 
-                <!-- About -->
                 <div>
                     <label class="block text-sm font-semibold text-blue-700 mb-2">
                         <span class="flex items-center gap-2">
@@ -156,7 +141,6 @@ $username = $user->username ?? '';
                     ]) ?>
                 </div>
 
-                <!-- Actions -->
                 <div class="flex flex-col sm:flex-row justify-between items-center gap-3 pt-4">
                     <?= $this->Html->link(
                         'Cancel',
@@ -178,11 +162,9 @@ $username = $user->username ?? '';
             </div>
         </main>
 
-            <!-- Right sidebar -->
             <?= $this->element('right_sidebar') ?>
         </div>
     </div>
 
-    <!-- Mobile Bottom Navigation -->
     <?= $this->element('mobile_nav', ['active' => 'profile']) ?>
 </div>

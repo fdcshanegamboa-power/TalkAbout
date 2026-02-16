@@ -10,9 +10,10 @@ if (el && window.Vue) {
     createApp({
         data() {
             return {
-                userFullName: el.dataset.userFullName || '',
-                userName: el.dataset.userName || '',
-                currentUserId: Number(el.dataset.currentUserId) || null,
+                profileUser: null, // Will hold current user's profile data
+                userFullName: '',
+                userName: '',
+                currentUserId: null,
 
                 composer: {
                     text: '',
@@ -27,11 +28,13 @@ if (el && window.Vue) {
                 notifications: [],
                 notificationCount: 0,
                 showNotifications: false,
+                showUserMenu: false,
                 notificationPolling: null
             };
         },
 
         mounted() {
+            this.fetchCurrentUserProfile();
             this.fetchPosts();
             this.fetchNotifications();
             this.startNotificationPolling();
@@ -44,6 +47,34 @@ if (el && window.Vue) {
         },
 
         methods: {
+            async fetchCurrentUserProfile() {
+                try {
+                    const response = await fetch('/api/profile/current');
+                    if (!response.ok) {
+                        console.error('Failed to fetch profile:', response.status);
+                        return;
+                    }
+                    
+                    const data = await response.json();
+                    if (data.success) {
+                        const user = data.user;
+                        this.profileUser = {
+                            full_name: user.full_name || '',
+                            username: user.username || '',
+                            about: user.about || '',
+                            profile_photo: user.profile_photo_path || '',
+                            initial: (user.full_name || user.username || 'U').charAt(0).toUpperCase()
+                        };
+                        // Update properties for use throughout the app
+                        this.userFullName = user.full_name || '';
+                        this.userName = user.username || '';
+                        this.currentUserId = user.id || null;
+                    }
+                } catch (error) {
+                    console.error('Error fetching current user profile:', error);
+                }
+            },
+            
             async fetchPosts() {
                 this.isLoading = true;
                 try {
@@ -620,6 +651,16 @@ if (el && window.Vue) {
                 ) {
                     this.showNotifications = false;
                 }
+                if (
+                    this.showUserMenu &&
+                    !e.target.closest('[data-user-menu]')
+                ) {
+                    this.showUserMenu = false;
+                }
+            },
+            
+            toggleUserMenu() {
+                this.showUserMenu = !this.showUserMenu;
             }
         },
 

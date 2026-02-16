@@ -13,40 +13,6 @@ $inactiveItem = 'text-blue-700 hover:bg-blue-50';
 
 $homeClass = $baseItem . ' ' . (($active === 'home' || $active === 'dashboard') ? $activeItem : $inactiveItem);
 $profileClass = $baseItem . ' ' . (($active === 'profile' || $active === 'editProfile') ? $activeItem : $inactiveItem);
-
-$identity = $this->request->getAttribute('identity');
-$displayName = '';
-$username = '';
-$profilePhoto = '';
-
-if ($identity) {
-    // Get user ID and load full entity to get profile photo
-    $userId = null;
-    if (method_exists($identity, 'getIdentifier')) {
-        $userId = $identity->getIdentifier();
-    } elseif (method_exists($identity, 'get')) {
-        $userId = $identity->get('id');
-    } elseif (isset($identity->id)) {
-        $userId = $identity->id;
-    }
-
-    if ($userId) {
-        $usersTable = \Cake\ORM\TableRegistry::getTableLocator()->get('Users');
-        try {
-            $user = $usersTable->get($userId);
-            $displayName = $user->full_name ?? $user->username ?? '';
-            $username = $user->username ?? '';
-            $profilePhoto = $user->profile_photo_path ?? '';
-        } catch (\Exception $e) {
-            // Fallback to identity data
-            $displayName = $identity->get('full_name') ?? $identity->get('username') ?? '';
-            $username = $identity->get('username') ?? '';
-        }
-    } else {
-        $displayName = $identity->get('full_name') ?? $identity->get('username') ?? '';
-        $username = $identity->get('username') ?? '';
-    }
-}
 ?>
 
 <!-- Left Sidebar - Hidden on mobile (< 768px), Full width on tablet+ (768px+) -->
@@ -59,19 +25,20 @@ if ($identity) {
               md:self-start">
     
     <!-- User Profile Section - Enlarged and Emphasized -->
-    <a href="<?= $this->Url->build(['controller' => 'Profile', 'action' => 'profile']) ?>"
+    <a v-if="profileUser" href="<?= $this->Url->build(['controller' => 'Profile', 'action' => 'profile']) ?>"
         class="block mb-8 p-4 rounded-xl hover:bg-blue-50 transition group">
         <div class="flex flex-col items-center gap-3">
             <!-- Profile Image - Larger and more prominent -->
             <div class="relative">
                 <div
                     class="w-20 h-20 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-3xl shadow-lg overflow-hidden flex-shrink-0 ring-4 ring-blue-100 group-hover:ring-blue-200 transition">
-                    <?php if (!empty($profilePhoto)): ?>
-                        <img src="<?= $this->Url->build('/img/profiles/' . htmlspecialchars($profilePhoto, ENT_QUOTES, 'UTF-8')) ?>"
+                    <template v-if="profileUser.profile_photo">
+                        <img :src="'/img/profiles/' + profileUser.profile_photo"
                             alt="Your Profile" class="w-full h-full object-cover" />
-                    <?php else: ?>
-                        <?= strtoupper(substr($displayName ?: 'U', 0, 1)) ?>
-                    <?php endif; ?>
+                    </template>
+                    <template v-else>
+                        {{ profileUser.initial }}
+                    </template>
                 </div>
                 <!-- Online status indicator -->
                 <div class="absolute bottom-0 right-0 w-5 h-5 bg-green-500 rounded-full border-4 border-white"></div>
@@ -82,10 +49,10 @@ if ($identity) {
                     You
                 </div>
                 <div class="text-base font-bold text-blue-900 truncate group-hover:text-blue-700">
-                    <?= htmlspecialchars((string) $displayName, ENT_QUOTES, 'UTF-8') ?>
+                    {{ profileUser.full_name || 'User' }}
                 </div>
                 <div class="text-sm text-blue-600 truncate">
-                    @<?= htmlspecialchars((string) $username, ENT_QUOTES, 'UTF-8') ?>
+                    @{{ profileUser.username || 'username' }}
                 </div>
             </div>
         </div>
