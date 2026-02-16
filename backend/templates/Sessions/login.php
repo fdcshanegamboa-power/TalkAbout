@@ -4,12 +4,18 @@
  */
 $this->assign('title', 'Login');
 ?>
+<?= $this->Html->script('sessions/login', ['block' => 'script']) ?>
+
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
 
 <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-100 px-4">
     <div class="w-full max-w-md">
         <div class="bg-white/90 backdrop-blur rounded-2xl shadow-xl border border-blue-100 p-8">
 
-            <!-- Header -->
             <div class="text-center mb-8">
                 <h1 class="text-4xl font-extrabold tracking-tight text-blue-700">
                     Talk<span class="text-indigo-600">About</span>
@@ -19,14 +25,13 @@ $this->assign('title', 'Login');
                 </p>
             </div>
 
-            <div id="login-app">
+            <div id="login-app" v-cloak>
                 <?= $this->Form->create(null, [
                     'id' => 'login-form',
                     '@submit.prevent' => 'handleSubmit',
                     'class' => 'space-y-5'
                 ]) ?>
 
-                <!-- Username -->
                 <div>
                     <label class="block text-sm font-medium text-blue-700 mb-1">
                         Username
@@ -42,7 +47,6 @@ $this->assign('title', 'Login');
                     ]) ?>
                 </div>
 
-                <!-- Password -->
                 <div>
                     <label class="block text-sm font-medium text-blue-700 mb-1">
                         Password
@@ -58,10 +62,9 @@ $this->assign('title', 'Login');
                     ]) ?>
                 </div>
 
-                <!-- Submit -->
                 <button
                     type="submit"
-                    :disabled="loading"
+                    :disabled="loading || !isFormValid"
                     class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white
                            py-2.5 rounded-xl font-semibold
                            hover:from-blue-700 hover:to-indigo-700
@@ -70,12 +73,17 @@ $this->assign('title', 'Login');
                            disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                     <span v-if="!loading">Sign In</span>
-                    <span v-else>Signing in...</span>
+                    <span v-else class="flex items-center justify-center">
+                        <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Signing in...
+                    </span>
                 </button>
 
                 <?= $this->Form->end() ?>
 
-                <!-- Footer -->
                 <div class="text-center mt-6">
                     <p class="text-sm text-blue-700">
                         Don’t have an account?
@@ -92,24 +100,3 @@ $this->assign('title', 'Login');
     </div>
 </div>
 
-<script>
-const { createApp } = Vue;
-
-createApp({
-    data() {
-        return {
-            form: {
-                username: '',
-                password: ''
-            },
-            loading: false
-        }
-    },
-    methods: {
-        handleSubmit() {
-            this.loading = true;
-            document.getElementById('login-form').submit();
-        }
-    }
-}).mount('#login-app');
-</script>

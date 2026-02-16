@@ -26,6 +26,9 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/api/posts/update', ['controller' => 'Posts', 'action' => 'updatePost']);
         $builder->connect('/api/posts/delete', ['controller' => 'Posts', 'action' => 'deletePost']);
         
+        // API routes for profile
+        $builder->connect('/api/profile/user/*', ['controller' => 'Profile', 'action' => 'getUserProfile']);
+        
         // API routes for likes
         $builder->connect('/api/posts/like', ['controller' => 'Likes', 'action' => 'likePost']);
         $builder->connect('/api/posts/unlike', ['controller' => 'Likes', 'action' => 'unlikePost']);

@@ -5,9 +5,11 @@
  */
 $this->assign('title', 'Settings');
 
+
 $fullName = $user->full_name ?? '';
 $username = $user->username ?? '';
 ?>
+<?= $this->Html->script('dashboard/settings', ['block' => 'script']) ?>
 
 <style>
 /* Hide scrollbar but keep scrolling */
@@ -21,29 +23,22 @@ $username = $user->username ?? '';
 </style>
 
 <div id="settings-app" v-cloak class="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-100">
-    <!-- Mobile Header -->
     <?= $this->element('mobile_header') ?>
 
-    <!-- Top Navbar (Desktop/Tablet) -->
     <?= $this->element('top_navbar') ?>
 
-    <!-- Main Container with proper padding for fixed navbar and bottom nav -->
     <div class="max-w-9xl mx-auto px-4 sm:px-6 pt-4 pb-20 md:pt-20 md:pb-6 lg:pb-6">
         <div class="md:flex md:gap-4 lg:gap-6">
 
-            <!-- Sidebar -->
             <?= $this->element('left_sidebar', ['active' => 'settings']) ?>
 
-            <!-- Main content -->
             <main class="flex-1 space-y-4 lg:space-y-6 mt-4 md:mt-0">
 
-            <!-- Page Header - Hidden on mobile (shown in top bar) -->
             <div class="hidden md:block">
                 <h1 class="text-2xl lg:text-3xl font-extrabold text-blue-800">Settings</h1>
                 <p class="text-sm text-blue-600 mt-1">Manage your account security and preferences</p>
             </div>
 
-            <!-- Security Section -->
             <div class="bg-white/90 backdrop-blur rounded-xl lg:rounded-2xl shadow-xl p-6 lg:p-8">
                 <div class="flex items-center gap-3 mb-6 pb-4 border-b border-blue-100">
                     <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 
@@ -63,7 +58,6 @@ $username = $user->username ?? '';
                     'class' => 'space-y-5'
                 ]) ?>
 
-                    <!-- Current Password -->
                     <div>
                         <label class="block text-sm font-semibold text-blue-700 mb-2">
                             <span class="flex items-center gap-2">
@@ -84,7 +78,6 @@ $username = $user->username ?? '';
                         ]) ?>
                     </div>
 
-                    <!-- New Password -->
                     <div>
                         <label class="block text-sm font-semibold text-blue-700 mb-2">
                             <span class="flex items-center gap-2">
@@ -106,7 +99,6 @@ $username = $user->username ?? '';
                         <p class="text-xs text-blue-500 mt-1">Must be at least 8 characters long</p>
                     </div>
 
-                    <!-- Confirm New Password -->
                     <div>
                         <label class="block text-sm font-semibold text-blue-700 mb-2">
                             <span class="flex items-center gap-2">
@@ -127,7 +119,6 @@ $username = $user->username ?? '';
                         ]) ?>
                     </div>
 
-                    <!-- Actions -->
                     <div class="flex flex-col sm:flex-row justify-between items-center gap-3 pt-6 border-t border-blue-100">
                         <?= $this->Html->link(
                             'Cancel',
@@ -150,149 +141,9 @@ $username = $user->username ?? '';
             </div>
         </main>
 
-            <!-- Right sidebar -->
             <?= $this->element('right_sidebar') ?>
         </div>
     </div>
 
-    <!-- Mobile Bottom Navigation -->
     <?= $this->element('mobile_nav', ['active' => 'settings']) ?>
 </div>
-
-<script>
-const { createApp } = Vue;
-
-createApp({
-    data() {
-        return {
-            // Notification data
-            notifications: [],
-            notificationCount: 0,
-            showNotifications: false,
-            notificationPolling: null
-        };
-    },
-    mounted() {
-        this.fetchNotifications();
-        this.startNotificationPolling();
-        document.addEventListener('click', this.handleClickOutside);
-    },
-    beforeUnmount() {
-        this.stopNotificationPolling();
-        document.removeEventListener('click', this.handleClickOutside);
-    },
-    methods: {
-        async fetchNotifications() {
-            try {
-                const response = await fetch('/api/notifications/unread');
-                const data = await response.json();
-                if (data.success) {
-                    this.notifications = data.notifications;
-                    this.notificationCount = data.count || 0;
-                }
-            } catch (error) {
-                console.error('Error fetching notifications:', error);
-            }
-        },
-        
-        toggleNotifications() {
-            this.showNotifications = !this.showNotifications;
-        },
-        
-        handleClickOutside(event) {
-            if (this.showNotifications && !event.target.closest('[data-notification-container]')) {
-                this.showNotifications = false;
-            }
-        },
-        
-        async handleNotificationClick(notification) {
-            if (!notification.is_read) {
-                await this.markNotificationAsRead(notification.id);
-            }
-            this.showNotifications = false;
-        },
-        
-        async markNotificationAsRead(notificationId) {
-            try {
-                const response = await fetch(`/api/notifications/mark-as-read/${notificationId}`, {
-                    method: 'POST'
-                });
-                const data = await response.json();
-                if (data.success) {
-                    const notification = this.notifications.find(n => n.id === notificationId);
-                    if (notification) {
-                        notification.is_read = true;
-                        this.notificationCount = Math.max(0, this.notificationCount - 1);
-                    }
-                }
-            } catch (error) {
-                console.error('Error marking notification as read:', error);
-            }
-        },
-        
-        async markAllAsRead() {
-            try {
-                const response = await fetch('/api/notifications/mark-all-as-read', {
-                    method: 'POST'
-                });
-                const data = await response.json();
-                if (data.success) {
-                    this.notifications.forEach(n => n.is_read = true);
-                    this.notificationCount = 0;
-                }
-            } catch (error) {
-                console.error('Error marking all as read:', error);
-            }
-        },
-        
-        async deleteNotification(notificationId) {
-            try {
-                const response = await fetch(`/api/notifications/delete/${notificationId}`, {
-                    method: 'POST'
-                });
-                const data = await response.json();
-                if (data.success) {
-                    const index = this.notifications.findIndex(n => n.id === notificationId);
-                    if (index !== -1) {
-                        const wasUnread = !this.notifications[index].is_read;
-                        this.notifications.splice(index, 1);
-                        if (wasUnread) {
-                            this.notificationCount = Math.max(0, this.notificationCount - 1);
-                        }
-                    }
-                }
-            } catch (error) {
-                console.error('Error deleting notification:', error);
-            }
-        },
-        
-        startNotificationPolling() {
-            this.notificationPolling = setInterval(() => {
-                this.fetchNotifications();
-            }, 30000);
-        },
-        
-        stopNotificationPolling() {
-            if (this.notificationPolling) {
-                clearInterval(this.notificationPolling);
-            }
-        },
-        
-        formatNotificationTime(timestamp) {
-            const date = new Date(timestamp);
-            const now = new Date();
-            const diffMs = now - date;
-            const diffMins = Math.floor(diffMs / 60000);
-            const diffHours = Math.floor(diffMs / 3600000);
-            const diffDays = Math.floor(diffMs / 86400000);
-            
-            if (diffMins < 1) return 'Just now';
-            if (diffMins < 60) return `${diffMins}m ago`;
-            if (diffHours < 24) return `${diffHours}h ago`;
-            if (diffDays < 7) return `${diffDays}d ago`;
-            
-            return date.toLocaleDateString();
-        }
-    }
-}).mount('#settings-app');
-</script>

@@ -12,6 +12,13 @@ class ProfileController extends AppController
         parent::initialize();
     }
 
+    public function beforeFilter(\Cake\Event\EventInterface $event)
+    {
+        parent::beforeFilter($event);
+        // Allow API endpoints without authentication
+        $this->Authentication->addUnauthenticatedActions(['getUserProfile', 'getAnyUserPosts']);
+    }
+
     public function profile()
     {
         // Load full user entity from the database so all fields (e.g. `about`) are available
@@ -318,6 +325,53 @@ class ProfileController extends AppController
         $isOwnProfile = ($currentUserId == $userId);
         
         $this->set(compact('user', 'currentUserId', 'isOwnProfile'));
+    }
+
+    /**
+     * API: Get user profile data by username
+     */
+    public function getUserProfile()
+    {
+        $this->autoRender = false;
+        $this->response = $this->response->withType('application/json');
+
+        // Get username from passed parameters
+        $passedArgs = $this->request->getParam('pass', []);
+        $username = !empty($passedArgs) ? $passedArgs[0] : null;
+
+        if (empty($username)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Username is required'
+            ]));
+        }
+
+        // Find user by username
+        $usersTable = $this->getTableLocator()->get('Users');
+        $user = $usersTable->find()
+            ->where(['username' => $username])
+            ->first();
+
+        if (!$user) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'User not found'
+            ]));
+        }
+
+        $initial = strtoupper(substr($user->full_name ?: $user->username ?: 'U', 0, 1));
+
+        return $this->response->withStringBody(json_encode([
+            'success' => true,
+            'user' => [
+                'id' => $user->id,
+                'username' => $user->username,
+                'full_name' => $user->full_name ?? '',
+                'about' => $user->about ?? '',
+                'profile_photo_path' => $user->profile_photo_path ?? '',
+                'initial' => $initial
+            ]
+        ]));
     }
 
     /**

@@ -11473,3 +11473,135 @@ Stack Trace:
 Request URL: /api/comments/delete/4
 Referer URL: http://localhost/dashboard/home
 Client IP: 138.199.24.218
+2026-02-16 00:56:02 error: [Error] Call to undefined function h() in /var/www/html/templates/Dashboard/home.php on line 25
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard/home
+Referer URL: http://localhost/profile/shanegwaps
+Client IP: 138.199.24.218
+2026-02-16 00:57:31 error: [Error] Call to undefined function h() in /var/www/html/templates/Dashboard/home.php on line 21
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard/home
+Referer URL: http://localhost/profile/shanegwaps
+Client IP: 138.199.24.218
+2026-02-16 00:57:33 error: [Error] Call to undefined function h() in /var/www/html/templates/Dashboard/home.php on line 21
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard/home
+Referer URL: http://localhost/profile/shanegwaps
+Client IP: 138.199.24.218
+2026-02-16 00:59:46 error: [Error] Call to undefined method Cake\View\Helper\HtmlHelper::escape() in /var/www/html/templates/Dashboard/home.php on line 21
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard/home
+Referer URL: http://localhost/profile/shanegwaps
+Client IP: 138.199.24.218
