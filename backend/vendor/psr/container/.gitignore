@@ -1,3 +1,4 @@
 composer.lock
 composer.phar
 /vendor/
+backend/config/app_local.php

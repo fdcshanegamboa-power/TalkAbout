@@ -36,8 +36,8 @@ return function (RouteBuilder $routes): void {
         
         // API routes for comments
         $builder->connect('/api/comments/add', ['controller' => 'Comments', 'action' => 'addComment']);
+        $builder->connect('/api/comments/delete', ['controller' => 'Comments', 'action' => 'deleteComment']);
         $builder->connect('/api/comments/list/*', ['controller' => 'Comments', 'action' => 'getComments']);
-        $builder->connect('/api/comments/delete/:id', ['controller' => 'Comments', 'action' => 'deleteComment'], ['pass' => ['id']]);
         
         // API routes for notifications
         $builder->connect('/api/notifications', ['controller' => 'Notifications', 'action' => 'index']);

@@ -15,7 +15,6 @@ $homeClass = $baseItem . ' ' . (($active === 'home' || $active === 'dashboard') 
 $profileClass = $baseItem . ' ' . (($active === 'profile' || $active === 'editProfile') ? $activeItem : $inactiveItem);
 ?>
 
-<!-- Left Sidebar - Hidden on mobile (< 768px), Full width on tablet+ (768px+) -->
 <aside id="left-sidebar" 
        class="hidden md:block md:sticky md:top-20 md:z-10
               md:w-64 md:max-h-[calc(100vh-5.5rem)] 
@@ -24,11 +23,9 @@ $profileClass = $baseItem . ' ' . (($active === 'profile' || $active === 'editPr
               overflow-y-auto
               md:self-start">
     
-    <!-- User Profile Section - Enlarged and Emphasized -->
     <a v-if="profileUser" href="<?= $this->Url->build(['controller' => 'Profile', 'action' => 'profile']) ?>"
         class="block mb-8 p-4 rounded-xl hover:bg-blue-50 transition group">
         <div class="flex flex-col items-center gap-3">
-            <!-- Profile Image - Larger and more prominent -->
             <div class="relative">
                 <div
                     class="w-20 h-20 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-3xl shadow-lg overflow-hidden flex-shrink-0 ring-4 ring-blue-100 group-hover:ring-blue-200 transition">
@@ -40,10 +37,8 @@ $profileClass = $baseItem . ' ' . (($active === 'profile' || $active === 'editPr
                         {{ profileUser.initial }}
                     </template>
                 </div>
-                <!-- Online status indicator -->
                 <div class="absolute bottom-0 right-0 w-5 h-5 bg-green-500 rounded-full border-4 border-white"></div>
             </div>
-            <!-- User Info - Always shown, centered below photo -->
             <div class="w-full text-center">
                 <div class="text-xs font-medium text-blue-500 uppercase tracking-wide mb-0.5">
                     You

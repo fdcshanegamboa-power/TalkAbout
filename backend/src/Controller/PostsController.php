@@ -301,12 +301,10 @@ class PostsController extends AppController
         $postImagesTable = $this->getTableLocator()->get('PostImages');
         
         try {
-            $post = $postsTable->get($postId, [
-                'contain' => ['PostImages']
-            ]);
+            $post = $postsTable->get($postId);
             
             // Verify the post belongs to the current user
-            if ($post->user_id != $userId) {
+            if ($post->get('user_id') != $userId) {
                 return $this->response->withStringBody(json_encode([
                     'success' => false,
                     'message' => 'You can only edit your own posts'
@@ -419,7 +417,7 @@ class PostsController extends AppController
                 'success' => true,
                 'post' => [
                     'id' => $post->id,
-                    'text' => $post->content_text,
+                    'text' => $post->get('content_text'),
                     'images' => $allImages
                 ]
             ]));
@@ -480,7 +478,7 @@ class PostsController extends AppController
             $post = $postsTable->get($postId);
             
             // Verify the post belongs to the current user
-            if ($post->user_id != $userId) {
+            if ($post->get('user_id') != $userId) {
                 return $this->response->withStringBody(json_encode([
                     'success' => false,
                     'message' => 'You can only delete your own posts'

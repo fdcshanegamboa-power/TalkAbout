@@ -500,34 +500,6 @@ if (el && window.Vue) {
                     post.isSubmittingComment = false;
                 }
             },
-            
-            async deleteComment(post, comment) {
-                if (!confirm('Are you sure you want to delete this comment?')) {
-                    return;
-                }
-                
-                try {
-                    const response = await fetch(`/api/comments/delete/${comment.id}`, {
-                        method: 'POST'
-                    });
-                    
-                    const data = await response.json();
-                    
-                    if (data.success) {
-                        // Remove comment from list
-                        const index = post.commentsList.findIndex(c => c.id === comment.id);
-                        if (index !== -1) {
-                            post.commentsList.splice(index, 1);
-                            post.comments = Math.max(0, (post.comments || 0) - 1);
-                        }
-                    } else {
-                        alert('Failed to delete comment: ' + (data.message || 'Unknown error'));
-                    }
-                } catch (error) {
-                    console.error('Error deleting comment:', error);
-                    alert('Failed to delete comment. Please try again.');
-                }
-            },
 
             viewProfile(username) {
                 if (!username) return;

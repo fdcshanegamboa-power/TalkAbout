@@ -235,11 +235,6 @@ $profilePhoto = $profilePhoto ?? '';
                                 <div class="flex items-center gap-2 mb-1">
                                     <span class="text-xs font-semibold text-blue-800">{{ comment.author }}</span>
                                     <span class="text-xs text-blue-400">{{ comment.time }}</span>
-                                    <button v-if="comment.user_id === currentUserId" 
-                                            @click="deleteComment(post, comment)"
-                                            class="ml-auto text-red-500 hover:text-red-700 text-xs">
-                                        Delete
-                                    </button>
                                 </div>
                                 <div v-if="comment.content_text" class="text-sm text-blue-700 break-words">
                                     {{ comment.content_text }}
