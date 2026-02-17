@@ -348,6 +348,57 @@ const PostCardMixin = {
             window.location.href = `/profile/${username}`;
         },
 
+        toggleCommentLike(comment) {
+            const wasLiked = comment.liked;
+            const prevLikes = comment.likes;
+
+            // Optimistic UI update
+            comment.liked = !comment.liked;
+            comment.likes += comment.liked ? 1 : -1;
+
+            const url = comment.liked ? '/api/comments/like' : '/api/comments/unlike';
+            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+
+            // Use FormData to avoid preflight
+            const form = new FormData();
+            form.append('comment_id', comment.id);
+            if (csrfToken) form.append('_csrfToken', csrfToken);
+
+            fetch(url, {
+                method: 'POST',
+                credentials: 'same-origin',
+                body: form
+            })
+            .then(async (r) => {
+                const text = await r.text().catch(() => '');
+                let json = null;
+                try {
+                    json = text ? JSON.parse(text) : null;
+                } catch (e) {
+                    console.error('Failed to parse response:', text);
+                }
+
+                if (!r.ok) {
+                    console.error('Comment like request failed:', r.status, text);
+                    comment.liked = wasLiked;
+                    comment.likes = prevLikes;
+                    return;
+                }
+
+                const d = json || {};
+                if (!d.success) {
+                    console.error('Comment like action unsuccessful:', d);
+                    comment.liked = wasLiked;
+                    comment.likes = prevLikes;
+                }
+            })
+            .catch((err) => {
+                console.error('Network error liking comment:', err);
+                comment.liked = wasLiked;
+                comment.likes = prevLikes;
+            });
+        },
+
         closeAllMenus() {
             if (this.posts) {
                 this.posts.forEach(post => {

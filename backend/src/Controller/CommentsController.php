@@ -169,7 +169,9 @@ class CommentsController extends AppController
                     'content_text' => $comment->content_text,
                     'content_image_path' => $uploadedImagePath,
                     'created_at' => $comment->created_at->format('Y-m-d H:i:s'),
-                    'time' => 'Just now'
+                    'time' => 'Just now',
+                    'likes' => 0,
+                    'liked' => false
                 ],
                 'comment_count' => $commentCount
             ]));
@@ -203,8 +205,22 @@ class CommentsController extends AppController
             ]));
         }
 
+        // Get current user ID
+        $identity = $this->Authentication->getIdentity();
+        $currentUserId = null;
+        if ($identity) {
+            if (method_exists($identity, 'getIdentifier')) {
+                $currentUserId = $identity->getIdentifier();
+            } elseif (method_exists($identity, 'get')) {
+                $currentUserId = $identity->get('id');
+            } elseif (isset($identity->id)) {
+                $currentUserId = $identity->id;
+            }
+        }
+
         $commentsTable = $this->getTableLocator()->get('Comments');
         $usersTable = $this->getTableLocator()->get('Users');
+        $likesTable = $this->getTableLocator()->get('Likes');
 
         // Get comments with user info, ordered by most recent first
         $comments = $commentsTable->find()
@@ -237,6 +253,26 @@ class CommentsController extends AppController
                 $timeAgo = 'Just now';
             }
 
+            // Get like count for this comment
+            $likeCount = $likesTable->find()
+                ->where([
+                    'target_type' => 'comment',
+                    'target_id' => $comment->id
+                ])
+                ->count();
+
+            // Check if current user liked this comment
+            $userLiked = false;
+            if ($currentUserId) {
+                $userLiked = $likesTable->find()
+                    ->where([
+                        'user_id' => $currentUserId,
+                        'target_type' => 'comment',
+                        'target_id' => $comment->id
+                    ])
+                    ->count() > 0;
+            }
+
             $result[] = [
                 'id' => $comment->id,
                 'user_id' => $comment->user_id,
@@ -246,7 +282,9 @@ class CommentsController extends AppController
                 'content_text' => $comment->content_text ?? '',
                 'content_image_path' => $comment->content_image_path ?? null,
                 'time' => $timeAgo,
-                'created_at' => $comment->created_at->format('Y-m-d H:i:s')
+                'created_at' => $comment->created_at->format('Y-m-d H:i:s'),
+                'likes' => $likeCount,
+                'liked' => $userLiked
             ];
         }
 
@@ -254,6 +292,191 @@ class CommentsController extends AppController
             'success' => true,
             'comments' => $result,
             'count' => count($result)
+        ]));
+    }
+
+    /**
+     * API: Like a comment
+     */
+    public function likeComment()
+    {
+        $this->autoRender = false;
+        $this->response = $this->response->withType('application/json');
+
+        if (!$this->request->is('post')) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Invalid request method'
+            ]));
+        }
+
+        $identity = $this->Authentication->getIdentity();
+        $userId = null;
+        if ($identity) {
+            if (method_exists($identity, 'getIdentifier')) {
+                $userId = $identity->getIdentifier();
+            } elseif (method_exists($identity, 'get')) {
+                $userId = $identity->get('id');
+            } elseif (isset($identity->id)) {
+                $userId = $identity->id;
+            }
+        }
+
+        if (empty($userId)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'User not authenticated'
+            ]));
+        }
+
+        $commentId = $this->request->getData('comment_id');
+
+        if (empty($commentId)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Comment ID is required'
+            ]));
+        }
+
+        $likesTable = $this->getTableLocator()->get('Likes');
+        $commentsTable = $this->getTableLocator()->get('Comments');
+
+        // Verify comment exists
+        $comment = $commentsTable->find()
+            ->where(['id' => $commentId, 'deleted_at IS' => null])
+            ->first();
+
+        if (!$comment) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Comment not found'
+            ]));
+        }
+
+        // Check if already liked
+        $existingLike = $likesTable->find()
+            ->where([
+                'user_id' => $userId,
+                'target_type' => 'comment',
+                'target_id' => $commentId
+            ])
+            ->first();
+
+        if ($existingLike) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Comment already liked'
+            ]));
+        }
+
+        // Create like
+        $like = $likesTable->newEmptyEntity();
+        $like->user_id = $userId;
+        $like->target_type = 'comment';
+        $like->target_id = $commentId;
+
+        if ($likesTable->save($like)) {
+            // Get updated like count
+            $likeCount = $likesTable->find()
+                ->where([
+                    'target_type' => 'comment',
+                    'target_id' => $commentId
+                ])
+                ->count();
+
+            return $this->response->withStringBody(json_encode([
+                'success' => true,
+                'message' => 'Comment liked',
+                'likes' => $likeCount
+            ]));
+        }
+
+        return $this->response->withStringBody(json_encode([
+            'success' => false,
+            'message' => 'Failed to like comment'
+        ]));
+    }
+
+    /**
+     * API: Unlike a comment
+     */
+    public function unlikeComment()
+    {
+        $this->autoRender = false;
+        $this->response = $this->response->withType('application/json');
+
+        if (!$this->request->is('post')) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Invalid request method'
+            ]));
+        }
+
+        $identity = $this->Authentication->getIdentity();
+        $userId = null;
+        if ($identity) {
+            if (method_exists($identity, 'getIdentifier')) {
+                $userId = $identity->getIdentifier();
+            } elseif (method_exists($identity, 'get')) {
+                $userId = $identity->get('id');
+            } elseif (isset($identity->id)) {
+                $userId = $identity->id;
+            }
+        }
+
+        if (empty($userId)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'User not authenticated'
+            ]));
+        }
+
+        $commentId = $this->request->getData('comment_id');
+
+        if (empty($commentId)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Comment ID is required'
+            ]));
+        }
+
+        $likesTable = $this->getTableLocator()->get('Likes');
+
+        // Find and delete the like
+        $like = $likesTable->find()
+            ->where([
+                'user_id' => $userId,
+                'target_type' => 'comment',
+                'target_id' => $commentId
+            ])
+            ->first();
+
+        if (!$like) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Like not found'
+            ]));
+        }
+
+        if ($likesTable->delete($like)) {
+            // Get updated like count
+            $likeCount = $likesTable->find()
+                ->where([
+                    'target_type' => 'comment',
+                    'target_id' => $commentId
+                ])
+                ->count();
+
+            return $this->response->withStringBody(json_encode([
+                'success' => true,
+                'message' => 'Comment unliked',
+                'likes' => $likeCount
+            ]));
+        }
+
+        return $this->response->withStringBody(json_encode([
+            'success' => false,
+            'message' => 'Failed to unlike comment'
         ]));
     }
 }
