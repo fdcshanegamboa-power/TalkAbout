@@ -171,7 +171,7 @@ $this->Html->script('profile/edit_profile', ['block' => 'script']);
     <?= $this->element('mobile_nav', ['active' => 'profile']) ?>
 </div>
 
-<div id="cropper-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4">
+<div id="cropper-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 p-4">
     <div class="bg-white rounded-2xl w-full max-w-3xl shadow-xl overflow-hidden">
         <div class="flex items-center justify-between px-4 py-3 border-b border-blue-50">
             <h3 class="text-lg font-semibold text-blue-800">Crop profile picture</h3>
