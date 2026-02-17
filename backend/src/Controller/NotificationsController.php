@@ -66,9 +66,35 @@ class NotificationsController extends AppController
             ->limit(50) // Limit to last 50 notifications
             ->toArray();
 
+        // Enrich comment_liked notifications with post owner info for UI wording
+        $commentsTable = \Cake\ORM\TableRegistry::getTableLocator()->get('Comments');
+        $out = [];
+        foreach ($notifications as $n) {
+            $item = $n->toArray();
+
+            if (!empty($item['type']) && $item['type'] === 'comment_liked' && !empty($item['target_id'])) {
+                try {
+                    $comment = $commentsTable->get($item['target_id'], ['contain' => ['Posts' => ['Users']]]);
+                    if (!empty($comment->post) && !empty($comment->post->user)) {
+                        $item['post_owner'] = [
+                            'id' => $comment->post->user->id ?? null,
+                            'full_name' => $comment->post->user->full_name ?? null,
+                            'username' => $comment->post->user->username ?? null,
+                        ];
+                        // Also include the post id so frontend can link to the post
+                        $item['post_id'] = $comment->post->id ?? null;
+                    }
+                } catch (\Exception $e) {
+                    // fail silently; leave post_owner absent
+                }
+            }
+
+            $out[] = $item;
+        }
+
         return $this->response->withStringBody(json_encode([
             'success' => true,
-            'notifications' => $notifications
+            'notifications' => $out
         ]));
     }
 
@@ -95,10 +121,36 @@ class NotificationsController extends AppController
             ->find('unread', ['user_id' => $userId])
             ->toArray();
 
+        // Enrich comment_liked notifications with post owner info
+        $commentsTable = \Cake\ORM\TableRegistry::getTableLocator()->get('Comments');
+        $out = [];
+        foreach ($notifications as $n) {
+            $item = $n->toArray();
+
+            if (!empty($item['type']) && $item['type'] === 'comment_liked' && !empty($item['target_id'])) {
+                try {
+                    $comment = $commentsTable->get($item['target_id'], ['contain' => ['Posts' => ['Users']]]);
+                    if (!empty($comment->post) && !empty($comment->post->user)) {
+                        $item['post_owner'] = [
+                            'id' => $comment->post->user->id ?? null,
+                            'full_name' => $comment->post->user->full_name ?? null,
+                            'username' => $comment->post->user->username ?? null,
+                        ];
+                        // Also include the post id so frontend can link to the post
+                        $item['post_id'] = $comment->post->id ?? null;
+                    }
+                } catch (\Exception $e) {
+                    // ignore
+                }
+            }
+
+            $out[] = $item;
+        }
+
         return $this->response->withStringBody(json_encode([
             'success' => true,
-            'notifications' => $notifications,
-            'count' => count($notifications)
+            'notifications' => $out,
+            'count' => count($out)
         ]));
     }
 

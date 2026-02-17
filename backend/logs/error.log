@@ -14846,3 +14846,303 @@ Stack Trace:
 
 Request URL: /posts/shanegwaps
 Client IP: 138.199.24.218
+2026-02-17 08:37:03 error: [Error] Call to undefined method App\Controller\NotificationsController::loadModel() in /var/www/html/src/Controller/NotificationsController.php on line 70
+Stack Trace:
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/notifications
+Referer URL: http://localhost/posts/view/1
+Client IP: 138.199.24.218
+2026-02-17 08:37:12 error: [Error] Call to undefined method App\Controller\NotificationsController::loadModel() in /var/www/html/src/Controller/NotificationsController.php on line 70
+Stack Trace:
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/notifications
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 08:37:26 error: [Error] Call to undefined method App\Controller\NotificationsController::loadModel() in /var/www/html/src/Controller/NotificationsController.php on line 70
+Stack Trace:
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/notifications
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 08:37:32 error: [Error] Call to undefined method App\Controller\NotificationsController::loadModel() in /var/www/html/src/Controller/NotificationsController.php on line 70
+Stack Trace:
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/notifications
+Referer URL: http://localhost/profile/shanegwaps
+Client IP: 138.199.24.218
+2026-02-17 08:37:56 error: [Error] Call to undefined method App\Controller\NotificationsController::loadModel() in /var/www/html/src/Controller/NotificationsController.php on line 70
+Stack Trace:
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/notifications
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 08:38:26 error: [Error] Call to undefined method App\Controller\NotificationsController::loadModel() in /var/www/html/src/Controller/NotificationsController.php on line 70
+Stack Trace:
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/notifications
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 08:38:32 error: [Error] Call to undefined method App\Controller\NotificationsController::loadModel() in /var/www/html/src/Controller/NotificationsController.php on line 70
+Stack Trace:
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/notifications
+Referer URL: http://localhost/profile/shanegwaps
+Client IP: 138.199.24.218
+2026-02-17 08:38:49 error: [Error] Call to undefined method App\Controller\NotificationsController::loadModel() in /var/www/html/src/Controller/NotificationsController.php on line 70
+Stack Trace:
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/notifications
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 08:39:19 error: [Error] Call to undefined method App\Controller\NotificationsController::loadModel() in /var/www/html/src/Controller/NotificationsController.php on line 70
+Stack Trace:
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/notifications
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 08:39:32 error: [Error] Call to undefined method App\Controller\NotificationsController::loadModel() in /var/www/html/src/Controller/NotificationsController.php on line 70
+Stack Trace:
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/notifications
+Referer URL: http://localhost/profile/shanegwaps
+Client IP: 138.199.24.218
+[17-Feb-2026 08:45:47 UTC] PHP Warning:  Undefined variable $currentUserId in /var/www/html/src/Controller/PostsController.php on line 66
+[17-Feb-2026 08:45:47 UTC] PHP Warning:  Undefined variable $currentUserId in /var/www/html/src/Controller/PostsController.php on line 66
+[17-Feb-2026 08:45:47 UTC] PHP Warning:  Unable to emit headers. Headers sent in file=/var/www/html/src/Controller/PostsController.php line=66 in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 65
+[17-Feb-2026 08:45:47 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/src/Controller/PostsController.php:66) in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 158
+[17-Feb-2026 08:45:47 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/src/Controller/PostsController.php:66) in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 191
+[17-Feb-2026 08:45:55 UTC] PHP Warning:  Undefined variable $currentUserId in /var/www/html/src/Controller/PostsController.php on line 66
+[17-Feb-2026 08:45:55 UTC] PHP Warning:  Undefined variable $currentUserId in /var/www/html/src/Controller/PostsController.php on line 66
+[17-Feb-2026 08:45:55 UTC] PHP Warning:  Unable to emit headers. Headers sent in file=/var/www/html/src/Controller/PostsController.php line=66 in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 65
+[17-Feb-2026 08:45:55 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/src/Controller/PostsController.php:66) in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 158
+[17-Feb-2026 08:45:55 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/src/Controller/PostsController.php:66) in /var/www/html/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php on line 191

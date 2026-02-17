@@ -46,29 +46,7 @@ class PostsController extends AppController
             $commentsTable = $this->getTableLocator()->get('Comments');
             $likesTable = $this->getTableLocator()->get('Likes');
 
-            $commentsQuery = $commentsTable->find()
-                ->where(['Comments.post_id' => $post->id, 'Comments.deleted_at IS' => null])
-                ->contain(['Users'])
-                ->order(['Comments.created_at' => 'DESC']);
-
-            $comments = [];
-            foreach ($commentsQuery as $c) {
-                $comments[] = [
-                    'id' => $c->id,
-                    'author' => $c->user->full_name ?? $c->user->username,
-                    'profile_photo' => $c->user->profile_photo_path ?? null,
-                    'initial' => strtoupper(substr(($c->user->full_name ?? $c->user->username ?? 'U'), 0, 1)),
-                    'content_text' => $c->content_text,
-                    'content_image_path' => $c->content_image_path,
-                    'created_at' => $c->created_at
-                ];
-            }
-
-            $likesCount = $likesTable->find()
-                ->where(['target_type' => 'post', 'target_id' => $post->id])
-                ->count();
-
-            // Determine if the current user has liked this post
+            // Get current user id (needed to compute whether the current user liked comments)
             $identity = $this->Authentication->getIdentity();
             $currentUserId = null;
             if ($identity) {
@@ -80,6 +58,50 @@ class PostsController extends AppController
                     $currentUserId = $identity->id;
                 }
             }
+
+            $commentsQuery = $commentsTable->find()
+                ->where(['Comments.post_id' => $post->id, 'Comments.deleted_at IS' => null])
+                ->contain(['Users'])
+                ->order(['Comments.created_at' => 'DESC']);
+
+            $comments = [];
+            foreach ($commentsQuery as $c) {
+                // Get like count for this comment
+                $likeCount = $likesTable->find()
+                    ->where([
+                        'target_type' => 'comment',
+                        'target_id' => $c->id
+                    ])
+                    ->count();
+
+                // Check if current user liked this comment
+                $commentLiked = false;
+                if ($currentUserId) {
+                    $commentLiked = $likesTable->exists([
+                        'user_id' => $currentUserId,
+                        'target_type' => 'comment',
+                        'target_id' => $c->id
+                    ]);
+                }
+
+                $comments[] = [
+                    'id' => $c->id,
+                    'author' => $c->user->full_name ?? $c->user->username,
+                    'profile_photo' => $c->user->profile_photo_path ?? null,
+                    'initial' => strtoupper(substr(($c->user->full_name ?? $c->user->username ?? 'U'), 0, 1)),
+                    'content_text' => $c->content_text,
+                    'content_image_path' => $c->content_image_path,
+                    'created_at' => $c->created_at,
+                    'likes' => (int)$likeCount,
+                    'liked' => (bool)$commentLiked
+                ];
+            }
+
+            $likesCount = $likesTable->find()
+                ->where(['target_type' => 'post', 'target_id' => $post->id])
+                ->count();
+
+            // Determine if the current user has liked this post
 
             $userLiked = false;
             if ($currentUserId) {

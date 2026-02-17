@@ -384,6 +384,14 @@ class CommentsController extends AppController
                 ])
                 ->count();
 
+            // Dispatch event so listeners (e.g. notifications) can react
+            $event = new Event('Model.Comment.liked', $this, [
+                'comment_id' => $commentId,
+                'post_id' => $comment->post_id ?? null,
+                'user_id' => $userId
+            ]);
+            $this->getEventManager()->dispatch($event);
+
             return $this->response->withStringBody(json_encode([
                 'success' => true,
                 'message' => 'Comment liked',
@@ -466,6 +474,13 @@ class CommentsController extends AppController
                     'target_id' => $commentId
                 ])
                 ->count();
+            // Dispatch event for notification cleanup
+            $event = new Event('Model.Comment.unliked', $this, [
+                'comment_id' => $commentId,
+                'post_id' => $comment->post_id ?? null,
+                'user_id' => $userId
+            ]);
+            $this->getEventManager()->dispatch($event);
 
             return $this->response->withStringBody(json_encode([
                 'success' => true,

@@ -128,6 +128,10 @@
                                             <span class="font-semibold">{{ notification.actor?.full_name || notification.actor?.username || 'Someone' }}</span>
                                             <span v-if="notification.type === 'post_liked'"> liked your post</span>
                                             <span v-else-if="notification.type === 'post_commented'"> commented on your post</span>
+                                            <span v-else-if="notification.type === 'comment_liked'">
+                                                liked your comment on
+                                                <span class="font-semibold">{{ notification.post_owner?.full_name || notification.post_owner?.username || 'a post' }}</span>'s post
+                                            </span>
                                             <span v-else> interacted with your content</span>
                                         </p>
                                         <p class="text-xs text-blue-500 mt-1">{{ formatNotificationTime(notification.created_at) }}</p>

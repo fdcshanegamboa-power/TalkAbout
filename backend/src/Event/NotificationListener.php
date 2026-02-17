@@ -25,6 +25,8 @@ class NotificationListener implements EventListenerInterface
             'Model.Post.liked' => 'onPostLiked',
             'Model.Post.unliked' => 'onPostUnliked',
             'Model.Post.commented' => 'onPostCommented',
+            'Model.Comment.liked' => 'onCommentLiked',
+            'Model.Comment.unliked' => 'onCommentUnliked',
             'Model.Comment.deleted' => 'onCommentDeleted',
         ];
     }
@@ -80,6 +82,57 @@ class NotificationListener implements EventListenerInterface
             ]);
         } catch (\Exception $e) {
             error_log('Failed to delete post_liked notification: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Create notification when a comment is liked
+     */
+    public function onCommentLiked(EventInterface $event): void
+    {
+        $commentId = $event->getData('comment_id');
+        $userId = $event->getData('user_id'); // person who liked
+
+        $commentsTable = $this->fetchTable('Comments');
+        $notificationsTable = $this->fetchTable('Notifications');
+
+        try {
+            $comment = $commentsTable->get($commentId);
+
+            if ($comment->user_id != $userId) {
+                $notificationsTable->createNotification([
+                    'user_id' => $comment->user_id,
+                    'type' => 'comment_liked',
+                    'actor_id' => $userId,
+                    'target_type' => 'comment',
+                    'target_id' => $commentId,
+                    'is_read' => false
+                ]);
+            }
+        } catch (\Exception $e) {
+            error_log('Failed to create comment_liked notification: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Remove notification when a comment is unliked
+     */
+    public function onCommentUnliked(EventInterface $event): void
+    {
+        $commentId = $event->getData('comment_id');
+        $userId = $event->getData('user_id');
+
+        $notificationsTable = $this->fetchTable('Notifications');
+
+        try {
+            $notificationsTable->deleteAll([
+                'actor_id' => $userId,
+                'type' => 'comment_liked',
+                'target_type' => 'comment',
+                'target_id' => $commentId
+            ]);
+        } catch (\Exception $e) {
+            error_log('Failed to delete comment_liked notification: ' . $e->getMessage());
         }
     }
 

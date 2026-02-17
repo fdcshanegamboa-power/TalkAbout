@@ -27,7 +27,9 @@ $payload = [
             'content_text' => $c['content_text'],
             'content_image_path' => $c['content_image_path'],
             'created_at' => $c['created_at'] ? $c['created_at']->format(DATE_ATOM) : '',
-            'time' => $c['created_at'] ? $c['created_at']->format(DATE_ATOM) : ''
+            'time' => $c['created_at'] ? $c['created_at']->format(DATE_ATOM) : '',
+            'likes' => isset($c['likes']) ? (int)$c['likes'] : 0,
+            'liked' => !empty($c['liked']) ? (bool)$c['liked'] : false
         ];
     }, $comments ?? []),
     'showComments' => true,
