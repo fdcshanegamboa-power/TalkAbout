@@ -58,7 +58,7 @@ $profilePhoto = $profilePhoto ?? '';
             </div>
 
             <div v-if="post.isEditing" class="mt-2 lg:mt-3">
-                <textarea v-model="post.editText" rows="3" 
+                <textarea id="post-composer" v-model="post.editText" rows="3" 
                           class="w-full resize-none border border-blue-300 rounded-lg p-2 lg:p-3 text-sm lg:text-base focus:ring-2 focus:ring-blue-500 focus:border-transparent text-blue-800"></textarea>
                 
                 <div v-if="post.editImages && post.editImages.length > 0" class="mt-2">
@@ -116,8 +116,17 @@ $profilePhoto = $profilePhoto ?? '';
                 </div>
             </div>
             
-            <div v-else>
-                <div v-if="post.text" class="text-sm lg:text-base text-blue-700 mt-1 break-words">{{ post.text }}</div>
+                <div v-else>
+                <div v-if="post.text" class="text-sm lg:text-base text-blue-700 mt-1">
+                    <div :class="(post.expanded ? 'max-h-96 overflow-auto' : 'max-h-20 overflow-hidden') + ' break-all whitespace-normal'">
+                        {{ post.text }}
+                    </div>
+
+                    <div class="mt-1">
+                        <button v-if="!post.expanded && isLongText(post.text)" @click="expandPost(post)" class="text-xs text-blue-600 font-semibold">See more</button>
+                        <button v-else-if="post.expanded && isLongText(post.text)" @click="collapsePost(post)" class="text-xs text-blue-600 font-semibold">Show less</button>
+                    </div>
+                </div>
                 
                 <div v-if="post.images && post.images.length > 0" class="mt-2 lg:mt-3">
                     <div v-if="post.images.length === 1">
@@ -222,8 +231,15 @@ $profilePhoto = $profilePhoto ?? '';
                                     <span class="text-xs text-blue-400">{{ comment.time }}</span>
                                 </div>
                                 <div v-if="comment.content_text" class="text-sm text-blue-700 break-words">
-                                    {{ comment.content_text }}
-                                </div>
+                                            <div :class="(comment.expanded ? 'max-h-64 overflow-auto' : 'max-h-20 overflow-hidden') + ' break-all whitespace-normal'">
+                                                {{ comment.content_text }}
+                                            </div>
+
+                                            <div class="mt-1">
+                                                <button v-if="!comment.expanded && isLongText(comment.content_text)" @click="expandComment(comment)" class="text-xs text-blue-600 font-semibold">See more</button>
+                                                <button v-else-if="comment.expanded && isLongText(comment.content_text)" @click="collapseComment(comment)" class="text-xs text-blue-600 font-semibold">Show less</button>
+                                            </div>
+                                        </div>
                                 <div v-if="comment.content_image_path" class="mt-1">
                                     <img :src="'/img/comments/' + comment.content_image_path" 
                                          class="rounded-lg max-h-40 border border-blue-200" />

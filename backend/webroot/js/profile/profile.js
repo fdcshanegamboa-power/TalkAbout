@@ -4,11 +4,16 @@ if (el && window.Vue && window.PostCardMixin) {
     const { createApp } = Vue;
     
     createApp({
-        mixins: [PostCardMixin],
+        // Prefer the global window.PostCardMixin (safe when scripts load in different scopes)
+        mixins: [window.PostCardMixin || PostCardMixin],
         data() {
             return {
                 currentUserId: el.dataset.currentUserId,
                 profileUser: null, // For left sidebar display
+                // Notification state (some templates reference these)
+                notifications: [],
+                notificationCount: 0,
+                showNotifications: false,
                 composer: {
                     text: '',
                     imageFiles: [],
@@ -211,6 +216,40 @@ if (el && window.Vue && window.PostCardMixin) {
                 } finally {
                     this.isPosting = false;
                 }
+            }
+            ,
+            isLongText(text) {
+                if (!text) return false;
+                // heuristics: long by character count or multiple paragraphs
+                return text.length > 250 || text.split('\n').length > 3;
+            }
+            ,
+            toggleNotifications() {
+                this.showNotifications = !this.showNotifications;
+            },
+
+            async markAllAsRead() {
+                try {
+                    await fetch('/api/notifications/mark-all-as-read', { method: 'POST' });
+                    this.notifications.forEach(n => n.is_read = true);
+                    this.notificationCount = 0;
+                } catch (e) {
+                    console.error('Failed to mark notifications as read', e);
+                }
+            },
+
+            formatNotificationTime(timestamp) {
+                const date = new Date(timestamp);
+                const now = new Date();
+                const diffMs = now - date;
+                const diffMins = Math.floor(diffMs / 60000);
+                const diffHours = Math.floor(diffMs / 3600000);
+                const diffDays = Math.floor(diffMs / 86400000);
+                if (diffMins < 1) return 'Just now';
+                if (diffMins < 60) return `${diffMins}m ago`;
+                if (diffHours < 24) return `${diffHours}h ago`;
+                if (diffDays < 7) return `${diffDays}d ago`;
+                return date.toLocaleDateString();
             }
         },
         computed: {

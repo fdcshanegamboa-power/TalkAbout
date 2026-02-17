@@ -23,35 +23,56 @@ $profileClass = $baseItem . ' ' . (($active === 'profile' || $active === 'editPr
               overflow-y-auto
               md:self-start">
     
-    <a v-if="profileUser" href="<?= $this->Url->build(['controller' => 'Profile', 'action' => 'profile']) ?>"
+    <?php
+    $me = $this->request->getAttribute('identity');
+    $meUsername = $meFullName = $mePhoto = null;
+    if ($me) {
+        if (is_array($me)) {
+            $meUsername = $me['username'] ?? null;
+            $meFullName = $me['full_name'] ?? null;
+            $mePhoto = $me['profile_photo_path'] ?? ($me['profile_photo'] ?? null);
+        } elseif (is_object($me)) {
+            if (method_exists($me, 'get')) {
+                $meUsername = $me->get('username');
+                $meFullName = $me->get('full_name');
+                $mePhoto = $me->get('profile_photo_path') ?? $me->get('profile_photo');
+            } else {
+                $meUsername = $me->username ?? null;
+                $meFullName = $me->full_name ?? null;
+                $mePhoto = $me->profile_photo_path ?? ($me->profile_photo ?? null);
+            }
+        }
+    }
+
+    if ($meUsername || $meFullName || $mePhoto):
+    ?>
+    <a href="/profile/<?= $meUsername ?: '' ?>"
         class="block mb-8 p-4 rounded-xl hover:bg-blue-50 transition group">
         <div class="flex flex-col items-center gap-3">
             <div class="relative">
-                <div
-                    class="w-20 h-20 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-3xl shadow-lg overflow-hidden flex-shrink-0 ring-4 ring-blue-100 group-hover:ring-blue-200 transition">
-                    <template v-if="profileUser.profile_photo">
-                        <img :src="'/img/profiles/' + profileUser.profile_photo"
-                            alt="Your Profile" class="w-full h-full object-cover" />
-                    </template>
-                    <template v-else>
-                        {{ profileUser.initial }}
-                    </template>
+                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-3xl shadow-lg overflow-hidden flex-shrink-0 ring-4 ring-blue-100 group-hover:ring-blue-200 transition">
+                    <?php if (!empty($mePhoto)): ?>
+                        <img src="/img/profiles/<?= $mePhoto ?>" alt="Your Profile" class="w-full h-full object-cover" />
+                    <?php else: ?>
+                        <?= mb_substr($meFullName ?: $meUsername ?: 'U', 0, 1) ?>
+                    <?php endif; ?>
                 </div>
                 <div class="absolute bottom-0 right-0 w-5 h-5 bg-green-500 rounded-full border-4 border-white"></div>
             </div>
             <div class="w-full text-center">
-                <div class="text-xs font-medium text-blue-500 uppercase tracking-wide mb-0.5">
-                    You
-                </div>
+                <div class="text-xs font-medium text-blue-500 uppercase tracking-wide mb-0.5">You</div>
                 <div class="text-base font-bold text-blue-900 truncate group-hover:text-blue-700">
-                    {{ profileUser.full_name || 'User' }}
+                    <?= $meFullName ?: 'User' ?>
                 </div>
                 <div class="text-sm text-blue-600 truncate">
-                    @{{ profileUser.username || 'username' }}
+                    @<?= $meUsername ?: 'username' ?>
                 </div>
             </div>
         </div>
     </a>
+    <?php else: ?>
+    <div class="block mb-8 p-4 rounded-xl bg-blue-50 text-center text-sm text-blue-600">You</div>
+    <?php endif; ?>
 
     <!-- Navigation -->
     <nav>

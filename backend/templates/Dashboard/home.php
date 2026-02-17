@@ -125,5 +125,13 @@ $this->assign('title', 'Home');
 </div>
 
 <script>
-
+document.addEventListener('DOMContentLoaded', function () {
+    if (window.location.hash === '#compose') {
+        const composer = document.getElementById('post-composer');
+        if (composer) {
+            composer.focus();
+            composer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+});
 </script>

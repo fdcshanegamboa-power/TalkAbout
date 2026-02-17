@@ -73,7 +73,8 @@ const PostCardMixin = {
                 const response = await fetch(`/api/comments/list/${post.id}`);
                 const data = await response.json();
                 if (data.success) {
-                    post.commentsList = data.comments || [];
+                    // ensure each comment has expansion state to support "See more"
+                    post.commentsList = (data.comments || []).map(c => ({ ...c, expanded: false }));
                 }
             } catch (error) {
                 console.error('Error loading comments:', error);
@@ -135,13 +136,14 @@ const PostCardMixin = {
                 const data = await response.json();
                 
                 if (data.success) {
-                    // Add new comment to the list
+                    // Add new comment to the list and initialize expansion state
                     if (!post.commentsList) post.commentsList = [];
-                    post.commentsList.unshift(data.comment);
-                    
+                    const newComment = { ...(data.comment || {}), expanded: false };
+                    post.commentsList.unshift(newComment);
+
                     // Update comment count
                     post.comments = data.comment_count;
-                    
+
                     // Clear input
                     post.newCommentText = '';
                     this.removeCommentImage(post);
@@ -154,6 +156,22 @@ const PostCardMixin = {
             } finally {
                 post.isSubmittingComment = false;
             }
+        },
+
+        isLongText(text) {
+            if (!text) return false;
+            // heuristics: long by character count or multiple paragraphs
+            return text.length > 250 || text.split('\n').length > 3;
+        },
+
+        expandComment(comment) {
+            if (!comment) return;
+            comment.expanded = true;
+        },
+
+        collapseComment(comment) {
+            if (!comment) return;
+            comment.expanded = false;
         },
 
         toggleMenu(post) {
@@ -263,7 +281,9 @@ const PostCardMixin = {
                     post.text = post.editText;
                     post.images = data.images || [];
                     post.isEditing = false;
-                    
+                    // reset expansion state so updated post is collapsed
+                    post.expanded = false;
+
                     // Clear editing data
                     post.editImages = [];
                     post.newEditImages = [];
@@ -278,6 +298,16 @@ const PostCardMixin = {
             } finally {
                 post.isSaving = false;
             }
+        },
+
+        expandPost(post) {
+            if (!post) return;
+            post.expanded = true;
+        },
+
+        collapsePost(post) {
+            if (!post) return;
+            post.expanded = false;
         },
 
         async deletePost(post) {
@@ -415,4 +445,11 @@ const PostCardMixin = {
 // Export to window for global access
 if (typeof window !== 'undefined') {
     window.PostCardMixin = PostCardMixin;
+
+    // Also expose the helper directly for templates that call `isLongText(...)`
+    try {
+        window.isLongText = PostCardMixin.methods.isLongText.bind(PostCardMixin.methods);
+    } catch (e) {
+        // ignore
+    }
 }

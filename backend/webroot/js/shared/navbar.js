@@ -181,7 +181,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (this.showUserMenu && !e.target.closest('[data-user-menu]')) {
                         this.showUserMenu = false;
                     }
-                }
+                },
+
+                handleCreatePost() {
+    const composer = document.querySelector('#post-composer');
+
+    // If composer exists (we are on Dashboard)
+    if (composer) {
+        composer.focus();
+        composer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+    }
+
+    // If not on Dashboard → redirect with hash
+    window.location.href = "/dashboard#compose";
+}
+
             }
         });
         

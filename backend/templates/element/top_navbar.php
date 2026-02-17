@@ -37,7 +37,7 @@
 
             <div class="flex items-center gap-3">
                 
-                <button onclick="focusPostComposer()" 
+                <button @click="handleCreatePost" 
                         class="hidden lg:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 
                                text-white rounded-full hover:shadow-lg transition-all font-semibold text-sm">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

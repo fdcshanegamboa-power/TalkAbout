@@ -14444,3 +14444,405 @@ Client IP: 138.199.24.218
 [17-Feb-2026 06:23:27 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
 [17-Feb-2026 06:25:23 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
 [17-Feb-2026 06:25:23 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+2026-02-17 07:12:21 error: [ParseError] syntax error, unexpected end of file in /var/www/html/templates/element/left_sidebar.php on line 134
+Stack Trace:
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:1704
+- CORE/src/View/View.php:691
+- ROOT/templates/Profile/view_profile.php:54
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /profile/shanegwaps
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 07:12:21 error: [Error] Call to undefined function h() in /var/www/html/templates/Error/error500.php on line 11
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:433
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /profile/shanegwaps
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 07:12:25 error: [ParseError] syntax error, unexpected end of file in /var/www/html/templates/element/left_sidebar.php on line 134
+Stack Trace:
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:1704
+- CORE/src/View/View.php:691
+- ROOT/templates/Dashboard/home.php:33
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 07:12:25 error: [Error] Call to undefined function h() in /var/www/html/templates/Error/error500.php on line 11
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:433
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 07:12:26 error: [ParseError] syntax error, unexpected end of file in /var/www/html/templates/element/left_sidebar.php on line 134
+Stack Trace:
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:1704
+- CORE/src/View/View.php:691
+- ROOT/templates/Dashboard/home.php:33
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 07:12:26 error: [Error] Call to undefined function h() in /var/www/html/templates/Error/error500.php on line 11
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:433
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 07:12:27 error: [ParseError] syntax error, unexpected end of file in /var/www/html/templates/element/left_sidebar.php on line 134
+Stack Trace:
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:1704
+- CORE/src/View/View.php:691
+- ROOT/templates/Dashboard/home.php:33
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 07:12:27 error: [Error] Call to undefined function h() in /var/www/html/templates/Error/error500.php on line 11
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:433
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 07:12:28 error: [ParseError] syntax error, unexpected end of file in /var/www/html/templates/element/left_sidebar.php on line 134
+Stack Trace:
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:1704
+- CORE/src/View/View.php:691
+- ROOT/templates/Dashboard/home.php:33
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 07:12:28 error: [Error] Call to undefined function h() in /var/www/html/templates/Error/error500.php on line 11
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:433
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 07:12:30 error: [ParseError] syntax error, unexpected end of file in /var/www/html/templates/element/left_sidebar.php on line 134
+Stack Trace:
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:1704
+- CORE/src/View/View.php:691
+- ROOT/templates/Dashboard/home.php:33
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 07:12:30 error: [Error] Call to undefined function h() in /var/www/html/templates/Error/error500.php on line 11
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:433
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:460
+- CORE/src/Error/Renderer/WebExceptionRenderer.php:278
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:149
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:119
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 07:14:29 error: [Error] Call to undefined function h() in /var/www/html/templates/element/left_sidebar.php on line 49
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:1704
+- CORE/src/View/View.php:691
+- ROOT/templates/Dashboard/home.php:33
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 08:01:57 error: [Cake\Controller\Exception\MissingActionException] Action `PostsController::shanegwaps()` could not be found, or is not accessible. in /var/www/html/vendor/cakephp/cakephp/src/Controller/Controller.php on line 481
+Exception Attributes: array (
+  'controller' => 'PostsController',
+  'action' => 'shanegwaps',
+  'prefix' => NULL,
+  'plugin' => NULL,
+)
+Stack Trace:
+- CORE/src/Controller/ControllerFactory.php:161
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /posts/shanegwaps
+Client IP: 138.199.24.218
