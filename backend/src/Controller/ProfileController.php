@@ -153,6 +153,15 @@ class ProfileController extends AppController
                 }
                 
                 if ($usersTable->save($user)) {
+                    // Update authentication identity so session reflects new profile data
+                    if (method_exists($this->Authentication, 'setIdentity')) {
+                        try {
+                            $this->Authentication->setIdentity($user);
+                        } catch (\Throwable $e) {
+                            // If setting identity fails, continue silently — UI will still fetch current profile via API
+                        }
+                    }
+
                     $this->Flash->success('Profile updated.');
                     return $this->redirect(['controller' => 'Profile', 'action' => 'viewProfile', $user->get('username')]);
                 }

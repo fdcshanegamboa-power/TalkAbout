@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 startNotificationPolling() {
                     this.notificationPolling = setInterval(() => {
                         this.fetchNotifications();
-                    }, 30000);
+                    }, 5000);
                 },
 
                 stopNotificationPolling() {
