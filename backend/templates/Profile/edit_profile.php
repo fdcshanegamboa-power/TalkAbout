@@ -118,7 +118,7 @@ $this->Html->script('profile/edit_profile', ['block' => 'script']);
                         'class' => 'w-full px-4 py-3 rounded-lg border-2 border-blue-200
                                     focus:ring-2 focus:ring-blue-500 focus:border-blue-500
                                     transition-all text-blue-900 placeholder-blue-300',
-                        'placeholder' => 'Choose a username'
+                        'disabled' => true
                     ]) ?>
                 </div>
 

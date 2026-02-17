@@ -13976,3 +13976,14 @@ Stack Trace:
 Request URL: /api/posts/15/comments
 Referer URL: http://localhost/dashboard/home
 Client IP: 138.199.24.218
+[17-Feb-2026 03:44:38 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 03:44:41 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 03:44:43 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 03:45:16 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 03:45:19 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 03:46:02 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 03:46:14 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 03:46:34 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 03:46:37 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 03:46:39 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 03:46:41 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
