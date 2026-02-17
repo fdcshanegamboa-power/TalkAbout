@@ -170,3 +170,22 @@ $this->Html->script('profile/edit_profile', ['block' => 'script']);
 
     <?= $this->element('mobile_nav', ['active' => 'profile']) ?>
 </div>
+
+<div id="cropper-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4">
+    <div class="bg-white rounded-2xl w-full max-w-3xl shadow-xl overflow-hidden">
+        <div class="flex items-center justify-between px-4 py-3 border-b border-blue-50">
+            <h3 class="text-lg font-semibold text-blue-800">Crop profile picture</h3>
+            <button id="cropper-cancel" type="button" class="text-sm text-blue-600 hover:text-blue-800">Cancel</button>
+        </div>
+
+        <div class="p-4">
+            <div class="w-full h-[60vh] flex items-center justify-center bg-gray-50 rounded">
+                <img id="cropper-image" class="max-h-[56vh] max-w-full" src="" alt="Crop image preview" />
+            </div>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 px-4 py-3 border-t border-blue-50">
+            <button id="cropper-confirm" type="button" class="px-4 py-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium hover:from-blue-700 hover:to-indigo-700">Crop & Use</button>
+        </div>
+    </div>
+</div>

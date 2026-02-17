@@ -185,7 +185,7 @@
                         <!-- Menu Items -->
                         <div class="py-2">
                             <a v-if="profileUser" :href="'/profile/' + profileUser.username"
-                                class="flex items-center gap-3 px-4 py-2 text-sm text-blue-800 hover:bg-blue-50 transition-colors <?= $profileClass ?>" title="Profile">
+                                class="flex items-center gap-3 px-4 py-2 text-sm text-blue-800 hover:bg-blue-50 transition-colors" title="Profile">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
