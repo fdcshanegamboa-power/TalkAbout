@@ -6,6 +6,7 @@
  * @var bool $isOwnProfile
  */
 $this->assign('title', 'Profile');
+$this->Html->script('components/post_card', ['block' => 'script']);
 $this->Html->script('profile/view_profile', ['block' => 'script']);
 
 // Extract basic user info for data attributes

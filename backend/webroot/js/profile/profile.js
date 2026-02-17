@@ -25,6 +25,7 @@ if (el && window.Vue && window.PostCardMixin) {
             };
         },
         mounted() {
+            console.info('Profile app mounting');
             this.fetchCurrentUserProfile();
             this.fetchUserPosts();
             // Close menu when clicking outside
@@ -89,8 +90,19 @@ if (el && window.Vue && window.PostCardMixin) {
                 this.isLoading = true;
                 try {
                     const response = await fetch('/api/posts/user');
-                    const data = await response.json();
-                    if (data.success) {
+                    const text = await response.text();
+
+                    let data = null;
+                    try {
+                        data = text ? JSON.parse(text) : null;
+                    } catch (e) {
+                        console.error('Failed to parse /api/posts/user response as JSON:', e, text);
+                        // show the raw response in console for debugging and stop further processing
+                        this.isLoading = false;
+                        return;
+                    }
+
+                    if (data && data.success) {
                         this.posts = data.posts.map(post => ({
                             ...post,
                             showMenu: false,
@@ -110,6 +122,8 @@ if (el && window.Vue && window.PostCardMixin) {
                             newEditImageFiles: [],
                             imagesToDelete: []
                         }));
+                    } else if (data && data.success === false) {
+                        console.error('API responded with error for /api/posts/user:', data.message || data);
                     }
                 } catch (error) {
                     console.error('Error fetching posts:', error);

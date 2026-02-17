@@ -4,6 +4,8 @@
  * @var \Authentication\Identity|null $user
  */
 $this->assign('title', 'Profile');
+// Post card shared methods (used by the post elements) - must load before profile script
+$this->Html->script('components/post_card', ['block' => 'script']);
 $this->Html->script('profile/profile', ['block' => 'script']);
 /**
  * Safely extract user info (no backend assumptions)

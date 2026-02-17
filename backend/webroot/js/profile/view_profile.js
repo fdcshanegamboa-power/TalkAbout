@@ -9,6 +9,7 @@ if (el) {
     const { createApp } = Vue;
     
     createApp({
+        mixins: [window.PostCardMixin || PostCardMixin],
         data() {
             return {
                 profileUsername: el.dataset.profileUsername,
@@ -493,7 +494,8 @@ if (el) {
                     formData.append('content_text', post.newCommentText || '');
                     
                     if (post.commentImageFile) {
-                        formData.append('content_image', post.commentImageFile);
+                        // server expects the field name 'image'
+                        formData.append('image', post.commentImageFile);
                     }
                     
                     const response = await fetch('/api/comments/add', {
