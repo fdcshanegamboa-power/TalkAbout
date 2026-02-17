@@ -14,6 +14,14 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/login', ['controller' => 'Sessions', 'action' => 'login']);
         $builder->connect('/register', ['controller' => 'Users', 'action' => 'register']);
         $builder->connect('/logout', ['controller' => 'Sessions', 'action' => 'logout']);
+        
+        // Single post view (must come before /dashboard route to avoid conflict)
+        $builder->connect(
+            '/dashboard/posts/:id',
+            ['controller' => 'Posts', 'action' => 'view'],
+            ['pass' => ['id'], 'id' => '\d+']
+        );
+        
         $builder->connect('/dashboard', ['controller' => 'Dashboard', 'action' => 'dashboard']);
         $builder->connect('/home', ['controller' => 'Dashboard', 'action' => 'dashboard']);
         $builder->connect('/settings', ['controller' => 'Dashboard', 'action' => 'settings']);
@@ -43,7 +51,7 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/api/notifications', ['controller' => 'Notifications', 'action' => 'index']);
         $builder->connect('/api/notifications/unread', ['controller' => 'Notifications', 'action' => 'unread']);
         $builder->connect('/api/notifications/count', ['controller' => 'Notifications', 'action' => 'count']);
-        $builder->connect('/api/notifications/mark-as-read/:id', ['controller' => 'Notifications', 'action' => 'markAsRead'], ['pass' => ['id']]);
+        $builder->connect('/api/notifications/mark-as-read/*', ['controller' => 'Notifications', 'action' => 'markAsRead']);
         $builder->connect('/api/notifications/mark-all-as-read', ['controller' => 'Notifications', 'action' => 'markAllAsRead']);
         $builder->connect('/api/notifications/delete/:id', ['controller' => 'Notifications', 'action' => 'delete'], ['pass' => ['id']]);
         

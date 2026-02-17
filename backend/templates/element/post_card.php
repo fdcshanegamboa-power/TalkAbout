@@ -32,7 +32,6 @@ $profilePhoto = $profilePhoto ?? '';
                 </div>
 
                 <?php if ($canEdit): ?>
-                    <!-- Three-dot menu for editable posts only -->
                     <div class="relative flex-shrink-0">
                         <button @click="toggleMenu(post)" class="text-blue-500 hover:text-blue-700 p-1.5 lg:p-1 rounded-full hover:bg-blue-50 transition">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -40,7 +39,6 @@ $profilePhoto = $profilePhoto ?? '';
                             </svg>
                         </button>
                         
-                        <!-- Dropdown menu -->
                         <div v-if="post.showMenu" @click.stop class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-blue-100 py-1 z-50">
                             <button @click="startEdit(post)" class="w-full text-left px-4 py-2 text-sm text-blue-700 hover:bg-blue-50 flex items-center gap-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
@@ -59,12 +57,10 @@ $profilePhoto = $profilePhoto ?? '';
                 <?php endif; ?>
             </div>
 
-            <!-- Edit mode -->
             <div v-if="post.isEditing" class="mt-2 lg:mt-3">
                 <textarea v-model="post.editText" rows="3" 
                           class="w-full resize-none border border-blue-300 rounded-lg p-2 lg:p-3 text-sm lg:text-base focus:ring-2 focus:ring-blue-500 focus:border-transparent text-blue-800"></textarea>
                 
-                <!-- Existing Images Management -->
                 <div v-if="post.editImages && post.editImages.length > 0" class="mt-2">
                     <label class="text-xs font-semibold text-blue-700 mb-1 block">Current Images:</label>
                     <div class="grid grid-cols-2 gap-2">
@@ -80,7 +76,6 @@ $profilePhoto = $profilePhoto ?? '';
                     </div>
                 </div>
 
-                <!-- New Images Preview -->
                 <div v-if="post.newEditImages && post.newEditImages.length > 0" class="mt-2">
                     <label class="text-xs font-semibold text-blue-700 mb-1 block">New Images:</label>
                     <div class="grid grid-cols-2 gap-2">
@@ -97,7 +92,6 @@ $profilePhoto = $profilePhoto ?? '';
                 </div>
 
                 <div class="mt-2 flex items-center gap-2">
-                    <!-- Add Images Button -->
                     <label :for="'edit-post-images-' + post.id" class="cursor-pointer px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg text-xs font-semibold hover:bg-gray-200 flex items-center gap-1">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
@@ -122,11 +116,9 @@ $profilePhoto = $profilePhoto ?? '';
                 </div>
             </div>
             
-            <!-- Normal view -->
             <div v-else>
                 <div v-if="post.text" class="text-sm lg:text-base text-blue-700 mt-1 break-words">{{ post.text }}</div>
                 
-                <!-- Multiple images display -->
                 <div v-if="post.images && post.images.length > 0" class="mt-2 lg:mt-3">
                     <div v-if="post.images.length === 1">
                         <img :src="post.images[0]" class="rounded-lg max-h-64 lg:max-h-96 w-full object-cover" />
@@ -146,9 +138,7 @@ $profilePhoto = $profilePhoto ?? '';
                     </div>
                 </div>
 
-                <!-- Reactions section at the bottom for ALL posts -->
                 <div class="mt-2 lg:mt-3 pt-2 lg:pt-3 border-t border-blue-100 flex items-center gap-4 lg:gap-6">
-                    <!-- Like button -->
                     <button @click="toggleLike(post)" :class="post.liked ? 'text-indigo-600' : 'text-blue-500'" class="flex items-center gap-1.5 lg:gap-2 text-xs lg:text-sm font-semibold hover:scale-105 transition">
                         <span v-if="!post.liked" class="inline-flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 lg:w-5 lg:h-5">
@@ -171,16 +161,13 @@ $profilePhoto = $profilePhoto ?? '';
                     </button>
                 </div>
 
-                <!-- Comments Section -->
                 <div v-if="post.showComments" class="mt-3 pt-3 border-t border-blue-100">
-                    <!-- Add Comment Form -->
                     <div class="mb-3">
                         <textarea v-model="post.newCommentText" 
                                   rows="2"
                                   placeholder="Write a comment..."
                                   class="w-full resize-none border border-blue-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent text-blue-800"></textarea>
                         
-                        <!-- Image preview -->
                         <div v-if="post.commentImagePreview" class="mt-2 relative inline-block">
                             <img :src="post.commentImagePreview" class="h-20 rounded-lg border border-blue-200" />
                             <button @click="removeCommentImage(post)" 
@@ -192,7 +179,6 @@ $profilePhoto = $profilePhoto ?? '';
                         </div>
                         
                         <div class="mt-2 flex items-center gap-2">
-                            <!-- Image upload button -->
                             <label :for="'comment-image-' + post.id" class="cursor-pointer px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg text-xs font-semibold hover:bg-gray-200 flex items-center gap-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
@@ -213,7 +199,6 @@ $profilePhoto = $profilePhoto ?? '';
                         </div>
                     </div>
 
-                    <!-- Comments List -->
                     <div v-if="post.loadingComments" class="text-center py-4 text-blue-500 text-sm">
                         Loading comments...
                     </div>

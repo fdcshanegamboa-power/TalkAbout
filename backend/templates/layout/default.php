@@ -83,6 +83,7 @@
             });
         });
     </script>
+    <script src="<?= $this->Url->build('/js/shared/navbar.js') ?>?v=<?= time() ?>"></script>
     <?= $this->fetch('script') ?>
 </body>
 

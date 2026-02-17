@@ -40,7 +40,7 @@ class UsersController extends AppController
                     return $this->redirect($redirect);
                 }
 
-                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard']);
+                return $this->redirect(url: ['controller' => 'Users', 'action' => 'dashboard']);
             }
 
             $this->Flash->error('Invalid username or password');

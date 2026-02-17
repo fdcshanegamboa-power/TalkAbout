@@ -18,10 +18,10 @@ $this->assign('title', 'Settings');
 }
 </style>
 
+<?= $this->element('top_navbar') ?>
+
 <div id="settings-app" v-cloak class="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-100">
     <?= $this->element('mobile_header') ?>
-
-    <?= $this->element('top_navbar') ?>
 
     <div class="max-w-9xl mx-auto px-4 sm:px-6 pt-4 pb-20 md:pt-20 md:pb-6 lg:pb-6">
         <div class="md:flex md:gap-4 lg:gap-6">

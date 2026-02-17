@@ -11,6 +11,95 @@ class PostsController extends AppController
     }
 
     /**
+     * View a single post (public page)
+     *
+     * @param int|null $id Post ID
+     * @return \
+     */
+    public function view($id = null)
+    {
+        if (empty($id)) {
+            $this->Flash->error('Post ID is required');
+            return $this->redirect(['controller' => 'Dashboard', 'action' => 'dashboard']);
+        }
+
+        try {
+            $postsTable = $this->getTableLocator()->get('Posts');
+            $post = $postsTable->find()
+                ->where(['Posts.id' => $id, 'Posts.deleted_at IS' => null])
+                ->contain(['Users', 'PostImages'])
+                ->first();
+
+            if (!$post) {
+                throw new \Exception('Post not found');
+            }
+
+            // Prepare images
+            $images = [];
+            if (!empty($post->post_images)) {
+                foreach ($post->post_images as $img) {
+                    $images[] = '/img/posts/' . $img->image_path;
+                }
+            }
+
+            // Load comments (with author data) and likes count
+            $commentsTable = $this->getTableLocator()->get('Comments');
+            $likesTable = $this->getTableLocator()->get('Likes');
+
+            $commentsQuery = $commentsTable->find()
+                ->where(['Comments.post_id' => $post->id, 'Comments.deleted_at IS' => null])
+                ->contain(['Users'])
+                ->order(['Comments.created_at' => 'DESC']);
+
+            $comments = [];
+            foreach ($commentsQuery as $c) {
+                $comments[] = [
+                    'id' => $c->id,
+                    'author' => $c->user->full_name ?? $c->user->username,
+                    'profile_photo' => $c->user->profile_photo_path ?? null,
+                    'initial' => strtoupper(substr(($c->user->full_name ?? $c->user->username ?? 'U'), 0, 1)),
+                    'content_text' => $c->content_text,
+                    'content_image_path' => $c->content_image_path,
+                    'created_at' => $c->created_at
+                ];
+            }
+
+            $likesCount = $likesTable->find()
+                ->where(['target_type' => 'post', 'target_id' => $post->id])
+                ->count();
+
+            // Determine if the current user has liked this post
+            $identity = $this->Authentication->getIdentity();
+            $currentUserId = null;
+            if ($identity) {
+                if (method_exists($identity, 'getIdentifier')) {
+                    $currentUserId = $identity->getIdentifier();
+                } elseif (method_exists($identity, 'get')) {
+                    $currentUserId = $identity->get('id');
+                } elseif (isset($identity->id)) {
+                    $currentUserId = $identity->id;
+                }
+            }
+
+            $userLiked = false;
+            if ($currentUserId) {
+                $userLiked = $likesTable->exists([
+                    'user_id' => $currentUserId,
+                    'target_type' => 'post',
+                    'target_id' => $post->id
+                ]);
+            }
+
+            // Expose to view
+            $author = $post->user;
+            $this->set(compact('post', 'author', 'images', 'comments', 'likesCount', 'userLiked'));
+        } catch (\Exception $e) {
+            $this->Flash->error('Post not found');
+            return $this->redirect(['controller' => 'Dashboard', 'action' => 'dashboard']);
+        }
+    }
+
+    /**
      * API: Get all posts for the feed
      */
     public function getPosts()

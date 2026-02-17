@@ -5,7 +5,7 @@
  */
 ?>
 
-<nav class="hidden md:block fixed top-0 left-0 right-0 z-50 bg-white border-b border-blue-100 shadow-sm">
+<nav id="navbar-app" v-cloak class="hidden md:block fixed top-0 left-0 right-0 z-50 bg-white border-b border-blue-100 shadow-sm">
     <div class="max-w-9xl mx-auto px-4 sm:px-6">
         <div class="flex items-center justify-between h-16">
             
@@ -46,7 +46,7 @@
                     <span>Create Post</span>
                 </button>
 
-                <div class="relative" v-if="typeof notifications !== 'undefined'" data-notification-container>
+                <div class="relative" data-notification-container>
                     <button @click="toggleNotifications" 
                             class="p-2 rounded-full hover:bg-blue-50 transition-colors relative group">
                         <svg xmlns="http://www.w3.org/2000/svg" 
