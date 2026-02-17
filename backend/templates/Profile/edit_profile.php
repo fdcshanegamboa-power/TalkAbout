@@ -143,11 +143,12 @@ $this->Html->script('profile/edit_profile', ['block' => 'script']);
                 </div>
 
                 <div class="flex flex-col sm:flex-row justify-between items-center gap-3 pt-4">
-                    <?= $this->Html->link(
-                        'Cancel',
-                        ['controller' => 'Profile', 'action' => 'profile'],
-                        ['class' => 'text-sm font-medium text-blue-600 hover:underline order-2 sm:order-1']
-                    ) ?>
+                    <a
+                            :href="profileUser ? '/profile/' + (profileUser.username) : '/profile'"
+                            class="text-sm font-medium text-blue-600 hover:underline order-2 sm:order-1"
+                        >
+                            Cancel
+                        </a>
 
                     <?= $this->Form->button('Save changes', [
                         'type' => 'submit',

@@ -13987,3 +13987,458 @@ Client IP: 138.199.24.218
 [17-Feb-2026 03:46:37 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
 [17-Feb-2026 03:46:39 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
 [17-Feb-2026 03:46:41 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:42:26 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:42:28 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:42:29 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:42:31 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:42:33 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:42:36 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:42:40 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:42:43 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:42:43 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:42:44 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:42:47 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:47:43 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:47:44 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:47:47 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:47:49 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:47:50 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:47:52 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:47:54 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:51:18 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:51:20 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:51:22 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:51:24 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:51:26 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:51:30 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:51:33 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:51:36 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:52:34 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:52:35 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:53:29 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:53:30 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:53:34 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:53:36 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:53:38 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:54:34 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:54:35 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:55:23 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:55:24 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:55:26 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:56:44 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:56:45 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:56:47 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:56:49 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:57:13 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:57:17 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:57:30 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:57:32 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:57:37 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:57:45 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:57:48 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:57:51 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 05:57:53 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+2026-02-17 05:58:33 error: [Cake\Database\Exception\MissingConnectionException] Connection to Mysql could not be established: SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 203
+Exception Attributes: array (
+  'driver' => 'Mysql',
+  'reason' => 'SQLSTATE[HY000] [2002] Connection refused',
+)
+Stack Trace:
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Schema/SchemaDialect.php:60
+- CORE/src/Database/Driver/Mysql.php:207
+- CORE/src/Database/Schema/Collection.php:97
+- CORE/src/Database/Schema/Collection.php:87
+- CORE/src/Database/Schema/CachedCollection.php:107
+- CORE/src/ORM/Table.php:524
+- CORE/src/ORM/Query/CommonQueryTrait.php:48
+- CORE/src/ORM/Query/SelectQuery.php:209
+- CORE/src/ORM/Query/QueryFactory.php:34
+- CORE/src/ORM/Table.php:1747
+- CORE/src/ORM/Table.php:1277
+- CORE/src/ORM/Table.php:1558
+- APP/Controller/DashboardController.php:38
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 192
+Stack Trace:
+- CORE/src/Database/Driver.php:192
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Driver.php:201
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Schema/SchemaDialect.php:60
+- CORE/src/Database/Driver/Mysql.php:207
+- CORE/src/Database/Schema/Collection.php:97
+- CORE/src/Database/Schema/Collection.php:87
+- CORE/src/Database/Schema/CachedCollection.php:107
+- CORE/src/ORM/Table.php:524
+- CORE/src/ORM/Query/CommonQueryTrait.php:48
+- CORE/src/ORM/Query/SelectQuery.php:209
+- CORE/src/ORM/Query/QueryFactory.php:34
+- CORE/src/ORM/Table.php:1747
+- CORE/src/ORM/Table.php:1277
+- CORE/src/ORM/Table.php:1558
+- APP/Controller/DashboardController.php:38
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard/home
+Referer URL: http://localhost/profile/shanegwaps
+Client IP: 138.199.24.218
+2026-02-17 05:58:38 error: [Cake\Database\Exception\MissingConnectionException] Connection to Mysql could not be established: SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 203
+Exception Attributes: array (
+  'driver' => 'Mysql',
+  'reason' => 'SQLSTATE[HY000] [2002] Connection refused',
+)
+Stack Trace:
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Schema/SchemaDialect.php:60
+- CORE/src/Database/Driver/Mysql.php:207
+- CORE/src/Database/Schema/Collection.php:97
+- CORE/src/Database/Schema/Collection.php:87
+- CORE/src/Database/Schema/CachedCollection.php:107
+- CORE/src/ORM/Table.php:524
+- CORE/src/ORM/Query/CommonQueryTrait.php:48
+- CORE/src/ORM/Query/SelectQuery.php:209
+- CORE/src/ORM/Query/QueryFactory.php:34
+- CORE/src/ORM/Table.php:1747
+- CORE/src/ORM/Table.php:1277
+- CORE/src/ORM/Table.php:1558
+- APP/Controller/DashboardController.php:38
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 192
+Stack Trace:
+- CORE/src/Database/Driver.php:192
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Driver.php:201
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Schema/SchemaDialect.php:60
+- CORE/src/Database/Driver/Mysql.php:207
+- CORE/src/Database/Schema/Collection.php:97
+- CORE/src/Database/Schema/Collection.php:87
+- CORE/src/Database/Schema/CachedCollection.php:107
+- CORE/src/ORM/Table.php:524
+- CORE/src/ORM/Query/CommonQueryTrait.php:48
+- CORE/src/ORM/Query/SelectQuery.php:209
+- CORE/src/ORM/Query/QueryFactory.php:34
+- CORE/src/ORM/Table.php:1747
+- CORE/src/ORM/Table.php:1277
+- CORE/src/ORM/Table.php:1558
+- APP/Controller/DashboardController.php:38
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard/home
+Client IP: 138.199.24.218
+2026-02-17 05:58:38 error: [Cake\Database\Exception\MissingConnectionException] Connection to Mysql could not be established: SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 203
+Exception Attributes: array (
+  'driver' => 'Mysql',
+  'reason' => 'SQLSTATE[HY000] [2002] Connection refused',
+)
+Stack Trace:
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Schema/SchemaDialect.php:60
+- CORE/src/Database/Driver/Mysql.php:207
+- CORE/src/Database/Schema/Collection.php:97
+- CORE/src/Database/Schema/Collection.php:87
+- CORE/src/Database/Schema/CachedCollection.php:107
+- CORE/src/ORM/Table.php:524
+- CORE/src/ORM/Query/CommonQueryTrait.php:48
+- CORE/src/ORM/Query/SelectQuery.php:209
+- CORE/src/ORM/Query/QueryFactory.php:34
+- CORE/src/ORM/Table.php:1747
+- CORE/src/ORM/Table.php:1277
+- CORE/src/ORM/Table.php:1558
+- APP/Controller/DashboardController.php:38
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 192
+Stack Trace:
+- CORE/src/Database/Driver.php:192
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Driver.php:201
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Schema/SchemaDialect.php:60
+- CORE/src/Database/Driver/Mysql.php:207
+- CORE/src/Database/Schema/Collection.php:97
+- CORE/src/Database/Schema/Collection.php:87
+- CORE/src/Database/Schema/CachedCollection.php:107
+- CORE/src/ORM/Table.php:524
+- CORE/src/ORM/Query/CommonQueryTrait.php:48
+- CORE/src/ORM/Query/SelectQuery.php:209
+- CORE/src/ORM/Query/QueryFactory.php:34
+- CORE/src/ORM/Table.php:1747
+- CORE/src/ORM/Table.php:1277
+- CORE/src/ORM/Table.php:1558
+- APP/Controller/DashboardController.php:38
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /dashboard/home
+Client IP: 138.199.24.218
+[17-Feb-2026 05:59:46 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:00:11 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:00:13 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:00:16 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:00:37 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:00:38 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:04:21 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:05:43 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:10:22 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:10:40 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:13:50 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:13:51 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:13:53 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:13:54 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:13:55 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:15:44 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:15:46 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:15:48 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:17:56 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+2026-02-17 06:17:56 error: [Error] Call to undefined function h() in /var/www/html/templates/Dashboard/settings.php on line 144
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /settings
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+[17-Feb-2026 06:17:57 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:18:00 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:18:02 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+2026-02-17 06:18:02 error: [Error] Call to undefined function h() in /var/www/html/templates/Dashboard/settings.php on line 144
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /settings
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+[17-Feb-2026 06:18:08 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+2026-02-17 06:18:08 error: [Error] Call to undefined function h() in /var/www/html/templates/Dashboard/settings.php on line 144
+Stack Trace:
+- CORE/src/View/View.php:1202
+- CORE/src/View/View.php:1159
+- CORE/src/View/View.php:800
+- CORE/src/Controller/Controller.php:708
+- CORE/src/Controller/Controller.php:512
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /settings
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+[17-Feb-2026 06:19:04 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:19:06 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:21:38 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:21:40 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:21:42 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:21:55 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:21:56 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:21:57 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:23:11 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:23:12 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:23:14 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:23:15 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:23:25 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188
+[17-Feb-2026 06:23:27 UTC] PHP Warning:  Undefined variable $profileClass in /var/www/html/templates/element/top_navbar.php on line 188

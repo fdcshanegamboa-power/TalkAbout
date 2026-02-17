@@ -51,6 +51,8 @@ $this->assign('title', 'Settings');
 
                 <?= $this->Form->create(null, [
                     'url' => ['action' => 'settings'],
+                    'id' => 'settings-form',
+                    '@submit.prevent' => 'handleSubmit',
                     'class' => 'space-y-5'
                 ]) ?>
 
@@ -67,6 +69,7 @@ $this->assign('title', 'Settings');
                             'type' => 'password',
                             'label' => false,
                             'required' => true,
+                            'v-model' => 'form.current_password',
                             'class' => 'w-full px-4 py-3 rounded-lg border-2 border-blue-200
                                         focus:ring-2 focus:ring-blue-500 focus:border-blue-500
                                         transition-all text-blue-900 placeholder-blue-300',
@@ -87,11 +90,28 @@ $this->assign('title', 'Settings');
                             'type' => 'password',
                             'label' => false,
                             'required' => true,
+                            'v-model' => 'form.new_password',
+                            '@input' => 'validatePassword',
                             'class' => 'w-full px-4 py-3 rounded-lg border-2 border-blue-200
                                         focus:ring-2 focus:ring-blue-500 focus:border-blue-500
                                         transition-all text-blue-900 placeholder-blue-300',
                             'placeholder' => 'Enter new password (min. 8 characters)'
                         ]) ?>
+
+                        <div v-if="form.new_password" class="mt-2">
+                            <div class="flex items-center text-xs" :class="passwordStrength.color">
+                                <div class="flex-1">
+                                    <div class="h-1.5 rounded-full bg-blue-100">
+                                        <div
+                                            class="h-1.5 rounded-full transition-all duration-300"
+                                            :class="passwordStrength.bgColor"
+                                            :style="{ width: passwordStrength.width }"
+                                        ></div>
+                                    </div>
+                                </div>
+                                <span class="ml-2 font-medium">{{ passwordStrength.text }}</span>
+                            </div>
+                        </div>
                         <p class="text-xs text-blue-500 mt-1">Must be at least 8 characters long</p>
                     </div>
 
@@ -108,28 +128,36 @@ $this->assign('title', 'Settings');
                             'type' => 'password',
                             'label' => false,
                             'required' => true,
+                            'v-model' => 'confirmPassword',
                             'class' => 'w-full px-4 py-3 rounded-lg border-2 border-blue-200
                                         focus:ring-2 focus:ring-blue-500 focus:border-blue-500
                                         transition-all text-blue-900 placeholder-blue-300',
                             'placeholder' => 'Confirm your new password'
                         ]) ?>
+                        <p v-if="confirmPassword && !passwordsMatch" class="text-red-600 text-xs mt-1">Passwords do not match</p>
+                        <p v-if="passwordsMatch && confirmPassword" class="text-green-600 text-xs mt-1">Passwords match</p>
                     </div>
 
                     <div class="flex flex-col sm:flex-row justify-between items-center gap-3 pt-6 border-t border-blue-100">
-                        <?= $this->Html->link(
-                            'Cancel',
-                            ['controller' => 'Profile', 'action' => 'profile'],
-                            ['class' => 'text-sm font-medium text-blue-600 hover:underline order-2 sm:order-1']
-                        ) ?>
+                        <a
+                            :href="profileUser ? '/profile/' + (profileUser.username) : '/profile'"
+                            class="text-sm font-medium text-blue-600 hover:underline order-2 sm:order-1"
+                        >
+                            Cancel
+                        </a>
 
-                        <?= $this->Form->button('Update Password', [
-                            'type' => 'submit',
-                            'class' => 'w-full sm:w-auto px-6 py-2.5 rounded-full
+                        <button
+                            type="submit"
+                            :disabled="loading || !isFormValid"
+                            class="w-full sm:w-auto px-6 py-2.5 rounded-full
                                         bg-gradient-to-r from-blue-600 to-indigo-600
                                         text-white font-semibold text-sm
                                         hover:from-blue-700 hover:to-indigo-700 transition shadow-lg
-                                        flex items-center justify-center gap-2 order-1 sm:order-2'
-                        ]) ?>
+                                        flex items-center justify-center gap-2 order-1 sm:order-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                        >
+                            <span v-if="!loading">Update Password</span>
+                            <span v-else>Updating...</span>
+                        </button>
                     </div>
 
                 <?= $this->Form->end() ?>

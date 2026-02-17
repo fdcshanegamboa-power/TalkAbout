@@ -55,6 +55,17 @@ if (el && window.Vue && window.PostCardMixin) {
                             profile_photo: user.profile_photo_path || '',
                             initial: (user.full_name || user.username || 'U').charAt(0).toUpperCase()
                         };
+
+                        // If the page is at /profile (no username), update the URL to include the username
+                        try {
+                            const currentPath = window.location.pathname.replace(/\/+$/, '');
+                            if ((currentPath === '/profile' || currentPath === '/profile') && this.profileUser.username) {
+                                const newPath = `/profile/${this.profileUser.username}`;
+                                window.history.replaceState(null, '', newPath);
+                            }
+                        } catch (e) {
+                            console.error('Failed to update profile URL:', e);
+                        }
                     }
                 } catch (error) {
                     console.error('Error fetching current user profile:', error);

@@ -101,7 +101,7 @@ class ProfileController extends AppController
                     $user->set('password', $new);
                     if ($usersTable->save($user)) {
                         $this->Flash->success('Password changed successfully.');
-                        return $this->redirect(['action' => 'profile']);
+                        return $this->redirect(['controller' => 'Profile', 'action' => 'viewProfile', $user->get('username')]);
                     }
                     $this->Flash->error('Unable to change password.');
                 }
@@ -154,7 +154,7 @@ class ProfileController extends AppController
                 
                 if ($usersTable->save($user)) {
                     $this->Flash->success('Profile updated.');
-                    return $this->redirect(['action' => 'profile']);
+                    return $this->redirect(['controller' => 'Profile', 'action' => 'viewProfile', $user->get('username')]);
                 }
                 $this->Flash->error('Unable to save your profile. Please correct errors and try again.');
             }
