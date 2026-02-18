@@ -494,4 +494,88 @@ class CommentsController extends AppController
             'message' => 'Failed to unlike comment'
         ]));
     }
+
+    public function deleteComment()
+    {
+        $this->autoRender = false;
+        $this->response = $this->response->withType('application/json');
+
+        if (!$this->request->is(['post', 'delete'])) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Invalid request method'
+            ]));
+        }
+
+        $identity = $this->Authentication->getIdentity();
+        $userId = null;
+
+        if ($identity) {
+            if (method_exists($identity, 'getIdentifier')) {
+                $userId = $identity->getIdentifier();
+            } elseif (method_exists($identity, 'get')) {
+                $userId = $identity->get('id');
+            } elseif (isset($identity->id)) {
+                $userId = $identity->id;
+            }
+        }
+
+        if (empty($userId)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'User not authenticated'
+            ]));
+        }
+
+        $commentId = $this->request->getData('comment_id');
+
+        if (empty($commentId)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Comment ID is required'
+            ]));
+        }
+
+        $commentsTable = $this->getTableLocator()->get('Comments');
+
+        $comment = $commentsTable->find()
+            ->where(['id' => $commentId])
+            ->first();
+
+        if (!$comment) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Comment not found'
+            ]));
+        }
+
+        if ((int)$comment->user_id !== (int)$userId) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'You can only delete your own comments'
+            ]));
+        }
+
+        if ($comment->deleted_at !== null) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Comment already deleted'
+            ]));
+        }
+
+        $comment->deleted_at = new \DateTime();
+
+        if ($commentsTable->save($comment)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => true,
+                'message' => 'Comment deleted successfully'
+            ]));
+        }
+
+        return $this->response->withStringBody(json_encode([
+            'success' => false,
+            'message' => 'Failed to delete comment'
+        ]));
+    }
+
 }

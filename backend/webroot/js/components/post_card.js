@@ -4,6 +4,11 @@
  */
 
 const PostCardMixin = {
+    data() {
+        return {
+            currentUserId: (typeof window !== 'undefined' && window.currentUserId) ? window.currentUserId : null
+        };
+    },
     methods: {
         toggleLike(post) {
             const wasLiked = post.liked;
@@ -427,6 +432,50 @@ const PostCardMixin = {
                 comment.liked = wasLiked;
                 comment.likes = prevLikes;
             });
+        },
+
+        async deleteComment(comment, post) {
+            if (!comment || !comment.id) return;
+            if (comment.isDeleting) return;
+
+            if (!confirm('Delete this comment? This action cannot be undone.')) return;
+
+            comment.isDeleting = true;
+
+            try {
+                const form = new FormData();
+                form.append('comment_id', comment.id);
+                const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+                if (csrfToken) form.append('_csrfToken', csrfToken);
+
+                const resp = await fetch('/api/comments/delete', {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    body: form
+                });
+
+                const data = await resp.json().catch(() => ({}));
+
+                if (!resp.ok || !data.success) {
+                    alert('Failed to delete comment: ' + (data.message || 'Unknown error'));
+                    comment.isDeleting = false;
+                    return;
+                }
+
+                if (post && post.commentsList && Array.isArray(post.commentsList)) {
+                    const idx = post.commentsList.findIndex(c => c.id === comment.id);
+                    if (idx !== -1) post.commentsList.splice(idx, 1);
+                }
+
+                if (post && typeof post.comments === 'number') {
+                    post.comments = Math.max(0, post.comments - 1);
+                }
+            } catch (err) {
+                console.error('Error deleting comment:', err);
+                alert('Failed to delete comment. Please try again.');
+            } finally {
+                comment.isDeleting = false;
+            }
         },
 
         closeAllMenus() {

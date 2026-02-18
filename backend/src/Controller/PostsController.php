@@ -19,8 +19,8 @@ class PostsController extends AppController
     public function view($id = null)
     {
         if (empty($id)) {
-            $this->Flash->error('Post ID is required');
-            return $this->redirect(['controller' => 'Dashboard', 'action' => 'dashboard']);
+            $this->render('not_found');
+            return;
         }
 
         try {
@@ -31,7 +31,8 @@ class PostsController extends AppController
                 ->first();
 
             if (!$post) {
-                throw new \Exception('Post not found');
+                $this->render('not_found');
+                return;
             }
 
             // Prepare images
@@ -85,6 +86,7 @@ class PostsController extends AppController
                 }
 
                 $comments[] = [
+                    'user_id' => $c->user_id ?? ($c->user->id ?? null),
                     'id' => $c->id,
                     'author' => $c->user->full_name ?? $c->user->username,
                     'profile_photo' => $c->user->profile_photo_path ?? null,
@@ -116,8 +118,8 @@ class PostsController extends AppController
             $author = $post->user;
             $this->set(compact('post', 'author', 'images', 'comments', 'likesCount', 'userLiked'));
         } catch (\Exception $e) {
-            $this->Flash->error('Post not found');
-            return $this->redirect(['controller' => 'Dashboard', 'action' => 'dashboard']);
+            $this->render('not_found');
+            return;
         }
     }
 

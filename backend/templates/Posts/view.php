@@ -21,6 +21,7 @@ $payload = [
     'commentsList' => array_map(function($c) {
         return [
             'id' => $c['id'],
+            'user_id' => isset($c['user_id']) ? $c['user_id'] : (isset($c['userId']) ? $c['userId'] : null),
             'author' => $c['author'],
             'profile_photo' => $c['profile_photo'],
             'initial' => $c['initial'],
@@ -47,6 +48,34 @@ $payload = [
 <style>
     [v-cloak] {
         display: none;
+    }
+    
+    .highlight-comment {
+        animation: highlight-pulse 2s ease-in-out;
+    }
+    
+    @keyframes highlight-pulse {
+        0%, 100% {
+            background-color: transparent;
+        }
+        50% {
+            background-color: rgba(59, 130, 246, 0.2);
+        }
+    }
+    
+    .animate-fade-in {
+        animation: fade-in 0.3s ease-out;
+    }
+    
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: translate(-50%, -10px);
+        }
+        to {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
     }
 </style>
 
