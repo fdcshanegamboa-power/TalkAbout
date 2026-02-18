@@ -13,7 +13,6 @@ class CommentsController extends AppController
     public function initialize(): void
     {
         parent::initialize();
-        // Allow public read access to comments
         $this->Authentication->addUnauthenticatedActions(['getComments']);
     }
 
@@ -32,7 +31,6 @@ class CommentsController extends AppController
             ]));
         }
 
-        // Get authenticated user ID
         $identity = $this->Authentication->getIdentity();
         $userId = null;
         if ($identity) {
@@ -450,7 +448,6 @@ class CommentsController extends AppController
 
         $likesTable = $this->getTableLocator()->get('Likes');
 
-        // Find and delete the like
         $like = $likesTable->find()
             ->where([
                 'user_id' => $userId,
@@ -467,14 +464,12 @@ class CommentsController extends AppController
         }
 
         if ($likesTable->delete($like)) {
-            // Get updated like count
             $likeCount = $likesTable->find()
                 ->where([
                     'target_type' => 'comment',
                     'target_id' => $commentId
                 ])
                 ->count();
-            // Dispatch event for notification cleanup
             $event = new Event('Model.Comment.unliked', $this, [
                 'comment_id' => $commentId,
                 'post_id' => $comment->post_id ?? null,

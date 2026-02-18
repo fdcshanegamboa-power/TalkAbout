@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 startNotificationPolling() {
                     this.notificationPolling = setInterval(() => {
                         this.fetchNotifications();
-                    }, 5000);
+                    }, 1000);
                 },
 
                 stopNotificationPolling() {
@@ -92,29 +92,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 async handleNotificationClick(notification) {
     try {
         if (!notification.is_read) {
-            // Fire-and-forget (do NOT await)
             this.markNotificationAsRead(notification.id);
 
             notification.is_read = true;
             this.notificationCount = Math.max(0, this.notificationCount - 1);
         }
 
-        // Navigate immediately
         if (notification.target_type === 'post' && notification.target_id) {
             window.location.href = `/posts/view/${notification.target_id}`;
             return;
         }
 
-        // For comment notifications the API now includes `post_id`
         if (notification.target_type === 'comment' && notification.target_id) {
             const postId = notification.post_id || notification.target_post_id || null;
             if (postId) {
-                // Navigate to the post and anchor the comment
                 window.location.href = `/posts/view/${postId}#comment-${notification.target_id}`;
                 return;
             }
 
-            // Fallback: navigate to post view with comment id (previous behavior)
             window.location.href = `/posts/view/${notification.target_id}`;
             return;
         }
@@ -195,14 +190,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 handleCreatePost() {
     const composer = document.querySelector('#post-composer');
 
-    // If composer exists (we are on Dashboard)
     if (composer) {
         composer.focus();
         composer.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
     }
 
-    // If not on Dashboard → redirect with hash
     window.location.href = "/dashboard#compose";
 }
 
