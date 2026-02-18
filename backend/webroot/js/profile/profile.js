@@ -136,27 +136,38 @@ if (el && window.Vue && window.PostCardMixin) {
                 const files = Array.from(e.target.files || []);
                 if (files.length === 0) return;
                 
-                // Limit to 10 images
                 const maxImages = 10;
+                const maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
+                const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
                 const remainingSlots = maxImages - this.composer.imageFiles.length;
                 const filesToAdd = files.slice(0, remainingSlots);
                 
+                let hasErrors = false;
+                const errors = [];
+                
                 filesToAdd.forEach(file => {
-                    // Validate file type
-                    if (!file.type.startsWith('image/')) {
-                        alert('Please select only image files');
+                    if (!allowedTypes.includes(file.type)) {
+                        const typeName = file.type || 'unknown type';
+                        errors.push(`"${file.name}" (${typeName}) is not supported`);
+                        hasErrors = true;
                         return;
                     }
                     
-                    // Validate file size (5MB)
-                    if (file.size > 5 * 1024 * 1024) {
-                        alert('Image must be less than 5MB: ' + file.name);
+                    if (file.size > maxFileSize) {
+                        const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                        errors.push(`"${file.name}" (${fileSizeMB}MB) exceeds the 5MB limit`);
+                        hasErrors = true;
+                        return;
+                    }
+                    
+                    if (file.size === 0) {
+                        errors.push(`"${file.name}" is empty`);
+                        hasErrors = true;
                         return;
                     }
                     
                     this.composer.imageFiles.push(file);
                     
-                    // Create preview
                     const reader = new FileReader();
                     reader.onload = (ev) => {
                         this.composer.imagePreviews.push(ev.target.result);
@@ -164,7 +175,10 @@ if (el && window.Vue && window.PostCardMixin) {
                     reader.readAsDataURL(file);
                 });
                 
-                // Reset input
+                if (hasErrors) {
+                    alert('Some files could not be added:\n\n' + errors.join('\n') + '\n\nSupported formats: JPEG, PNG, GIF, WebP\nMaximum size: 5MB per image');
+                }
+                
                 e.target.value = '';
             },
             

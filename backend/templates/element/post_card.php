@@ -119,7 +119,7 @@ $profilePhoto = $profilePhoto ?? '';
             
                 <div v-else>
                 <div v-if="post.text" class="text-sm lg:text-base text-blue-700 mt-1">
-                    <div :class="(post.expanded ? 'max-h-96 overflow-auto' : 'max-h-20 overflow-hidden') + ' break-all whitespace-normal'">
+                    <div :class="(post.expanded ? 'max-h-96 overflow-auto' : 'max-h-20 overflow-hidden') + ' break-all whitespace-normal'" style="white-space: pre-line;">
                         {{ post.text }}
                     </div>
 
@@ -240,7 +240,7 @@ $profilePhoto = $profilePhoto ?? '';
                                     <span class="text-xs text-blue-400">{{ comment.time }}</span>
                                 </div>
                                 <div v-if="comment.content_text" class="text-sm text-blue-700 break-words">
-                                            <div :class="(comment.expanded ? 'max-h-64 overflow-auto' : 'max-h-20 overflow-hidden') + ' break-all whitespace-normal'">
+                                            <div :class="(comment.expanded ? 'max-h-64 overflow-auto' : 'max-h-20 overflow-hidden') + ' break-all whitespace-normal'" style="white-space: pre-line;">
                                                 {{ comment.content_text }}
                                             </div>
 

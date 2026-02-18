@@ -197,19 +197,46 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
             
             handleEditImageSelect(event, post) {
                 const files = Array.from(event.target.files);
+                const maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
+                const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+                
+                let hasErrors = false;
+                const errors = [];
                 
                 files.forEach(file => {
-                    if (file && file.type.startsWith('image/')) {
-                        const reader = new FileReader();
-                        reader.onload = (e) => {
-                            post.newEditImages.push({
-                                preview: e.target.result
-                            });
-                        };
-                        reader.readAsDataURL(file);
-                        post.newEditImageFiles.push(file);
+                    if (!allowedTypes.includes(file.type)) {
+                        const typeName = file.type || 'unknown type';
+                        errors.push(`"${file.name}" (${typeName}) is not supported`);
+                        hasErrors = true;
+                        return;
                     }
+                    
+                    if (file.size === 0) {
+                        errors.push(`"${file.name}" is empty`);
+                        hasErrors = true;
+                        return;
+                    }
+                    
+                    if (file.size > maxFileSize) {
+                        const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                        errors.push(`"${file.name}" (${fileSizeMB}MB) exceeds the 5MB limit`);
+                        hasErrors = true;
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        post.newEditImages.push({
+                            preview: e.target.result
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                    post.newEditImageFiles.push(file);
                 });
+                
+                if (hasErrors) {
+                    alert('Some files could not be added:\n\n' + errors.join('\n') + '\n\nSupported formats: JPEG, PNG, GIF, WebP\nMaximum size: 5MB per image');
+                }
                 
                 // Reset input
                 event.target.value = '';
@@ -230,13 +257,13 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                     
                     // Add images to delete
                     if (post.imagesToDelete && post.imagesToDelete.length > 0) {
-                        formData.append('images_to_delete', JSON.stringify(post.imagesToDelete));
+                        post.imagesToDelete.forEach(img => formData.append('images_to_delete[]', img));
                     }
                     
                     // Add new images
                     if (post.newEditImageFiles && post.newEditImageFiles.length > 0) {
                         post.newEditImageFiles.forEach((file, index) => {
-                            formData.append('images[]', file);
+                            formData.append(`new_images[${index}]`, file);
                         });
                     }
                     
@@ -248,22 +275,26 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                     const data = await response.json();
                     
                     if (data.success) {
+                        // Update post in UI with proper Vue reactivity
                         post.text = post.editText;
+                        // Backend returns images in data.post.images
+                        post.images = data.post?.images || [];
                         post.isEditing = false;
-                        
-                        // Update images
-                        if (data.images) {
-                            post.images = data.images;
-                        } else {
-                            // Reconstruct images from remaining editImages and new images
-                            const remainingImages = post.editImages.map(img => img.path);
-                            post.images = remainingImages;
-                        }
+                        post.expanded = false;
+                        post.time = data.post?.time || post.time; // Update timestamp if provided
+
+                        // Clear editing data
+                        post.editImages = [];
                         post.newEditImages = [];
                         post.newEditImageFiles = [];
                         post.imagesToDelete = [];
+                        
+                        // Force Vue reactivity update
+                        if (this.$forceUpdate) {
+                            this.$forceUpdate();
+                        }
                     } else {
-                        alert(data.message || 'Failed to update post');
+                        alert('Failed to update post: ' + (data.message || 'Unknown error'));
                     }
                 } catch (error) {
                     console.error('Error updating post:', error);

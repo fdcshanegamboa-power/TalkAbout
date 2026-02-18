@@ -30,6 +30,7 @@ window.PostComposerMixin = {
             
             const maxImages = 10;
             const maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
+            const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
             const remainingSlots = maxImages - this.composer.imageFiles.length;
             const filesToAdd = files.slice(0, remainingSlots);
             
@@ -37,8 +38,9 @@ window.PostComposerMixin = {
             const errors = [];
             
             filesToAdd.forEach(file => {
-                if (!file.type.startsWith('image/')) {
-                    errors.push(`"${file.name}" is not an image file`);
+                if (!allowedTypes.includes(file.type)) {
+                    const typeName = file.type || 'unknown type';
+                    errors.push(`"${file.name}" (${typeName}) is not supported`);
                     hasErrors = true;
                     return;
                 }
@@ -66,7 +68,7 @@ window.PostComposerMixin = {
             });
             
             if (hasErrors) {
-                alert('Some files could not be added:\n\n' + errors.join('\n'));
+                alert('Some files could not be added:\n\n' + errors.join('\n') + '\n\nSupported formats: JPEG, PNG, GIF, WebP\nMaximum size: 5MB per image');
             }
             
             e.target.value = '';

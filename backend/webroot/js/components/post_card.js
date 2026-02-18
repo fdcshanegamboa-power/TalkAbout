@@ -86,9 +86,11 @@ const PostCardMixin = {
             if (!file) return;
             
             const maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
+            const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
             
-            if (!file.type.startsWith('image/')) {
-                alert('Please select an image file.\n\nSupported formats: JPG, PNG, GIF, WebP');
+            if (!allowedTypes.includes(file.type)) {
+                const typeName = file.type || 'unknown type';
+                alert(`File "${file.name}" (${typeName}) is not supported.\n\nSupported formats: JPEG, PNG, GIF, WebP`);
                 event.target.value = '';
                 return;
             }
@@ -236,13 +238,15 @@ const PostCardMixin = {
         handleEditImageSelect(event, post) {
             const files = Array.from(event.target.files);
             const maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
+            const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
             
             let hasErrors = false;
             const errors = [];
             
             files.forEach(file => {
-                if (!file.type.startsWith('image/')) {
-                    errors.push(`"${file.name}" is not an image file`);
+                if (!allowedTypes.includes(file.type)) {
+                    const typeName = file.type || 'unknown type';
+                    errors.push(`"${file.name}" (${typeName}) is not supported`);
                     hasErrors = true;
                     return;
                 }
@@ -271,7 +275,7 @@ const PostCardMixin = {
             });
             
             if (hasErrors) {
-                alert('Some files could not be added:\n\n' + errors.join('\n') + '\n\nSupported formats: JPG, PNG, GIF, WebP\nMaximum size: 5MB per image');
+                alert('Some files could not be added:\n\n' + errors.join('\n') + '\n\nSupported formats: JPEG, PNG, GIF, WebP\nMaximum size: 5MB per image');
             }
             
             // Reset input
@@ -313,7 +317,8 @@ const PostCardMixin = {
                 if (data.success) {
                     // Update post in UI with proper Vue reactivity
                     post.text = post.editText;
-                    post.images = data.images || [];
+                    // Backend returns images in data.post.images
+                    post.images = data.post?.images || [];
                     post.isEditing = false;
                     post.expanded = false;
                     post.time = data.post?.time || post.time; // Update timestamp if provided
