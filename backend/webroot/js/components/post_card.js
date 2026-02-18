@@ -3,7 +3,12 @@
 const PostCardMixin = {
     data() {
         return {
-            currentUserId: (typeof window !== 'undefined' && window.currentUserId) ? window.currentUserId : null
+            currentUserId: (typeof window !== 'undefined' && window.currentUserId) ? window.currentUserId : null,
+            imageModal: {
+                show: false,
+                images: [],
+                currentIndex: 0
+            }
         };
     },
     methods: {
@@ -321,8 +326,13 @@ const PostCardMixin = {
         },
 
         async saveEdit(post) {
-            if (!post.editText || post.editText.trim() === '') {
-                alert('Post content cannot be empty');
+            // Check if there's at least some content (text or images)
+            const hasText = post.editText && post.editText.trim() !== '';
+            const hasExistingImages = post.editImages && post.editImages.length > 0;
+            const hasNewImages = post.newEditImageFiles && post.newEditImageFiles.length > 0;
+            
+            if (!hasText && !hasExistingImages && !hasNewImages) {
+                alert('Post must have at least some text or images');
                 return;
             }
             
@@ -331,7 +341,7 @@ const PostCardMixin = {
             try {
                 const formData = new FormData();
                 formData.append('post_id', post.id);
-                formData.append('content_text', post.editText);
+                formData.append('content_text', post.editText || '');
                 
                 // Add images to delete
                 if (post.imagesToDelete && post.imagesToDelete.length > 0) {
@@ -562,6 +572,57 @@ const PostCardMixin = {
             }
             if (this.post) {
                 this.post.showMenu = false;
+            }
+        },
+
+        openImageModal(images, index = 0) {
+            // Support both array of images and single image string
+            if (typeof images === 'string') {
+                this.imageModal.images = [images];
+            } else {
+                this.imageModal.images = images || [];
+            }
+            this.imageModal.currentIndex = index;
+            this.imageModal.show = true;
+            
+            // Add keyboard event listener
+            document.addEventListener('keydown', this.handleModalKeydown);
+            // Prevent body scroll when modal is open
+            document.body.style.overflow = 'hidden';
+        },
+
+        closeImageModal() {
+            this.imageModal.show = false;
+            this.imageModal.images = [];
+            this.imageModal.currentIndex = 0;
+            
+            // Remove keyboard event listener
+            document.removeEventListener('keydown', this.handleModalKeydown);
+            // Restore body scroll
+            document.body.style.overflow = '';
+        },
+
+        nextImage() {
+            if (this.imageModal.currentIndex < this.imageModal.images.length - 1) {
+                this.imageModal.currentIndex++;
+            }
+        },
+
+        prevImage() {
+            if (this.imageModal.currentIndex > 0) {
+                this.imageModal.currentIndex--;
+            }
+        },
+
+        handleModalKeydown(e) {
+            if (!this.imageModal.show) return;
+            
+            if (e.key === 'Escape') {
+                this.closeImageModal();
+            } else if (e.key === 'ArrowRight') {
+                this.nextImage();
+            } else if (e.key === 'ArrowLeft') {
+                this.prevImage();
             }
         }
     }

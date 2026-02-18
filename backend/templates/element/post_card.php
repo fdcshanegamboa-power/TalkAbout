@@ -146,16 +146,20 @@ $profilePhoto = $profilePhoto ?? '';
                 
                 <div v-if="post.images && post.images.length > 0" class="mt-2 lg:mt-3">
                     <div v-if="post.images.length === 1">
-                        <img :src="post.images[0]" class="rounded-lg max-h-64 lg:max-h-96 w-full object-cover" />
+                        <img :src="post.images[0]" 
+                             @click="openImageModal(post.images, 0)"
+                             class="rounded-lg max-h-64 lg:max-h-96 w-full object-cover cursor-pointer hover:opacity-90 transition" />
                     </div>
                     <div v-else-if="post.images.length === 2" class="grid grid-cols-2 gap-1 lg:gap-2">
                         <img v-for="(img, idx) in post.images" :key="idx" :src="img" 
-                             class="rounded-lg h-40 lg:h-64 w-full object-cover" />
+                             @click="openImageModal(post.images, idx)"
+                             class="rounded-lg h-40 lg:h-64 w-full object-cover cursor-pointer hover:opacity-90 transition" />
                     </div>
                     <div v-else class="grid grid-cols-2 gap-1 lg:gap-2">
                         <img v-for="(img, idx) in post.images.slice(0, 4)" :key="idx" :src="img" 
+                             @click="openImageModal(post.images, idx)"
                              :class="idx === 3 && post.images.length > 4 ? 'relative' : ''"
-                             class="rounded-lg h-32 lg:h-48 w-full object-cover" />
+                             class="rounded-lg h-32 lg:h-48 w-full object-cover cursor-pointer hover:opacity-90 transition" />
                         <div v-if="post.images.length > 4" 
                              class="absolute bottom-2 right-2 bg-black/70 text-white px-3 py-1 rounded-full text-sm font-semibold">
                             +{{ post.images.length - 4 }}
@@ -282,7 +286,8 @@ $profilePhoto = $profilePhoto ?? '';
                                         </div>
                                 <div v-if="comment.content_image_path" class="mt-1">
                                     <img :src="'/img/comments/' + comment.content_image_path" 
-                                         class="rounded-lg max-h-40 border border-blue-200" />
+                                         @click="openImageModal('/img/comments/' + comment.content_image_path, 0)"
+                                         class="rounded-lg max-h-40 border border-blue-200 cursor-pointer hover:opacity-90 transition" />
                                 </div>
                                 <div class="mt-1 flex items-center gap-2">
                                     <button @click="toggleCommentLike(comment)" 
@@ -309,3 +314,61 @@ $profilePhoto = $profilePhoto ?? '';
         </div>
     </div>
 </div>
+
+<!-- Image Modal -->
+<div v-if="imageModal.show" 
+     @click="closeImageModal"
+     class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+     style="animation: fadeIn 0.2s ease-in;">
+    
+    <!-- Close Button -->
+    <button @click="closeImageModal" 
+            class="absolute top-4 right-4 lg:top-6 lg:right-6 text-white hover:text-gray-300 p-2 rounded-full bg-black/50 hover:bg-black/70 transition z-10">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 lg:w-8 lg:h-8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+    </button>
+    
+    <!-- Previous Button -->
+    <button v-if="imageModal.images.length > 1 && imageModal.currentIndex > 0"
+            @click.stop="prevImage"
+            class="absolute left-4 lg:left-6 text-white hover:text-gray-300 p-2 lg:p-3 rounded-full bg-black/50 hover:bg-black/70 transition z-10">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 lg:w-8 lg:h-8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+        </svg>
+    </button>
+    
+    <!-- Image Container -->
+    <div @click.stop class="relative max-w-7xl max-h-full">
+        <img :src="imageModal.images[imageModal.currentIndex]" 
+             class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+             style="animation: scaleIn 0.2s ease-out;" />
+        
+        <!-- Image Counter -->
+        <div v-if="imageModal.images.length > 1" 
+             class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm font-semibold">
+            {{ imageModal.currentIndex + 1 }} / {{ imageModal.images.length }}
+        </div>
+    </div>
+    
+    <!-- Next Button -->
+    <button v-if="imageModal.images.length > 1 && imageModal.currentIndex < imageModal.images.length - 1"
+            @click.stop="nextImage"
+            class="absolute right-4 lg:right-6 text-white hover:text-gray-300 p-2 lg:p-3 rounded-full bg-black/50 hover:bg-black/70 transition z-10">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 lg:w-8 lg:h-8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+        </svg>
+    </button>
+</div>
+
+<style>
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+</style>
