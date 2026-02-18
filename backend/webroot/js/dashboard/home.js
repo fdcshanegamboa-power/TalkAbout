@@ -82,7 +82,9 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                             editImages: [],
                             newEditImages: [],
                             newEditImageFiles: [],
-                            imagesToDelete: []
+                            imagesToDelete: [],
+                            editDragActive: false,
+                            commentDragActive: false
                         }));
                     }
                 } catch (e) {

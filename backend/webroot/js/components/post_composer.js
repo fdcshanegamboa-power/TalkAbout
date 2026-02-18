@@ -10,7 +10,8 @@ window.PostComposerMixin = {
                 imageFiles: [],
                 imagePreviews: []
             },
-            isPosting: false
+            isPosting: false,
+            composerDragActive: false
         };
     },
 
@@ -24,15 +25,41 @@ window.PostComposerMixin = {
     },
 
     methods: {
+        handleComposerDragOver(e) {
+            this.composerDragActive = true;
+        },
+        
+        handleComposerDragLeave(e) {
+            this.composerDragActive = false;
+        },
+        
+        handleComposerDrop(e) {
+            this.composerDragActive = false;
+            const files = Array.from(e.dataTransfer.files || []);
+            this.processImageFiles(files);
+        },
+        
         onImageChange(e) {
             const files = Array.from(e.target.files || []);
+            this.processImageFiles(files);
+            e.target.value = '';
+        },
+        
+        processImageFiles(files) {
             if (files.length === 0) return;
             
             const maxImages = 10;
             const maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
             const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
             const remainingSlots = maxImages - this.composer.imageFiles.length;
+            
+            if (remainingSlots === 0) {
+                alert('Maximum of 10 images reached. Remove some images to add more.');
+                return;
+            }
+            
             const filesToAdd = files.slice(0, remainingSlots);
+            const skippedCount = files.length - filesToAdd.length;
             
             let hasErrors = false;
             const errors = [];
@@ -67,11 +94,19 @@ window.PostComposerMixin = {
                 reader.readAsDataURL(file);
             });
             
+            let message = '';
             if (hasErrors) {
-                alert('Some files could not be added:\n\n' + errors.join('\n') + '\n\nSupported formats: JPEG, PNG, GIF, WebP\nMaximum size: 5MB per image');
+                message = 'Some files could not be added:\n\n' + errors.join('\n') + '\n\nSupported formats: JPEG, PNG, GIF, WebP\nMaximum size: 5MB per image';
             }
             
-            e.target.value = '';
+            if (skippedCount > 0) {
+                if (message) message += '\n\n';
+                message += `${skippedCount} file${skippedCount > 1 ? 's were' : ' was'} skipped (maximum 10 images).`;
+            }
+            
+            if (message) {
+                alert(message);
+            }
         },
         
         removeImage(index) {

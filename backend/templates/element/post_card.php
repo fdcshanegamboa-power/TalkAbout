@@ -92,6 +92,21 @@ $profilePhoto = $profilePhoto ?? '';
                     </div>
                 </div>
 
+                <!-- Drag and Drop Zone for Edit Images -->
+                <div class="mt-2"
+                     @dragover.prevent="handleEditDragOver(post)"
+                     @dragleave.prevent="handleEditDragLeave(post)"
+                     @drop.prevent="handleEditDrop($event, post)"
+                     :class="post.editDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-gray-50'"
+                     class="border-2 border-dashed rounded-lg p-4 text-center transition-colors cursor-pointer"
+                     @click="document.getElementById('edit-post-images-' + post.id).click()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto text-gray-400 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                    <p class="text-xs text-gray-600">Drag & drop or click to add images</p>
+                    <p class="text-xs text-gray-400 mt-0.5">JPEG, PNG, GIF, WebP • Max 5MB</p>
+                </div>
+
                 <div class="mt-2 flex items-center gap-2">
                     <label :for="'edit-post-images-' + post.id" class="cursor-pointer px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg text-xs font-semibold hover:bg-gray-200 flex items-center gap-1">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
@@ -186,6 +201,22 @@ $profilePhoto = $profilePhoto ?? '';
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                                 </svg>
                             </button>
+                        </div>
+                        
+                        <!-- Drag and Drop Zone for Comment Images -->
+                        <div v-if="!post.commentImagePreview"
+                             class="mt-2"
+                             @dragover.prevent="handleCommentDragOver(post)"
+                             @dragleave.prevent="handleCommentDragLeave(post)"
+                             @drop.prevent="handleCommentDrop($event, post)"
+                             :class="post.commentDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-gray-50'"
+                             class="border-2 border-dashed rounded-lg p-3 text-center transition-colors cursor-pointer"
+                             @click="document.getElementById('comment-image-' + post.id).click()">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto text-gray-400 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                            </svg>
+                            <p class="text-xs text-gray-600">Drag & drop or click to add image</p>
+                            <p class="text-xs text-gray-400 mt-0.5">JPEG, PNG, GIF, WebP • Max 5MB</p>
                         </div>
                         
                         <div class="mt-2 flex items-center gap-2">

@@ -128,7 +128,9 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                             editImages: [],
                             newEditImages: [],
                             newEditImageFiles: [],
-                            imagesToDelete: []
+                            imagesToDelete: [],
+                            editDragActive: false,
+                            commentDragActive: false
                         }));
                         console.log('Processed posts:', this.posts.length);
                     } else {
@@ -197,6 +199,27 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
             
             handleEditImageSelect(event, post) {
                 const files = Array.from(event.target.files);
+                this.processEditImageFiles(files, post);
+                event.target.value = '';
+            },
+            
+            handleEditDragOver(post) {
+                if (!post.editDragActive) {
+                    post.editDragActive = true;
+                }
+            },
+            
+            handleEditDragLeave(post) {
+                post.editDragActive = false;
+            },
+            
+            handleEditDrop(event, post) {
+                post.editDragActive = false;
+                const files = Array.from(event.dataTransfer.files || []);
+                this.processEditImageFiles(files, post);
+            },
+            
+            processEditImageFiles(files, post) {
                 const maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
                 const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
                 
@@ -237,9 +260,6 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                 if (hasErrors) {
                     alert('Some files could not be added:\n\n' + errors.join('\n') + '\n\nSupported formats: JPEG, PNG, GIF, WebP\nMaximum size: 5MB per image');
                 }
-                
-                // Reset input
-                event.target.value = '';
             },
             
             async saveEdit(post) {

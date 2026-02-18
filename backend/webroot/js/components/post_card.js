@@ -85,26 +85,46 @@ const PostCardMixin = {
             const file = event.target.files[0];
             if (!file) return;
             
+            this.processCommentImageFile(file, post);
+            event.target.value = '';
+        },
+        
+        handleCommentDragOver(post) {
+            if (!post.commentDragActive) {
+                post.commentDragActive = true;
+            }
+        },
+        
+        handleCommentDragLeave(post) {
+            post.commentDragActive = false;
+        },
+        
+        handleCommentDrop(event, post) {
+            post.commentDragActive = false;
+            const files = event.dataTransfer.files;
+            if (files && files.length > 0) {
+                this.processCommentImageFile(files[0], post);
+            }
+        },
+        
+        processCommentImageFile(file, post) {
             const maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
             const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
             
             if (!allowedTypes.includes(file.type)) {
                 const typeName = file.type || 'unknown type';
                 alert(`File "${file.name}" (${typeName}) is not supported.\n\nSupported formats: JPEG, PNG, GIF, WebP`);
-                event.target.value = '';
                 return;
             }
             
             if (file.size === 0) {
                 alert('The selected file is empty. Please choose a valid image.');
-                event.target.value = '';
                 return;
             }
             
             if (file.size > maxFileSize) {
                 const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
                 alert(`Image "${file.name}" is too large (${fileSizeMB}MB).\n\nMaximum allowed size: 5MB`);
-                event.target.value = '';
                 return;
             }
             
@@ -237,6 +257,27 @@ const PostCardMixin = {
 
         handleEditImageSelect(event, post) {
             const files = Array.from(event.target.files);
+            this.processEditImageFiles(files, post);
+            event.target.value = '';
+        },
+        
+        handleEditDragOver(post) {
+            if (!post.editDragActive) {
+                post.editDragActive = true;
+            }
+        },
+        
+        handleEditDragLeave(post) {
+            post.editDragActive = false;
+        },
+        
+        handleEditDrop(event, post) {
+            post.editDragActive = false;
+            const files = Array.from(event.dataTransfer.files || []);
+            this.processEditImageFiles(files, post);
+        },
+        
+        processEditImageFiles(files, post) {
             const maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
             const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
             
@@ -277,9 +318,6 @@ const PostCardMixin = {
             if (hasErrors) {
                 alert('Some files could not be added:\n\n' + errors.join('\n') + '\n\nSupported formats: JPEG, PNG, GIF, WebP\nMaximum size: 5MB per image');
             }
-            
-            // Reset input
-            event.target.value = '';
         },
 
         async saveEdit(post) {
