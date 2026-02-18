@@ -272,9 +272,8 @@ class PostsController extends AppController
         $usersTable = $this->getTableLocator()->get('Users');
         
         $contentText = $this->request->getData('content_text');
-        $imageFiles = $this->request->getData('images'); // Array of images
+        $imageFiles = $this->request->getData('images'); 
 
-        // Validate at least one content type
         if (empty($contentText) && empty($imageFiles)) {
             return $this->response->withStringBody(json_encode([
                 'success' => false,
@@ -282,7 +281,6 @@ class PostsController extends AppController
             ]));
         }
 
-        // Create post first
         $post = $postsTable->newEmptyEntity();
         $post->user_id = $userId;
         $post->content_text = $contentText;
@@ -296,9 +294,7 @@ class PostsController extends AppController
 
         $uploadedImages = [];
         
-        // Handle multiple image uploads
         if (!empty($imageFiles) && is_array($imageFiles)) {
-            // Create directory if it doesn't exist
             if (!is_dir(WWW_ROOT . 'img' . DS . 'posts')) {
                 mkdir(WWW_ROOT . 'img' . DS . 'posts', 0755, true);
             }
@@ -325,7 +321,6 @@ class PostsController extends AppController
                     try {
                         $imageFile->moveTo($targetPath);
                         
-                        // Save to post_images table
                         $postImage = $postImagesTable->newEmptyEntity();
                         $postImage->post_id = $post->id;
                         $postImage->image_path = $newFilename;
@@ -334,15 +329,13 @@ class PostsController extends AppController
                         
                         $uploadedImages[] = '/img/posts/' . $newFilename;
                     } catch (\Exception $e) {
-                        // Continue with other images if one fails
+
                         continue;
                     }
                 }
             }
         }
         
-
-        // Load user info for response
         $user = $usersTable->get($userId);
         $authorName = $user->full_name ?? $user->username ?? 'You';
         $initial = strtoupper(substr($authorName, 0, 1));
@@ -590,7 +583,6 @@ class PostsController extends AppController
         try {
             $post = $postsTable->get($postId);
             
-            // Verify the post belongs to the current user
             if ($post->get('user_id') != $userId) {
                 return $this->response->withStringBody(json_encode([
                     'success' => false,
@@ -598,7 +590,6 @@ class PostsController extends AppController
                 ]));
             }
 
-            // Soft delete - set deleted_at timestamp
             $post->deleted_at = new \DateTime();
             
             if ($postsTable->save($post)) {

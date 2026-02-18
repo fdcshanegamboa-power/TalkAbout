@@ -1,7 +1,4 @@
-/**
- * Shared Post Card Component Methods
- * Contains all the methods for post interactions: like, comment, edit, delete
- */
+
 
 const PostCardMixin = {
     data() {
@@ -14,7 +11,6 @@ const PostCardMixin = {
             const wasLiked = post.liked;
             const prevLikes = post.likes;
 
-            // Optimistic UI update
             post.liked = !post.liked;
             post.likes += post.liked ? 1 : -1;
 
@@ -23,7 +19,6 @@ const PostCardMixin = {
 
             if (!csrfToken) console.warn('CSRF token not found for like request');
 
-            // Use FormData to avoid preflight (no custom headers)
             const form = new FormData();
             form.append('post_id', post.id);
             if (csrfToken) form.append('_csrfToken', csrfToken);
@@ -66,7 +61,6 @@ const PostCardMixin = {
         toggleComments(post) {
             post.showComments = !post.showComments;
             
-            // Load comments if opening for the first time
             if (post.showComments && (!post.commentsList || post.commentsList.length === 0)) {
                 this.loadComments(post);
             }
@@ -78,7 +72,6 @@ const PostCardMixin = {
                 const response = await fetch(`/api/comments/list/${post.id}`);
                 const data = await response.json();
                 if (data.success) {
-                    // ensure each comment has expansion state to support "See more"
                     post.commentsList = (data.comments || []).map(c => ({ ...c, expanded: false }));
                 }
             } catch (error) {
@@ -286,7 +279,6 @@ const PostCardMixin = {
                     post.text = post.editText;
                     post.images = data.images || [];
                     post.isEditing = false;
-                    // reset expansion state so updated post is collapsed
                     post.expanded = false;
 
                     // Clear editing data
@@ -336,7 +328,7 @@ const PostCardMixin = {
                 const data = await response.json();
                 
                 if (data.success) {
-                    // Remove post from array if it exists
+                    
                     if (this.posts) {
                         const index = this.posts.findIndex(p => p.id === post.id);
                         if (index !== -1) {
@@ -344,7 +336,6 @@ const PostCardMixin = {
                         }
                     }
                     
-                    // If on single post view, redirect to home
                     if (this.post && this.post.id === post.id) {
                         window.location.href = '/dashboard';
                     }
