@@ -4,12 +4,24 @@ const csrfToken = document
 
 const el = document.getElementById('profile-app');
 
-
+// Remove v-cloak to show content even if Vue doesn't mount
 if (el) {
+    el.removeAttribute('v-cloak');
+}
+
+// Debug logging
+console.log('Profile page loaded:', {
+    el: !!el,
+    Vue: !!window.Vue,
+    PostCardMixin: !!window.PostCardMixin,
+    PostComposerMixin: !!window.PostComposerMixin
+});
+
+if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
     const { createApp } = Vue;
     
     createApp({
-        mixins: [window.PostCardMixin || PostCardMixin],
+        mixins: [PostCardMixin, PostComposerMixin],
         data() {
             return {
                 profileUsername: el.dataset.profileUsername,
@@ -17,14 +29,8 @@ if (el) {
                 currentUserId: el.dataset.currentUserId,
                 isOwnProfile: el.dataset.isOwnProfile === 'true',
                 profileUser: null, // Will hold profile user data
-                composer: {
-                    text: '',
-                    imageFiles: [],
-                    imagePreviews: []
-                },
                 posts: [],
-                isLoading: true,
-                isPosting: false
+                isLoading: true
             };
         },
         mounted() {
@@ -342,47 +348,7 @@ if (el) {
                 });
             },
             
-            onImageChange(e) {
-                const files = Array.from(e.target.files || []);
-                if (files.length === 0) return;
-                
-                // Limit to 10 images
-                const maxImages = 10;
-                const remainingSlots = maxImages - this.composer.imageFiles.length;
-                const filesToAdd = files.slice(0, remainingSlots);
-                
-                filesToAdd.forEach(file => {
-                    // Validate file type
-                    if (!file.type.startsWith('image/')) {
-                        alert('Please select only image files');
-                        return;
-                    }
-                    
-                    // Validate file size (5MB)
-                    if (file.size > 5 * 1024 * 1024) {
-                        alert('Each image must be less than 5MB');
-                        return;
-                    }
-                    
-                    this.composer.imageFiles.push(file);
-                    
-                    // Create preview
-                    const reader = new FileReader();
-                    reader.onload = (ev) => {
-                        this.composer.imagePreviews.push(ev.target.result);
-                    };
-                    reader.readAsDataURL(file);
-                });
-                
-                // Reset input
-                e.target.value = '';
-            },
-            
-            removeImage(index) {
-                this.composer.imageFiles.splice(index, 1);
-                this.composer.imagePreviews.splice(index, 1);
-            },
-            
+            // Override createPost to refresh user posts after creating
             async createPost() {
                 if (!this.canPost || this.isPosting) return;
                 
@@ -392,7 +358,6 @@ if (el) {
                     const formData = new FormData();
                     formData.append('content_text', this.composer.text || '');
                     
-                    // Append all images
                     this.composer.imageFiles.forEach((file, index) => {
                         formData.append('images[]', file);
                     });
@@ -410,10 +375,14 @@ if (el) {
                         this.composer.imageFiles = [];
                         this.composer.imagePreviews = [];
                         
-                        // Refresh posts
+                        if (this.$refs.fileInput) {
+                            this.$refs.fileInput.value = '';
+                        }
+                        
+                        // Refresh user posts
                         await this.fetchUserPosts();
                     } else {
-                        alert(data.message || 'Failed to create post');
+                        alert('Failed to create post: ' + (data.message || 'Unknown error'));
                     }
                 } catch (error) {
                     console.error('Error creating post:', error);
@@ -563,12 +532,22 @@ if (el) {
                 if (!username) return;
                 window.location.href = `/profile/${username}`;
             }
-        },
-        computed: {
-            canPost() {
-                return (this.composer.text && this.composer.text.trim().length > 0) || 
-                       this.composer.imageFiles.length > 0;
-            }
         }
     }).mount('#profile-app');
+} else {
+    console.error('Profile app failed to mount:', {
+        el: !!el,
+        Vue: !!window.Vue,
+        PostCardMixin: !!window.PostCardMixin,
+        PostComposerMixin: !!window.PostComposerMixin
+    });
+    
+    if (el) {
+        const missing = [];
+        if (!window.Vue) missing.push('Vue.js');
+        if (!window.PostCardMixin) missing.push('PostCardMixin');
+        if (!window.PostComposerMixin) missing.push('PostComposerMixin');
+        
+        el.innerHTML = '<div class="min-h-screen flex items-center justify-center p-4"><div class="bg-red-50 border border-red-200 rounded-lg p-6 max-w-2xl"><h2 class="text-red-800 text-xl font-bold mb-4">Failed to load profile page</h2><p class="text-red-700 mb-4">Missing: ' + missing.join(', ') + '</p><button onclick="location.reload()" class="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Reload Page</button></div></div>';
+    }
 }

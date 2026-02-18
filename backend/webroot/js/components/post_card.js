@@ -85,13 +85,24 @@ const PostCardMixin = {
             const file = event.target.files[0];
             if (!file) return;
             
+            const maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
+            
             if (!file.type.startsWith('image/')) {
-                alert('Please select an image file');
+                alert('Please select an image file.\n\nSupported formats: JPG, PNG, GIF, WebP');
+                event.target.value = '';
                 return;
             }
             
-            if (file.size > 5 * 1024 * 1024) {
-                alert('Image size must be less than 5MB');
+            if (file.size === 0) {
+                alert('The selected file is empty. Please choose a valid image.');
+                event.target.value = '';
+                return;
+            }
+            
+            if (file.size > maxFileSize) {
+                const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                alert(`Image "${file.name}" is too large (${fileSizeMB}MB).\n\nMaximum allowed size: 5MB`);
+                event.target.value = '';
                 return;
             }
             
@@ -224,19 +235,44 @@ const PostCardMixin = {
 
         handleEditImageSelect(event, post) {
             const files = Array.from(event.target.files);
+            const maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
+            
+            let hasErrors = false;
+            const errors = [];
             
             files.forEach(file => {
-                if (file && file.type.startsWith('image/')) {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        post.newEditImages.push({
-                            preview: e.target.result
-                        });
-                    };
-                    reader.readAsDataURL(file);
-                    post.newEditImageFiles.push(file);
+                if (!file.type.startsWith('image/')) {
+                    errors.push(`"${file.name}" is not an image file`);
+                    hasErrors = true;
+                    return;
                 }
+                
+                if (file.size === 0) {
+                    errors.push(`"${file.name}" is empty`);
+                    hasErrors = true;
+                    return;
+                }
+                
+                if (file.size > maxFileSize) {
+                    const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                    errors.push(`"${file.name}" (${fileSizeMB}MB) exceeds the 5MB limit`);
+                    hasErrors = true;
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    post.newEditImages.push({
+                        preview: e.target.result
+                    });
+                };
+                reader.readAsDataURL(file);
+                post.newEditImageFiles.push(file);
             });
+            
+            if (hasErrors) {
+                alert('Some files could not be added:\n\n' + errors.join('\n') + '\n\nSupported formats: JPG, PNG, GIF, WebP\nMaximum size: 5MB per image');
+            }
             
             // Reset input
             event.target.value = '';
@@ -275,17 +311,23 @@ const PostCardMixin = {
                 const data = await response.json();
                 
                 if (data.success) {
-                    // Update post in UI
+                    // Update post in UI with proper Vue reactivity
                     post.text = post.editText;
                     post.images = data.images || [];
                     post.isEditing = false;
                     post.expanded = false;
+                    post.time = data.post?.time || post.time; // Update timestamp if provided
 
                     // Clear editing data
                     post.editImages = [];
                     post.newEditImages = [];
                     post.newEditImageFiles = [];
                     post.imagesToDelete = [];
+                    
+                    // Force Vue reactivity update
+                    if (this.$forceUpdate) {
+                        this.$forceUpdate();
+                    }
                 } else {
                     alert('Failed to update post: ' + (data.message || 'Unknown error'));
                 }

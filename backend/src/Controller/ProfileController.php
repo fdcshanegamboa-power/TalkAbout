@@ -21,7 +21,7 @@ class ProfileController extends AppController
 
     public function profile()
     {
-        // Load full user entity from the database so all fields (e.g. `about`) are available
+        // Redirect to /profile/{username} for consistency
         $usersTable = $this->getTableLocator()->get('Users');
 
         $identity = $this->Authentication->getIdentity();
@@ -43,13 +43,15 @@ class ProfileController extends AppController
 
         try {
             $user = $usersTable->get($id);
+            $username = $user->get('username');
+            
+            // Redirect to /profile/{username} 
+            return $this->redirect(['action' => 'viewProfile', $username]);
         } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
             $this->Authentication->logout();
             $this->Flash->error('Your session has expired. Please login again.');
             return $this->redirect(['controller' => 'Sessions', 'action' => 'login']);
         }
-        
-        $this->set(compact('user'));
     }
 
     public function editProfile()

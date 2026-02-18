@@ -1,24 +1,30 @@
 const el = document.getElementById('dashboard-app');
 
-if (el && window.Vue && window.PostCardMixin) {
+// Remove v-cloak to show content even if Vue doesn't mount
+if (el) {
+    el.removeAttribute('v-cloak');
+}
+
+// Debug logging
+console.log('Dashboard page loaded:', {
+    el: !!el,
+    Vue: !!window.Vue,
+    PostCardMixin: !!window.PostCardMixin,
+    PostComposerMixin: !!window.PostComposerMixin
+});
+
+if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
     const { createApp } = Vue;
 
     createApp({
-        mixins: [PostCardMixin],
+        mixins: [PostCardMixin, PostComposerMixin],
         data() {
             return {
                 profileUser: null, // For left sidebar display
                 currentUserId: null,
 
-                composer: {
-                    text: '',
-                    imageFiles: [],
-                    imagePreviews: []
-                },
-
                 posts: [],
-                isLoading: true,
-                isPosting: false
+                isLoading: true
             };
         },
 
@@ -84,117 +90,42 @@ if (el && window.Vue && window.PostCardMixin) {
                 } finally {
                     this.isLoading = false;
                 }
-            },
-
-            onImageChange(e) {
-                const files = Array.from(e.target.files || []);
-                if (files.length === 0) return;
-                
-                const maxImages = 10;
-                const remainingSlots = maxImages - this.composer.imageFiles.length;
-                const filesToAdd = files.slice(0, remainingSlots);
-                
-                filesToAdd.forEach(file => {
-                    if (!file.type.startsWith('image/')) {
-                        alert('Please select only image files');
-                        return;
-                    }
-                    
-                    if (file.size > 5 * 1024 * 1024) {
-                        alert('Image must be less than 5MB: ' + file.name);
-                        return;
-                    }
-                    
-                    this.composer.imageFiles.push(file);
-                    
-                    const reader = new FileReader();
-                    reader.onload = (ev) => {
-                        this.composer.imagePreviews.push(ev.target.result);
-                    };
-                    reader.readAsDataURL(file);
-                });
-                
-                e.target.value = '';
-            },
-            
-            removeImage(index) {
-                this.composer.imageFiles.splice(index, 1);
-                this.composer.imagePreviews.splice(index, 1);
-            },
-            
-            async createPost() {
-                if (!this.canPost || this.isPosting) return;
-                
-                this.isPosting = true;
-                
-                try {
-                    const formData = new FormData();
-                    formData.append('content_text', this.composer.text || '');
-                    
-                    this.composer.imageFiles.forEach((file, index) => {
-                        formData.append('images[]', file);
-                    });
-                    
-                    const response = await fetch('/api/posts/create', {
-                        method: 'POST',
-                        body: formData
-                    });
-                    
-                    const data = await response.json();
-                    
-                    if (data.success) {
-                        const newPost = {
-                            ...data.post,
-                            showComments: false,
-                            commentsList: [],
-                            newCommentText: '',
-                            commentImageFile: null,
-                            commentImagePreview: null,
-                            loadingComments: false,
-                            isSubmittingComment: false,
-                            showMenu: false,
-                            isEditing: false,
-                            editText: data.post.text,
-                            isSaving: false,
-                            editImages: [],
-                            newEditImages: [],
-                            newEditImageFiles: [],
-                            imagesToDelete: []
-                        };
-                        this.posts.unshift(newPost);
-                        
-                        this.composer.text = '';
-                        this.composer.imageFiles = [];
-                        this.composer.imagePreviews = [];
-                        
-                        if (this.$refs.fileInput) {
-                            this.$refs.fileInput.value = '';
-                        }
-                    } else {
-                        alert('Failed to create post: ' + (data.message || 'Unknown error'));
-                    }
-                } catch (error) {
-                    console.error('Error creating post:', error);
-                    alert('Failed to create post. Please try again.');
-                } finally {
-                    this.isPosting = false;
-                }
             }
         },
 
         computed: {
-            canPost() {
-                return (
-                    this.composer.text.trim().length > 0 ||
-                    this.composer.imageFiles.length > 0
-                );
-            }
+            // Additional computed properties can go here
         }
     }).mount(el);
 } else {
     console.error('Dashboard app failed to mount:', {
         el: !!el,
         Vue: !!window.Vue,
-        PostCardMixin: !!window.PostCardMixin
+        PostCardMixin: !!window.PostCardMixin,
+        PostComposerMixin: !!window.PostComposerMixin
     });
+    
+    // Show error message on page
+    if (el) {
+        const missing = [];
+        if (!window.Vue) missing.push('Vue.js');
+        if (!window.PostCardMixin) missing.push('PostCardMixin');
+        if (!window.PostComposerMixin) missing.push('PostComposerMixin');
+        
+        el.innerHTML = `
+            <div class="min-h-screen flex items-center justify-center p-4">
+                <div class="bg-red-50 border border-red-200 rounded-lg p-6 max-w-2xl">
+                    <h2 class="text-red-800 text-xl font-bold mb-4">Failed to load page</h2>
+                    <p class="text-red-700 mb-4">The following dependencies are missing:</p>
+                    <ul class="list-disc list-inside text-red-600 mb-4">
+                        ${missing.map(m => `<li>${m}</li>`).join('')}
+                    </ul>
+                    <p class="text-red-600 text-sm">Check the browser console (F12) for more details.</p>
+                    <button onclick="location.reload()" class="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                        Reload Page
+                    </button>
+                </div>
+            </div>
+        `;
+    }
 }
