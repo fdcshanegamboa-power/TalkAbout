@@ -1,5 +1,6 @@
 <?php
 $this->assign('title', 'Post Not Found');
+$this->Html->script('components/right_sidebar', ['block' => 'script']);
 ?>
 
 <style>
@@ -77,6 +78,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const { createApp } = Vue;
         
         createApp({
+            mixins: [
+                ...(window.RightSidebarMixin ? [window.RightSidebarMixin] : [])
+            ],
             data() {
                 return {
                     profileUser: null
@@ -85,6 +89,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             mounted() {
                 this.fetchCurrentUserProfile();
+                if (this.fetchFriends) {
+                    this.fetchFriends();
+                }
             },
             
             methods: {

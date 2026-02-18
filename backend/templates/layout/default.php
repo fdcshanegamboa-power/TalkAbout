@@ -41,53 +41,9 @@
     </div>
 
     <?= $this->fetch('postLink') ?>
-    <script>
-        // Auto-dismiss flash messages after a timeout and add manual close buttons
-        document.addEventListener('DOMContentLoaded', function () {
-            const container = document.querySelector('.fixed.top-4.right-4.z-50');
-            if (!container) return;
-
-            const TIMEOUT = 5000; // ms before auto-dismiss
-
-            Array.from(container.children).forEach(function (el) {
-                // style for smooth fade-out
-                el.style.transition = 'opacity 300ms ease, transform 300ms ease';
-                el.style.display = 'flex';
-                el.style.alignItems = 'center';
-                el.style.gap = '0.5rem';
-                el.style.padding = '0.75rem 1rem';
-                el.style.borderRadius = '0.5rem';
-                el.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
-
-                // add a close button
-                const btn = document.createElement('button');
-                btn.setAttribute('type', 'button');
-                btn.setAttribute('aria-label', 'Close');
-                btn.className = 'ml-auto flex-shrink-0 inline-flex items-center justify-center h-6 w-6 rounded-full hover:bg-black/10 transition-colors';
-                btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>';
-                btn.style.background = 'transparent';
-                btn.style.border = 'none';
-                btn.style.cursor = 'pointer';
-
-                btn.addEventListener('click', function () {
-                    el.style.opacity = '0';
-                    el.style.transform = 'translateY(-6px)';
-                    setTimeout(function () { el.remove(); }, 300);
-                });
-
-                // append button to flash element
-                el.appendChild(btn);
-
-                // auto dismiss after timeout
-                setTimeout(function () {
-                    if (!document.body.contains(el)) return;
-                    el.style.opacity = '0';
-                    el.style.transform = 'translateY(-6px)';
-                    setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 300);
-                }, TIMEOUT);
-            });
-        });
-    </script>
+    
+    <!-- Shared Components -->
+    <script src="<?= $this->Url->build('/js/shared/flash_messages.js') ?>?v=<?= time() ?>"></script>
     <script src="<?= $this->Url->build('/js/shared/navbar.js') ?>?v=<?= time() ?>"></script>
     <?php
     // Expose current user id to frontend JS for permission checks (e.g. comment deletion)
