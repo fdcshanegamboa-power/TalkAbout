@@ -49,9 +49,18 @@ window.RightSidebarMixin = {
         async fetchSuggestions() {
             this.loadingSuggestions = true;
             try {
-                // TODO: Implement suggestions API endpoint
-                // For now, just set empty array
-                this.suggestions = [];
+                const response = await fetch('/api/friendships/suggestions?limit=10');
+                const data = await response.json();
+
+                console.log('Suggestions API response:', data);
+
+                if (data.success) {
+                    this.suggestions = data.suggestions || [];
+                    console.log('Suggestions loaded:', this.suggestions.length, 'suggestions');
+                } else {
+                    console.error('Failed to fetch suggestions:', data.message);
+                    this.suggestions = [];
+                }
             } catch (error) {
                 console.error('Error fetching suggestions:', error);
                 this.suggestions = [];

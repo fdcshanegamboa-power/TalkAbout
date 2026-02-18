@@ -29,6 +29,9 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
             if (this.fetchFriends) {
                 this.fetchFriends();
             }
+            if (this.fetchSuggestions) {
+                this.fetchSuggestions();
+            }
             // Close menu when clicking outside
             document.addEventListener('click', this.closeAllMenus);
         },

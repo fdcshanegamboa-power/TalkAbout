@@ -40,6 +40,9 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
             if (this.fetchFriends) {
                 this.fetchFriends();
             }
+            if (this.fetchSuggestions) {
+                this.fetchSuggestions();
+            }
         },
 
         methods: {

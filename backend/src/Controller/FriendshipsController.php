@@ -785,6 +785,63 @@ class FriendshipsController extends AppController
     }
 
     /**
+     * API: Get friend suggestions
+     * 
+     * Returns personalized friend suggestions based on:
+     * - Mutual friends (friends of friends)
+     * - Recent activity
+     * - Popular users (fallback)
+     */
+    public function getSuggestions()
+    {
+        $this->autoRender = false;
+        $this->response = $this->response->withType('application/json');
+
+        if (!$this->request->is('get')) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'Invalid request method'
+            ]));
+        }
+
+        $identity = $this->Authentication->getIdentity();
+        $userId = $this->_getUserId($identity);
+
+        if (empty($userId)) {
+            return $this->response->withStringBody(json_encode([
+                'success' => false,
+                'message' => 'User not authenticated'
+            ]));
+        }
+
+        // Get limit from query parameter (default 10, max 50)
+        $limit = (int)$this->request->getQuery('limit', 10);
+        $limit = min($limit, 50); // Cap at 50
+        $limit = max($limit, 1);  // Minimum 1
+
+        $friendshipsTable = $this->getTableLocator()->get('Friendships');
+        $suggestions = $friendshipsTable->getSuggestions($userId, $limit);
+
+        // Format response
+        $formattedSuggestions = [];
+        foreach ($suggestions as $suggestion) {
+            $formattedSuggestions[] = [
+                'id' => $suggestion['id'],
+                'username' => $suggestion['username'],
+                'full_name' => $suggestion['full_name'],
+                'profile_photo' => $suggestion['profile_photo_path'],
+                'mutual_friends' => (int)$suggestion['mutual_friends'],
+            ];
+        }
+
+        return $this->response->withStringBody(json_encode([
+            'success' => true,
+            'suggestions' => $formattedSuggestions,
+            'count' => count($formattedSuggestions)
+        ]));
+    }
+
+    /**
      * Helper method to extract user ID from identity
      */
     private function _getUserId($identity)

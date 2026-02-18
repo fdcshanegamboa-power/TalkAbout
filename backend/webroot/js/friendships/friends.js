@@ -48,6 +48,9 @@ if (el && window.Vue) {
             this.fetchFriends(); // Fetch friends from mixin or fallback
             this.fetchPendingRequests();
             this.fetchSentRequests();
+            if (this.fetchSuggestions) {
+                this.fetchSuggestions();
+            }
         },
 
         methods: {

@@ -14,6 +14,9 @@ createApp({
         if (this.fetchFriends) {
             this.fetchFriends();
         }
+        if (this.fetchSuggestions) {
+            this.fetchSuggestions();
+        }
     },
     methods: {
         async fetchCurrentUserProfile() {

@@ -22761,3 +22761,755 @@ Stack Trace:
 Request URL: /dashboard/posts/1
 Referer URL: http://localhost/profile/agtongs
 Client IP: 138.199.24.218
+2026-02-18 09:30:09 error: [Cake\Database\Exception\QueryException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''10'' at line 24
+Query: 
+            SELECT 
+                u.id,
+                u.username,
+                u.full_name,
+                u.profile_photo_path,
+                COUNT(DISTINCT f1.id) as mutual_friends,
+                MAX(u.created_at) as joined_at
+            FROM users u
+            INNER JOIN friendships f2 ON (
+                (f2.requester_id = u.id OR f2.addressee_id = u.id)
+                AND f2.status = 'accepted'
+            )
+            INNER JOIN friendships f1 ON (
+                (
+                    (f1.requester_id = '1' AND f1.addressee_id = IF(f2.requester_id = u.id, f2.addressee_id, f2.requester_id))
+                    OR
+                    (f1.addressee_id = '1' AND f1.requester_id = IF(f2.requester_id = u.id, f2.addressee_id, f2.requester_id))
+                )
+                AND f1.status = 'accepted'
+            )
+            WHERE u.id NOT IN ('1')
+            GROUP BY u.id, u.username, u.full_name, u.profile_photo_path
+            ORDER BY mutual_friends DESC, joined_at DESC
+            LIMIT '10'
+         in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 385
+Stack Trace:
+- CORE/src/Database/Driver.php:332
+- CORE/src/Database/Driver.php:298
+- CORE/src/Database/Connection.php:290
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:290
+- APP/Model/Table/FriendshipsTable.php:244
+- APP/Controller/FriendshipsController.php:823
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''10'' at line 24 in /var/www/html/vendor/cakephp/cakephp/src/Database/Statement/Statement.php on line 144
+Stack Trace:
+- CORE/src/Database/Statement/Statement.php:144
+- CORE/src/Database/Driver.php:330
+- CORE/src/Database/Driver.php:298
+- CORE/src/Database/Connection.php:290
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:290
+- APP/Model/Table/FriendshipsTable.php:244
+- APP/Controller/FriendshipsController.php:823
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/friendships/suggestions?limit=10
+Referer URL: http://localhost/friends
+Client IP: 138.199.24.218
+2026-02-18 09:31:07 error: [Cake\Database\Exception\QueryException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''10'' at line 24
+Query: 
+            SELECT 
+                u.id,
+                u.username,
+                u.full_name,
+                u.profile_photo_path,
+                COUNT(DISTINCT f1.id) as mutual_friends,
+                MAX(u.created_at) as joined_at
+            FROM users u
+            INNER JOIN friendships f2 ON (
+                (f2.requester_id = u.id OR f2.addressee_id = u.id)
+                AND f2.status = 'accepted'
+            )
+            INNER JOIN friendships f1 ON (
+                (
+                    (f1.requester_id = '3' AND f1.addressee_id = IF(f2.requester_id = u.id, f2.addressee_id, f2.requester_id))
+                    OR
+                    (f1.addressee_id = '3' AND f1.requester_id = IF(f2.requester_id = u.id, f2.addressee_id, f2.requester_id))
+                )
+                AND f1.status = 'accepted'
+            )
+            WHERE u.id NOT IN ('3','1','2')
+            GROUP BY u.id, u.username, u.full_name, u.profile_photo_path
+            ORDER BY mutual_friends DESC, joined_at DESC
+            LIMIT '10'
+         in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 385
+Stack Trace:
+- CORE/src/Database/Driver.php:332
+- CORE/src/Database/Driver.php:298
+- CORE/src/Database/Connection.php:290
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:290
+- APP/Model/Table/FriendshipsTable.php:244
+- APP/Controller/FriendshipsController.php:823
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''10'' at line 24 in /var/www/html/vendor/cakephp/cakephp/src/Database/Statement/Statement.php on line 144
+Stack Trace:
+- CORE/src/Database/Statement/Statement.php:144
+- CORE/src/Database/Driver.php:330
+- CORE/src/Database/Driver.php:298
+- CORE/src/Database/Connection.php:290
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:290
+- APP/Model/Table/FriendshipsTable.php:244
+- APP/Controller/FriendshipsController.php:823
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/friendships/suggestions?limit=10
+Referer URL: http://localhost/friends
+Client IP: 138.199.24.218
+2026-02-18 09:31:29 error: [Cake\Database\Exception\QueryException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''10'' at line 24
+Query: 
+            SELECT 
+                u.id,
+                u.username,
+                u.full_name,
+                u.profile_photo_path,
+                COUNT(DISTINCT f1.id) as mutual_friends,
+                MAX(u.created_at) as joined_at
+            FROM users u
+            INNER JOIN friendships f2 ON (
+                (f2.requester_id = u.id OR f2.addressee_id = u.id)
+                AND f2.status = 'accepted'
+            )
+            INNER JOIN friendships f1 ON (
+                (
+                    (f1.requester_id = '1' AND f1.addressee_id = IF(f2.requester_id = u.id, f2.addressee_id, f2.requester_id))
+                    OR
+                    (f1.addressee_id = '1' AND f1.requester_id = IF(f2.requester_id = u.id, f2.addressee_id, f2.requester_id))
+                )
+                AND f1.status = 'accepted'
+            )
+            WHERE u.id NOT IN ('1','3')
+            GROUP BY u.id, u.username, u.full_name, u.profile_photo_path
+            ORDER BY mutual_friends DESC, joined_at DESC
+            LIMIT '10'
+         in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 385
+Stack Trace:
+- CORE/src/Database/Driver.php:332
+- CORE/src/Database/Driver.php:298
+- CORE/src/Database/Connection.php:290
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:290
+- APP/Model/Table/FriendshipsTable.php:244
+- APP/Controller/FriendshipsController.php:823
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''10'' at line 24 in /var/www/html/vendor/cakephp/cakephp/src/Database/Statement/Statement.php on line 144
+Stack Trace:
+- CORE/src/Database/Statement/Statement.php:144
+- CORE/src/Database/Driver.php:330
+- CORE/src/Database/Driver.php:298
+- CORE/src/Database/Connection.php:290
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:290
+- APP/Model/Table/FriendshipsTable.php:244
+- APP/Controller/FriendshipsController.php:823
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/friendships/suggestions?limit=10
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+2026-02-18 09:31:31 error: [Cake\Database\Exception\QueryException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''10'' at line 24
+Query: 
+            SELECT 
+                u.id,
+                u.username,
+                u.full_name,
+                u.profile_photo_path,
+                COUNT(DISTINCT f1.id) as mutual_friends,
+                MAX(u.created_at) as joined_at
+            FROM users u
+            INNER JOIN friendships f2 ON (
+                (f2.requester_id = u.id OR f2.addressee_id = u.id)
+                AND f2.status = 'accepted'
+            )
+            INNER JOIN friendships f1 ON (
+                (
+                    (f1.requester_id = '1' AND f1.addressee_id = IF(f2.requester_id = u.id, f2.addressee_id, f2.requester_id))
+                    OR
+                    (f1.addressee_id = '1' AND f1.requester_id = IF(f2.requester_id = u.id, f2.addressee_id, f2.requester_id))
+                )
+                AND f1.status = 'accepted'
+            )
+            WHERE u.id NOT IN ('1','3')
+            GROUP BY u.id, u.username, u.full_name, u.profile_photo_path
+            ORDER BY mutual_friends DESC, joined_at DESC
+            LIMIT '10'
+         in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 385
+Stack Trace:
+- CORE/src/Database/Driver.php:332
+- CORE/src/Database/Driver.php:298
+- CORE/src/Database/Connection.php:290
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:290
+- APP/Model/Table/FriendshipsTable.php:244
+- APP/Controller/FriendshipsController.php:823
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''10'' at line 24 in /var/www/html/vendor/cakephp/cakephp/src/Database/Statement/Statement.php on line 144
+Stack Trace:
+- CORE/src/Database/Statement/Statement.php:144
+- CORE/src/Database/Driver.php:330
+- CORE/src/Database/Driver.php:298
+- CORE/src/Database/Connection.php:290
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:290
+- APP/Model/Table/FriendshipsTable.php:244
+- APP/Controller/FriendshipsController.php:823
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/friendships/suggestions?limit=10
+Referer URL: http://localhost/friends
+Client IP: 138.199.24.218
+2026-02-18 09:32:08 error: [Cake\Database\Exception\QueryException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''10'' at line 24
+Query: 
+            SELECT 
+                u.id,
+                u.username,
+                u.full_name,
+                u.profile_photo_path,
+                COUNT(DISTINCT f1.id) as mutual_friends,
+                MAX(u.created_at) as joined_at
+            FROM users u
+            INNER JOIN friendships f2 ON (
+                (f2.requester_id = u.id OR f2.addressee_id = u.id)
+                AND f2.status = 'accepted'
+            )
+            INNER JOIN friendships f1 ON (
+                (
+                    (f1.requester_id = '1' AND f1.addressee_id = IF(f2.requester_id = u.id, f2.addressee_id, f2.requester_id))
+                    OR
+                    (f1.addressee_id = '1' AND f1.requester_id = IF(f2.requester_id = u.id, f2.addressee_id, f2.requester_id))
+                )
+                AND f1.status = 'accepted'
+            )
+            WHERE u.id NOT IN ('1','3')
+            GROUP BY u.id, u.username, u.full_name, u.profile_photo_path
+            ORDER BY mutual_friends DESC, joined_at DESC
+            LIMIT '10'
+         in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 385
+Stack Trace:
+- CORE/src/Database/Driver.php:332
+- CORE/src/Database/Driver.php:298
+- CORE/src/Database/Connection.php:290
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:290
+- APP/Model/Table/FriendshipsTable.php:244
+- APP/Controller/FriendshipsController.php:823
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''10'' at line 24 in /var/www/html/vendor/cakephp/cakephp/src/Database/Statement/Statement.php on line 144
+Stack Trace:
+- CORE/src/Database/Statement/Statement.php:144
+- CORE/src/Database/Driver.php:330
+- CORE/src/Database/Driver.php:298
+- CORE/src/Database/Connection.php:290
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:290
+- APP/Model/Table/FriendshipsTable.php:244
+- APP/Controller/FriendshipsController.php:823
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/friendships/suggestions?limit=10
+Referer URL: http://localhost/friends
+Client IP: 138.199.24.218
+2026-02-18 09:32:15 error: [Cake\Database\Exception\QueryException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''10'' at line 24
+Query: 
+            SELECT 
+                u.id,
+                u.username,
+                u.full_name,
+                u.profile_photo_path,
+                COUNT(DISTINCT f1.id) as mutual_friends,
+                MAX(u.created_at) as joined_at
+            FROM users u
+            INNER JOIN friendships f2 ON (
+                (f2.requester_id = u.id OR f2.addressee_id = u.id)
+                AND f2.status = 'accepted'
+            )
+            INNER JOIN friendships f1 ON (
+                (
+                    (f1.requester_id = '1' AND f1.addressee_id = IF(f2.requester_id = u.id, f2.addressee_id, f2.requester_id))
+                    OR
+                    (f1.addressee_id = '1' AND f1.requester_id = IF(f2.requester_id = u.id, f2.addressee_id, f2.requester_id))
+                )
+                AND f1.status = 'accepted'
+            )
+            WHERE u.id NOT IN ('1','3')
+            GROUP BY u.id, u.username, u.full_name, u.profile_photo_path
+            ORDER BY mutual_friends DESC, joined_at DESC
+            LIMIT '10'
+         in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 385
+Stack Trace:
+- CORE/src/Database/Driver.php:332
+- CORE/src/Database/Driver.php:298
+- CORE/src/Database/Connection.php:290
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:290
+- APP/Model/Table/FriendshipsTable.php:244
+- APP/Controller/FriendshipsController.php:823
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''10'' at line 24 in /var/www/html/vendor/cakephp/cakephp/src/Database/Statement/Statement.php on line 144
+Stack Trace:
+- CORE/src/Database/Statement/Statement.php:144
+- CORE/src/Database/Driver.php:330
+- CORE/src/Database/Driver.php:298
+- CORE/src/Database/Connection.php:290
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:290
+- APP/Model/Table/FriendshipsTable.php:244
+- APP/Controller/FriendshipsController.php:823
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/friendships/suggestions?limit=10
+Referer URL: http://localhost/friends
+Client IP: 138.199.24.218
+2026-02-18 09:33:50 error: [Cake\Database\Exception\MissingConnectionException] Connection to Mysql could not be established: SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 203
+Exception Attributes: array (
+  'driver' => 'Mysql',
+  'reason' => 'SQLSTATE[HY000] [2002] Connection refused',
+)
+Stack Trace:
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Driver.php:253
+- CORE/src/Database/Driver.php:397
+- CORE/src/Database/Driver/Mysql.php:175
+- CORE/src/Database/Connection.php:302
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:302
+- CORE/src/Database/Query.php:238
+- CORE/src/Database/Query/SelectQuery.php:124
+- CORE/src/ORM/Query/SelectQuery.php:1631
+- CORE/src/ORM/Query/SelectQuery.php:389
+- CORE/src/ORM/Query/SelectQuery.php:404
+- APP/Controller/NotificationsController.php:67
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 192
+Stack Trace:
+- CORE/src/Database/Driver.php:192
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Driver.php:201
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Driver.php:253
+- CORE/src/Database/Driver.php:397
+- CORE/src/Database/Driver/Mysql.php:175
+- CORE/src/Database/Connection.php:302
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:302
+- CORE/src/Database/Query.php:238
+- CORE/src/Database/Query/SelectQuery.php:124
+- CORE/src/ORM/Query/SelectQuery.php:1631
+- CORE/src/ORM/Query/SelectQuery.php:389
+- CORE/src/ORM/Query/SelectQuery.php:404
+- APP/Controller/NotificationsController.php:67
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/notifications
+Referer URL: http://localhost/friends
+Client IP: 138.199.24.218
+2026-02-18 09:33:52 error: [Cake\Database\Exception\MissingConnectionException] Connection to Mysql could not be established: SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 203
+Exception Attributes: array (
+  'driver' => 'Mysql',
+  'reason' => 'SQLSTATE[HY000] [2002] Connection refused',
+)
+Stack Trace:
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Driver.php:253
+- CORE/src/Database/Driver.php:397
+- CORE/src/Database/Driver/Mysql.php:175
+- CORE/src/Database/Connection.php:302
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:302
+- CORE/src/Database/Query.php:238
+- CORE/src/Database/Query/SelectQuery.php:124
+- CORE/src/ORM/Query/SelectQuery.php:1631
+- CORE/src/ORM/Query/SelectQuery.php:389
+- CORE/src/ORM/Query/SelectQuery.php:404
+- APP/Controller/NotificationsController.php:67
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 192
+Stack Trace:
+- CORE/src/Database/Driver.php:192
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Driver.php:201
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Driver.php:253
+- CORE/src/Database/Driver.php:397
+- CORE/src/Database/Driver/Mysql.php:175
+- CORE/src/Database/Connection.php:302
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Connection.php:302
+- CORE/src/Database/Query.php:238
+- CORE/src/Database/Query/SelectQuery.php:124
+- CORE/src/ORM/Query/SelectQuery.php:1631
+- CORE/src/ORM/Query/SelectQuery.php:389
+- CORE/src/ORM/Query/SelectQuery.php:404
+- APP/Controller/NotificationsController.php:67
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/notifications
+Referer URL: http://localhost/friends
+Client IP: 138.199.24.218

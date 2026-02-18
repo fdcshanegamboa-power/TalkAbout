@@ -55,6 +55,9 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
             if (this.fetchFriends) {
                 this.fetchFriends();
             }
+            if (this.fetchSuggestions) {
+                this.fetchSuggestions();
+            }
             if (!this.isOwnProfile && this.userId && this.userId !== '0') {
                 console.log('Fetching friendship status for user:', this.userId);
                 this.fetchFriendshipStatus();

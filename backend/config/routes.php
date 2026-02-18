@@ -71,6 +71,7 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/api/friendships/requests', ['controller' => 'Friendships', 'action' => 'getRequests']);
         $builder->connect('/api/friendships/sent', ['controller' => 'Friendships', 'action' => 'getSentRequests']);
         $builder->connect('/api/friendships/friends', ['controller' => 'Friendships', 'action' => 'getFriends']);
+        $builder->connect('/api/friendships/suggestions', ['controller' => 'Friendships', 'action' => 'getSuggestions']);
         $builder->connect('/api/friendships/status/*', ['controller' => 'Friendships', 'action' => 'getStatus']);
         $builder->connect('/api/friendships/blocked', ['controller' => 'Friendships', 'action' => 'getBlockedUsers']);
         
