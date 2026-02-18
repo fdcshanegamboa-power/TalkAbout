@@ -37,6 +37,7 @@ CREATE TABLE posts (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT NOT NULL,
     content_text TEXT NULL,
+    visibility ENUM('public', 'friends') NOT NULL DEFAULT 'public',
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
     deleted_at DATETIME NULL,
@@ -49,6 +50,7 @@ CREATE TABLE posts (
 
 CREATE INDEX idx_posts_user_id ON posts(user_id);
 CREATE INDEX idx_posts_created_at ON posts(created_at);
+CREATE INDEX idx_posts_visibility ON posts(visibility);
 
 -- =====================================================
 -- Table: post_images
@@ -163,6 +165,38 @@ CREATE TABLE notifications (
 CREATE INDEX idx_notifications_user_id ON notifications(user_id);
 CREATE INDEX idx_notifications_created_at ON notifications(created_at);
 CREATE INDEX idx_notifications_is_read ON notifications(user_id, is_read);
+
+-- =====================================================
+-- Table: friendships
+-- =====================================================
+CREATE TABLE friendships (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+
+    requester_id BIGINT NOT NULL,
+    addressee_id BIGINT NOT NULL,
+
+    status ENUM('pending', 'accepted', 'rejected', 'blocked')
+           NOT NULL DEFAULT 'pending',
+
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_friendships_requester
+        FOREIGN KEY (requester_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_friendships_addressee
+        FOREIGN KEY (addressee_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT uq_friendship_pair UNIQUE (requester_id, addressee_id)
+) ENGINE=InnoDB;
+
+CREATE INDEX idx_friendships_requester_id ON friendships(requester_id);
+CREATE INDEX idx_friendships_addressee_id ON friendships(addressee_id);
+CREATE INDEX idx_friendships_status ON friendships(status);
 
 -- =====================================================
 -- Seed default admin user

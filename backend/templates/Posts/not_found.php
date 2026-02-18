@@ -72,50 +72,54 @@ $this->assign('title', 'Post Not Found');
 </div>
 
 <script>
-if (window.Vue) {
-    const { createApp } = Vue;
-    
-    createApp({
-        data() {
-            return {
-                profileUser: null
-            };
-        },
+document.addEventListener('DOMContentLoaded', function() {
+    if (window.Vue) {
+        const { createApp } = Vue;
         
-        mounted() {
-            this.fetchCurrentUserProfile();
-        },
-        
-        methods: {
-            async fetchCurrentUserProfile() {
-                try {
-                    const response = await fetch('/api/profile/current');
-                    if (!response.ok) return;
-                    
-                    const data = await response.json();
-                    if (data.success) {
-                        const user = data.user;
-                        this.profileUser = {
-                            full_name: user.full_name || '',
-                            username: user.username || '',
-                            about: user.about || '',
-                            profile_photo: user.profile_photo_path || '',
-                            initial: (user.full_name || user.username || 'U').charAt(0).toUpperCase()
-                        };
-                    }
-                } catch (error) {
-                    console.error('Error fetching profile:', error);
-                }
+        createApp({
+            data() {
+                return {
+                    profileUser: null
+                };
             },
             
-            goBack() {
-                if (window.history.length > 1) {
-                    window.history.back();
-                } else {
-                    window.location.href = '<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'dashboard']) ?>';
+            mounted() {
+                this.fetchCurrentUserProfile();
+            },
+            
+            methods: {
+                async fetchCurrentUserProfile() {
+                    try {
+                        const response = await fetch('/api/profile/current');
+                        if (!response.ok) return;
+                        
+                        const data = await response.json();
+                        if (data.success) {
+                            const user = data.user;
+                            this.profileUser = {
+                                full_name: user.full_name || '',
+                                username: user.username || '',
+                                about: user.about || '',
+                                profile_photo: user.profile_photo_path || '',
+                                initial: (user.full_name || user.username || 'U').charAt(0).toUpperCase()
+                            };
+                        }
+                    } catch (error) {
+                        console.error('Error fetching profile:', error);
+                    }
+                },
+                
+                goBack() {
+                    if (window.history.length > 1) {
+                        window.history.back();
+                    } else {
+                        window.location.href = '<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'dashboard']) ?>';
+                    }
                 }
             }
-        }
-    }).mount('#not-found-app');
-}
+        }).mount('#not-found-app');
+    } else {
+        console.error('Vue is not available');
+    }
+});
 </script>

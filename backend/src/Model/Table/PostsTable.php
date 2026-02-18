@@ -55,6 +55,11 @@ class PostsTable extends Table
             ->scalar('content_text')
             ->allowEmptyString('content_text');
 
+        $validator
+            ->scalar('visibility')
+            ->inList('visibility', ['public', 'friends'])
+            ->notEmptyString('visibility');
+
         return $validator;
     }
 

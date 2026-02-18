@@ -8,6 +8,8 @@ class PostsController extends AppController
     public function initialize(): void
     {
         parent::initialize();
+        // Allow unauthenticated users to view posts
+        $this->Authentication->addUnauthenticatedActions(['view']);
     }
 
     /**
@@ -146,11 +148,48 @@ class PostsController extends AppController
         $postsTable = $this->getTableLocator()->get('Posts');
         $likesTable = $this->getTableLocator()->get('Likes');
         $commentsTable = $this->getTableLocator()->get('Comments');
+        $friendshipsTable = $this->getTableLocator()->get('Friendships');
+        
+        // Get friend IDs for current user (if authenticated)
+        $friendIds = [];
+        if ($currentUserId) {
+            $friendships = $friendshipsTable->getFriends($currentUserId)->toArray();
+            foreach ($friendships as $friendship) {
+                $friendIds[] = ($friendship->requester_id == $currentUserId) 
+                    ? $friendship->addressee_id 
+                    : $friendship->requester_id;
+            }
+        }
         
         // Get posts with user info and images, ordered by most recent first
+        // Filter: public posts OR friends-only posts from friends OR own posts
         $posts = $postsTable->find()
             ->contain(['Users', 'PostImages'])
             ->where(['Posts.deleted_at IS' => null])
+            ->where(function ($exp) use ($currentUserId, $friendIds) {
+                $conditions = $exp->eq('Posts.visibility', 'public');
+                
+                if ($currentUserId) {
+                    // Show user's own posts regardless of visibility
+                    $conditions = $exp->or([
+                        $conditions,
+                        ['Posts.user_id' => $currentUserId]
+                    ]);
+                    
+                    // Show friends-only posts from friends
+                    if (!empty($friendIds)) {
+                        $conditions = $exp->or([
+                            $conditions,
+                            [
+                                'Posts.visibility' => 'friends',
+                                'Posts.user_id IN' => $friendIds
+                            ]
+                        ]);
+                    }
+                }
+                
+                return $conditions;
+            })
             ->order(['Posts.created_at' => 'DESC'])
             ->limit(50)
             ->all();
@@ -224,6 +263,7 @@ class PostsController extends AppController
                 'likes' => $likeCount,
                 'liked' => $userLiked,
                 'comments' => $commentCount,
+                'visibility' => $post->visibility ?? 'public',
             ];
         }
 
@@ -272,7 +312,8 @@ class PostsController extends AppController
         $usersTable = $this->getTableLocator()->get('Users');
         
         $contentText = $this->request->getData('content_text');
-        $imageFiles = $this->request->getData('images'); 
+        $imageFiles = $this->request->getData('images');
+        $visibility = $this->request->getData('visibility') ?? 'public';
 
         if (empty($contentText) && empty($imageFiles)) {
             return $this->response->withStringBody(json_encode([
@@ -281,9 +322,15 @@ class PostsController extends AppController
             ]));
         }
 
+        // Validate visibility
+        if (!in_array($visibility, ['public', 'friends'])) {
+            $visibility = 'public';
+        }
+
         $post = $postsTable->newEmptyEntity();
         $post->user_id = $userId;
         $post->content_text = $contentText;
+        $post->visibility = $visibility;
 
         if (!$postsTable->save($post)) {
             return $this->response->withStringBody(json_encode([
@@ -353,6 +400,7 @@ class PostsController extends AppController
                 'time' => 'Just now',
                 'likes' => 0,
                 'liked' => false,
+                'visibility' => $post->visibility ?? 'public',
             ]
         ]));
     }
@@ -393,6 +441,7 @@ class PostsController extends AppController
 
         $postId = $this->request->getData('post_id');
         $contentText = $this->request->getData('content_text');
+        $visibility = $this->request->getData('visibility');
         $imagesToDelete = $this->request->getData('images_to_delete');
         $newImages = $this->request->getData('new_images');
 
@@ -419,6 +468,11 @@ class PostsController extends AppController
 
             // Update text content
             $post->content_text = $contentText;
+            
+            // Update visibility if provided
+            if ($visibility !== null && in_array($visibility, ['public', 'friends'])) {
+                $post->visibility = $visibility;
+            }
             
             if (!$postsTable->save($post)) {
                 return $this->response->withStringBody(json_encode([

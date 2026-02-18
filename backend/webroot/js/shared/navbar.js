@@ -98,6 +98,12 @@ document.addEventListener('DOMContentLoaded', function() {
             this.notificationCount = Math.max(0, this.notificationCount - 1);
         }
 
+        // Friend request notification - redirect to friends page
+        if (notification.type === 'friend_request') {
+            window.location.href = '/friends';
+            return;
+        }
+
         if (notification.target_type === 'post' && notification.target_id) {
             window.location.href = `/posts/view/${notification.target_id}`;
             return;

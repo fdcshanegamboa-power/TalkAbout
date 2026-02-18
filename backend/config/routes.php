@@ -26,6 +26,9 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/home', ['controller' => 'Dashboard', 'action' => 'dashboard']);
         $builder->connect('/settings', ['controller' => 'Dashboard', 'action' => 'settings']);
         
+        // Friends page
+        $builder->connect('/friends', ['controller' => 'Friendships', 'action' => 'friends']);
+        
         // API routes for posts (must come before profile routes to avoid conflict)
         $builder->connect('/api/posts/list', ['controller' => 'Posts', 'action' => 'getPosts']);
         $builder->connect('/api/posts/user', ['controller' => 'Profile', 'action' => 'getUserPosts']);
@@ -56,6 +59,20 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/api/notifications/mark-as-read/*', ['controller' => 'Notifications', 'action' => 'markAsRead']);
         $builder->connect('/api/notifications/mark-all-as-read', ['controller' => 'Notifications', 'action' => 'markAllAsRead']);
         $builder->connect('/api/notifications/delete/:id', ['controller' => 'Notifications', 'action' => 'delete'], ['pass' => ['id']]);
+        
+        // API routes for friendships
+        $builder->connect('/api/friendships/send', ['controller' => 'Friendships', 'action' => 'sendRequest']);
+        $builder->connect('/api/friendships/accept', ['controller' => 'Friendships', 'action' => 'acceptRequest']);
+        $builder->connect('/api/friendships/reject', ['controller' => 'Friendships', 'action' => 'rejectRequest']);
+        $builder->connect('/api/friendships/cancel', ['controller' => 'Friendships', 'action' => 'cancelRequest']);
+        $builder->connect('/api/friendships/unfriend', ['controller' => 'Friendships', 'action' => 'unfriend']);
+        $builder->connect('/api/friendships/block', ['controller' => 'Friendships', 'action' => 'blockUser']);
+        $builder->connect('/api/friendships/unblock', ['controller' => 'Friendships', 'action' => 'unblockUser']);
+        $builder->connect('/api/friendships/requests', ['controller' => 'Friendships', 'action' => 'getRequests']);
+        $builder->connect('/api/friendships/sent', ['controller' => 'Friendships', 'action' => 'getSentRequests']);
+        $builder->connect('/api/friendships/friends', ['controller' => 'Friendships', 'action' => 'getFriends']);
+        $builder->connect('/api/friendships/status/*', ['controller' => 'Friendships', 'action' => 'getStatus']);
+        $builder->connect('/api/friendships/blocked', ['controller' => 'Friendships', 'action' => 'getBlockedUsers']);
         
         // Profile routes (specific routes first, then parameterized)
         $builder->connect('/profile', ['controller' => 'Profile', 'action' => 'profile']);

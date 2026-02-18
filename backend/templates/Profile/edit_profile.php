@@ -6,6 +6,7 @@
 $this->assign('title', 'Edit Profile');
 $fullName = $user->full_name ?? '';
 $username = $user->username ?? '';
+$this->Html->script('components/right_sidebar', ['block' => 'script']);
 $this->Html->script('profile/edit_profile', ['block' => 'script']);
 
 ?>

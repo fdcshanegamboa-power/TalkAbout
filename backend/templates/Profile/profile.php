@@ -4,7 +4,9 @@
  * @var \Authentication\Identity|null $user
  */
 $this->assign('title', 'Profile');
+$this->Html->script('components/post_composer', ['block' => 'script']);
 $this->Html->script('components/post_card', ['block' => 'script']);
+$this->Html->script('components/right_sidebar', ['block' => 'script']);
 $this->Html->script('profile/profile', ['block' => 'script']);
 
 
@@ -106,13 +108,13 @@ if (!empty($user)) {
                 </div>
             </div>
 
-            <div class="bg-white/90 backdrop-blur rounded-xl lg:rounded-2xl shadow-xl border border-blue-100 p-4 lg:p-6"
+            <div class="bg-white/90 backdrop-blur rounded-xl lg:rounded-2xl shadow-xl border border-blue-100 p-4 lg:p-6 overflow-visible relative"
                  @dragover.prevent="handleComposerDragOver"
                  @dragleave.prevent="handleComposerDragLeave"
                  @drop.prevent="handleComposerDrop"
-                 :class="composerDragActive ? 'ring-2 ring-blue-500 ring-inset' : ''">
-                <div class="flex items-start gap-3 lg:gap-4">
-                    <div class="flex-1">
+                 :class="[composerDragActive ? 'ring-2 ring-blue-500 ring-inset' : '', showVisibilityMenu ? 'z-[100]' : 'z-0']">
+                <div class="flex items-start gap-3 lg:gap-4 overflow-visible">
+                    <div class="flex-1 overflow-visible">
                         <textarea v-model="composer.text" rows="3" placeholder="Share something with your followers..."
                                   class="w-full resize-none border-0 focus:ring-0 text-sm lg:text-base text-blue-800 placeholder-blue-400 bg-transparent"></textarea>
 
@@ -144,8 +146,8 @@ if (!empty($user)) {
                             </p>
                         </div>
 
-                        <div class="mt-3 lg:mt-4 flex items-center justify-between gap-2">
-                            <div class="flex items-center gap-2">
+                        <div class="mt-3 lg:mt-4 flex items-center justify-between gap-2 overflow-visible">
+                            <div class="flex items-center gap-2 overflow-visible">
                                 <label class="flex items-center gap-1 lg:gap-2 cursor-pointer text-blue-600 hover:text-blue-700">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V7.414A2 2 0 0016.586 6L13 2.414A2 2 0 0011.586 2H4z"/></svg>
                                     <span class="text-xs lg:text-sm hidden sm:inline">Add images</span>
@@ -154,6 +156,48 @@ if (!empty($user)) {
                                 <span v-if="composer.imageFiles.length > 0" class="text-xs text-blue-500">
                                     {{ composer.imageFiles.length }} <span class="hidden sm:inline">image{{ composer.imageFiles.length > 1 ? 's' : '' }}</span>
                                 </span>
+                                
+                                <!-- Visibility Selector -->
+                                <div class="relative ml-2 overflow-visible">
+                                    <button @click="toggleVisibilityMenu" type="button"
+                                        class="flex items-center gap-1 text-xs lg:text-sm text-blue-600 hover:text-blue-700 px-2 py-1 rounded-lg hover:bg-blue-50 transition">
+                                        <svg v-if="composer.visibility === 'public'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+                                            <path d="M10 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
+                                            <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 010-1.186A10.004 10.004 0 0110 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0110 17c-4.257 0-7.893-2.66-9.336-6.41zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                                        </svg>
+                                        <svg v-else xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+                                            <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
+                                        </svg>
+                                        <span class="hidden sm:inline">{{ composer.visibility === 'public' ? 'Public' : 'Friends' }}</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3 h-3">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                    
+                                    <div v-if="showVisibilityMenu" @click.stop class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-blue-100 py-1 z-[9999]">
+                                        <button @click="setVisibility('public')" class="w-full text-left px-4 py-2 text-sm hover:bg-blue-50 flex items-center gap-2"
+                                            :class="composer.visibility === 'public' ? 'text-blue-700 font-medium' : 'text-blue-600'">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+                                                <path d="M10 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
+                                                <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 010-1.186A10.004 10.004 0 0110 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0110 17c-4.257 0-7.893-2.66-9.336-6.41zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                                            </svg>
+                                            <div>
+                                                <div>Public</div>
+                                                <div class="text-xs text-blue-400">Anyone can see this post</div>
+                                            </div>
+                                        </button>
+                                        <button @click="setVisibility('friends')" class="w-full text-left px-4 py-2 text-sm hover:bg-blue-50 flex items-center gap-2"
+                                            :class="composer.visibility === 'friends' ? 'text-blue-700 font-medium' : 'text-blue-600'">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+                                                <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
+                                            </svg>
+                                            <div>
+                                                <div>Friends</div>
+                                                <div class="text-xs text-blue-400">Only friends can see this</div>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
 
                             <div>

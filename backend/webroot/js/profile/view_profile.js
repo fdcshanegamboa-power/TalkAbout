@@ -21,7 +21,11 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
     const { createApp } = Vue;
     
     createApp({
-        mixins: [PostCardMixin, PostComposerMixin],
+        mixins: [
+            PostCardMixin, 
+            PostComposerMixin,
+            ...(window.RightSidebarMixin ? [RightSidebarMixin] : [])
+        ],
         data() {
             return {
                 profileUsername: el.dataset.profileUsername,
@@ -30,16 +34,36 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                 isOwnProfile: el.dataset.isOwnProfile === 'true',
                 profileUser: null, // Will hold profile user data
                 posts: [],
-                isLoading: true
+                isLoading: true,
+
+                // Friendship data
+                friendshipStatus: null, // null, 'friends', 'pending_sent', 'pending_received', 'none'
+                currentFriendshipId: null,
+                loadingFriendshipStatus: false,
+                processingFriendRequest: false
             };
         },
         mounted() {
             console.log('Profile app mounted');
             console.log('Profile username:', this.profileUsername);
+            console.log('User ID (profile being viewed):', this.userId);
             console.log('Current user ID:', this.currentUserId);
             console.log('Is own profile:', this.isOwnProfile);
+            
             this.fetchProfileUser();
             this.fetchUserPosts();
+            if (this.fetchFriends) {
+                this.fetchFriends();
+            }
+            if (!this.isOwnProfile && this.userId && this.userId !== '0') {
+                console.log('Fetching friendship status for user:', this.userId);
+                this.fetchFriendshipStatus();
+            } else {
+                console.log('Skipping friendship status fetch:', {
+                    isOwnProfile: this.isOwnProfile,
+                    userId: this.userId
+                });
+            }
             // Close menu when clicking outside
             document.addEventListener('click', this.closeAllMenus);
         },
@@ -140,6 +164,252 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                     console.error('Error fetching posts:', error);
                 } finally {
                     this.isLoading = false;
+                }
+            },
+
+            async fetchFriendshipStatus() {
+                if (this.isOwnProfile || !this.userId) return;
+                
+                this.loadingFriendshipStatus = true;
+                try {
+                    const response = await fetch(`/api/friendships/status/${this.userId}`);
+                    const data = await response.json();
+
+                    console.log('Friendship status response:', data);
+
+                    if (data.success) {
+                        // Determine the status based on direction
+                        if (data.status === 'pending') {
+                            // If current user sent the request
+                            this.friendshipStatus = data.is_requester ? 'pending_sent' : 'pending_received';
+                        } else if (data.status === 'accepted') {
+                            this.friendshipStatus = 'friends';
+                        } else if (data.status === 'none') {
+                            this.friendshipStatus = 'none';
+                        } else {
+                            this.friendshipStatus = data.status || 'none';
+                        }
+                        this.currentFriendshipId = data.friendship_id;
+                        console.log('Friendship status set to:', this.friendshipStatus, 'ID:', this.currentFriendshipId);
+                    } else {
+                        console.error('Failed to fetch friendship status:', data.message);
+                        this.friendshipStatus = 'none';
+                        this.currentFriendshipId = null;
+                    }
+                } catch (error) {
+                    console.error('Error fetching friendship status:', error);
+                    this.friendshipStatus = 'none';
+                    this.currentFriendshipId = null;
+                } finally {
+                    this.loadingFriendshipStatus = false;
+                }
+            },
+
+            async sendFriendRequest() {
+                if (this.isOwnProfile || !this.userId || this.processingFriendRequest) return;
+
+                this.processingFriendRequest = true;
+                try {
+                    const response = await fetch('/api/friendships/send', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            addressee_id: parseInt(this.userId)
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    console.log('Send friend request response:', data);
+
+                    if (data.success) {
+                        this.friendshipStatus = 'pending_sent';
+                        this.currentFriendshipId = data.friendship_id;
+                        console.log('Friend request sent, ID:', data.friendship_id);
+                        alert('Friend request sent!');
+                    } else {
+                        console.error('Failed to send friend request:', data);
+                        alert('Failed to send friend request: ' + (data.message || 'Unknown error'));
+                    }
+                } catch (error) {
+                    console.error('Error sending friend request:', error);
+                    alert('Failed to send friend request. Please try again.');
+                } finally {
+                    this.processingFriendRequest = false;
+                }
+            },
+
+            async cancelFriendRequest() {
+                if (this.isOwnProfile || !this.userId || this.processingFriendRequest) return;
+
+                if (!this.currentFriendshipId) {
+                    console.error('No friendship ID available for cancellation');
+                    // Re-fetch the friendship status to get the ID
+                    await this.fetchFriendshipStatus();
+                    if (!this.currentFriendshipId) {
+                        alert('Could not find the friend request to cancel. Please refresh the page.');
+                        return;
+                    }
+                }
+
+                this.processingFriendRequest = true;
+                try {
+                    const response = await fetch('/api/friendships/cancel', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            friendship_id: this.currentFriendshipId
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        this.friendshipStatus = 'none';
+                        this.currentFriendshipId = null;
+                    } else {
+                        alert('Failed to cancel friend request: ' + (data.message || 'Unknown error'));
+                    }
+                } catch (error) {
+                    console.error('Error cancelling friend request:', error);
+                    alert('Failed to cancel friend request. Please try again.');
+                } finally {
+                    this.processingFriendRequest = false;
+                }
+            },
+
+            async acceptFriendRequest() {
+                if (this.isOwnProfile || !this.userId || this.processingFriendRequest) return;
+
+                if (!this.currentFriendshipId) {
+                    console.error('No friendship ID available for acceptance');
+                    // Re-fetch the friendship status to get the ID
+                    await this.fetchFriendshipStatus();
+                    if (!this.currentFriendshipId) {
+                        alert('Could not find the friend request to accept. Please refresh the page.');
+                        return;
+                    }
+                }
+
+                this.processingFriendRequest = true;
+                try {
+                    const response = await fetch('/api/friendships/accept', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            friendship_id: this.currentFriendshipId
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    console.log('Accept friend request response:', data);
+
+                    if (data.success) {
+                        this.friendshipStatus = 'friends';
+                        this.currentFriendshipId = null;
+                        console.log('Friend request accepted, refreshing friends list');
+                        alert('Friend request accepted!');
+                        // Refresh friends list if available
+                        if (this.fetchFriends) {
+                            console.log('Calling fetchFriends()');
+                            await this.fetchFriends();
+                        } else {
+                            console.warn('fetchFriends method not available');
+                        }
+                    } else {
+                        console.error('Failed to accept friend request:', data);
+                        alert('Failed to accept friend request: ' + (data.message || 'Unknown error'));
+                    }
+                } catch (error) {
+                    console.error('Error accepting friend request:', error);
+                    alert('Failed to accept friend request. Please try again.');
+                } finally {
+                    this.processingFriendRequest = false;
+                }
+            },
+
+            async rejectFriendRequest() {
+                if (this.isOwnProfile || !this.userId || this.processingFriendRequest) return;
+
+                if (!this.currentFriendshipId) {
+                    console.error('No friendship ID available for rejection');
+                    // Re-fetch the friendship status to get the ID
+                    await this.fetchFriendshipStatus();
+                    if (!this.currentFriendshipId) {
+                        alert('Could not find the friend request to reject. Please refresh the page.');
+                        return;
+                    }
+                }
+
+                this.processingFriendRequest = true;
+                try {
+                    const response = await fetch('/api/friendships/reject', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            friendship_id: this.currentFriendshipId
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        this.friendshipStatus = 'none';
+                        this.currentFriendshipId = null;
+                    } else {
+                        alert('Failed to reject friend request: ' + (data.message || 'Unknown error'));
+                    }
+                } catch (error) {
+                    console.error('Error rejecting friend request:', error);
+                    alert('Failed to reject friend request. Please try again.');
+                } finally {
+                    this.processingFriendRequest = false;
+                }
+            },
+
+            async unfriend() {
+                if (this.isOwnProfile || !this.userId || this.processingFriendRequest) return;
+
+                if (!confirm('Are you sure you want to unfriend this user?')) return;
+
+                this.processingFriendRequest = true;
+                try {
+                    const response = await fetch('/api/friendships/unfriend', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            friend_id: parseInt(this.userId)
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        this.friendshipStatus = 'none';
+                        this.currentFriendshipId = null;
+                        // Refresh friends list if available
+                        if (this.fetchFriends) {
+                            this.fetchFriends();
+                        }
+                    } else {
+                        alert('Failed to unfriend: ' + (data.message || 'Unknown error'));
+                    }
+                } catch (error) {
+                    console.error('Error unfriending:', error);
+                    alert('Failed to unfriend. Please try again.');
+                } finally {
+                    this.processingFriendRequest = false;
                 }
             },
             

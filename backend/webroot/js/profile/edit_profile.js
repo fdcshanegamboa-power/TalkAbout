@@ -1,6 +1,9 @@
 const { createApp } = Vue;
 
 createApp({
+    mixins: [
+        ...(window.RightSidebarMixin ? [window.RightSidebarMixin] : [])
+    ],
     data() {
         return {
             profileUser: null // For left sidebar display
@@ -8,6 +11,9 @@ createApp({
     },
     mounted() {
         this.fetchCurrentUserProfile();
+        if (this.fetchFriends) {
+            this.fetchFriends();
+        }
     },
     methods: {
         async fetchCurrentUserProfile() {

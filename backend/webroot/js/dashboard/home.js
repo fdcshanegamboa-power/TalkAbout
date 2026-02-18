@@ -10,14 +10,20 @@ console.log('Dashboard page loaded:', {
     el: !!el,
     Vue: !!window.Vue,
     PostCardMixin: !!window.PostCardMixin,
-    PostComposerMixin: !!window.PostComposerMixin
+    PostComposerMixin: !!window.PostComposerMixin,
+    RightSidebarMixin: !!window.RightSidebarMixin
 });
 
 if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
     const { createApp } = Vue;
 
+    const mixins = [PostCardMixin, PostComposerMixin];
+    if (window.RightSidebarMixin) {
+        mixins.push(RightSidebarMixin);
+    }
+
     createApp({
-        mixins: [PostCardMixin, PostComposerMixin],
+        mixins: mixins,
         data() {
             return {
                 profileUser: null, // For left sidebar display
@@ -31,6 +37,9 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
         mounted() {
             this.fetchCurrentUserProfile();
             this.fetchPosts();
+            if (this.fetchFriends) {
+                this.fetchFriends();
+            }
         },
 
         methods: {

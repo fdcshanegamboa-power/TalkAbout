@@ -8,11 +8,22 @@ window.PostComposerMixin = {
             composer: {
                 text: '',
                 imageFiles: [],
-                imagePreviews: []
+                imagePreviews: [],
+                visibility: 'public'
             },
             isPosting: false,
-            composerDragActive: false
+            composerDragActive: false,
+            showVisibilityMenu: false
         };
+    },
+    
+    mounted() {
+        // Close visibility menu when clicking outside
+        document.addEventListener('click', this.handleClickOutside);
+    },
+    
+    beforeUnmount() {
+        document.removeEventListener('click', this.handleClickOutside);
     },
 
     computed: {
@@ -114,6 +125,29 @@ window.PostComposerMixin = {
             this.composer.imagePreviews.splice(index, 1);
         },
         
+        toggleVisibilityMenu(event) {
+            event.stopPropagation();
+            this.showVisibilityMenu = !this.showVisibilityMenu;
+        },
+        
+        setVisibility(visibility) {
+            this.composer.visibility = visibility;
+            this.showVisibilityMenu = false;
+        },
+        
+        handleClickOutside(event) {
+            // Close visibility menu when clicking outside
+            if (this.showVisibilityMenu) {
+                const target = event.target;
+                const visibilityButton = target.closest('button');
+                const visibilityMenu = target.closest('.absolute.left-0.mt-2.w-48');
+                
+                if (!visibilityButton && !visibilityMenu) {
+                    this.showVisibilityMenu = false;
+                }
+            }
+        },
+        
         async createPost() {
             if (!this.canPost || this.isPosting) return;
             
@@ -122,6 +156,7 @@ window.PostComposerMixin = {
             try {
                 const formData = new FormData();
                 formData.append('content_text', this.composer.text || '');
+                formData.append('visibility', this.composer.visibility || 'public');
                 
                 this.composer.imageFiles.forEach((file, index) => {
                     formData.append('images[]', file);
@@ -163,6 +198,7 @@ window.PostComposerMixin = {
                     this.composer.text = '';
                     this.composer.imageFiles = [];
                     this.composer.imagePreviews = [];
+                    this.composer.visibility = 'public';
                     
                     if (this.$refs.fileInput) {
                         this.$refs.fileInput.value = '';

@@ -10,6 +10,7 @@ class Post extends Entity
     protected array $_accessible = [
         'user_id' => true,
         'content_text' => true,
+        'visibility' => true,
         'created_at' => true,
         'updated_at' => true,
         'deleted_at' => true,

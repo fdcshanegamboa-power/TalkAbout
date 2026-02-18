@@ -225,6 +225,7 @@ const PostCardMixin = {
 
         startEdit(post) {
             post.editText = post.text;
+            post.editVisibility = post.visibility || 'public';
             post.isEditing = true;
             post.showMenu = false;
             
@@ -342,6 +343,7 @@ const PostCardMixin = {
                 const formData = new FormData();
                 formData.append('post_id', post.id);
                 formData.append('content_text', post.editText || '');
+                formData.append('visibility', post.editVisibility || 'public');
                 
                 // Add images to delete
                 if (post.imagesToDelete && post.imagesToDelete.length > 0) {
@@ -365,6 +367,7 @@ const PostCardMixin = {
                 if (data.success) {
                     // Update post in UI with proper Vue reactivity
                     post.text = post.editText;
+                    post.visibility = post.editVisibility;
                     // Backend returns images in data.post.images
                     post.images = data.post?.images || [];
                     post.isEditing = false;

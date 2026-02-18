@@ -29,7 +29,21 @@ $profilePhoto = $profilePhoto ?? '';
             <div class="flex items-start justify-between gap-2">
                 <div class="flex-1 min-w-0">
                     <div @click="viewProfile(post.username)" class="text-sm lg:text-base text-blue-800 font-medium truncate cursor-pointer hover:text-blue-600 hover:underline transition">{{ post.author }}</div>
-                    <div class="text-xs text-blue-400">{{ post.time }}</div>
+                    <div class="flex items-center gap-1.5 text-xs text-blue-400">
+                        <!-- Visibility Icon -->
+                        <span v-if="post.visibility === 'friends'" :title="'Friends only'" class="inline-flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3.5 h-3.5 text-blue-500">
+                                <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
+                            </svg>
+                        </span>
+                        <span v-else :title="'Public'" class="inline-flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3.5 h-3.5 text-blue-400">
+                                <path d="M10 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
+                                <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 010-1.186A10.004 10.004 0 0110 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0110 17c-4.257 0-7.893-2.66-9.336-6.41zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        <span>{{ post.time }}</span>
+                    </div>
                 </div>
 
 
@@ -61,6 +75,26 @@ $profilePhoto = $profilePhoto ?? '';
             <div v-if="post.isEditing" class="mt-2 lg:mt-3">
                 <textarea id="post-composer" v-model="post.editText" rows="3" 
                           class="w-full resize-none border border-blue-300 rounded-lg p-2 lg:p-3 text-sm lg:text-base focus:ring-2 focus:ring-blue-500 focus:border-transparent text-blue-800"></textarea>
+                
+                <!-- Visibility Selector for Edit -->
+                <div class="mt-2 flex items-center gap-2">
+                    <label class="text-xs font-semibold text-blue-700">Visibility:</label>
+                    <select v-model="post.editVisibility" class="text-xs border border-blue-300 rounded-lg px-2 py-1 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-blue-700">
+                        <option value="public">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3 h-3 inline">
+                                <path d="M10 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
+                                <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 010-1.186A10.004 10.004 0 0110 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0110 17c-4.257 0-7.893-2.66-9.336-6.41zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                            </svg>
+                            Public
+                        </option>
+                        <option value="friends">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3 h-3 inline">
+                                <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
+                            </svg>
+                            Friends Only
+                        </option>
+                    </select>
+                </div>
                 
                 <div v-if="post.editImages && post.editImages.length > 0" class="mt-2">
                     <label class="text-xs font-semibold text-blue-700 mb-1 block">Current Images:</label>

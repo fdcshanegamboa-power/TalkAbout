@@ -335,7 +335,7 @@ class ProfileController extends AppController
 
         $isOwnProfile = ($currentUserId == $userId);
         
-        $this->set(compact('user', 'currentUserId', 'isOwnProfile'));
+        $this->set(compact('user', 'userId', 'currentUserId', 'isOwnProfile'));
     }
 
     /**

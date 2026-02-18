@@ -8,6 +8,10 @@ $this->assign('title', 'Settings');
 <?= $this->Html->script('dashboard/settings', ['block' => 'script']) ?>
 
 <style>
+[v-cloak] {
+    display: none;
+}
+
 /* Hide scrollbar but keep scrolling */
 .no-scrollbar {
     -ms-overflow-style: none; /* IE and Edge */
@@ -165,7 +169,6 @@ $this->assign('title', 'Settings');
             </div>
         </main>
 
-            <?= $this->element('right_sidebar') ?>
         </div>
     </div>
 

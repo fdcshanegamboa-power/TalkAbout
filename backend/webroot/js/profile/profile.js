@@ -1,11 +1,15 @@
 const el = document.getElementById('profile-app');
 
-if (el && window.Vue && window.PostCardMixin) {
+if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
     const { createApp } = Vue;
     
     createApp({
         // Prefer the global window.PostCardMixin (safe when scripts load in different scopes)
-        mixins: [window.PostCardMixin || PostCardMixin],
+        mixins: [
+            window.PostCardMixin || PostCardMixin, 
+            window.PostComposerMixin || PostComposerMixin,
+            ...(window.RightSidebarMixin ? [window.RightSidebarMixin] : [])
+        ],
         data() {
             return {
                 currentUserId: el.dataset.currentUserId,
@@ -14,21 +18,17 @@ if (el && window.Vue && window.PostCardMixin) {
                 notifications: [],
                 notificationCount: 0,
                 showNotifications: false,
-                composer: {
-                    text: '',
-                    imageFiles: [],
-                    imagePreviews: []
-                },
-                composerDragActive: false,
                 posts: [],
-                isLoading: true,
-                isPosting: false
+                isLoading: true
             };
         },
         mounted() {
             console.info('Profile app mounting');
             this.fetchCurrentUserProfile();
             this.fetchUserPosts();
+            if (this.fetchFriends) {
+                this.fetchFriends();
+            }
             // Close menu when clicking outside
             document.addEventListener('click', this.closeAllMenus);
         },
@@ -135,154 +135,6 @@ if (el && window.Vue && window.PostCardMixin) {
                 }
             },
             
-            onImageChange(e) {
-                const files = Array.from(e.target.files || []);
-                this.processImageFiles(files);
-                e.target.value = '';
-            },
-            
-            handleComposerDragOver(e) {
-                this.composerDragActive = true;
-            },
-            
-            handleComposerDragLeave(e) {
-                this.composerDragActive = false;
-            },
-            
-            handleComposerDrop(e) {
-                this.composerDragActive = false;
-                const files = Array.from(e.dataTransfer.files || []);
-                this.processImageFiles(files);
-            },
-            
-            processImageFiles(files) {
-                if (files.length === 0) return;
-                
-                const maxImages = 10;
-                const maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
-                const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-                const remainingSlots = maxImages - this.composer.imageFiles.length;
-                
-                if (remainingSlots === 0) {
-                    alert('Maximum of 10 images reached. Remove some images to add more.');
-                    return;
-                }
-                
-                const filesToAdd = files.slice(0, remainingSlots);
-                const skippedCount = files.length - filesToAdd.length;
-                
-                let hasErrors = false;
-                const errors = [];
-                
-                filesToAdd.forEach(file => {
-                    if (!allowedTypes.includes(file.type)) {
-                        const typeName = file.type || 'unknown type';
-                        errors.push(`"${file.name}" (${typeName}) is not supported`);
-                        hasErrors = true;
-                        return;
-                    }
-                    
-                    if (file.size > maxFileSize) {
-                        const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
-                        errors.push(`"${file.name}" (${fileSizeMB}MB) exceeds the 5MB limit`);
-                        hasErrors = true;
-                        return;
-                    }
-                    
-                    if (file.size === 0) {
-                        errors.push(`"${file.name}" is empty`);
-                        hasErrors = true;
-                        return;
-                    }
-                    
-                    this.composer.imageFiles.push(file);
-                    
-                    const reader = new FileReader();
-                    reader.onload = (ev) => {
-                        this.composer.imagePreviews.push(ev.target.result);
-                    };
-                    reader.readAsDataURL(file);
-                });
-                
-                let message = '';
-                if (hasErrors) {
-                    message = 'Some files could not be added:\n\n' + errors.join('\n') + '\n\nSupported formats: JPEG, PNG, GIF, WebP\nMaximum size: 5MB per image';
-                }
-                
-                if (skippedCount > 0) {
-                    if (message) message += '\n\n';
-                    message += `${skippedCount} file${skippedCount > 1 ? 's were' : ' was'} skipped (maximum 10 images).`;
-                }
-                
-                if (message) {
-                    alert(message);
-                }
-            },
-            
-            removeImage(index) {
-                this.composer.imageFiles.splice(index, 1);
-                this.composer.imagePreviews.splice(index, 1);
-            },
-            
-            async createPost() {
-                if (!this.canPost || this.isPosting) return;
-                
-                this.isPosting = true;
-                
-                try {
-                    const formData = new FormData();
-                    formData.append('content_text', this.composer.text || '');
-                    
-                    // Append all images
-                    this.composer.imageFiles.forEach((file, index) => {
-                        formData.append('images[]', file);
-                    });
-                    
-                    const response = await fetch('/api/posts/create', {
-                        method: 'POST',
-                        body: formData
-                    });
-                    
-                    const data = await response.json();
-                    
-                    if (data.success) {
-                        // Add new post to the top of the feed with edit properties
-                        const newPost = {
-                            ...data.post,
-                            showMenu: false,
-                            isEditing: false,
-                            editText: data.post.text,
-                            isSaving: false,
-                            showComments: false,
-                            commentsList: [],
-                            newCommentText: '',
-                            commentImageFile: null,
-                            commentImagePreview: null,
-                            loadingComments: false,
-                            isSubmittingComment: false
-                        };
-                        this.posts.unshift(newPost);
-                        
-                        // Clear composer
-                        this.composer.text = '';
-                        this.composer.imageFiles = [];
-                        this.composer.imagePreviews = [];
-                        
-                        // Reset file input
-                        if (this.$refs.fileInput) {
-                            this.$refs.fileInput.value = '';
-                        }
-                    } else {
-                        alert('Failed to create post: ' + (data.message || 'Unknown error'));
-                    }
-                } catch (error) {
-                    console.error('Error creating post:', error);
-                    alert('Failed to create post. Please try again.');
-                } finally {
-                    this.isPosting = false;
-                }
-            }
-            ,
             isLongText(text) {
                 if (!text) return false;
                 // heuristics: long by character count or multiple paragraphs

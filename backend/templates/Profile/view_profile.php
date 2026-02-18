@@ -9,6 +9,7 @@ $this->assign('title', 'Profile');
 ?>
 <?= $this->Html->script('components/post_composer', ['block' => 'script']) ?>
 <?= $this->Html->script('components/post_card', ['block' => 'script']) ?>
+<?= $this->Html->script('components/right_sidebar', ['block' => 'script']) ?>
 <?= $this->Html->script('profile/view_profile', ['block' => 'script']) ?>
 <?php
 $username = '';
@@ -89,6 +90,67 @@ if (!empty($user)) {
                            class="px-4 lg:px-6 py-2 rounded-full border border-blue-500 text-blue-600 font-semibold text-xs lg:text-sm hover:bg-blue-50 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
                             Edit profile
                         </a>
+                    </div>
+
+                    <!-- Friend request buttons -->
+                    <div v-else class="mt-5">
+                        <!-- Loading friendship status -->
+                        <div v-if="loadingFriendshipStatus" class="px-4 py-2">
+                            <div class="inline-block animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
+                        </div>
+
+                        <!-- Already friends -->
+                        <button v-else-if="friendshipStatus === 'friends'"
+                                @click="unfriend"
+                                :disabled="processingFriendRequest"
+                                class="px-4 lg:px-6 py-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-xs lg:text-sm hover:from-blue-700 hover:to-indigo-700 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>Friends</span>
+                        </button>
+
+                        <!-- Friend request sent (pending) -->
+                        <button v-else-if="friendshipStatus === 'pending_sent'"
+                                @click="cancelFriendRequest"
+                                :disabled="processingFriendRequest"
+                                class="px-4 lg:px-6 py-2 rounded-full border border-blue-500 text-blue-600 font-semibold text-xs lg:text-sm hover:bg-blue-50 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Request Sent</span>
+                        </button>
+
+                        <!-- Friend request received -->
+                        <div v-else-if="friendshipStatus === 'pending_received'" class="flex gap-2">
+                            <button @click="acceptFriendRequest"
+                                    :disabled="processingFriendRequest"
+                                    class="px-4 lg:px-6 py-2 rounded-full bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold text-xs lg:text-sm hover:from-green-700 hover:to-emerald-700 transition focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>Accept</span>
+                            </button>
+                            <button @click="rejectFriendRequest"
+                                    :disabled="processingFriendRequest"
+                                    class="px-4 lg:px-6 py-2 rounded-full border border-red-500 text-red-600 font-semibold text-xs lg:text-sm hover:bg-red-50 transition focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                                <span>Decline</span>
+                            </button>
+                        </div>
+
+                        <!-- Not friends yet -->
+                        <button v-else
+                                @click="sendFriendRequest"
+                                :disabled="processingFriendRequest"
+                                class="px-4 lg:px-6 py-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-xs lg:text-sm hover:from-blue-700 hover:to-indigo-700 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                            </svg>
+                            <span>Add Friend</span>
+                        </button>
                     </div>
         
                 </div>

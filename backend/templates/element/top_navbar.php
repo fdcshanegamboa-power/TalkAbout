@@ -114,6 +114,13 @@
                                                       d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                             </svg>
                                         </div>
+                                        <div v-else-if="notification.type === 'friend_request'" 
+                                             class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                                      d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                                            </svg>
+                                        </div>
                                         <div v-else 
                                              class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
                                             <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -132,6 +139,7 @@
                                                 liked your comment on
                                                 <span class="font-semibold">{{ notification.post_owner?.full_name || notification.post_owner?.username || 'a post' }}</span>'s post
                                             </span>
+                                            <span v-else-if="notification.type === 'friend_request'"> sent you a friend request</span>
                                             <span v-else> interacted with your content</span>
                                         </p>
                                         <p class="text-xs text-blue-500 mt-1">{{ formatNotificationTime(notification.created_at) }}</p>
@@ -141,16 +149,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Messages (optional) -->
-                <button class="p-2 rounded-full hover:bg-blue-50 transition-colors group">
-                    <svg xmlns="http://www.w3.org/2000/svg" 
-                         class="h-6 w-6 text-blue-700 group-hover:text-blue-900" 
-                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                              d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                    </svg>
-                </button>
 
                 <!-- User Profile Dropdown -->
                 <div v-if="profileUser" class="relative" id="user-menu-container" data-user-menu>

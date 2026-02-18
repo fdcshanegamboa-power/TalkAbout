@@ -28,6 +28,7 @@ class NotificationListener implements EventListenerInterface
             'Model.Comment.liked' => 'onCommentLiked',
             'Model.Comment.unliked' => 'onCommentUnliked',
             'Model.Comment.deleted' => 'onCommentDeleted',
+            'Model.Friendship.requested' => 'onFriendshipRequested',
         ];
     }
 
@@ -185,6 +186,32 @@ class NotificationListener implements EventListenerInterface
             ]);
         } catch (\Exception $e) {
             error_log('Failed to delete post_commented notification: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Create notification when a friend request is sent
+     */
+    public function onFriendshipRequested(EventInterface $event): void
+    {
+        $requesterId = $event->getData('requester_id');
+        $addresseeId = $event->getData('addressee_id');
+        $friendshipId = $event->getData('friendship_id');
+
+        $notificationsTable = $this->fetchTable('Notifications');
+
+        try {
+            // Create notification for the addressee (person receiving the request)
+            $notificationsTable->createNotification([
+                'user_id' => $addresseeId,
+                'type' => 'friend_request',
+                'actor_id' => $requesterId,
+                'target_type' => 'friendship',
+                'target_id' => $friendshipId,
+                'is_read' => false
+            ]);
+        } catch (\Exception $e) {
+            error_log('Failed to create friend_request notification: ' . $e->getMessage());
         }
     }
 }
