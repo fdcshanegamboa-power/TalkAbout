@@ -30,18 +30,32 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                 currentUserId: null,
 
                 posts: [],
-                isLoading: true
+                isLoading: true,
+                
+                // For mobile header notifications
+                notifications: [],
+                notificationCount: 0,
+                showNotifications: false,
+                socket: null
             };
         },
 
         mounted() {
             this.fetchCurrentUserProfile();
             this.fetchPosts();
+            this.fetchNotifications();
+            this.initWebSocket();
             if (this.fetchFriends) {
                 this.fetchFriends();
             }
             if (this.fetchSuggestions) {
                 this.fetchSuggestions();
+            }
+        },
+        
+        beforeUnmount() {
+            if (this.socket) {
+                this.socket.disconnect();
             }
         },
 
@@ -106,6 +120,118 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                 } finally {
                     this.isLoading = false;
                 }
+            },
+            
+            async fetchNotifications() {
+                try {
+                    const res = await fetch('/api/notifications');
+                    const data = await res.json();
+                    if (data.success) {
+                        this.notifications = data.notifications || [];
+                        this.notificationCount = this.notifications.filter(n => !n.is_read).length;
+                    }
+                } catch (e) {
+                    console.error('Error fetching notifications:', e);
+                }
+            },
+            
+            initWebSocket() {
+                if (!window.io) return;
+
+                try {
+                    this.socket = io(window.location.origin, {
+                        path: '/socket.io',
+                        transports: ['websocket', 'polling'],
+                        reconnection: true
+                    });
+
+                    this.socket.on('connect', () => {
+                        this.authenticateSocket();
+                    });
+
+                    this.socket.on('notification', (notification) => {
+                        this.notifications.unshift(notification);
+                        if (!notification.is_read) {
+                            this.notificationCount++;
+                        }
+                    });
+
+                    this.socket.on('notificationCount', (data) => {
+                        this.notificationCount = data.count;
+                    });
+                } catch (error) {
+                    console.error('WebSocket init error:', error);
+                }
+            },
+            
+            async authenticateSocket() {
+                if (!this.socket || !this.currentUserId) return;
+                this.socket.emit('authenticate', { userId: this.currentUserId });
+            },
+            
+            toggleNotifications() {
+                this.showNotifications = !this.showNotifications;
+            },
+            
+            async handleNotificationClick(notification) {
+                try {
+                    if (!notification.is_read) {
+                        await fetch(`/api/notifications/mark-as-read/${notification.id}`, { method: 'POST' });
+                        notification.is_read = true;
+                        this.notificationCount = Math.max(0, this.notificationCount - 1);
+                    }
+
+                    if (notification.type === 'friend_request') {
+                        window.location.href = '/friends';
+                        return;
+                    }
+
+                    if (notification.target_type === 'post' && notification.target_id) {
+                        window.location.href = `/posts/view/${notification.target_id}`;
+                        return;
+                    }
+
+                    if (notification.target_type === 'comment' && notification.target_id) {
+                        const postId = notification.post_id || notification.target_post_id;
+                        if (postId) {
+                            window.location.href = `/posts/view/${postId}#comment-${notification.target_id}`;
+                        }
+                        return;
+                    }
+
+                    this.showNotifications = false;
+                } catch (e) {
+                    console.error('Error handling notification click:', e);
+                }
+            },
+            
+            async markAllAsRead() {
+                try {
+                    const response = await fetch('/api/notifications/mark-all-as-read', { method: 'POST' });
+                    const data = await response.json();
+                    if (data.success) {
+                        this.notifications.forEach(n => n.is_read = true);
+                        this.notificationCount = 0;
+                    }
+                } catch (error) {
+                    console.error('Error marking all as read:', error);
+                }
+            },
+            
+            formatNotificationTime(timestamp) {
+                const date = new Date(timestamp);
+                const now = new Date();
+                const diffMs = now - date;
+                const diffMins = Math.floor(diffMs / 60000);
+                const diffHours = Math.floor(diffMs / 3600000);
+                const diffDays = Math.floor(diffMs / 86400000);
+                
+                if (diffMins < 1) return 'Just now';
+                if (diffMins < 60) return `${diffMins}m ago`;
+                if (diffHours < 24) return `${diffHours}h ago`;
+                if (diffDays < 7) return `${diffDays}d ago`;
+                
+                return date.toLocaleDateString();
             }
         },
 

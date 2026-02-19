@@ -24,6 +24,33 @@
         [v-cloak] {
             display: none;
         }
+        
+        /* Animation keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        /* Scrollbar hiding */
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Mobile safe area padding */
+        @media (max-width: 767px) {
+            body {
+                padding-bottom: env(safe-area-inset-bottom, 0);
+            }
+        }
     </style>
 </head>
 
@@ -48,6 +75,7 @@
     <!-- Shared Components -->
     <script src="<?= $this->Url->build('/js/components/modal.js') ?>?v=<?= time() ?>"></script>
     <script src="<?= $this->Url->build('/js/shared/flash_messages.js') ?>?v=<?= time() ?>"></script>
+    <script src="<?= $this->Url->build('/js/shared/mobile_menu.js') ?>?v=<?= time() ?>"></script>
     <script src="<?= $this->Url->build('/js/shared/navbar.js') ?>?v=<?= time() ?>"></script>
     <?php
     // Expose current user id to frontend JS for permission checks (e.g. comment deletion)

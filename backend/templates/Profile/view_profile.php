@@ -239,15 +239,3 @@ if (!empty($user)) {
         </div>
     </div>
 </div>
-
-<style>
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes scaleIn {
-    from { transform: scale(0.9); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-</style>

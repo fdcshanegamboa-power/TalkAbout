@@ -54,6 +54,7 @@ class NotificationListener implements EventListenerInterface
         $notificationsTable = $this->fetchTable('Notifications');
 
         try {
+            /** @var \App\Model\Entity\Post $post */
             $post = $postsTable->get($postId);
 
             if ($post->user_id != $userId) {
@@ -97,6 +98,7 @@ class NotificationListener implements EventListenerInterface
 
             // Get the post owner to emit count update
             $postsTable = $this->fetchTable('Posts');
+            /** @var \App\Model\Entity\Post $post */
             $post = $postsTable->get($postId);
             $this->emitNotificationCountToUser($post->user_id);
         } catch (\Exception $e) {
@@ -116,6 +118,7 @@ class NotificationListener implements EventListenerInterface
         $notificationsTable = $this->fetchTable('Notifications');
 
         try {
+            /** @var \App\Model\Entity\Comment $comment */
             $comment = $commentsTable->get($commentId);
 
             if ($comment->user_id != $userId) {
@@ -158,6 +161,7 @@ class NotificationListener implements EventListenerInterface
 
             // Get the comment owner to emit count update
             $commentsTable = $this->fetchTable('Comments');
+            /** @var \App\Model\Entity\Comment $comment */
             $comment = $commentsTable->get($commentId);
             $this->emitNotificationCountToUser($comment->user_id);
         } catch (\Exception $e) {
@@ -178,6 +182,7 @@ class NotificationListener implements EventListenerInterface
         $notificationsTable = $this->fetchTable('Notifications');
 
         try {
+            /** @var \App\Model\Entity\Post $post */
             $post = $postsTable->get($postId);
 
             if ($post->user_id != $userId) {
@@ -220,6 +225,7 @@ class NotificationListener implements EventListenerInterface
 
             // Get the post owner to emit count update
             $postsTable = $this->fetchTable('Posts');
+            /** @var \App\Model\Entity\Post $post */
             $post = $postsTable->get($postId);
             $this->emitNotificationCountToUser($post->user_id);
         } catch (\Exception $e) {

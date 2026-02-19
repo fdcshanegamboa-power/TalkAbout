@@ -384,10 +384,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         app.mount(navbarEl);
         console.log('Vue navbar app mount completed');
+    } else if (!navbarEl) {
+        // Navbar element not found - this is normal for login/register pages
+        console.log('Navbar element not found - skipping navbar initialization');
     } else {
-        console.error('Cannot initialize navbar Vue app:', {
-            navbarEl: !!navbarEl,
-            vueAvailable: !!window.Vue
-        });
+        console.error('Cannot initialize navbar Vue app - Vue.js not available');
     }
 });
+

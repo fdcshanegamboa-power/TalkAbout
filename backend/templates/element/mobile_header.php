@@ -21,9 +21,8 @@
         </a>
 
         <!-- Hamburger Menu Button (Right) -->
-        <div class="flex items-center gap-2">
-            <!-- Notifications -->
-            <div v-if="typeof notifications !== 'undefined'" data-notification-container>
+        <div class="flex items-center gap-2">            <!-- Notifications -->
+            <div data-notification-container>
                 <button @click="toggleNotifications"
                         class="relative p-2 rounded-lg text-blue-700 hover:bg-blue-50 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -50,7 +49,7 @@
 </div>
 
 <!-- Mobile Notifications Panel -->
-<div v-if="typeof notifications !== 'undefined' && showNotifications" 
+<div v-if="showNotifications" 
      @click="showNotifications = false"
      class="md:hidden fixed inset-0 z-50 bg-black/40"
      data-notification-container>
@@ -242,52 +241,3 @@
         </nav>
     </div>
 </div>
-
-<script>
-(function() {
-    function initMobileMenu() {
-        const menuToggle = document.getElementById('mobile-menu-toggle');
-        const menuClose = document.getElementById('mobile-menu-close');
-        const menuOverlay = document.getElementById('mobile-dropdown-menu');
-        const menuPanel = document.getElementById('mobile-menu-panel');
-        
-        if (!menuToggle || !menuOverlay || !menuPanel) return;
-        
-        function openMenu() {
-            menuOverlay.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            // Trigger animation
-            setTimeout(() => {
-                menuPanel.classList.remove('translate-x-full');
-            }, 10);
-        }
-        
-        function closeMenu() {
-            menuPanel.classList.add('translate-x-full');
-            setTimeout(() => {
-                menuOverlay.classList.add('hidden');
-                document.body.style.overflow = '';
-            }, 300);
-        }
-        
-        menuToggle.addEventListener('click', openMenu);
-        
-        if (menuClose) {
-            menuClose.addEventListener('click', closeMenu);
-        }
-        
-        // Close when clicking overlay
-        menuOverlay.addEventListener('click', function(e) {
-            if (e.target === menuOverlay) {
-                closeMenu();
-            }
-        });
-    }
-    
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initMobileMenu);
-    } else {
-        initMobileMenu();
-    }
-})();
-</script>

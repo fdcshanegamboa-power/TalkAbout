@@ -59,11 +59,3 @@ $settingsClass = $baseItem . ' ' . (($active === 'settings') ? $activeItem : $in
     </div>
 </nav>
 
-<!-- Add padding to bottom of content to prevent bottom nav overlap on mobile -->
-<style>
-    @media (max-width: 767px) {
-        body {
-            padding-bottom: env(safe-area-inset-bottom, 0);
-        }
-    }
-</style>

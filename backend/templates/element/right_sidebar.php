@@ -131,13 +131,3 @@ $showSuggestions = $mode !== 'friends';
     </div>
     <?php endif; ?>
 </aside>
-
-<style>
-.no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-.no-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-</style>

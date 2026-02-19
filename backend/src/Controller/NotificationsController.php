@@ -12,6 +12,11 @@ use App\Utility\WebSocketClient;
  * - Fetching notifications (all and unread)
  * - Marking notifications as read
  * - Getting unread count
+ * 
+ * @property \App\Model\Table\NotificationsTable $Notifications
+ * @property \Authentication\Controller\Component\AuthenticationComponent $Authentication
+ * @property \Cake\Http\ServerRequest $request
+ * @property \Cake\Http\Response $response
  */
 class NotificationsController extends AppController
 {
