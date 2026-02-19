@@ -153,15 +153,17 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                             showMenu: false,
                             isEditing: false,
                             editText: post.text,
+                            editVisibility: post.visibility || 'public',
+                            showEditVisibilityMenu: false,
                             isSaving: false,
                             showComments: false,
-                            loadingComments: false,
                             commentsList: [],
                             newCommentText: '',
                             commentImageFile: null,
                             commentImagePreview: null,
+                            loadingComments: false,
                             isSubmittingComment: false,
-                            // Edit images
+                            // Image editing properties
                             editImages: [],
                             newEditImages: [],
                             newEditImageFiles: [],
@@ -615,6 +617,7 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                     const formData = new FormData();
                     formData.append('post_id', post.id);
                     formData.append('content_text', post.editText);
+                    formData.append('visibility', post.editVisibility);
                     
                     // Add images to delete
                     if (post.imagesToDelete && post.imagesToDelete.length > 0) {
@@ -638,6 +641,7 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                     if (data.success) {
                         // Update post in UI with proper Vue reactivity
                         post.text = post.editText;
+                        post.visibility = post.editVisibility;
                         // Backend returns images in data.post.images
                         post.images = data.post?.images || [];
                         post.isEditing = false;

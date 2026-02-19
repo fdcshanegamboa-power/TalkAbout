@@ -277,6 +277,7 @@ class ProfileController extends AppController
                 'initial' => $initial,
                 'profile_photo' => $user->profile_photo_path ?? '',
                 'text' => $post->content_text ?? '',
+                'visibility' => $post->visibility ?? 'public',
                 'images' => $images,
                 'time' => $timeAgo,
                 'likes' => $likeCount,
@@ -494,14 +495,38 @@ class ProfileController extends AppController
         $postsTable = $this->getTableLocator()->get('Posts');
         $likesTable = $this->getTableLocator()->get('Likes');
         $commentsTable = $this->getTableLocator()->get('Comments');
+        $friendshipsTable = $this->getTableLocator()->get('Friendships');
         
-        // Get posts for the specified user
-        $posts = $postsTable->find()
+        // Check if viewing own profile
+        $isOwnProfile = ($currentUserId == $userId);
+        
+        // Check if viewer is friends with profile owner
+        $areFriends = false;
+        if ($currentUserId && !$isOwnProfile) {
+            $areFriends = $friendshipsTable->areFriends($currentUserId, $userId);
+        }
+        
+        // Get posts for the specified user with visibility filtering
+        $query = $postsTable->find()
             ->contain(['Users', 'PostImages'])
             ->where([
                 'Posts.deleted_at IS' => null,
                 'Posts.user_id' => $userId
-            ])
+            ]);
+        
+        // Apply visibility filter based on relationship
+        if (!$isOwnProfile) {
+            if ($areFriends) {
+                // Friends can see public and friends-only posts
+                $query->where(['Posts.visibility IN' => ['public', 'friends']]);
+            } else {
+                // Non-friends can only see public posts
+                $query->where(['Posts.visibility' => 'public']);
+            }
+        }
+        // If viewing own profile, show all posts (no filter needed)
+        
+        $posts = $query
             ->order(['Posts.created_at' => 'DESC'])
             ->limit(100)
             ->all();
@@ -570,6 +595,7 @@ class ProfileController extends AppController
                 'initial' => $initial,
                 'profile_photo' => $user->profile_photo_path ?? '',
                 'text' => $post->content_text ?? '',
+                'visibility' => $post->visibility ?? 'public',
                 'images' => $images,
                 'time' => $timeAgo,
                 'likes' => $likeCount,

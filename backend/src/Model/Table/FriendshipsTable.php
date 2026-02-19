@@ -111,6 +111,30 @@ class FriendshipsTable extends Table
     }
 
     /**
+     * Check if two users are friends (accepted friendship)
+     *
+     * @param int $userId1 First user ID
+     * @param int $userId2 Second user ID
+     * @return bool
+     */
+    public function areFriends(int $userId1, int $userId2): bool
+    {
+        return $this->exists([
+            'OR' => [
+                [
+                    'requester_id' => $userId1,
+                    'addressee_id' => $userId2,
+                ],
+                [
+                    'requester_id' => $userId2,
+                    'addressee_id' => $userId1,
+                ],
+            ],
+            'status' => 'accepted',
+        ]);
+    }
+
+    /**
      * Get all friends for a user (accepted friendships only)
      *
      * @param int $userId User ID

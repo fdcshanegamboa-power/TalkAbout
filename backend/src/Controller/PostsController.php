@@ -580,7 +580,9 @@ class PostsController extends AppController
                 'post' => [
                     'id' => $post->id,
                     'text' => $post->get('content_text'),
-                    'images' => $allImages
+                    'visibility' => $post->get('visibility') ?? 'public',
+                    'images' => $allImages,
+                    'time' => 'Just now'
                 ]
             ]));
         } catch (\Exception $e) {

@@ -189,11 +189,15 @@ window.PostComposerMixin = {
                         showMenu: false,
                         isEditing: false,
                         editText: data.post.text,
+                        editVisibility: data.post.visibility || 'public',
+                        showEditVisibilityMenu: false,
                         isSaving: false,
                         editImages: [],
                         newEditImages: [],
                         newEditImageFiles: [],
-                        imagesToDelete: []
+                        imagesToDelete: [],
+                        editDragActive: false,
+                        commentDragActive: false
                     };
                     
                     // Add to posts array if it exists

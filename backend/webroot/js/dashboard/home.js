@@ -90,6 +90,8 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                             showMenu: false,
                             isEditing: false,
                             editText: post.text,
+                            editVisibility: post.visibility || 'public',
+                            showEditVisibilityMenu: false,
                             isSaving: false,
                             editImages: [],
                             newEditImages: [],
