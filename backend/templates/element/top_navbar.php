@@ -20,8 +20,11 @@
             </a>
 
             <div class="flex-1 max-w-xl mx-4">
-                <div class="relative">
+                <div class="relative" data-search-container>
                     <input type="text" 
+                           v-model="searchQuery"
+                           @input="handleSearch"
+                           @focus="showSearchResults = true"
                            placeholder="Search TalkAbout..." 
                            class="w-full pl-10 pr-4 py-2 rounded-full bg-blue-50 border-2 border-transparent 
                                   focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-200 
@@ -32,6 +35,87 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
+                    
+                    <!-- Search Results Dropdown -->
+                    <div v-if="showSearchResults && searchQuery.length > 0" 
+                         @click.stop
+                         class="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl border border-blue-100 
+                                overflow-hidden z-50 max-h-[500px] flex flex-col">
+                        
+                        <div v-if="searchLoading" class="p-8 text-center">
+                            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                            <p class="text-sm text-blue-500 mt-2">Searching...</p>
+                        </div>
+                        
+                        <div v-else-if="searchResults.users.length === 0 && searchResults.posts.length === 0" 
+                             class="p-8 text-center text-blue-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" 
+                                 class="h-12 w-12 mx-auto mb-3 text-blue-300" 
+                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            <p class="text-sm font-medium">No results found</p>
+                            <p class="text-xs mt-1">Try different keywords</p>
+                        </div>
+                        
+                        <div v-else class="overflow-y-auto flex-1">
+                            <!-- Users Section -->
+                            <div v-if="searchResults.users.length > 0" class="border-b border-blue-100">
+                                <div class="px-4 py-2 bg-blue-50">
+                                    <h4 class="text-xs font-bold text-blue-700 uppercase">People</h4>
+                                </div>
+                                <a v-for="user in searchResults.users" 
+                                   :key="user.id"
+                                   :href="'/profile/' + user.username"
+                                   class="flex items-center gap-3 px-4 py-3 hover:bg-blue-50 transition-colors border-b border-blue-50 last:border-0">
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 
+                                                flex items-center justify-center text-white font-bold overflow-hidden flex-shrink-0">
+                                        <template v-if="user.profile_photo">
+                                            <img :src="'/img/profiles/' + user.profile_photo"
+                                                 alt="Profile" class="w-full h-full object-cover" />
+                                        </template>
+                                        <template v-else>
+                                            {{ user.initial }}
+                                        </template>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-semibold text-blue-900 truncate">{{ user.full_name }}</p>
+                                        <p class="text-xs text-blue-500 truncate">@{{ user.username }}</p>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <!-- Posts Section -->
+                            <div v-if="searchResults.posts.length > 0">
+                                <div class="px-4 py-2 bg-blue-50">
+                                    <h4 class="text-xs font-bold text-blue-700 uppercase">Posts</h4>
+                                </div>
+                                <a v-for="post in searchResults.posts" 
+                                   :key="post.id"
+                                   :href="'/posts/view/' + post.id"
+                                   class="block px-4 py-3 hover:bg-blue-50 transition-colors border-b border-blue-50 last:border-0">
+                                    <div class="flex items-start gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 
+                                                    flex items-center justify-center text-white text-xs font-bold overflow-hidden flex-shrink-0">
+                                            <template v-if="post.profile_photo">
+                                                <img :src="'/img/profiles/' + post.profile_photo"
+                                                     alt="Profile" class="w-full h-full object-cover" />
+                                            </template>
+                                            <template v-else>
+                                                {{ post.initial }}
+                                            </template>
+                                        </div>
+                                        <div class="flex-1 min-w-0">
+                                            <p class="text-xs font-semibold text-blue-900">{{ post.author }}</p>
+                                            <p class="text-sm text-blue-700 mt-1 line-clamp-2">{{ post.content }}</p>
+                                            <p class="text-xs text-blue-400 mt-1">{{ post.time }}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

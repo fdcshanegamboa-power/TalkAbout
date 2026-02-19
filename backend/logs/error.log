@@ -23513,3 +23513,90 @@ Stack Trace:
 Request URL: /api/notifications
 Referer URL: http://localhost/friends
 Client IP: 138.199.24.218
+2026-02-19 02:40:20 error: [Error] Call to undefined method App\Controller\SearchController::loadModel() in /var/www/html/src/Controller/SearchController.php on line 11
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/search?q=my
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+2026-02-19 02:40:21 error: [Error] Call to undefined method App\Controller\SearchController::loadModel() in /var/www/html/src/Controller/SearchController.php on line 11
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/search?q=mygoa
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+2026-02-19 02:40:23 error: [Error] Call to undefined method App\Controller\SearchController::loadModel() in /var/www/html/src/Controller/SearchController.php on line 11
+Stack Trace:
+- CORE/src/Controller/Controller.php:238
+- [internal]:??
+- CORE/src/Controller/ControllerFactory.php:111
+- CORE/src/Http/BaseApplication.php:360
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/search?q=my%20goat
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218

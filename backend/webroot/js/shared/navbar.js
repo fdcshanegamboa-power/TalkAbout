@@ -16,7 +16,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     notificationCount: 0,
                     showNotifications: false,
                     showUserMenu: false,
-                    notificationPolling: null
+                    notificationPolling: null,
+                    searchQuery: '',
+                    searchResults: { users: [], posts: [] },
+                    showSearchResults: false,
+                    searchLoading: false,
+                    searchTimeout: null
                 };
             },
 
@@ -191,6 +196,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (this.showUserMenu && !e.target.closest('[data-user-menu]')) {
                         this.showUserMenu = false;
                     }
+                    if (this.showSearchResults && !e.target.closest('[data-search-container]')) {
+                        this.showSearchResults = false;
+                    }
                 },
 
                 handleCreatePost() {
@@ -203,7 +211,42 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     window.location.href = "/dashboard#compose";
-}
+},
+
+                handleSearch() {
+                    if (this.searchTimeout) {
+                        clearTimeout(this.searchTimeout);
+                    }
+
+                    if (this.searchQuery.trim().length < 2) {
+                        this.searchResults = { users: [], posts: [] };
+                        return;
+                    }
+
+                    this.searchLoading = true;
+                    this.searchTimeout = setTimeout(() => {
+                        this.performSearch();
+                    }, 300);
+                },
+
+                async performSearch() {
+                    try {
+                        const response = await fetch(`/api/search?q=${encodeURIComponent(this.searchQuery)}`);
+                        const data = await response.json();
+                        
+                        if (data.success) {
+                            this.searchResults = {
+                                users: data.users || [],
+                                posts: data.posts || []
+                            };
+                        }
+                    } catch (error) {
+                        console.error('Search error:', error);
+                        this.searchResults = { users: [], posts: [] };
+                    } finally {
+                        this.searchLoading = false;
+                    }
+                },
 
             }
         });

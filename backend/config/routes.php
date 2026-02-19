@@ -60,6 +60,9 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/api/notifications/mark-all-as-read', ['controller' => 'Notifications', 'action' => 'markAllAsRead']);
         $builder->connect('/api/notifications/delete/:id', ['controller' => 'Notifications', 'action' => 'delete'], ['pass' => ['id']]);
         
+        // API routes for search
+        $builder->connect('/api/search', ['controller' => 'Search', 'action' => 'index']);
+        
         // API routes for friendships
         $builder->connect('/api/friendships/send', ['controller' => 'Friendships', 'action' => 'sendRequest']);
         $builder->connect('/api/friendships/accept', ['controller' => 'Friendships', 'action' => 'acceptRequest']);
