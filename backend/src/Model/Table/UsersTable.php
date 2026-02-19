@@ -36,23 +36,52 @@ class UsersTable extends Table
 
         $validator
             ->scalar('full_name')
-            ->maxLength('full_name', 150)
+            ->maxLength('full_name', 150, 'Full name must be less than 150 characters')
             ->requirePresence('full_name', 'create')
-            ->notEmptyString('full_name');
+            ->notEmptyString('full_name', 'Full name is required')
+            ->add('full_name', 'validFormat', [
+                'rule' => function ($value) {
+                    return trim($value) !== '';
+                },
+                'message' => 'Full name cannot contain only whitespace'
+            ]);
 
         $validator
             ->scalar('username')
-            ->maxLength('username', 50)
+            ->maxLength('username', 50, 'Username must be less than 50 characters')
+            ->minLength('username', 3, 'Username must be at least 3 characters')
             ->requirePresence('username', 'create')
-            ->notEmptyString('username')
-            ->add('username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->notEmptyString('username', 'Username is required')
+            ->add('username', 'alphaNumericUnderscore', [
+                'rule' => function ($value) {
+                    return (bool)preg_match('/^[a-zA-Z0-9_]+$/', $value);
+                },
+                'message' => 'Username can only contain letters, numbers, and underscores'
+            ])
+            ->add('username', 'noWhitespace', [
+                'rule' => function ($value) {
+                    return (bool)preg_match('/^\S+$/', $value);
+                },
+                'message' => 'Username cannot contain whitespace'
+            ])
+            ->add('username', 'unique', [
+                'rule' => 'validateUnique', 
+                'provider' => 'table',
+                'message' => 'This username is already taken'
+            ]);
 
         $validator
             ->scalar('password')
             ->maxLength('password', 255)
             ->requirePresence('password', 'create')
-            ->notEmptyString('password')
-            ->minLength('password', 8, 'Password must be at least 8 characters long');
+            ->notEmptyString('password', 'Password is required')
+            ->minLength('password', 8, 'Password must be at least 8 characters')
+            ->add('password', 'noWhitespace', [
+                'rule' => function ($value) {
+                    return (bool)preg_match('/^\S+$/', $value);
+                },
+                'message' => 'Password cannot contain whitespace'
+            ]);
 
         $validator
             ->scalar('profile_photo_path')
@@ -74,6 +103,11 @@ class UsersTable extends Table
         // Convert username to lowercase before saving
         if ($entity->has('username') && !empty($entity->username)) {
             $entity->username = strtolower($entity->username);
+        }
+
+        // Trim full name to remove leading/trailing whitespace
+        if ($entity->has('full_name') && !empty($entity->full_name)) {
+            $entity->full_name = trim($entity->full_name);
         }
 
         return true;

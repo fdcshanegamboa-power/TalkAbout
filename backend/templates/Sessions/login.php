@@ -12,15 +12,21 @@ $this->assign('title', 'Login');
     }
 </style>
 
-<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-100 px-4">
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-100 px-4 py-8">
     <div class="w-full max-w-md">
-        <div class="bg-white/90 backdrop-blur rounded-2xl shadow-xl border border-blue-100 p-8">
+        <div class="bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl border border-blue-200/50 p-8 hover:shadow-blue-200/50 transition-shadow duration-300">
 
             <div class="text-center mb-8">
+                <div class="flex justify-center mb-4">
+                    <?= $this->Html->image('/logo/telupuluh-05.jpg', [
+                        'alt' => 'TalkAbout Logo',
+                        'class' => 'w-20 h-20 rounded-2xl shadow-lg object-cover ring-2 ring-blue-200'
+                    ]) ?>
+                </div>
                 <h1 class="text-4xl font-extrabold tracking-tight text-blue-700">
                     Talk<span class="text-indigo-600">About</span>
                 </h1>
-                <p class="text-sm text-blue-600 mt-2">
+                <p class="text-sm text-blue-600 mt-2 font-medium">
                     Sign in to your account
                 </p>
             </div>
@@ -84,13 +90,22 @@ $this->assign('title', 'Login');
 
                 <?= $this->Form->end() ?>
 
-                <div class="text-center mt-6">
+                <div class="relative my-6">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-blue-200"></div>
+                    </div>
+                    <div class="relative flex justify-center text-xs uppercase">
+                        <span class="bg-white px-2 text-blue-500 font-semibold">or</span>
+                    </div>
+                </div>
+
+                <div class="text-center">
                     <p class="text-sm text-blue-700">
-                        Don’t have an account?
+                        Don't have an account?
                         <?= $this->Html->link(
                             'Register here',
                             ['controller' => 'Users', 'action' => 'register'],
-                            ['class' => 'text-blue-600 hover:text-indigo-700 font-semibold transition']
+                            ['class' => 'text-blue-600 hover:text-indigo-700 font-bold transition-colors duration-200 underline-offset-2 hover:underline']
                         ) ?>
                     </p>
                 </div>
