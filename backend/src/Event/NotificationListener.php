@@ -6,6 +6,7 @@ namespace App\Event;
 use Cake\Event\EventInterface;
 use Cake\Event\EventListenerInterface;
 use Cake\ORM\Locator\LocatorAwareTrait;
+use App\Utility\WebSocketClient;
 
 /**
  * Notification Event Listener
@@ -15,6 +16,13 @@ use Cake\ORM\Locator\LocatorAwareTrait;
 class NotificationListener implements EventListenerInterface
 {
     use LocatorAwareTrait;
+
+    private WebSocketClient $wsClient;
+
+    public function __construct()
+    {
+        $this->wsClient = new WebSocketClient();
+    }
 
     /**
      * Register which events this listener handles
@@ -50,7 +58,7 @@ class NotificationListener implements EventListenerInterface
 
             if ($post->user_id != $userId) {
                 // Don't notify users about their own actions
-                $notificationsTable->createNotification([
+                $notification = $notificationsTable->createNotification([
                     'user_id' => $post->user_id,
                     'type' => 'post_liked',
                     'actor_id' => $userId,
@@ -58,6 +66,11 @@ class NotificationListener implements EventListenerInterface
                     'target_id' => $postId,
                     'is_read' => false
                 ]);
+
+                if ($notification) {
+                    // Emit real-time notification via WebSocket
+                    $this->emitNotificationToUser($notification, $post->user_id);
+                }
             }
         } catch (\Exception $e) {
             error_log('Failed to create post_liked notification: ' . $e->getMessage());
@@ -81,6 +94,11 @@ class NotificationListener implements EventListenerInterface
                 'target_type' => 'post',
                 'target_id' => $postId
             ]);
+
+            // Get the post owner to emit count update
+            $postsTable = $this->fetchTable('Posts');
+            $post = $postsTable->get($postId);
+            $this->emitNotificationCountToUser($post->user_id);
         } catch (\Exception $e) {
             error_log('Failed to delete post_liked notification: ' . $e->getMessage());
         }
@@ -101,7 +119,7 @@ class NotificationListener implements EventListenerInterface
             $comment = $commentsTable->get($commentId);
 
             if ($comment->user_id != $userId) {
-                $notificationsTable->createNotification([
+                $notification = $notificationsTable->createNotification([
                     'user_id' => $comment->user_id,
                     'type' => 'comment_liked',
                     'actor_id' => $userId,
@@ -109,6 +127,11 @@ class NotificationListener implements EventListenerInterface
                     'target_id' => $commentId,
                     'is_read' => false
                 ]);
+
+                if ($notification) {
+                    // Emit real-time notification via WebSocket
+                    $this->emitNotificationToUser($notification, $comment->user_id);
+                }
             }
         } catch (\Exception $e) {
             error_log('Failed to create comment_liked notification: ' . $e->getMessage());
@@ -132,6 +155,11 @@ class NotificationListener implements EventListenerInterface
                 'target_type' => 'comment',
                 'target_id' => $commentId
             ]);
+
+            // Get the comment owner to emit count update
+            $commentsTable = $this->fetchTable('Comments');
+            $comment = $commentsTable->get($commentId);
+            $this->emitNotificationCountToUser($comment->user_id);
         } catch (\Exception $e) {
             error_log('Failed to delete comment_liked notification: ' . $e->getMessage());
         }
@@ -153,7 +181,7 @@ class NotificationListener implements EventListenerInterface
             $post = $postsTable->get($postId);
 
             if ($post->user_id != $userId) {
-                $notificationsTable->createNotification([
+                $notification = $notificationsTable->createNotification([
                     'user_id' => $post->user_id,
                     'type' => 'post_commented',
                     'actor_id' => $userId,
@@ -161,6 +189,11 @@ class NotificationListener implements EventListenerInterface
                     'target_id' => $postId,
                     'is_read' => false
                 ]);
+
+                if ($notification) {
+                    // Emit real-time notification via WebSocket
+                    $this->emitNotificationToUser($notification, $post->user_id);
+                }
             }
         } catch (\Exception $e) {
             error_log('Failed to create post_commented notification: ' . $e->getMessage());
@@ -184,6 +217,11 @@ class NotificationListener implements EventListenerInterface
                 'target_type' => 'post',
                 'target_id' => $postId
             ]);
+
+            // Get the post owner to emit count update
+            $postsTable = $this->fetchTable('Posts');
+            $post = $postsTable->get($postId);
+            $this->emitNotificationCountToUser($post->user_id);
         } catch (\Exception $e) {
             error_log('Failed to delete post_commented notification: ' . $e->getMessage());
         }
@@ -202,7 +240,7 @@ class NotificationListener implements EventListenerInterface
 
         try {
             // Create notification for the addressee (person receiving the request)
-            $notificationsTable->createNotification([
+            $notification = $notificationsTable->createNotification([
                 'user_id' => $addresseeId,
                 'type' => 'friend_request',
                 'actor_id' => $requesterId,
@@ -210,8 +248,71 @@ class NotificationListener implements EventListenerInterface
                 'target_id' => $friendshipId,
                 'is_read' => false
             ]);
+
+            if ($notification) {
+                // Emit real-time notification via WebSocket
+                $this->emitNotificationToUser($notification, $addresseeId);
+            }
         } catch (\Exception $e) {
             error_log('Failed to create friend_request notification: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Helper: Emit notification to user via WebSocket
+     */
+    private function emitNotificationToUser($notification, int $userId): void
+    {
+        try {
+            // Load actor information to include in the notification
+            $usersTable = $this->fetchTable('Users');
+            $actor = null;
+
+            if (!empty($notification->actor_id)) {
+                $actor = $usersTable->find()
+                    ->select(['id', 'username', 'full_name', 'profile_photo_path'])
+                    ->where(['id' => $notification->actor_id])
+                    ->first();
+            }
+
+            $payload = [
+                'id' => $notification->id,
+                'type' => $notification->type,
+                'actor_id' => $notification->actor_id,
+                'target_type' => $notification->target_type,
+                'target_id' => $notification->target_id,
+                'message' => $notification->message,
+                'is_read' => $notification->is_read,
+                'created_at' => $notification->created_at,
+                'actor' => $actor ? [
+                    'id' => $actor->id,
+                    'username' => $actor->username,
+                    'full_name' => $actor->full_name,
+                    'profile_photo' => $actor->profile_photo_path,
+                ] : null,
+            ];
+
+            // Emit to WebSocket server
+            $this->wsClient->emitNotification($userId, $payload);
+
+            // Also emit updated count
+            $this->emitNotificationCountToUser($userId);
+        } catch (\Exception $e) {
+            error_log('Failed to emit notification via WebSocket: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Helper: Emit notification count to user via WebSocket
+     */
+    private function emitNotificationCountToUser(int $userId): void
+    {
+        try {
+            $notificationsTable = $this->fetchTable('Notifications');
+            $count = $notificationsTable->getUnreadCount($userId);
+            $this->wsClient->emitNotificationCount($userId, $count);
+        } catch (\Exception $e) {
+            error_log('Failed to emit notification count via WebSocket: ' . $e->getMessage());
         }
     }
 }

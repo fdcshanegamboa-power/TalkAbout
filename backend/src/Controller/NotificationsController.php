@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Utility\WebSocketClient;
+
 /**
  * Notifications Controller
  * 
@@ -13,9 +15,12 @@ namespace App\Controller;
  */
 class NotificationsController extends AppController
 {
+    private WebSocketClient $wsClient;
+
     public function initialize(): void
     {
         parent::initialize();
+        $this->wsClient = new WebSocketClient();
     }
 
     /**
@@ -218,6 +223,10 @@ class NotificationsController extends AppController
         $result = $this->Notifications->markAsRead((int)$id, $userId);
 
         if ($result) {
+            // Emit updated count via WebSocket
+            $count = $this->Notifications->getUnreadCount($userId);
+            $this->wsClient->emitNotificationCount($userId, $count);
+
             return $this->response->withStringBody(json_encode([
                 'success' => true,
                 'message' => 'Notification marked as read'
@@ -254,6 +263,9 @@ class NotificationsController extends AppController
                 'success' => false,
                 'message' => 'User not authenticated'
             ]));
+        // Emit updated count (should be 0) via WebSocket
+        $this->wsClient->emitNotificationCount($userId, 0);
+
         }
 
         $count = $this->Notifications->markAllAsRead($userId);
@@ -311,7 +323,11 @@ class NotificationsController extends AppController
                 'success' => false,
                 'message' => 'Notification not found'
             ]));
-        }
+        }// Emit updated count via WebSocket
+            $count = $this->Notifications->getUnreadCount($userId);
+            $this->wsClient->emitNotificationCount($userId, $count);
+
+            
 
         if ($this->Notifications->delete($notification)) {
             return $this->response->withStringBody(json_encode([

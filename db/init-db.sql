@@ -140,7 +140,7 @@ CREATE TABLE notifications (
     user_id BIGINT NOT NULL,
     type ENUM('friend_request', 'post_liked', 'post_commented', 'comment_liked', 'mention') NOT NULL,
     actor_id BIGINT NULL,
-    target_type ENUM('post', 'comment', 'user') NULL,
+    target_type ENUM('post', 'comment', 'user', 'friendship') NULL,
     target_id BIGINT NULL,
     message TEXT NULL,
     is_read BOOLEAN NOT NULL DEFAULT FALSE,

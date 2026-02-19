@@ -11,6 +11,9 @@
     <!-- Vue 3 CDN -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
+    <!-- Socket.io Client CDN -->
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+
     <!-- Tailwind CSS CDN for quick styling -->
     <script src="https://cdn.tailwindcss.com"></script>
 

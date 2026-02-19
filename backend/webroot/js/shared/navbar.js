@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     notificationCount: 0,
                     showNotifications: false,
                     showUserMenu: false,
-                    notificationPolling: null,
+                    socket: null,
                     searchQuery: '',
                     searchResults: { users: [], posts: [] },
                     showSearchResults: false,
@@ -29,13 +29,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Vue navbar app mounted successfully');
                 this.fetchCurrentUserProfile();
                 this.fetchNotifications();
-                this.startNotificationPolling();
+                this.initWebSocket();
                 document.addEventListener('click', this.handleClickOutside);
             },
 
 
             beforeUnmount() {
-                this.stopNotificationPolling();
+                this.disconnectWebSocket();
                 document.removeEventListener('click', this.handleClickOutside);
             },
 
@@ -74,15 +74,146 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 },
 
-                startNotificationPolling() {
-                    this.notificationPolling = setInterval(() => {
-                        this.fetchNotifications();
-                    }, 1000);
+                initWebSocket() {
+                    // Check if Socket.io is available
+                    if (!window.io) {
+                        console.error('Socket.io client not loaded');
+                        return;
+                    }
+
+                    try {
+                        // Connect to WebSocket server (through nginx proxy)
+                        this.socket = io(window.location.origin, {
+                            path: '/socket.io',
+                            transports: ['websocket', 'polling'],
+                            reconnection: true,
+                            reconnectionDelay: 1000,
+                            reconnectionAttempts: 5
+                        });
+
+                        // Wait for connection then authenticate
+                        this.socket.on('connect', () => {
+                            console.log('[WebSocket] Connected');
+                            this.authenticateSocket();
+                        });
+
+                        // Handle authentication success
+                        this.socket.on('authenticated', (data) => {
+                            console.log('[WebSocket] Authenticated:', data);
+                        });
+
+                        // Handle authentication errors
+                        this.socket.on('authError', (data) => {
+                            console.error('[WebSocket] Auth error:', data);
+                        });
+
+                        // Listen for new notifications
+                        this.socket.on('notification', (notification) => {
+                            console.log('[WebSocket] New notification:', notification);
+                            this.handleNewNotification(notification);
+                        });
+
+                        // Listen for notification count updates
+                        this.socket.on('notificationCount', (data) => {
+                            console.log('[WebSocket] Notification count update:', data.count);
+                            this.notificationCount = data.count;
+                        });
+
+                        // Handle disconnection
+                        this.socket.on('disconnect', () => {
+                            console.log('[WebSocket] Disconnected');
+                        });
+
+                        // Handle reconnection
+                        this.socket.on('reconnect', (attemptNumber) => {
+                            console.log('[WebSocket] Reconnected after', attemptNumber, 'attempts');
+                            this.authenticateSocket();
+                        });
+
+                    } catch (error) {
+                        console.error('[WebSocket] Init error:', error);
+                    }
                 },
 
-                stopNotificationPolling() {
-                    if (this.notificationPolling) {
-                        clearInterval(this.notificationPolling);
+                async authenticateSocket() {
+                    if (!this.socket) return;
+
+                    try {
+                        // Get current user ID from profile
+                        const response = await fetch('/api/profile/current');
+                        if (!response.ok) return;
+                        
+                        const data = await response.json();
+                        if (data.success && data.user && data.user.id) {
+                            // Authenticate the socket connection with user ID
+                            this.socket.emit('authenticate', { userId: data.user.id });
+                        }
+                    } catch (error) {
+                        console.error('[WebSocket] Auth error:', error);
+                    }
+                },
+
+                handleNewNotification(notification) {
+                    // Add notification to the beginning of the list
+                    this.notifications.unshift(notification);
+                    
+                    // Update count if unread
+                    if (!notification.is_read) {
+                        this.notificationCount++;
+                    }
+
+                    // Optional: Show browser notification
+                    this.showBrowserNotification(notification);
+                },
+
+                showBrowserNotification(notification) {
+                    if (!('Notification' in window)) return;
+                    if (Notification.permission !== 'granted') return;
+
+                    const actorName = notification.actor?.full_name || notification.actor?.username || 'Someone';
+                    let title = '';
+                    let body = '';
+
+                    switch (notification.type) {
+                        case 'post_liked':
+                            title = 'New Like';
+                            body = `${actorName} liked your post`;
+                            break;
+                        case 'post_commented':
+                            title = 'New Comment';
+                            body = `${actorName} commented on your post`;
+                            break;
+                        case 'comment_liked':
+                            title = 'New Like';
+                            body = `${actorName} liked your comment`;
+                            break;
+                        case 'friend_request':
+                            title = 'Friend Request';
+                            body = `${actorName} sent you a friend request`;
+                            break;
+                        default:
+                            title = 'New Notification';
+                            body = notification.message || 'You have a new notification';
+                    }
+
+                    try {
+                        new Notification(title, { body, icon: '/logo/telupuluh-05.jpg' });
+                    } catch (e) {
+                        console.log('Notification permission:', e);
+                    }
+                },
+
+                requestNotificationPermission() {
+                    if (!('Notification' in window)) return;
+                    if (Notification.permission === 'default') {
+                        Notification.requestPermission();
+                    }
+                },
+
+                disconnectWebSocket() {
+                    if (this.socket) {
+                        this.socket.disconnect();
+                        this.socket = null;
                     }
                 },
 

@@ -55,6 +55,21 @@ services:
         networks:
             - talkabout-network
 
+    # WebSocket Server - Real-time Notifications
+    websocket:
+        build:
+            context: ./websocket-server
+            dockerfile: Dockerfile
+        container_name: talkabout-websocket
+        ports:
+            - "3000:3000"
+        environment:
+            - PORT=3000
+            - CORS_ORIGIN=http://localhost
+        restart: unless-stopped
+        networks:
+            - talkabout-network
+
 volumes:
     db_data:
 
