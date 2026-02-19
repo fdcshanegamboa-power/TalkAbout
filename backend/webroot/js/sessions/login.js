@@ -8,6 +8,7 @@ if (el && window.Vue) {
     const { createApp } = Vue;
 
     createApp({
+        mixins: [window.ModalMixin || {}],
         data() {
             return {
                 form: {
@@ -27,7 +28,10 @@ if (el && window.Vue) {
         methods: {
             handleSubmit() {
                 if (!this.form.username || !this.form.password) {
-                    alert('Please enter both username and password');
+                    this.showErrorModal({
+                        title: 'Missing Credentials',
+                        message: 'Please enter both username and password'
+                    });
                     return;
                 }
                 this.loading = true;

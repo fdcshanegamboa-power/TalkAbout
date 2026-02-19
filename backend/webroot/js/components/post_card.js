@@ -1,6 +1,7 @@
 
 
 const PostCardMixin = {
+    mixins: [window.ModalMixin || {}],
     data() {
         return {
             currentUserId: (typeof window !== 'undefined' && window.currentUserId) ? window.currentUserId : null,
@@ -118,18 +119,27 @@ const PostCardMixin = {
             
             if (!allowedTypes.includes(file.type)) {
                 const typeName = file.type || 'unknown type';
-                alert(`File "${file.name}" (${typeName}) is not supported.\n\nSupported formats: JPEG, PNG, GIF, WebP`);
+                this.showErrorModal({
+                    title: 'Unsupported File Type',
+                    message: `File "${file.name}" (${typeName}) is not supported.\n\nSupported formats: JPEG, PNG, GIF, WebP`
+                });
                 return;
             }
             
             if (file.size === 0) {
-                alert('The selected file is empty. Please choose a valid image.');
+                this.showErrorModal({
+                    title: 'Invalid File',
+                    message: 'The selected file is empty. Please choose a valid image.'
+                });
                 return;
             }
             
             if (file.size > maxFileSize) {
                 const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
-                alert(`Image "${file.name}" is too large (${fileSizeMB}MB).\n\nMaximum allowed size: 5MB`);
+                this.showErrorModal({
+                    title: 'File Too Large',
+                    message: `Image "${file.name}" is too large (${fileSizeMB}MB).\n\nMaximum allowed size: 5MB`
+                });
                 return;
             }
             
@@ -184,11 +194,17 @@ const PostCardMixin = {
                     post.newCommentText = '';
                     this.removeCommentImage(post);
                 } else {
-                    alert('Failed to post comment: ' + (data.message || 'Unknown error'));
+                    this.showErrorModal({
+                        title: 'Failed to Post Comment',
+                        message: data.message || 'Unknown error'
+                    });
                 }
             } catch (error) {
                 console.error('Error posting comment:', error);
-                alert('Failed to post comment. Please try again.');
+                this.showErrorModal({
+                    title: 'Error',
+                    message: 'Failed to post comment. Please try again.'
+                });
             } finally {
                 post.isSubmittingComment = false;
             }
@@ -322,7 +338,10 @@ const PostCardMixin = {
             });
             
             if (hasErrors) {
-                alert('Some files could not be added:\n\n' + errors.join('\n') + '\n\nSupported formats: JPEG, PNG, GIF, WebP\nMaximum size: 5MB per image');
+                this.showErrorModal({
+                    title: 'Some Files Not Added',
+                    message: errors.join('\n') + '\n\nSupported formats: JPEG, PNG, GIF, WebP\nMaximum size: 5MB per image'
+                });
             }
         },
 
@@ -333,7 +352,10 @@ const PostCardMixin = {
             const hasNewImages = post.newEditImageFiles && post.newEditImageFiles.length > 0;
             
             if (!hasText && !hasExistingImages && !hasNewImages) {
-                alert('Post must have at least some text or images');
+                this.showErrorModal({
+                    title: 'Empty Post',
+                    message: 'Post must have at least some text or images'
+                });
                 return;
             }
             
@@ -385,11 +407,17 @@ const PostCardMixin = {
                         this.$forceUpdate();
                     }
                 } else {
-                    alert('Failed to update post: ' + (data.message || 'Unknown error'));
+                    this.showErrorModal({
+                        title: 'Failed to Update Post',
+                        message: data.message || 'Unknown error'
+                    });
                 }
             } catch (error) {
                 console.error('Error updating post:', error);
-                alert('Failed to update post. Please try again.');
+                this.showErrorModal({
+                    title: 'Error',
+                    message: 'Failed to update post. Please try again.'
+                });
             } finally {
                 post.isSaving = false;
             }
@@ -406,7 +434,14 @@ const PostCardMixin = {
         },
 
         async deletePost(post) {
-            if (!confirm('Are you sure you want to delete this post? This action cannot be undone.')) {
+            const confirmed = await this.showConfirmModal({
+                title: 'Delete Post',
+                message: 'Are you sure you want to delete this post? This action cannot be undone.',
+                confirmText: 'Delete',
+                cancelText: 'Cancel'
+            });
+            
+            if (!confirmed) {
                 return;
             }
             
@@ -438,11 +473,17 @@ const PostCardMixin = {
                         window.location.href = '/dashboard';
                     }
                 } else {
-                    alert('Failed to delete post: ' + (data.message || 'Unknown error'));
+                    this.showErrorModal({
+                        title: 'Failed to Delete Post',
+                        message: data.message || 'Unknown error'
+                    });
                 }
             } catch (error) {
                 console.error('Error deleting post:', error);
-                alert('Failed to delete post. Please try again.');
+                this.showErrorModal({
+                    title: 'Error',
+                    message: 'Failed to delete post. Please try again.'
+                });
             }
         },
 
@@ -527,7 +568,14 @@ const PostCardMixin = {
             if (!comment || !comment.id) return;
             if (comment.isDeleting) return;
 
-            if (!confirm('Delete this comment? This action cannot be undone.')) return;
+            const confirmed = await this.showConfirmModal({
+                title: 'Delete Comment',
+                message: 'Delete this comment? This action cannot be undone.',
+                confirmText: 'Delete',
+                cancelText: 'Cancel'
+            });
+            
+            if (!confirmed) return;
 
             comment.isDeleting = true;
 
@@ -546,7 +594,10 @@ const PostCardMixin = {
                 const data = await resp.json().catch(() => ({}));
 
                 if (!resp.ok || !data.success) {
-                    alert('Failed to delete comment: ' + (data.message || 'Unknown error'));
+                    this.showErrorModal({
+                        title: 'Failed to Delete Comment',
+                        message: data.message || 'Unknown error'
+                    });
                     comment.isDeleting = false;
                     return;
                 }
@@ -561,7 +612,10 @@ const PostCardMixin = {
                 }
             } catch (err) {
                 console.error('Error deleting comment:', err);
-                alert('Failed to delete comment. Please try again.');
+                this.showErrorModal({
+                    title: 'Error',
+                    message: 'Failed to delete comment. Please try again.'
+                });
             } finally {
                 comment.isDeleting = false;
             }

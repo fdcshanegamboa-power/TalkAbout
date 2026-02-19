@@ -96,7 +96,7 @@ class FriendshipsController extends AppController
                 'addressee_id' => $addresseeId,
                 'friendship_id' => $friendship->id
             ]);
-            $this->getEventManager()->dispatch($event);
+            \Cake\Event\EventManager::instance()->dispatch($event);
 
             return $this->response->withStringBody(json_encode([
                 'success' => true,

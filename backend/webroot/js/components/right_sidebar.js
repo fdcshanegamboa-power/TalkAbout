@@ -5,6 +5,7 @@
  */
 
 window.RightSidebarMixin = {
+    mixins: [window.ModalMixin || {}],
     data() {
         return {
             friends: [],
@@ -102,12 +103,18 @@ window.RightSidebarMixin = {
                     console.log('Friend request sent, suggestion removed. Remaining:', this.suggestions.length);
                 } else {
                     suggestion.sending = false;
-                    alert('Failed to send friend request: ' + (data.message || 'Unknown error'));
+                    this.showErrorModal({
+                        title: 'Failed to Send Friend Request',
+                        message: data.message || 'Unknown error'
+                    });
                 }
             } catch (error) {
                 console.error('Error sending friend request:', error);
                 suggestion.sending = false;
-                alert('Failed to send friend request. Please try again.');
+                this.showErrorModal({
+                    title: 'Error',
+                    message: 'Failed to send friend request. Please try again.'
+                });
             }
         }
     }

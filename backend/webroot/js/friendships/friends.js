@@ -16,6 +16,9 @@ if (el && window.Vue) {
     const { createApp } = Vue;
 
     const mixins = [];
+    if (window.ModalMixin) {
+        mixins.push(ModalMixin);
+    }
     if (window.RightSidebarMixin) {
         mixins.push(RightSidebarMixin);
     }
@@ -202,11 +205,17 @@ if (el && window.Vue) {
                         }
                     } else {
                         console.error('Failed to accept friend request:', data);
-                        alert('Failed to accept friend request: ' + (data.message || 'Unknown error'));
+                        this.showErrorModal({
+                            title: 'Failed to Accept Friend Request',
+                            message: data.message || 'Unknown error'
+                        });
                     }
                 } catch (error) {
                     console.error('Error accepting friend request:', error);
-                    alert('Failed to accept friend request. Please try again.');
+                    this.showErrorModal({
+                        title: 'Error',
+                        message: 'Failed to accept friend request. Please try again.'
+                    });
                 } finally {
                     request.processing = false;
                 }
@@ -233,11 +242,17 @@ if (el && window.Vue) {
                         // Remove from pending requests
                         this.pendingRequests = this.pendingRequests.filter(r => r.id !== request.id);
                     } else {
-                        alert('Failed to reject friend request: ' + (data.message || 'Unknown error'));
+                        this.showErrorModal({
+                            title: 'Failed to Reject Friend Request',
+                            message: data.message || 'Unknown error'
+                        });
                     }
                 } catch (error) {
                     console.error('Error rejecting friend request:', error);
-                    alert('Failed to reject friend request. Please try again.');
+                    this.showErrorModal({
+                        title: 'Error',
+                        message: 'Failed to reject friend request. Please try again.'
+                    });
                 } finally {
                     request.processing = false;
                 }
@@ -264,18 +279,31 @@ if (el && window.Vue) {
                         // Remove from sent requests
                         this.sentRequests = this.sentRequests.filter(r => r.id !== request.id);
                     } else {
-                        alert('Failed to cancel friend request: ' + (data.message || 'Unknown error'));
+                        this.showErrorModal({
+                            title: 'Failed to Cancel Friend Request',
+                            message: data.message || 'Unknown error'
+                        });
                     }
                 } catch (error) {
                     console.error('Error cancelling friend request:', error);
-                    alert('Failed to cancel friend request. Please try again.');
+                    this.showErrorModal({
+                        title: 'Error',
+                        message: 'Failed to cancel friend request. Please try again.'
+                    });
                 } finally {
                     request.processing = false;
                 }
             },
 
-            confirmUnfriend(friend) {
-                if (confirm(`Are you sure you want to unfriend ${friend.full_name || friend.username}?`)) {
+            async confirmUnfriend(friend) {
+                const confirmed = await this.showConfirmModal({
+                    title: 'Unfriend',
+                    message: `Are you sure you want to unfriend ${friend.full_name || friend.username}?`,
+                    confirmText: 'Unfriend',
+                    cancelText: 'Cancel'
+                });
+                
+                if (confirmed) {
                     this.unfriend(friend);
                 }
             },
@@ -298,11 +326,17 @@ if (el && window.Vue) {
                         // Remove from friends list
                         this.friends = this.friends.filter(f => f.friend_id !== friend.friend_id);
                     } else {
-                        alert('Failed to unfriend: ' + (data.message || 'Unknown error'));
+                        this.showErrorModal({
+                            title: 'Failed to Unfriend',
+                            message: data.message || 'Unknown error'
+                        });
                     }
                 } catch (error) {
                     console.error('Error unfriending user:', error);
-                    alert('Failed to unfriend. Please try again.');
+                    this.showErrorModal({
+                        title: 'Error',
+                        message: 'Failed to unfriend. Please try again.'
+                    });
                 }
             }
         },

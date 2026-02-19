@@ -23600,3 +23600,535 @@ Stack Trace:
 Request URL: /api/search?q=my%20goat
 Referer URL: http://localhost/dashboard/home
 Client IP: 138.199.24.218
+2026-02-19 03:19:07 error: [Cake\Database\Exception\MissingConnectionException] Connection to Mysql could not be established: SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 203
+Exception Attributes: array (
+  'driver' => 'Mysql',
+  'reason' => 'SQLSTATE[HY000] [2002] Connection refused',
+)
+Stack Trace:
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Schema/SchemaDialect.php:60
+- CORE/src/Database/Driver/Mysql.php:207
+- CORE/src/Database/Schema/Collection.php:97
+- CORE/src/Database/Schema/Collection.php:87
+- CORE/src/Database/Schema/CachedCollection.php:107
+- CORE/src/ORM/Table.php:524
+- CORE/src/ORM/Query/CommonQueryTrait.php:48
+- CORE/src/ORM/Query/SelectQuery.php:209
+- CORE/src/ORM/Query/QueryFactory.php:34
+- CORE/src/ORM/Table.php:1747
+- CORE/src/ORM/Table.php:1277
+- APP/Controller/NotificationsController.php:65
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 192
+Stack Trace:
+- CORE/src/Database/Driver.php:192
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Driver.php:201
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Schema/SchemaDialect.php:60
+- CORE/src/Database/Driver/Mysql.php:207
+- CORE/src/Database/Schema/Collection.php:97
+- CORE/src/Database/Schema/Collection.php:87
+- CORE/src/Database/Schema/CachedCollection.php:107
+- CORE/src/ORM/Table.php:524
+- CORE/src/ORM/Query/CommonQueryTrait.php:48
+- CORE/src/ORM/Query/SelectQuery.php:209
+- CORE/src/ORM/Query/QueryFactory.php:34
+- CORE/src/ORM/Table.php:1747
+- CORE/src/ORM/Table.php:1277
+- APP/Controller/NotificationsController.php:65
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/notifications
+Referer URL: http://localhost/profile/blacknumber
+Client IP: 138.199.24.218
+2026-02-19 03:19:08 error: [Cake\Database\Exception\MissingConnectionException] Connection to Mysql could not be established: SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 203
+Exception Attributes: array (
+  'driver' => 'Mysql',
+  'reason' => 'SQLSTATE[HY000] [2002] Connection refused',
+)
+Stack Trace:
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Schema/SchemaDialect.php:60
+- CORE/src/Database/Driver/Mysql.php:207
+- CORE/src/Database/Schema/Collection.php:97
+- CORE/src/Database/Schema/Collection.php:87
+- CORE/src/Database/Schema/CachedCollection.php:107
+- CORE/src/ORM/Table.php:524
+- CORE/src/ORM/Query/CommonQueryTrait.php:48
+- CORE/src/ORM/Query/SelectQuery.php:209
+- CORE/src/ORM/Query/QueryFactory.php:34
+- CORE/src/ORM/Table.php:1747
+- CORE/src/ORM/Table.php:1277
+- APP/Controller/NotificationsController.php:65
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 192
+Stack Trace:
+- CORE/src/Database/Driver.php:192
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Driver.php:201
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Schema/SchemaDialect.php:60
+- CORE/src/Database/Driver/Mysql.php:207
+- CORE/src/Database/Schema/Collection.php:97
+- CORE/src/Database/Schema/Collection.php:87
+- CORE/src/Database/Schema/CachedCollection.php:107
+- CORE/src/ORM/Table.php:524
+- CORE/src/ORM/Query/CommonQueryTrait.php:48
+- CORE/src/ORM/Query/SelectQuery.php:209
+- CORE/src/ORM/Query/QueryFactory.php:34
+- CORE/src/ORM/Table.php:1747
+- CORE/src/ORM/Table.php:1277
+- APP/Controller/NotificationsController.php:65
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/notifications
+Referer URL: http://localhost/profile/blacknumber
+Client IP: 138.199.24.218
+2026-02-19 03:19:09 error: [Cake\Database\Exception\MissingConnectionException] Connection to Mysql could not be established: SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 203
+Exception Attributes: array (
+  'driver' => 'Mysql',
+  'reason' => 'SQLSTATE[HY000] [2002] Connection refused',
+)
+Stack Trace:
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Schema/SchemaDialect.php:60
+- CORE/src/Database/Driver/Mysql.php:207
+- CORE/src/Database/Schema/Collection.php:97
+- CORE/src/Database/Schema/Collection.php:87
+- CORE/src/Database/Schema/CachedCollection.php:107
+- CORE/src/ORM/Table.php:524
+- CORE/src/ORM/Query/CommonQueryTrait.php:48
+- CORE/src/ORM/Query/SelectQuery.php:209
+- CORE/src/ORM/Query/QueryFactory.php:34
+- CORE/src/ORM/Table.php:1747
+- CORE/src/ORM/Table.php:1277
+- APP/Controller/NotificationsController.php:65
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 192
+Stack Trace:
+- CORE/src/Database/Driver.php:192
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Driver.php:201
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Schema/SchemaDialect.php:60
+- CORE/src/Database/Driver/Mysql.php:207
+- CORE/src/Database/Schema/Collection.php:97
+- CORE/src/Database/Schema/Collection.php:87
+- CORE/src/Database/Schema/CachedCollection.php:107
+- CORE/src/ORM/Table.php:524
+- CORE/src/ORM/Query/CommonQueryTrait.php:48
+- CORE/src/ORM/Query/SelectQuery.php:209
+- CORE/src/ORM/Query/QueryFactory.php:34
+- CORE/src/ORM/Table.php:1747
+- CORE/src/ORM/Table.php:1277
+- APP/Controller/NotificationsController.php:65
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/notifications
+Referer URL: http://localhost/profile/blacknumber
+Client IP: 138.199.24.218
+2026-02-19 03:19:10 error: [Cake\Database\Exception\MissingConnectionException] Connection to Mysql could not be established: SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 203
+Exception Attributes: array (
+  'driver' => 'Mysql',
+  'reason' => 'SQLSTATE[HY000] [2002] Connection refused',
+)
+Stack Trace:
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Schema/SchemaDialect.php:60
+- CORE/src/Database/Driver/Mysql.php:207
+- CORE/src/Database/Schema/Collection.php:97
+- CORE/src/Database/Schema/Collection.php:87
+- CORE/src/Database/Schema/CachedCollection.php:107
+- CORE/src/ORM/Table.php:524
+- CORE/src/ORM/Query/CommonQueryTrait.php:48
+- CORE/src/ORM/Query/SelectQuery.php:209
+- CORE/src/ORM/Query/QueryFactory.php:34
+- CORE/src/ORM/Table.php:1747
+- CORE/src/ORM/Table.php:1277
+- APP/Controller/NotificationsController.php:65
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 192
+Stack Trace:
+- CORE/src/Database/Driver.php:192
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Driver.php:201
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Schema/SchemaDialect.php:60
+- CORE/src/Database/Driver/Mysql.php:207
+- CORE/src/Database/Schema/Collection.php:97
+- CORE/src/Database/Schema/Collection.php:87
+- CORE/src/Database/Schema/CachedCollection.php:107
+- CORE/src/ORM/Table.php:524
+- CORE/src/ORM/Query/CommonQueryTrait.php:48
+- CORE/src/ORM/Query/SelectQuery.php:209
+- CORE/src/ORM/Query/QueryFactory.php:34
+- CORE/src/ORM/Table.php:1747
+- CORE/src/ORM/Table.php:1277
+- APP/Controller/NotificationsController.php:65
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/notifications
+Referer URL: http://localhost/profile/blacknumber
+Client IP: 138.199.24.218
+2026-02-19 03:19:11 error: [Cake\Database\Exception\MissingConnectionException] Connection to Mysql could not be established: SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 203
+Exception Attributes: array (
+  'driver' => 'Mysql',
+  'reason' => 'SQLSTATE[HY000] [2002] Connection refused',
+)
+Stack Trace:
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Schema/SchemaDialect.php:60
+- CORE/src/Database/Driver/Mysql.php:207
+- CORE/src/Database/Schema/Collection.php:97
+- CORE/src/Database/Schema/Collection.php:87
+- CORE/src/Database/Schema/CachedCollection.php:107
+- CORE/src/ORM/Table.php:524
+- CORE/src/ORM/Query/CommonQueryTrait.php:48
+- CORE/src/ORM/Query/SelectQuery.php:209
+- CORE/src/ORM/Query/QueryFactory.php:34
+- CORE/src/ORM/Table.php:1747
+- CORE/src/ORM/Table.php:1277
+- APP/Controller/NotificationsController.php:65
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 192
+Stack Trace:
+- CORE/src/Database/Driver.php:192
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Driver.php:201
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Schema/SchemaDialect.php:60
+- CORE/src/Database/Driver/Mysql.php:207
+- CORE/src/Database/Schema/Collection.php:97
+- CORE/src/Database/Schema/Collection.php:87
+- CORE/src/Database/Schema/CachedCollection.php:107
+- CORE/src/ORM/Table.php:524
+- CORE/src/ORM/Query/CommonQueryTrait.php:48
+- CORE/src/ORM/Query/SelectQuery.php:209
+- CORE/src/ORM/Query/QueryFactory.php:34
+- CORE/src/ORM/Table.php:1747
+- CORE/src/ORM/Table.php:1277
+- APP/Controller/NotificationsController.php:65
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/notifications
+Referer URL: http://localhost/profile/blacknumber
+Client IP: 138.199.24.218
+2026-02-19 03:19:11 error: [Cake\Database\Exception\MissingConnectionException] Connection to Mysql could not be established: SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 203
+Exception Attributes: array (
+  'driver' => 'Mysql',
+  'reason' => 'SQLSTATE[HY000] [2002] Connection refused',
+)
+Stack Trace:
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Schema/SchemaDialect.php:60
+- CORE/src/Database/Driver/Mysql.php:207
+- CORE/src/Database/Schema/Collection.php:97
+- CORE/src/Database/Schema/Collection.php:87
+- CORE/src/Database/Schema/CachedCollection.php:107
+- CORE/src/ORM/Table.php:524
+- CORE/src/ORM/Query/CommonQueryTrait.php:48
+- CORE/src/ORM/Query/SelectQuery.php:209
+- CORE/src/ORM/Query/QueryFactory.php:34
+- CORE/src/ORM/Table.php:1747
+- CORE/src/ORM/Table.php:1277
+- APP/Controller/ProfileController.php:312
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Caused by: [PDOException] SQLSTATE[HY000] [2002] Connection refused in /var/www/html/vendor/cakephp/cakephp/src/Database/Driver.php on line 192
+Stack Trace:
+- CORE/src/Database/Driver.php:192
+- CORE/src/Core/Retry/CommandRetry.php:71
+- CORE/src/Database/Driver.php:201
+- CORE/src/Database/Driver/Mysql.php:161
+- CORE/src/Database/Schema/SchemaDialect.php:60
+- CORE/src/Database/Driver/Mysql.php:207
+- CORE/src/Database/Schema/Collection.php:97
+- CORE/src/Database/Schema/Collection.php:87
+- CORE/src/Database/Schema/CachedCollection.php:107
+- CORE/src/ORM/Table.php:524
+- CORE/src/ORM/Query/CommonQueryTrait.php:48
+- CORE/src/ORM/Query/SelectQuery.php:209
+- CORE/src/ORM/Query/QueryFactory.php:34
+- CORE/src/ORM/Table.php:1747
+- CORE/src/ORM/Table.php:1277
+- APP/Controller/ProfileController.php:312
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:157
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /profile/blacknumber
+Referer URL: http://localhost/profile/blacknumber
+Client IP: 138.199.24.218
+[19-Feb-2026 03:20:26 UTC] Failed to create friend_request notification: SQLSTATE[01000]: Warning: 1265 Data truncated for column 'target_type' at row 1
+Query: INSERT INTO notifications (user_id, type, actor_id, target_type, target_id, is_read, created_at, updated_at) VALUES (1, 'friend_request', 2, 'friendship', 1, FALSE, '2026-02-19 03:20:26', '2026-02-19 03:20:26')
+[19-Feb-2026 03:30:46 UTC] Failed to create friend_request notification: SQLSTATE[01000]: Warning: 1265 Data truncated for column 'target_type' at row 1
+Query: INSERT INTO notifications (user_id, type, actor_id, target_type, target_id, is_read, created_at, updated_at) VALUES (1, 'friend_request', 2, 'friendship', 2, FALSE, '2026-02-19 03:30:46', '2026-02-19 03:30:46')

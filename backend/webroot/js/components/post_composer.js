@@ -3,6 +3,7 @@
  * Provides composer functionality for creating posts with text and images
  */
 window.PostComposerMixin = {
+    mixins: [window.ModalMixin || {}],
     data() {
         return {
             composer: {
@@ -65,7 +66,10 @@ window.PostComposerMixin = {
             const remainingSlots = maxImages - this.composer.imageFiles.length;
             
             if (remainingSlots === 0) {
-                alert('Maximum of 10 images reached. Remove some images to add more.');
+                this.showWarningModal({
+                    title: 'Maximum Images Reached',
+                    message: 'Maximum of 10 images reached. Remove some images to add more.'
+                });
                 return;
             }
             
@@ -107,7 +111,7 @@ window.PostComposerMixin = {
             
             let message = '';
             if (hasErrors) {
-                message = 'Some files could not be added:\n\n' + errors.join('\n') + '\n\nSupported formats: JPEG, PNG, GIF, WebP\nMaximum size: 5MB per image';
+                message = errors.join('\n') + '\n\nSupported formats: JPEG, PNG, GIF, WebP\nMaximum size: 5MB per image';
             }
             
             if (skippedCount > 0) {
@@ -116,7 +120,10 @@ window.PostComposerMixin = {
             }
             
             if (message) {
-                alert(message);
+                this.showWarningModal({
+                    title: 'Some Files Not Added',
+                    message: message
+                });
             }
         },
         
@@ -204,11 +211,17 @@ window.PostComposerMixin = {
                         this.$refs.fileInput.value = '';
                     }
                 } else {
-                    alert('Failed to create post: ' + (data.message || 'Unknown error'));
+                    this.showErrorModal({
+                        title: 'Failed to Create Post',
+                        message: data.message || 'Unknown error'
+                    });
                 }
             } catch (error) {
                 console.error('Error creating post:', error);
-                alert('Failed to create post. Please try again.');
+                this.showErrorModal({
+                    title: 'Error',
+                    message: 'Failed to create post. Please try again.'
+                });
             } finally {
                 this.isPosting = false;
             }

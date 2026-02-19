@@ -22,6 +22,7 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
     
     createApp({
         mixins: [
+            ...(window.ModalMixin ? [ModalMixin] : []),
             PostCardMixin, 
             PostComposerMixin,
             ...(window.RightSidebarMixin ? [RightSidebarMixin] : [])
@@ -240,14 +241,23 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                         this.friendshipStatus = 'pending_sent';
                         this.currentFriendshipId = data.friendship_id;
                         console.log('Friend request sent, ID:', data.friendship_id);
-                        alert('Friend request sent!');
+                        this.showSuccessModal({
+                            title: 'Friend Request Sent',
+                            message: 'Friend request sent!'
+                        });
                     } else {
                         console.error('Failed to send friend request:', data);
-                        alert('Failed to send friend request: ' + (data.message || 'Unknown error'));
+                        this.showErrorModal({
+                            title: 'Failed to Send Friend Request',
+                            message: data.message || 'Unknown error'
+                        });
                     }
                 } catch (error) {
                     console.error('Error sending friend request:', error);
-                    alert('Failed to send friend request. Please try again.');
+                    this.showErrorModal({
+                        title: 'Error',
+                        message: 'Failed to send friend request. Please try again.'
+                    });
                 } finally {
                     this.processingFriendRequest = false;
                 }
@@ -261,7 +271,10 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                     // Re-fetch the friendship status to get the ID
                     await this.fetchFriendshipStatus();
                     if (!this.currentFriendshipId) {
-                        alert('Could not find the friend request to cancel. Please refresh the page.');
+                        this.showErrorModal({
+                            title: 'Error',
+                            message: 'Could not find the friend request to cancel. Please refresh the page.'
+                        });
                         return;
                     }
                 }
@@ -284,11 +297,17 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                         this.friendshipStatus = 'none';
                         this.currentFriendshipId = null;
                     } else {
-                        alert('Failed to cancel friend request: ' + (data.message || 'Unknown error'));
+                        this.showErrorModal({
+                            title: 'Failed to Cancel Friend Request',
+                            message: data.message || 'Unknown error'
+                        });
                     }
                 } catch (error) {
                     console.error('Error cancelling friend request:', error);
-                    alert('Failed to cancel friend request. Please try again.');
+                    this.showErrorModal({
+                        title: 'Error',
+                        message: 'Failed to cancel friend request. Please try again.'
+                    });
                 } finally {
                     this.processingFriendRequest = false;
                 }
@@ -302,7 +321,10 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                     // Re-fetch the friendship status to get the ID
                     await this.fetchFriendshipStatus();
                     if (!this.currentFriendshipId) {
-                        alert('Could not find the friend request to accept. Please refresh the page.');
+                        this.showErrorModal({
+                            title: 'Error',
+                            message: 'Could not find the friend request to accept. Please refresh the page.'
+                        });
                         return;
                     }
                 }
@@ -327,7 +349,10 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                         this.friendshipStatus = 'friends';
                         this.currentFriendshipId = null;
                         console.log('Friend request accepted, refreshing friends list');
-                        alert('Friend request accepted!');
+                        this.showSuccessModal({
+                            title: 'Friend Request Accepted',
+                            message: 'Friend request accepted!'
+                        });
                         // Refresh friends list if available
                         if (this.fetchFriends) {
                             console.log('Calling fetchFriends()');
@@ -337,11 +362,17 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                         }
                     } else {
                         console.error('Failed to accept friend request:', data);
-                        alert('Failed to accept friend request: ' + (data.message || 'Unknown error'));
+                        this.showErrorModal({
+                            title: 'Failed to Accept Friend Request',
+                            message: data.message || 'Unknown error'
+                        });
                     }
                 } catch (error) {
                     console.error('Error accepting friend request:', error);
-                    alert('Failed to accept friend request. Please try again.');
+                    this.showErrorModal({
+                        title: 'Error',
+                        message: 'Failed to accept friend request. Please try again.'
+                    });
                 } finally {
                     this.processingFriendRequest = false;
                 }
@@ -355,7 +386,10 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                     // Re-fetch the friendship status to get the ID
                     await this.fetchFriendshipStatus();
                     if (!this.currentFriendshipId) {
-                        alert('Could not find the friend request to reject. Please refresh the page.');
+                        this.showErrorModal({
+                            title: 'Error',
+                            message: 'Could not find the friend request to reject. Please refresh the page.'
+                        });
                         return;
                     }
                 }
@@ -378,11 +412,17 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                         this.friendshipStatus = 'none';
                         this.currentFriendshipId = null;
                     } else {
-                        alert('Failed to reject friend request: ' + (data.message || 'Unknown error'));
+                        this.showErrorModal({
+                            title: 'Failed to Reject Friend Request',
+                            message: data.message || 'Unknown error'
+                        });
                     }
                 } catch (error) {
                     console.error('Error rejecting friend request:', error);
-                    alert('Failed to reject friend request. Please try again.');
+                    this.showErrorModal({
+                        title: 'Error',
+                        message: 'Failed to reject friend request. Please try again.'
+                    });
                 } finally {
                     this.processingFriendRequest = false;
                 }
@@ -391,7 +431,14 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
             async unfriend() {
                 if (this.isOwnProfile || !this.userId || this.processingFriendRequest) return;
 
-                if (!confirm('Are you sure you want to unfriend this user?')) return;
+                const confirmed = await this.showConfirmModal({
+                    title: 'Unfriend User',
+                    message: 'Are you sure you want to unfriend this user?',
+                    confirmText: 'Unfriend',
+                    cancelText: 'Cancel'
+                });
+                
+                if (!confirmed) return;
 
                 this.processingFriendRequest = true;
                 try {
@@ -415,11 +462,17 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                             this.fetchFriends();
                         }
                     } else {
-                        alert('Failed to unfriend: ' + (data.message || 'Unknown error'));
+                        this.showErrorModal({
+                            title: 'Failed to Unfriend',
+                            message: data.message || 'Unknown error'
+                        });
                     }
                 } catch (error) {
                     console.error('Error unfriending:', error);
-                    alert('Failed to unfriend. Please try again.');
+                    this.showErrorModal({
+                        title: 'Error',
+                        message: 'Failed to unfriend. Please try again.'
+                    });
                 } finally {
                     this.processingFriendRequest = false;
                 }
@@ -540,13 +593,19 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                 });
                 
                 if (hasErrors) {
-                    alert('Some files could not be added:\n\n' + errors.join('\n') + '\n\nSupported formats: JPEG, PNG, GIF, WebP\nMaximum size: 5MB per image');
+                    this.showErrorModal({
+                        title: 'Some Files Not Added',
+                        message: errors.join('\n') + '\n\nSupported formats: JPEG, PNG, GIF, WebP\nMaximum size: 5MB per image'
+                    });
                 }
             },
             
             async saveEdit(post) {
                 if (!post.editText || post.editText.trim() === '') {
-                    alert('Post content cannot be empty');
+                    this.showErrorModal({
+                        title: 'Empty Post',
+                        message: 'Post content cannot be empty'
+                    });
                     return;
                 }
                 
@@ -596,18 +655,31 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                             this.$forceUpdate();
                         }
                     } else {
-                        alert('Failed to update post: ' + (data.message || 'Unknown error'));
+                        this.showErrorModal({
+                            title: 'Failed to Update Post',
+                            message: data.message || 'Unknown error'
+                        });
                     }
                 } catch (error) {
                     console.error('Error updating post:', error);
-                    alert('Failed to update post. Please try again.');
+                    this.showErrorModal({
+                        title: 'Error',
+                        message: 'Failed to update post. Please try again.'
+                    });
                 } finally {
                     post.isSaving = false;
                 }
             },
             
             async deletePost(post) {
-                if (!confirm('Are you sure you want to delete this post? This action cannot be undone.')) {
+                const confirmed = await this.showConfirmModal({
+                    title: 'Delete Post',
+                    message: 'Are you sure you want to delete this post? This action cannot be undone.',
+                    confirmText: 'Delete',
+                    cancelText: 'Cancel'
+                });
+                
+                if (!confirmed) {
                     return;
                 }
                 
@@ -633,11 +705,17 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                             this.posts.splice(index, 1);
                         }
                     } else {
-                        alert(data.message || 'Failed to delete post');
+                        this.showErrorModal({
+                            title: 'Failed to Delete Post',
+                            message: data.message || 'Unknown error'
+                        });
                     }
                 } catch (error) {
                     console.error('Error deleting post:', error);
-                    alert('Failed to delete post. Please try again.');
+                    this.showErrorModal({
+                        title: 'Error',
+                        message: 'Failed to delete post. Please try again.'
+                    });
                 }
             },
             
@@ -715,11 +793,17 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                         // Refresh user posts
                         await this.fetchUserPosts();
                     } else {
-                        alert('Failed to create post: ' + (data.message || 'Unknown error'));
+                        this.showErrorModal({
+                            title: 'Failed to Create Post',
+                            message: data.message || 'Unknown error'
+                        });
                     }
                 } catch (error) {
                     console.error('Error creating post:', error);
-                    alert('Failed to create post. Please try again.');
+                    this.showErrorModal({
+                        title: 'Error',
+                        message: 'Failed to create post. Please try again.'
+                    });
                 } finally {
                     this.isPosting = false;
                 }
@@ -756,13 +840,19 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                 
                 // Validate file type
                 if (!file.type.startsWith('image/')) {
-                    alert('Please select an image file');
+                    this.showErrorModal({
+                        title: 'Invalid File Type',
+                        message: 'Please select an image file'
+                    });
                     return;
                 }
                 
                 // Validate file size (5MB)
                 if (file.size > 5 * 1024 * 1024) {
-                    alert('Image must be less than 5MB');
+                    this.showErrorModal({
+                        title: 'File Too Large',
+                        message: 'Image must be less than 5MB'
+                    });
                     return;
                 }
                 
@@ -823,18 +913,31 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                         const input = document.getElementById(`comment-image-${post.id}`);
                         if (input) input.value = '';
                     } else {
-                        alert(data.message || 'Failed to post comment');
+                        this.showErrorModal({
+                            title: 'Failed to Post Comment',
+                            message: data.message || 'Unknown error'
+                        });
                     }
                 } catch (error) {
                     console.error('Error posting comment:', error);
-                    alert('Failed to post comment. Please try again.');
+                    this.showErrorModal({
+                        title: 'Error',
+                        message: 'Failed to post comment. Please try again.'
+                    });
                 } finally {
                     post.isSubmittingComment = false;
                 }
             },
             
             async deleteComment(post, comment) {
-                if (!confirm('Are you sure you want to delete this comment?')) {
+                const confirmed = await this.showConfirmModal({
+                    title: 'Delete Comment',
+                    message: 'Are you sure you want to delete this comment?',
+                    confirmText: 'Delete',
+                    cancelText: 'Cancel'
+                });
+                
+                if (!confirmed) {
                     return;
                 }
                 
@@ -853,11 +956,17 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                             post.comments = Math.max(0, (post.comments || 0) - 1);
                         }
                     } else {
-                        alert(data.message || 'Failed to delete comment');
+                        this.showErrorModal({
+                            title: 'Failed to Delete Comment',
+                            message: data.message || 'Unknown error'
+                        });
                     }
                 } catch (error) {
                     console.error('Error deleting comment:', error);
-                    alert('Failed to delete comment. Please try again.');
+                    this.showErrorModal({
+                        title: 'Error',
+                        message: 'Failed to delete comment. Please try again.'
+                    });
                 }
             },
             

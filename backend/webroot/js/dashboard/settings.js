@@ -15,6 +15,7 @@ if (el && window.Vue) {
     const { createApp } = Vue;
 
     createApp({
+        mixins: [window.ModalMixin || {}],
         data() {
             return {
                 profileUser: null,
@@ -92,7 +93,10 @@ if (el && window.Vue) {
 
             handleSubmit() {
                 if (!this.isFormValid) {
-                    alert('Please fill in all fields correctly');
+                    this.showErrorModal({
+                        title: 'Invalid Form',
+                        message: 'Please fill in all fields correctly'
+                    });
                     return;
                 }
                 this.loading = true;

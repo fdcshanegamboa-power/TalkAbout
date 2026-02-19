@@ -43,6 +43,7 @@
     <?= $this->fetch('postLink') ?>
     
     <!-- Shared Components -->
+    <script src="<?= $this->Url->build('/js/components/modal.js') ?>?v=<?= time() ?>"></script>
     <script src="<?= $this->Url->build('/js/shared/flash_messages.js') ?>?v=<?= time() ?>"></script>
     <script src="<?= $this->Url->build('/js/shared/navbar.js') ?>?v=<?= time() ?>"></script>
     <?php
