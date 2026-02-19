@@ -30,11 +30,11 @@ $placeholder = $placeholder ?? "What's happening?";
 
             <div v-if="composer.imagePreviews.length > 0" class="mt-3 lg:mt-4">
                 <div class="grid grid-cols-2 gap-2">
-                    <div v-for="(preview, index) in composer.imagePreviews" :key="index" class="relative">
+                    <div v-for="(preview, index) in composer.imagePreviews" :key="index" class="relative bg-black rounded-lg overflow-hidden">
                         <img :src="preview" alt="preview"
-                            class="rounded-lg h-24 lg:h-32 w-full object-cover" />
+                            class="h-24 lg:h-32 w-full object-contain" />
                         <button @click="removeImage(index)"
-                            class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600">
+                            class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 z-10">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

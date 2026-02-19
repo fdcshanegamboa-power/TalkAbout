@@ -118,10 +118,10 @@ $profilePhoto = $profilePhoto ?? '';
                 <div v-if="post.editImages && post.editImages.length > 0" class="mt-2">
                     <label class="text-xs font-semibold text-blue-700 mb-1 block">Current Images:</label>
                     <div class="grid grid-cols-2 gap-2">
-                        <div v-for="(img, idx) in post.editImages" :key="idx" class="relative">
-                            <img :src="img.path" class="rounded-lg h-32 w-full object-cover border-2 border-blue-200" />
+                        <div v-for="(img, idx) in post.editImages" :key="idx" class="relative bg-black rounded-lg overflow-hidden border-2 border-blue-200">
+                            <img :src="img.path" class="h-32 w-full object-contain" />
                             <button @click="removeExistingImage(post, idx)" 
-                                    class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1.5 hover:bg-red-600 shadow-lg">
+                                    class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1.5 hover:bg-red-600 shadow-lg z-10">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                                 </svg>
@@ -133,10 +133,10 @@ $profilePhoto = $profilePhoto ?? '';
                 <div v-if="post.newEditImages && post.newEditImages.length > 0" class="mt-2">
                     <label class="text-xs font-semibold text-blue-700 mb-1 block">New Images:</label>
                     <div class="grid grid-cols-2 gap-2">
-                        <div v-for="(img, idx) in post.newEditImages" :key="idx" class="relative">
-                            <img :src="img.preview" class="rounded-lg h-32 w-full object-cover border-2 border-green-200" />
+                        <div v-for="(img, idx) in post.newEditImages" :key="idx" class="relative bg-black rounded-lg overflow-hidden border-2 border-green-200">
+                            <img :src="img.preview" class="h-32 w-full object-contain" />
                             <button @click="removeNewEditImage(post, idx)" 
-                                    class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1.5 hover:bg-red-600 shadow-lg">
+                                    class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1.5 hover:bg-red-600 shadow-lg z-10">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                                 </svg>
@@ -198,24 +198,35 @@ $profilePhoto = $profilePhoto ?? '';
                 </div>
                 
                 <div v-if="post.images && post.images.length > 0" class="mt-2 lg:mt-3">
-                    <div v-if="post.images.length === 1">
+                    <div v-if="post.images.length === 1" class="bg-black rounded-lg overflow-hidden">
                         <img :src="post.images[0]" 
                              @click="openImageModal(post.images, 0)"
-                             class="rounded-lg max-h-64 lg:max-h-96 w-full object-cover cursor-pointer hover:opacity-90 transition" />
+                             class="max-h-64 lg:max-h-96 w-full object-contain cursor-pointer hover:opacity-90 transition" />
                     </div>
                     <div v-else-if="post.images.length === 2" class="grid grid-cols-2 gap-1 lg:gap-2">
-                        <img v-for="(img, idx) in post.images" :key="idx" :src="img" 
-                             @click="openImageModal(post.images, idx)"
-                             class="rounded-lg h-40 lg:h-64 w-full object-cover cursor-pointer hover:opacity-90 transition" />
+                        <div class="bg-black rounded-lg overflow-hidden">
+                            <img :src="post.images[0]" 
+                                 @click="openImageModal(post.images, 0)"
+                                 class="h-40 lg:h-64 w-full object-contain cursor-pointer hover:opacity-90 transition" />
+                        </div>
+                        <div class="bg-black rounded-lg overflow-hidden">
+                            <img :src="post.images[1]" 
+                                 @click="openImageModal(post.images, 1)"
+                                 class="h-40 lg:h-64 w-full object-contain cursor-pointer hover:opacity-90 transition" />
+                        </div>
                     </div>
                     <div v-else class="grid grid-cols-2 gap-1 lg:gap-2">
-                        <img v-for="(img, idx) in post.images.slice(0, 4)" :key="idx" :src="img" 
-                             @click="openImageModal(post.images, idx)"
+                        <div v-for="(img, idx) in post.images.slice(0, 4)" :key="idx" 
                              :class="idx === 3 && post.images.length > 4 ? 'relative' : ''"
-                             class="rounded-lg h-32 lg:h-48 w-full object-cover cursor-pointer hover:opacity-90 transition" />
-                        <div v-if="post.images.length > 4" 
-                             class="absolute bottom-2 right-2 bg-black/70 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                            +{{ post.images.length - 4 }}
+                             class="bg-black rounded-lg overflow-hidden">
+                            <img :src="img" 
+                                 @click="openImageModal(post.images, idx)"
+                                 class="h-32 lg:h-48 w-full object-contain cursor-pointer hover:opacity-90 transition" />
+                            <div v-if="idx === 3 && post.images.length > 4" 
+                                 class="absolute inset-0 bg-black/60 flex items-center justify-center rounded-lg cursor-pointer"
+                                 @click="openImageModal(post.images, idx)">
+                                <span class="text-white text-2xl lg:text-3xl font-bold">+{{ post.images.length - 4 }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -250,10 +261,10 @@ $profilePhoto = $profilePhoto ?? '';
                                   placeholder="Write a comment..."
                                   class="w-full resize-none border border-blue-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent text-blue-800"></textarea>
                         
-                        <div v-if="post.commentImagePreview" class="mt-2 relative inline-block">
-                            <img :src="post.commentImagePreview" class="h-20 rounded-lg border border-blue-200" />
+                        <div v-if="post.commentImagePreview" class="mt-2 relative inline-block bg-black rounded-lg overflow-hidden">
+                            <img :src="post.commentImagePreview" class="h-20 object-contain" />
                             <button @click="removeCommentImage(post)" 
-                                    class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600">
+                                    class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 z-10">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                                 </svg>
