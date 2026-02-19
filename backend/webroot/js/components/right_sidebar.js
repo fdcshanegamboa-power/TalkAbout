@@ -101,6 +101,21 @@ window.RightSidebarMixin = {
                         this.suggestions.splice(index, 1);
                     }
                     console.log('Friend request sent, suggestion removed. Remaining:', this.suggestions.length);
+                    
+                    // Add to sent requests list if it exists (on friends page)
+                    if (this.sentRequests) {
+                        this.sentRequests.unshift({
+                            id: data.friendship_id || Date.now(), // Use returned ID or timestamp
+                            friendship_id: data.friendship_id || Date.now(),
+                            user_id: suggestion.id,
+                            username: suggestion.username,
+                            full_name: suggestion.full_name,
+                            profile_photo: suggestion.profile_photo,
+                            created_at: new Date().toISOString(),
+                            processing: false
+                        });
+                        console.log('Added to sent requests. Total sent:', this.sentRequests.length);
+                    }
                 } else {
                     suggestion.sending = false;
                     this.showErrorModal({

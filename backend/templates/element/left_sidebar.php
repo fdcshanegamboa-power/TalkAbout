@@ -57,7 +57,6 @@ $profileClass = $baseItem . ' ' . (($active === 'profile' || $active === 'editPr
                         <?= mb_substr($meFullName ?: $meUsername ?: 'U', 0, 1) ?>
                     <?php endif; ?>
                 </div>
-                <div class="absolute bottom-0 right-0 w-5 h-5 bg-green-500 rounded-full border-4 border-white"></div>
             </div>
             <div class="w-full text-center">
                 <div class="text-xs font-medium text-blue-500 uppercase tracking-wide mb-0.5">You</div>

@@ -42,7 +42,8 @@ if (el && window.Vue) {
                 sentRequests: [], // Outgoing friend requests
                 loadingSentRequests: false,
                 
-                loading: true
+                loading: true,
+                activeTab: 'friends' // 'friends' or 'suggestions' for mobile/tablet view
             };
         },
 
