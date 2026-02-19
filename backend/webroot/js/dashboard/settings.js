@@ -42,11 +42,32 @@ if (el && window.Vue) {
             passwordsMatch() {
                 return this.form.new_password === this.confirmPassword;
             },
+            isSamePassword() {
+                return this.form.current_password && 
+                       this.form.new_password && 
+                       this.form.current_password === this.form.new_password;
+            },
+            passwordRequirements() {
+                const p = this.form.new_password;
+                return {
+                    minLength: p.length >= 8,
+                    hasUpper: /[A-Z]/.test(p),
+                    hasLower: /[a-z]/.test(p),
+                    hasNumber: /[0-9]/.test(p),
+                    hasSpecial: /[!@#$%^&*(),.?":{}|<>]/.test(p)
+                };
+            },
+            allRequirementsMet() {
+                const reqs = this.passwordRequirements;
+                return reqs.minLength && reqs.hasUpper && reqs.hasLower && reqs.hasNumber;
+            },
             isFormValid() {
                 return this.form.current_password &&
                        this.form.new_password &&
                        this.form.new_password.length >= 8 &&
-                       this.passwordsMatch;
+                       this.passwordsMatch &&
+                       !this.isSamePassword &&
+                       this.allRequirementsMet;
             }
         },
 
@@ -82,20 +103,39 @@ if (el && window.Vue) {
                     return;
                 }
 
-                if (p.length < 8) {
-                    this.passwordStrength = { text: 'Too short', color: 'text-red-600', bgColor: 'bg-red-500', width: '25%' };
-                } else if (p.length < 12) {
-                    this.passwordStrength = { text: 'Fair', color: 'text-yellow-600', bgColor: 'bg-yellow-500', width: '75%' };
+                const reqs = this.passwordRequirements;
+                let strength = 0;
+                
+                if (reqs.minLength) strength += 20;
+                if (reqs.hasUpper) strength += 20;
+                if (reqs.hasLower) strength += 20;
+                if (reqs.hasNumber) strength += 20;
+                if (reqs.hasSpecial) strength += 20;
+
+                if (strength < 40) {
+                    this.passwordStrength = { text: 'Weak', color: 'text-red-600', bgColor: 'bg-red-500', width: strength + '%' };
+                } else if (strength < 80) {
+                    this.passwordStrength = { text: 'Fair', color: 'text-yellow-600', bgColor: 'bg-yellow-500', width: strength + '%' };
+                } else if (strength < 100) {
+                    this.passwordStrength = { text: 'Good', color: 'text-blue-600', bgColor: 'bg-blue-500', width: strength + '%' };
                 } else {
                     this.passwordStrength = { text: 'Strong', color: 'text-green-600', bgColor: 'bg-green-500', width: '100%' };
                 }
             },
 
             handleSubmit() {
+                if (this.isSamePassword) {
+                    this.showErrorModal({
+                        title: 'Invalid Password',
+                        message: 'Your new password must be different from your current password.'
+                    });
+                    return;
+                }
+                
                 if (!this.isFormValid) {
                     this.showErrorModal({
                         title: 'Invalid Form',
-                        message: 'Please fill in all fields correctly'
+                        message: 'Please fill in all fields correctly and meet all password requirements.'
                     });
                     return;
                 }
