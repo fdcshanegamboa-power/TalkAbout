@@ -49,14 +49,23 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
             console.log('User ID (profile being viewed):', this.userId);
             console.log('Current user ID:', this.currentUserId);
             console.log('Is own profile:', this.isOwnProfile);
+            console.log('RightSidebarMixin available:', !!window.RightSidebarMixin);
+            console.log('fetchFriends method:', typeof this.fetchFriends);
+            console.log('fetchSuggestions method:', typeof this.fetchSuggestions);
             
             this.fetchProfileUser();
             this.fetchUserPosts();
             if (this.fetchFriends) {
+                console.log('Calling fetchFriends...');
                 this.fetchFriends();
+            }  else {
+                console.warn('fetchFriends method not available!');
             }
             if (this.fetchSuggestions) {
+                console.log('Calling fetchSuggestions...');
                 this.fetchSuggestions();
+            } else {
+                console.warn('fetchSuggestions method not available!');
             }
             if (!this.isOwnProfile && this.userId && this.userId !== '0') {
                 console.log('Fetching friendship status for user:', this.userId);

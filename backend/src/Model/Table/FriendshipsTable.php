@@ -206,16 +206,14 @@ class FriendshipsTable extends Table
 
         $excludePlaceholders = implode(',', array_fill(0, count($excludeIds), '?'));
 
-        // Build SQL query to find friends of friends with mutual friend count
-        // Note: LIMIT uses direct integer interpolation (safe since $limit is type-hinted as int)
+        // Try to find friends of friends (mutual connections) first
         $sql = "
             SELECT 
                 u.id,
                 u.username,
                 u.full_name,
                 u.profile_photo_path,
-                COUNT(DISTINCT f1.id) as mutual_friends,
-                MAX(u.created_at) as joined_at
+                COUNT(DISTINCT f1.id) as mutual_friends
             FROM users u
             INNER JOIN friendships f2 ON (
                 (f2.requester_id = u.id OR f2.addressee_id = u.id)
@@ -231,11 +229,11 @@ class FriendshipsTable extends Table
             )
             WHERE u.id NOT IN ($excludePlaceholders)
             GROUP BY u.id, u.username, u.full_name, u.profile_photo_path
-            ORDER BY mutual_friends DESC, joined_at DESC
+            HAVING mutual_friends > 0
+            ORDER BY mutual_friends DESC
             LIMIT " . (int)$limit . "
         ";
 
-        // Execute query with parameters (excluding limit from params)
         $params = array_merge(
             [$userId, $userId],
             $excludeIds
@@ -244,7 +242,7 @@ class FriendshipsTable extends Table
         $statement = $connection->execute($sql, $params);
         $results = $statement->fetchAll('assoc');
 
-        // If we don't have enough mutual friend suggestions, add some popular/active users
+        // If no mutual friends found, show other users as fallback
         if (count($results) < $limit) {
             $remaining = $limit - count($results);
             $existingUserIds = array_merge($excludeIds, array_column($results, 'id'));
@@ -256,8 +254,7 @@ class FriendshipsTable extends Table
                     u.username,
                     u.full_name,
                     u.profile_photo_path,
-                    0 as mutual_friends,
-                    u.created_at as joined_at
+                    0 as mutual_friends
                 FROM users u
                 WHERE u.id NOT IN ($fallbackPlaceholders)
                 ORDER BY u.created_at DESC

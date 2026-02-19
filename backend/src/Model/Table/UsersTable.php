@@ -68,4 +68,14 @@ class UsersTable extends Table
 
         return $rules;
     }
+
+    public function beforeSave($event, $entity, $options)
+    {
+        // Convert username to lowercase before saving
+        if ($entity->has('username') && !empty($entity->username)) {
+            $entity->username = strtolower($entity->username);
+        }
+
+        return true;
+    }
 }

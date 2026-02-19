@@ -55,7 +55,11 @@ window.RightSidebarMixin = {
                 console.log('Suggestions API response:', data);
 
                 if (data.success) {
-                    this.suggestions = data.suggestions || [];
+                    // Initialize each suggestion with sending flag for reactivity
+                    this.suggestions = (data.suggestions || []).map(s => ({
+                        ...s,
+                        sending: false
+                    }));
                     console.log('Suggestions loaded:', this.suggestions.length, 'suggestions');
                 } else {
                     console.error('Failed to fetch suggestions:', data.message);
@@ -72,7 +76,9 @@ window.RightSidebarMixin = {
         async sendFriendRequestToSuggestion(suggestion) {
             if (suggestion.sending) return;
 
+            // Use Vue.set or direct assignment to ensure reactivity
             suggestion.sending = true;
+            
             try {
                 const response = await fetch('/api/friendships/send', {
                     method: 'POST',
@@ -85,18 +91,23 @@ window.RightSidebarMixin = {
                 });
 
                 const data = await response.json();
+                console.log('Send friend request response:', data);
 
                 if (data.success) {
-                    // Remove from suggestions
-                    this.suggestions = this.suggestions.filter(s => s.id !== suggestion.id);
+                    // Remove from suggestions list
+                    const index = this.suggestions.findIndex(s => s.id === suggestion.id);
+                    if (index > -1) {
+                        this.suggestions.splice(index, 1);
+                    }
+                    console.log('Friend request sent, suggestion removed. Remaining:', this.suggestions.length);
                 } else {
+                    suggestion.sending = false;
                     alert('Failed to send friend request: ' + (data.message || 'Unknown error'));
                 }
             } catch (error) {
                 console.error('Error sending friend request:', error);
-                alert('Failed to send friend request. Please try again.');
-            } finally {
                 suggestion.sending = false;
+                alert('Failed to send friend request. Please try again.');
             }
         }
     }

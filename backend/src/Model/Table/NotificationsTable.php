@@ -80,7 +80,7 @@ class NotificationsTable extends Table
 
         $validator
             ->scalar('target_type')
-            ->inList('target_type', ['post', 'comment', 'user'])
+            ->inList('target_type', ['post', 'comment', 'user', 'friendship'])
             ->allowEmptyString('target_type');
 
         $validator

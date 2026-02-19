@@ -391,6 +391,8 @@ class PostsController extends AppController
             'success' => true,
             'post' => [
                 'id' => $post->id,
+                'user_id' => $user->id,
+                'username' => $user->username ?? '',
                 'author' => $authorName,
                 'about' => $user->about ?? '',
                 'initial' => $initial,
