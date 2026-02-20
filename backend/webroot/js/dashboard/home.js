@@ -11,6 +11,7 @@ console.log('Dashboard page loaded:', {
     Vue: !!window.Vue,
     PostCardMixin: !!window.PostCardMixin,
     PostComposerMixin: !!window.PostComposerMixin,
+    LeftSidebarMixin: !!window.LeftSidebarMixin,
     RightSidebarMixin: !!window.RightSidebarMixin
 });
 
@@ -18,6 +19,9 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
     const { createApp } = Vue;
 
     const mixins = [PostCardMixin, PostComposerMixin];
+    if (window.LeftSidebarMixin) {
+        mixins.push(LeftSidebarMixin);
+    }
     if (window.RightSidebarMixin) {
         mixins.push(RightSidebarMixin);
     }
@@ -26,9 +30,6 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
         mixins: mixins,
         data() {
             return {
-                profileUser: null, // For left sidebar display
-                currentUserId: null,
-
                 posts: [],
                 isLoading: true,
                 
@@ -82,31 +83,6 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
         },
 
         methods: {
-            async fetchCurrentUserProfile() {
-                try {
-                    const response = await fetch('/api/profile/current');
-                    if (!response.ok) {
-                        console.error('Failed to fetch profile:', response.status);
-                        return;
-                    }
-                    
-                    const data = await response.json();
-                    if (data.success) {
-                        const user = data.user;
-                        this.currentUserId = user.id || null;
-                        this.profileUser = {
-                            full_name: user.full_name || '',
-                            username: user.username || '',
-                            about: user.about || '',
-                            profile_photo: user.profile_photo_path || '',
-                            initial: (user.full_name || user.username || 'U').charAt(0).toUpperCase()
-                        };
-                    }
-                } catch (error) {
-                    console.error('Error fetching current user profile:', error);
-                }
-            },
-            
             async fetchPosts(reset = false) {
                 if (reset) {
                     this.offset = 0;

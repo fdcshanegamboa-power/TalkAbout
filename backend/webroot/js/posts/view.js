@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const { createApp } = Vue;
 
         const mixins = [PostCardMixin];
+        if (window.LeftSidebarMixin) {
+            mixins.push(window.LeftSidebarMixin);
+        }
         if (window.RightSidebarMixin) {
             mixins.push(window.RightSidebarMixin);
         }
@@ -13,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
             mixins: mixins,
             data() {
                 return {
-                    profileUser: null, // For left sidebar display
                     post: window.postViewData || {
                         id: null,
                         commentsList: [],
@@ -72,27 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
             },
 
             methods: {
-                async fetchCurrentUserProfile() {
-                try {
-                    const response = await fetch('/api/profile/current');
-                    if (!response.ok) return;
-                    
-                    const data = await response.json();
-                    if (data.success) {
-                        const user = data.user;
-                        this.profileUser = {
-                            full_name: user.full_name || '',
-                            username: user.username || '',
-                            about: user.about || '',
-                            profile_photo: user.profile_photo_path || '',
-                            initial: (user.full_name || user.username || 'U').charAt(0).toUpperCase()
-                        };
-                    }
-                } catch (error) {
-                    console.error('Error fetching profile:', error);
-                }
-            },
-            
             checkCommentAnchor() {
                 // Check if there's a comment hash in the URL
                 const hash = window.location.hash;

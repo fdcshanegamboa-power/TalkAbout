@@ -2,13 +2,11 @@ const { createApp } = Vue;
 
 createApp({
     mixins: [
+        ...(window.LeftSidebarMixin ? [window.LeftSidebarMixin] : []),
         ...(window.RightSidebarMixin ? [window.RightSidebarMixin] : [])
     ],
     data() {
         return {
-            profileUser: null, // For left sidebar display
-            currentUserId: null,
-            
             // Mobile header notifications
             notifications: [],
             notificationCount: 0,
@@ -34,31 +32,6 @@ createApp({
         }
     },
     methods: {
-        async fetchCurrentUserProfile() {
-            try {
-                const response = await fetch('/api/profile/current');
-                if (!response.ok) {
-                    console.error('Failed to fetch profile:', response.status);
-                    return;
-                }
-
-                const data = await response.json();
-                if (data.success) {
-                    const user = data.user;
-                    this.currentUserId = user.id || null;
-                    this.profileUser = {
-                        full_name: user.full_name || '',
-                        username: user.username || '',
-                        about: user.about || '',
-                        profile_photo: user.profile_photo_path || '',
-                        initial: (user.full_name || user.username || 'U').charAt(0).toUpperCase()
-                    };
-                }
-            } catch (error) {
-                console.error('Error fetching current user profile:', error);
-            }
-        },
-        
         // Notification methods for mobile header
         async fetchNotifications() {
             try {

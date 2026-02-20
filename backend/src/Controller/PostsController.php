@@ -521,24 +521,42 @@ class PostsController extends AppController
                 
                 if (is_array($imagesToDeleteArray)) {
                     foreach ($imagesToDeleteArray as $imagePath) {
-                        // Extract filename from path (e.g., "/img/posts/filename.jpg" -> "filename.jpg")
-                        $filename = basename($imagePath);
+                        // Check if this is a URL or a local file path
+                        $isUrl = preg_match('/^https?:\/\//', $imagePath);
                         
-                        // Find and delete from database
-                        $imageRecord = $postImagesTable->find()
-                            ->where([
-                                'post_id' => $postId,
-                                'image_path' => $filename
-                            ])
-                            ->first();
-                        
-                        if ($imageRecord) {
-                            $postImagesTable->delete($imageRecord);
+                        if ($isUrl) {
+                            // For URLs, match the full image_path directly
+                            $imageRecord = $postImagesTable->find()
+                                ->where([
+                                    'post_id' => $postId,
+                                    'image_path' => $imagePath
+                                ])
+                                ->first();
                             
-                            // Delete physical file
-                            $filePath = WWW_ROOT . 'img' . DS . 'posts' . DS . $filename;
-                            if (file_exists($filePath)) {
-                                unlink($filePath);
+                            if ($imageRecord) {
+                                $postImagesTable->delete($imageRecord);
+                                // Don't try to delete physical file for URLs
+                            }
+                        } else {
+                            // For local files, extract filename from path (e.g., "/img/posts/filename.jpg" -> "filename.jpg")
+                            $filename = basename($imagePath);
+                            
+                            // Find and delete from database
+                            $imageRecord = $postImagesTable->find()
+                                ->where([
+                                    'post_id' => $postId,
+                                    'image_path' => $filename
+                                ])
+                                ->first();
+                            
+                            if ($imageRecord) {
+                                $postImagesTable->delete($imageRecord);
+                                
+                                // Delete physical file only for local images
+                                $filePath = WWW_ROOT . 'img' . DS . 'posts' . DS . $filename;
+                                if (file_exists($filePath)) {
+                                    unlink($filePath);
+                                }
                             }
                         }
                     }

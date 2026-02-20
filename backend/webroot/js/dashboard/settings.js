@@ -8,19 +8,20 @@ if (el) {
 // Debug logging
 console.log('Settings page loaded:', {
     el: !!el,
-    Vue: !!window.Vue
+    Vue: !!window.Vue,
+    LeftSidebarMixin: !!window.LeftSidebarMixin
 });
 
 if (el && window.Vue) {
     const { createApp } = Vue;
 
     createApp({
-        mixins: [window.ModalMixin || {}],
+        mixins: [
+            ...(window.ModalMixin ? [window.ModalMixin] : []),
+            ...(window.LeftSidebarMixin ? [window.LeftSidebarMixin] : [])
+        ],
         data() {
             return {
-                profileUser: null,
-                currentUserId: null,
-                
                 // Mobile header notifications
                 notifications: [],
                 notificationCount: 0,
@@ -88,31 +89,6 @@ if (el && window.Vue) {
         },
 
         methods: {
-            async fetchCurrentUserProfile() {
-                try {
-                    const response = await fetch('/api/profile/current');
-                    if (!response.ok) {
-                        console.error('Failed to fetch profile:', response.status);
-                        return;
-                    }
-
-                    const data = await response.json();
-                    if (data.success) {
-                        const user = data.user;
-                        this.currentUserId = user.id || null;
-                        this.profileUser = {
-                            full_name: user.full_name || '',
-                            username: user.username || '',
-                            about: user.about || '',
-                            profile_photo: user.profile_photo_path || '',
-                            initial: (user.full_name || user.username || 'U').charAt(0).toUpperCase()
-                        };
-                    }
-                } catch (error) {
-                    console.error('Error fetching current user profile:', error);
-                }
-            },
-
             validatePassword() {
                 const p = this.form.new_password;
                 if (!p) {

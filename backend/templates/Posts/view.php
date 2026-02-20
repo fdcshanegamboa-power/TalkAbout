@@ -2,6 +2,7 @@
 $this->assign('title', 'Post');
 $this->Html->script('components/modal', ['block' => 'script']);
 $this->Html->script('components/post_card', ['block' => 'script']);
+$this->Html->script('components/left_sidebar', ['block' => 'script']);
 $this->Html->script('components/right_sidebar', ['block' => 'script']);
 $this->Html->script('posts/view', ['block' => 'script']);
 

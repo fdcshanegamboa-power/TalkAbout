@@ -5,6 +5,7 @@
  */
 $this->assign('title', 'Settings');
 ?>
+<?= $this->Html->script('components/left_sidebar', ['block' => 'script']) ?>
 <?= $this->Html->script('dashboard/settings', ['block' => 'script']) ?>
 
 <style>

@@ -14,7 +14,9 @@ console.log('Profile page loaded:', {
     el: !!el,
     Vue: !!window.Vue,
     PostCardMixin: !!window.PostCardMixin,
-    PostComposerMixin: !!window.PostComposerMixin
+    PostComposerMixin: !!window.PostComposerMixin,
+    LeftSidebarMixin: !!window.LeftSidebarMixin,
+    RightSidebarMixin: !!window.RightSidebarMixin
 });
 
 if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
@@ -25,6 +27,7 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
             ...(window.ModalMixin ? [ModalMixin] : []),
             PostCardMixin, 
             PostComposerMixin,
+            ...(window.LeftSidebarMixin ? [LeftSidebarMixin] : []),
             ...(window.RightSidebarMixin ? [RightSidebarMixin] : [])
         ],
         data() {
@@ -56,14 +59,23 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
             console.log('User ID (profile being viewed):', this.userId);
             console.log('Current user ID:', this.currentUserId);
             console.log('Is own profile:', this.isOwnProfile);
+            console.log('LeftSidebarMixin available:', !!window.LeftSidebarMixin);
             console.log('RightSidebarMixin available:', !!window.RightSidebarMixin);
             console.log('fetchFriends method:', typeof this.fetchFriends);
             console.log('fetchSuggestions method:', typeof this.fetchSuggestions);
             
+            // Fetch the profile being viewed
             this.fetchProfileUser();
             this.fetchUserPosts();
             this.fetchNotifications();
             this.initWebSocket();
+            
+            // Fetch current user profile for left sidebar (from LeftSidebarMixin)
+            if (this.fetchCurrentUserProfile) {
+                console.log('Calling fetchCurrentUserProfile for left sidebar...');
+                this.fetchCurrentUserProfile();
+            }
+            
             if (this.fetchFriends) {
                 console.log('Calling fetchFriends...');
                 this.fetchFriends();

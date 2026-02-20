@@ -5,6 +5,7 @@
  */
 $this->assign('title', 'Friends');
 ?>
+<?= $this->Html->script('components/left_sidebar', ['block' => 'script']) ?>
 <?= $this->Html->script('components/right_sidebar', ['block' => 'script']) ?>
 <?= $this->Html->script('friendships/friends', ['block' => 'script']) ?>
 
