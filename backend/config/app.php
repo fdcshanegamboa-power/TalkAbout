@@ -73,6 +73,7 @@ return [
         'log' => true,
         'trace' => true,
         'ignoredDeprecationPaths' => [],
+        'errorController' => 'Error',
     ],
     'Datasources' => [
         'default' => [

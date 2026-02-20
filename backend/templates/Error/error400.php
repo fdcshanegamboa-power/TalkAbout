@@ -1,11 +1,10 @@
 <?php
 /**
- * @var \App\View\AppView $this
- * @var \Cake\Http\Exception\HttpException $error
+ * @var \Cake\Error\ErrorRenderer $error
+ * @var \Cake\Http\Response $response
+ * @var \Cake\Http\ServerRequest $request
  */
 use Cake\Core\Configure;
-
-$this->assign('title', 'Error');
 
 // Helper function for escaping
 if (!function_exists('h')) {
@@ -14,24 +13,23 @@ if (!function_exists('h')) {
     }
 }
 
-// Set default values
-$code = $this->fetch('code', '404');
-$message = $this->fetch('message', 'Page Not Found');
-$url = $this->request->getRequestTarget();
+// Get error code
+$code = $this->response ? $this->response->getStatusCode() : 404;
+$url = $this->request ? $this->request->getRequestTarget() : '';
 
-// Get user-friendly messages
-if ($code === '404') {
+// Get user-friendly messages based on error code
+if ($code === 404) {
     $title = 'Page Not Found';
     $description = "The page you're looking for doesn't exist or has been moved.";
-} elseif ($code === '403') {
+} elseif ($code === 403) {
     $title = 'Access Denied';
     $description = "You don't have permission to access this page.";
-} elseif ($code === '500') {
-    $title = 'Server Error';
-    $description = 'Something went wrong on our end. Please try again later.';
+} elseif ($code === 401) {
+    $title = 'Unauthorized';
+    $description = 'You need to log in to access this page.';
 } else {
     $title = 'Error ' . h($code);
-    $description = h($message);
+    $description = 'An error occurred while processing your request.';
 }
 ?>
 <!DOCTYPE html>
@@ -72,17 +70,15 @@ if ($code === '404') {
                 <?= h($description) ?>
             </p>
 
-            <?php if (Configure::read('debug')): ?>
+            <?php if (Configure::read('debug') && isset($error)): ?>
             <!-- Debug Info (only in debug mode) -->
             <div class="bg-gray-50 rounded-lg p-4 mb-6 text-left">
                 <p class="text-xs text-gray-500 font-mono break-all">
                     <strong>URL:</strong> <?= h($url) ?>
                 </p>
-                <?php if (isset($error)): ?>
                 <p class="text-xs text-gray-500 font-mono mt-2">
                     <strong>Message:</strong> <?= h($error->getMessage()) ?>
                 </p>
-                <?php endif; ?>
             </div>
             <?php endif; ?>
 

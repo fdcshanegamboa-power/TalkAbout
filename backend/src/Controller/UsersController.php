@@ -19,7 +19,7 @@ class UsersController extends AppController
     {
         parent::beforeFilter($event);
         if (isset($this->Authentication)) {
-            $this->Authentication->addUnauthenticatedActions(['register']);
+            $this->Authentication->addUnauthenticatedActions(['register', 'checkUsername']);
         }
     }
 
@@ -70,5 +70,67 @@ class UsersController extends AppController
         }
         
         $this->set(compact('user'));
+    }
+
+    /**
+     * Check if a username is available
+     * Returns JSON response with availability status
+     */
+    public function checkUsername()
+    {
+        $this->request->allowMethod(['get']);
+        
+        $username = $this->request->getQuery('username');
+        
+        // Validate input exists
+        if (empty($username)) {
+            return $this->response
+                ->withType('application/json')
+                ->withStringBody(json_encode([
+                    'available' => false,
+                    'message' => 'Username is required'
+                ]));
+        }
+        
+        // Normalize username (lowercase, like in beforeSave)
+        $username = strtolower(trim($username));
+        
+        // Validate username format (must match frontend+backend validation)
+        if (strlen($username) < 3) {
+            return $this->response
+                ->withType('application/json')
+                ->withStringBody(json_encode([
+                    'available' => false,
+                    'message' => 'Username must be at least 3 characters'
+                ]));
+        }
+        
+        if (strlen($username) > 50) {
+            return $this->response
+                ->withType('application/json')
+                ->withStringBody(json_encode([
+                    'available' => false,
+                    'message' => 'Username must be less than 50 characters'
+                ]));
+        }
+        
+        if (!preg_match('/^[a-zA-Z0-9_]+$/', $username)) {
+            return $this->response
+                ->withType('application/json')
+                ->withStringBody(json_encode([
+                    'available' => false,
+                    'message' => 'Username can only contain letters, numbers, and underscores'
+                ]));
+        }
+        
+        // Check if username exists in database
+        $exists = $this->Users->exists(['username' => $username]);
+        
+        return $this->response
+            ->withType('application/json')
+            ->withStringBody(json_encode([
+                'available' => !$exists,
+                'message' => $exists ? 'This username is already taken' : 'Username is available'
+            ]));
     }
 }

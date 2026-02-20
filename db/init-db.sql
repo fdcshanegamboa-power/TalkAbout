@@ -20,7 +20,7 @@ FLUSH PRIVILEGES;
 CREATE TABLE users (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     full_name VARCHAR(150) NOT NULL,
-    username VARCHAR(50) NOT NULL,
+    username VARCHAR(15) NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     profile_photo_path VARCHAR(255) NULL,
     about TEXT NULL,

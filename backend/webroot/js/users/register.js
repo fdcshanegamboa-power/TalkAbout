@@ -24,12 +24,25 @@ if (el && window.Vue) {
                     bgColor: '',
                     width: '0%'
                 },
+                passwordRequirements: {
+                    minLength: false,
+                    hasUpper: false,
+                    hasLower: false,
+                    hasNumber: false,
+                    hasSpecial: false
+                },
                 validationErrors: {
                     full_name: '',
                     username: '',
                     password: '',
                     confirmPassword: ''
-                }
+                },
+                usernameCheck: {
+                    checking: false,
+                    available: null,
+                    message: ''
+                },
+                usernameCheckTimeout: null
             };
         },
         mounted() {
@@ -50,7 +63,11 @@ if (el && window.Vue) {
                        this.passwordsMatch &&
                        !this.validationErrors.full_name &&
                        !this.validationErrors.username &&
-                       !this.validationErrors.password;
+                       !this.validationErrors.password &&
+                       this.passwordRequirements.minLength &&
+                       this.passwordRequirements.hasUpper &&
+                       this.passwordRequirements.hasLower &&
+                       this.passwordRequirements.hasNumber;
             }
         },
         methods: {
@@ -70,20 +87,73 @@ if (el && window.Vue) {
                 const username = this.form.username;
                 if (!username) {
                     this.validationErrors.username = 'Username is required';
+                    this.usernameCheck = { checking: false, available: null, message: '' };
                 } else if (username.length < 3) {
                     this.validationErrors.username = 'Username must be at least 3 characters';
-                } else if (username.length > 50) {
-                    this.validationErrors.username = 'Username must be less than 50 characters';
+                    this.usernameCheck = { checking: false, available: null, message: '' };
+                } else if (username.length > 15) {
+                    this.validationErrors.username = 'Username must be less than 15 characters';
+                    this.usernameCheck = { checking: false, available: null, message: '' };
                 } else if (/\s/.test(username)) {
                     this.validationErrors.username = 'Username cannot contain whitespace';
+                    this.usernameCheck = { checking: false, available: null, message: '' };
                 } else if (!/^[a-zA-Z0-9_]+$/.test(username)) {
                     this.validationErrors.username = 'Username can only contain letters, numbers, and underscores';
+                    this.usernameCheck = { checking: false, available: null, message: '' };
                 } else {
                     this.validationErrors.username = '';
+                    // Trigger real-time availability check
+                    this.checkUsernameAvailability();
                 }
+            },
+            checkUsernameAvailability() {
+                // Clear any existing timeout
+                if (this.usernameCheckTimeout) {
+                    clearTimeout(this.usernameCheckTimeout);
+                }
+                
+                // Reset state
+                this.usernameCheck.checking = true;
+                this.usernameCheck.available = null;
+                this.usernameCheck.message = '';
+                
+                // Debounce API call by 400ms
+                this.usernameCheckTimeout = setTimeout(async () => {
+                    const username = this.form.username;
+                    if (!username || this.validationErrors.username) {
+                        this.usernameCheck.checking = false;
+                        return;
+                    }
+                    
+                    try {
+                        const response = await fetch(`/users/check-username?username=${encodeURIComponent(username)}`);
+                        const data = await response.json();
+                        
+                        this.usernameCheck.checking = false;
+                        this.usernameCheck.available = data.available;
+                        this.usernameCheck.message = data.message || '';
+                        
+                        // Set validation error if username is taken
+                        if (!data.available) {
+                            this.validationErrors.username = data.message;
+                        }
+                    } catch (error) {
+                        console.error('Error checking username:', error);
+                        this.usernameCheck.checking = false;
+                        this.usernameCheck.available = null;
+                        this.usernameCheck.message = '';
+                    }
+                }, 400);
             },
             validatePassword() {
                 const p = this.form.password;
+                
+                // Check individual requirements
+                this.passwordRequirements.minLength = p.length >= 8;
+                this.passwordRequirements.hasLower = /[a-z]/.test(p);
+                this.passwordRequirements.hasUpper = /[A-Z]/.test(p);
+                this.passwordRequirements.hasNumber = /[0-9]/.test(p);
+                this.passwordRequirements.hasSpecial = /[^a-zA-Z0-9]/.test(p);
                 
                 // Validation errors
                 if (!p) {
@@ -93,6 +163,13 @@ if (el && window.Vue) {
                         color: '', 
                         bgColor: '', 
                         width: '0%' 
+                    };
+                    this.passwordRequirements = {
+                        minLength: false,
+                        hasUpper: false,
+                        hasLower: false,
+                        hasNumber: false,
+                        hasSpecial: false
                     };
                     return;
                 } else if (/\s/.test(p)) {
@@ -104,48 +181,50 @@ if (el && window.Vue) {
                         width: '25%' 
                     };
                     return;
-                } else if (p.length < 8) {
-                    this.validationErrors.password = 'Password must be at least 8 characters';
-                    this.passwordStrength = { 
-                        text: 'Too short', 
-                        color: 'text-red-600', 
-                        bgColor: 'bg-red-500', 
-                        width: '25%' 
-                    };
-                    return;
+                } else if (!this.passwordRequirements.minLength || 
+                          !this.passwordRequirements.hasUpper || 
+                          !this.passwordRequirements.hasLower || 
+                          !this.passwordRequirements.hasNumber) {
+                    this.validationErrors.password = 'Password does not meet requirements';
                 } else {
                     this.validationErrors.password = '';
                 }
                 
                 // Password strength indicator
-                if (p.length < 12) {
-                    const hasLower = /[a-z]/.test(p);
-                    const hasUpper = /[A-Z]/.test(p);
-                    const hasNumber = /[0-9]/.test(p);
-                    const hasSpecial = /[^a-zA-Z0-9]/.test(p);
-                    const complexity = [hasLower, hasUpper, hasNumber, hasSpecial].filter(Boolean).length;
-                    
-                    if (complexity >= 3) {
-                        this.passwordStrength = { 
-                            text: 'Good', 
-                            color: 'text-blue-600', 
-                            bgColor: 'bg-blue-500', 
-                            width: '75%' 
-                        };
-                    } else {
-                        this.passwordStrength = { 
-                            text: 'Fair', 
-                            color: 'text-yellow-600', 
-                            bgColor: 'bg-yellow-500', 
-                            width: '50%' 
-                        };
-                    }
-                } else {
+                const complexity = [
+                    this.passwordRequirements.hasLower,
+                    this.passwordRequirements.hasUpper,
+                    this.passwordRequirements.hasNumber,
+                    this.passwordRequirements.hasSpecial
+                ].filter(Boolean).length;
+                
+                if (p.length >= 12 && complexity >= 4) {
                     this.passwordStrength = { 
                         text: 'Strong', 
                         color: 'text-green-600', 
                         bgColor: 'bg-green-500', 
                         width: '100%' 
+                    };
+                } else if (complexity >= 3) {
+                    this.passwordStrength = { 
+                        text: 'Good', 
+                        color: 'text-blue-600', 
+                        bgColor: 'bg-blue-500', 
+                        width: '75%' 
+                    };
+                } else if (complexity >= 2) {
+                    this.passwordStrength = { 
+                        text: 'Fair', 
+                        color: 'text-yellow-600', 
+                        bgColor: 'bg-yellow-500', 
+                        width: '50%' 
+                    };
+                } else {
+                    this.passwordStrength = { 
+                        text: 'Weak', 
+                        color: 'text-red-600', 
+                        bgColor: 'bg-red-500', 
+                        width: '25%' 
                     };
                 }
             },

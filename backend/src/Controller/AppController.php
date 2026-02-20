@@ -22,12 +22,12 @@ class AppController extends BaseController
 
         $this->loadComponent('Flash');
         $this->loadComponent('Authentication.Authentication');
-        $this->Authentication->addUnauthenticatedActions(['login', 'register']);
+        $this->Authentication->addUnauthenticatedActions(['login', 'register', 'checkUsername']);
     }
 
     public function beforeFilter(EventInterface $event)
     {
         parent::beforeFilter($event);
-        $this->Authentication->addUnauthenticatedActions(['login', 'register']);
+        $this->Authentication->addUnauthenticatedActions(['login', 'register', 'checkUsername']);
     }
 }

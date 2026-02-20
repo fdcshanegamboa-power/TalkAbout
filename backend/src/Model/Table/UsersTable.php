@@ -48,7 +48,7 @@ class UsersTable extends Table
 
         $validator
             ->scalar('username')
-            ->maxLength('username', 50, 'Username must be less than 50 characters')
+            ->maxLength('username', 15, 'Username must be less than 15 characters')
             ->minLength('username', 3, 'Username must be at least 3 characters')
             ->requirePresence('username', 'create')
             ->notEmptyString('username', 'Username is required')
@@ -81,6 +81,24 @@ class UsersTable extends Table
                     return (bool)preg_match('/^\S+$/', $value);
                 },
                 'message' => 'Password cannot contain whitespace'
+            ])
+            ->add('password', 'hasUppercase', [
+                'rule' => function ($value) {
+                    return (bool)preg_match('/[A-Z]/', $value);
+                },
+                'message' => 'Password must contain at least one uppercase letter'
+            ])
+            ->add('password', 'hasLowercase', [
+                'rule' => function ($value) {
+                    return (bool)preg_match('/[a-z]/', $value);
+                },
+                'message' => 'Password must contain at least one lowercase letter'
+            ])
+            ->add('password', 'hasNumber', [
+                'rule' => function ($value) {
+                    return (bool)preg_match('/[0-9]/', $value);
+                },
+                'message' => 'Password must contain at least one number'
             ]);
 
         $validator
@@ -88,13 +106,18 @@ class UsersTable extends Table
             ->maxLength('profile_photo_path', 255)
             ->allowEmptyString('profile_photo_path');
 
+        $validator
+            ->scalar('about')
+            ->maxLength('about', 500, 'About section must be less than 500 characters')
+            ->allowEmptyString('about');
+
         return $validator;
     }
 
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->isUnique(['username']), ['errorField' => 'username']);
-
+        // Username uniqueness is already validated in validationDefault()
+        // No need to add it here to avoid duplicate error messages
         return $rules;
     }
 

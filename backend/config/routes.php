@@ -15,6 +15,9 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/register', ['controller' => 'Users', 'action' => 'register']);
         $builder->connect('/logout', ['controller' => 'Sessions', 'action' => 'logout']);
         
+        // API route for username availability check
+        $builder->connect('/users/check-username', ['controller' => 'Users', 'action' => 'checkUsername']);
+        
         // Single post view (must come before /dashboard route to avoid conflict)
         $builder->connect(
             '/dashboard/posts/:id',

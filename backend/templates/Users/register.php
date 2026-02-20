@@ -50,6 +50,8 @@ $this->assign('title', 'Register');
                                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition',
                         'placeholder' => 'Enter your full name',
                         'required' => true,
+                        'autocomplete' => 'off',
+                        'maxlength' => 150,
                         'v-model' => 'form.full_name',
                         '@input' => 'validateFullName'
                     ]) ?>
@@ -57,25 +59,41 @@ $this->assign('title', 'Register');
                     <p v-if="validationErrors.full_name" class="text-red-600 text-xs mt-1">
                         {{ validationErrors.full_name }}
                     </p>
-                    <!-- Backend validation error -->
+                    <!-- Backend validation error (only show if no frontend error) -->
                     <?php if ($user->getError('full_name')): ?>
-                        <p class="text-red-600 text-xs mt-1">
+                        <p v-if="!validationErrors.full_name" class="text-red-600 text-xs mt-1">
                             <?= htmlspecialchars(implode(', ', $user->getError('full_name')), ENT_QUOTES, 'UTF-8') ?>
                         </p>
                     <?php endif; ?>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-blue-700 mb-1">
-                        Username
-                    </label>
+                    <div class="flex justify-between items-center mb-1">
+                        <label class="block text-sm font-medium text-blue-700">
+                            Username
+                        </label>
+                        <span v-if="form.username.length > 0" 
+                              class="text-xs font-medium"
+                              :class="{
+                                  'text-red-600': form.username.length >= 15,
+                                  'text-yellow-600': form.username.length >= 12 && form.username.length < 15,
+                                  'text-blue-500': form.username.length < 12
+                              }">
+                            {{ form.username.length }}/15
+                        </span>
+                    </div>
                     <?= $this->Form->control('username', [
                         'label' => false,
                         'value' => $user->username ?? '',
-                        'class' => 'w-full px-4 py-2.5 text-sm rounded-xl border border-blue-200 bg-white
-                                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition',
+                        'class' => 'w-full px-4 py-2.5 text-sm rounded-xl border transition',
+                        ':class' => '{
+                            "border-red-300 bg-red-50 focus:ring-red-500 focus:border-red-500": validationErrors.username,
+                            "border-blue-200 bg-white focus:ring-blue-500 focus:border-blue-500": !validationErrors.username
+                        }',
                         'placeholder' => 'Choose a username (letters, numbers, underscore)',
                         'required' => true,
+                        'autocomplete' => 'off',
+                        'maxlength' => 15,
                         'v-model' => 'form.username',
                         '@input' => 'validateUsername'
                     ]) ?>
@@ -83,14 +101,29 @@ $this->assign('title', 'Register');
                     <p v-if="validationErrors.username" class="text-red-600 text-xs mt-1">
                         {{ validationErrors.username }}
                     </p>
-                    <!-- Backend validation error -->
+                    <!-- Backend validation error (only show if no frontend error) -->
                     <?php if ($user->getError('username')): ?>
-                        <p class="text-red-600 text-xs mt-1">
+                        <p v-if="!validationErrors.username" class="text-red-600 text-xs mt-1">
                             <?= htmlspecialchars(implode(', ', $user->getError('username')), ENT_QUOTES, 'UTF-8') ?>
                         </p>
                     <?php endif; ?>
+                    <!-- Real-time availability check feedback -->
+                    <p v-if="usernameCheck.checking" class="text-gray-500 text-xs mt-1 flex items-center">
+                        <svg class="animate-spin -ml-1 mr-2 h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Checking availability...
+                    </p>
+                    <p v-if="!validationErrors.username && usernameCheck.available === true" class="text-green-600 text-xs mt-1 flex items-center">
+                        <svg class="w-3.5 h-3.5 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        {{ usernameCheck.message }}
+                    </p>
                     <!-- Helper text -->
-                    <p v-if="!validationErrors.username && !<?= json_encode($user->getError('username')) ?>" class="text-blue-500 text-xs mt-1">
+                    <?php $hasUsernameError = !empty($user->getError('username')); ?>
+                    <p v-if="!validationErrors.username && !usernameCheck.checking && usernameCheck.available === null && !<?= json_encode($hasUsernameError) ?>" class="text-blue-500 text-xs mt-1">
                         Only letters, numbers, and underscores. No spaces allowed.
                     </p>
                 </div>
@@ -106,6 +139,7 @@ $this->assign('title', 'Register');
                                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition',
                         'placeholder' => 'Min 8 characters, no spaces',
                         'required' => true,
+                        'autocomplete' => 'new-password',
                         'v-model' => 'form.password',
                         '@input' => 'validatePassword'
                     ]) ?>
@@ -113,9 +147,9 @@ $this->assign('title', 'Register');
                     <p v-if="validationErrors.password" class="text-red-600 text-xs mt-1">
                         {{ validationErrors.password }}
                     </p>
-                    <!-- Backend validation error -->
+                    <!-- Backend validation error (only show if no frontend error) -->
                     <?php if ($user->getError('password')): ?>
-                        <p class="text-red-600 text-xs mt-1">
+                        <p v-if="!validationErrors.password" class="text-red-600 text-xs mt-1">
                             <?= htmlspecialchars(implode(', ', $user->getError('password')), ENT_QUOTES, 'UTF-8') ?>
                         </p>
                     <?php endif; ?>
@@ -134,6 +168,46 @@ $this->assign('title', 'Register');
                             <span class="ml-2 font-medium">{{ passwordStrength.text }}</span>
                         </div>
                     </div>
+
+                    <!-- Password Requirements Checklist -->
+                    <div v-if="form.password" class="mt-3 space-y-1.5 bg-blue-50 rounded-lg p-3 border border-blue-100">
+                        <p class="text-xs font-semibold text-blue-700 mb-2">Password must contain:</p>
+                        <div class="flex items-center gap-2 text-xs" :class="passwordRequirements.minLength ? 'text-green-600' : 'text-gray-500'">
+                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path v-if="passwordRequirements.minLength" fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                <path v-else fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 9a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                            </svg>
+                            <span :class="passwordRequirements.minLength ? 'font-medium' : ''">At least 8 characters</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs" :class="passwordRequirements.hasUpper ? 'text-green-600' : 'text-gray-500'">
+                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path v-if="passwordRequirements.hasUpper" fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                <path v-else fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 9a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                            </svg>
+                            <span :class="passwordRequirements.hasUpper ? 'font-medium' : ''">One uppercase letter</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs" :class="passwordRequirements.hasLower ? 'text-green-600' : 'text-gray-500'">
+                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path v-if="passwordRequirements.hasLower" fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                <path v-else fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 9a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                            </svg>
+                            <span :class="passwordRequirements.hasLower ? 'font-medium' : ''">One lowercase letter</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs" :class="passwordRequirements.hasNumber ? 'text-green-600' : 'text-gray-500'">
+                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path v-if="passwordRequirements.hasNumber" fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                <path v-else fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 9a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                            </svg>
+                            <span :class="passwordRequirements.hasNumber ? 'font-medium' : ''">One number</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs" :class="passwordRequirements.hasSpecial ? 'text-green-600' : 'text-gray-400'">
+                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path v-if="passwordRequirements.hasSpecial" fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                <path v-else fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 9a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                            </svg>
+                            <span :class="passwordRequirements.hasSpecial ? 'font-medium' : ''">One special character (optional)</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div>
@@ -144,6 +218,7 @@ $this->assign('title', 'Register');
                         type="password"
                         v-model="confirmPassword"
                         @input="validateConfirmPassword"
+                        autocomplete="new-password"
                         class="w-full px-4 py-2.5 text-sm rounded-xl border border-blue-200 bg-white
                                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                         placeholder="Re-enter your password"
