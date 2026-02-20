@@ -57,10 +57,12 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
         },
 
         mounted() {
-            this.fetchCurrentUserProfile();
+            this.fetchCurrentUserProfile().then(() => {
+                // Only init WebSocket after we have the user ID
+                this.initWebSocket();
+            });
             this.fetchPosts();
             this.fetchNotifications();
-            this.initWebSocket();
             this.setupInfiniteScroll();
             this.setupPullToRefresh();
             if (this.fetchFriends) {
@@ -178,9 +180,13 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
             },
             
             initWebSocket() {
-                if (!window.io) return;
+                if (!window.io) {
+                    console.error('[Feed] Socket.io not loaded!');
+                    return;
+                }
 
                 try {
+                    console.log('[Feed] Initializing WebSocket connection...');
                     this.socket = io(window.location.origin, {
                         path: '/socket.io',
                         transports: ['websocket', 'polling'],
@@ -188,11 +194,16 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                     });
 
                     this.socket.on('connect', () => {
-                        console.log('[Feed] WebSocket connected');
+                        console.log('[Feed] ✅ WebSocket connected, Socket ID:', this.socket.id);
                         this.authenticateSocket();
                     });
 
+                    this.socket.on('authenticated', (data) => {
+                        console.log('[Feed] ✅ WebSocket authenticated as User ID:', data.userId);
+                    });
+
                     this.socket.on('notification', (notification) => {
+                        console.log('[Feed] 📬 Notification received:', notification);
                         this.notifications.unshift(notification);
                         if (!notification.is_read) {
                             this.notificationCount++;
@@ -200,6 +211,7 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                     });
 
                     this.socket.on('notificationCount', (data) => {
+                        console.log('[Feed] 🔢 Notification count update:', data.count);
                         this.notificationCount = data.count;
                     });
                     
@@ -212,10 +224,19 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                     });
                     
                     this.socket.on('disconnect', () => {
-                        console.log('[Feed] WebSocket disconnected');
+                        console.log('[Feed] ❌ WebSocket disconnected');
+                    });
+
+                    this.socket.on('reconnect', (attemptNumber) => {
+                        console.log('[Feed] 🔄 WebSocket reconnected after', attemptNumber, 'attempts');
+                        this.authenticateSocket();
+                    });
+
+                    this.socket.on('error', (error) => {
+                        console.error('[Feed] ❌ WebSocket error:', error);
                     });
                 } catch (error) {
-                    console.error('WebSocket init error:', error);
+                    console.error('[Feed] ❌ WebSocket init error:', error);
                 }
             },
             
@@ -312,8 +333,13 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
             },
             
             async authenticateSocket() {
-                if (!this.socket || !this.currentUserId) return;
+                console.log('[Feed] Authenticating socket... User ID:', this.currentUserId, 'Socket:', !!this.socket);
+                if (!this.socket || !this.currentUserId) {
+                    console.warn('[Feed] ⚠️ Cannot authenticate: socket or userId missing');
+                    return;
+                }
                 this.socket.emit('authenticate', { userId: this.currentUserId });
+                console.log('[Feed] Authentication request sent for User ID:', this.currentUserId);
             },
             
             toggleNotifications() {

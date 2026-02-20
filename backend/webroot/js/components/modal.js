@@ -9,7 +9,7 @@
  * - info: Info message with OK button
  */
 
-const ModalMixin = {
+window.ModalMixin = {
     data() {
         return {
             modal: {

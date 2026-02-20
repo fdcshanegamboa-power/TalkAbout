@@ -1,6 +1,6 @@
 
 
-const PostCardMixin = {
+window.PostCardMixin = {
     mixins: [window.ModalMixin || {}],
     data() {
         return {

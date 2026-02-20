@@ -36236,3 +36236,184 @@ Stack Trace:
 
 Request URL: /d213123123123123123
 Client IP: 138.199.24.218
+[20-Feb-2026 08:13:32 UTC] WebSocket broadcast new post - Post ID: 151, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:13:51 UTC] WebSocket broadcast new post - Post ID: 152, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:13:58 UTC] WebSocket broadcast new post - Post ID: 153, Author: Daniel Cruz, Result: success
+2026-02-20 08:19:57 error: [Error] Class "App\Controller\Users" not found in /var/www/html/src/Controller/PostsController.php on line 404
+Stack Trace:
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/posts/create
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+2026-02-20 08:20:31 error: [Error] Class "App\Controller\Users" not found in /var/www/html/src/Controller/PostsController.php on line 404
+Stack Trace:
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/posts/create
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+2026-02-20 08:20:48 error: [Error] Class "App\Controller\Users" not found in /var/www/html/src/Controller/PostsController.php on line 404
+Stack Trace:
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/posts/create
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+2026-02-20 08:25:09 error: [Error] Class "App\Controller\Users" not found in /var/www/html/src/Controller/PostsController.php on line 404
+Stack Trace:
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/posts/create
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+2026-02-20 08:25:43 error: [Error] Class "App\Controller\Users" not found in /var/www/html/src/Controller/PostsController.php on line 404
+Stack Trace:
+- CORE/src/Controller/Controller.php:501
+- CORE/src/Controller/ControllerFactory.php:166
+- CORE/src/Controller/ControllerFactory.php:141
+- CORE/src/Http/BaseApplication.php:362
+- CORE/src/Http/Runner.php:86
+- ROOT/vendor/cakephp/authentication/src/Middleware/AuthenticationMiddleware.php:106
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/SimpleSessionMiddleware.php:28
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Middleware/BodyParserMiddleware.php:162
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/RoutingMiddleware.php:118
+- CORE/src/Http/Runner.php:82
+- CORE/src/Routing/Middleware/AssetMiddleware.php:71
+- CORE/src/Http/Runner.php:82
+- APP/Middleware/WellKnownMiddleware.php:22
+- CORE/src/Http/Runner.php:82
+- CORE/src/Error/Middleware/ErrorHandlerMiddleware.php:115
+- CORE/src/Http/Runner.php:82
+- CORE/src/Http/Runner.php:60
+- CORE/src/Http/Server.php:98
+- ROOT/webroot/index.php:19
+- [main]:
+
+Request URL: /api/posts/create
+Referer URL: http://localhost/dashboard/home
+Client IP: 138.199.24.218
+[20-Feb-2026 08:27:45 UTC] WebSocket broadcast new post - Post ID: 159, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:28:16 UTC] WebSocket broadcast new post - Post ID: 160, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:28:33 UTC] WebSocket broadcast new post - Post ID: 161, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:28:44 UTC] WebSocket broadcast new post - Post ID: 162, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:28:47 UTC] WebSocket broadcast new post - Post ID: 163, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:28:53 UTC] WebSocket broadcast new post - Post ID: 164, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:29:10 UTC] WebSocket broadcast new post - Post ID: 165, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:29:22 UTC] WebSocket broadcast new post - Post ID: 166, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:29:29 UTC] WebSocket broadcast new post - Post ID: 167, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:32:52 UTC] WebSocket broadcast new post - Post ID: 168, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:42:17 UTC] WebSocket broadcast new post - Post ID: 169, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:42:27 UTC] WebSocket broadcast new post - Post ID: 170, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:42:31 UTC] WebSocket broadcast new post - Post ID: 171, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:42:37 UTC] WebSocket broadcast new post - Post ID: 172, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:42:49 UTC] WebSocket broadcast new post - Post ID: 173, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:42:53 UTC] WebSocket broadcast new post - Post ID: 174, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:43:08 UTC] WebSocket broadcast new post - Post ID: 175, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:43:17 UTC] WebSocket broadcast new post - Post ID: 176, Author: Ella Martinez, Result: success
+[20-Feb-2026 08:43:21 UTC] WebSocket broadcast new post - Post ID: 177, Author: Ella Martinez, Result: success
+[20-Feb-2026 08:43:26 UTC] WebSocket broadcast new post - Post ID: 178, Author: Ella Martinez, Result: success
+[20-Feb-2026 08:43:31 UTC] WebSocket broadcast new post - Post ID: 179, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:43:35 UTC] WebSocket broadcast new post - Post ID: 180, Author: Ella Martinez, Result: success
+[20-Feb-2026 08:43:39 UTC] WebSocket broadcast new post - Post ID: 181, Author: Ella Martinez, Result: success
+[20-Feb-2026 08:45:31 UTC] WebSocket broadcast new post - Post ID: 182, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:45:34 UTC] WebSocket broadcast new post - Post ID: 183, Author: Ella Martinez, Result: success
+[20-Feb-2026 08:45:38 UTC] WebSocket broadcast new post - Post ID: 184, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:46:23 UTC] WebSocket broadcast new post - Post ID: 185, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:46:31 UTC] WebSocket broadcast new post - Post ID: 186, Author: Ella Martinez, Result: success
+[20-Feb-2026 08:46:35 UTC] WebSocket broadcast new post - Post ID: 187, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:49:09 UTC] WebSocket broadcast new post - Post ID: 188, Author: Daniel Cruz, Result: success
+[20-Feb-2026 08:49:12 UTC] WebSocket broadcast new post - Post ID: 189, Author: Ella Martinez, Result: success
+[20-Feb-2026 08:49:16 UTC] WebSocket broadcast new post - Post ID: 190, Author: Ella Martinez, Result: success
+[20-Feb-2026 08:49:18 UTC] WebSocket broadcast new post - Post ID: 191, Author: Daniel Cruz, Result: success
