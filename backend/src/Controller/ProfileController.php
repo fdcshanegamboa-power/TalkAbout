@@ -275,7 +275,7 @@ class ProfileController extends AppController
                 'author' => $authorName,
                 'about' => $user->about ?? '',
                 'initial' => $initial,
-                'profile_photo' => $user->profile_photo_path ?? '',
+                'profile_photo' => $user->profile_photo_path ? (preg_match('/^https?:\/\//', $user->profile_photo_path) ? $user->profile_photo_path : '/img/profiles/' . $user->profile_photo_path) : '',
                 'text' => $post->content_text ?? '',
                 'visibility' => $post->visibility ?? 'public',
                 'images' => $images,
@@ -392,7 +392,7 @@ class ProfileController extends AppController
                 'username' => $username,
                 'full_name' => $fullName,
                 'about' => $user->get('about') ?? '',
-                'profile_photo_path' => $user->get('profile_photo_path') ?? '',
+                'profile_photo_path' => $user->get('profile_photo_path') ? (preg_match('/^https?:\/\//', $user->get('profile_photo_path')) ? $user->get('profile_photo_path') : '/img/profiles/' . $user->get('profile_photo_path')) : '',
                 'initial' => $initial
             ]
         ]));
@@ -439,7 +439,7 @@ class ProfileController extends AppController
                 'username' => $user->username,
                 'full_name' => $user->full_name ?? '',
                 'about' => $user->about ?? '',
-                'profile_photo_path' => $user->profile_photo_path ?? '',
+                'profile_photo_path' => $user->profile_photo_path ? (preg_match('/^https?:\/\//', $user->profile_photo_path) ? $user->profile_photo_path : '/img/profiles/' . $user->profile_photo_path) : '',
                 'initial' => $initial
             ]
         ]));
@@ -593,7 +593,7 @@ class ProfileController extends AppController
                 'author' => $authorName,
                 'about' => $user->about ?? '',
                 'initial' => $initial,
-                'profile_photo' => $user->profile_photo_path ?? '',
+                'profile_photo' => $user->profile_photo_path ? (preg_match('/^https?:\/\//', $user->profile_photo_path) ? $user->profile_photo_path : '/img/profiles/' . $user->profile_photo_path) : '',
                 'text' => $post->content_text ?? '',
                 'visibility' => $post->visibility ?? 'public',
                 'images' => $images,

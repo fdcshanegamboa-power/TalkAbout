@@ -642,7 +642,7 @@ class FriendshipsController extends AppController
                 'friend_id' => $friend->id,
                 'username' => $friend->username,
                 'full_name' => $friend->full_name,
-                'profile_photo' => $friend->profile_photo_path,
+                'profile_photo' => $friend->profile_photo_path ? (preg_match('/^https?:\/\//', $friend->profile_photo_path) ? $friend->profile_photo_path : '/img/profiles/' . $friend->profile_photo_path) : '',
                 'friends_since' => $friendship->updated_at ?? $friendship->created_at,
             ];
         }
@@ -773,7 +773,7 @@ class FriendshipsController extends AppController
                 'user_id' => $block->addressee->id,
                 'username' => $block->addressee->username,
                 'full_name' => $block->addressee->full_name,
-                'profile_photo' => $block->addressee->profile_photo_path,
+                'profile_photo' => $block->addressee->profile_photo_path ? (preg_match('/^https?:\/\//', $block->addressee->profile_photo_path) ? $block->addressee->profile_photo_path : '/img/profiles/' . $block->addressee->profile_photo_path) : '',
                 'blocked_at' => $block->updated_at ?? $block->created_at,
             ];
         }
@@ -829,7 +829,7 @@ class FriendshipsController extends AppController
                 'id' => $suggestion['id'],
                 'username' => $suggestion['username'],
                 'full_name' => $suggestion['full_name'],
-                'profile_photo' => $suggestion['profile_photo_path'],
+                'profile_photo' => $suggestion['profile_photo_path'] ? (preg_match('/^https?:\/\//', $suggestion['profile_photo_path']) ? $suggestion['profile_photo_path'] : '/img/profiles/' . $suggestion['profile_photo_path']) : '',
                 'mutual_friends' => (int)$suggestion['mutual_friends'],
             ];
         }

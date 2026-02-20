@@ -32,6 +32,22 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                 posts: [],
                 isLoading: true,
                 
+                // Pagination
+                offset: 0,
+                limit: 15,
+                hasMore: true,
+                isLoadingMore: false,
+                
+                // Pull to refresh
+                isPulling: false,
+                pullDistance: 0,
+                pullThreshold: 80,
+                touchStartY: 0,
+                
+                // New posts banner
+                hasNewPosts: false,
+                newPostsCount: 0,
+                
                 // For mobile header notifications
                 notifications: [],
                 notificationCount: 0,
@@ -45,6 +61,8 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
             this.fetchPosts();
             this.fetchNotifications();
             this.initWebSocket();
+            this.setupInfiniteScroll();
+            this.setupPullToRefresh();
             if (this.fetchFriends) {
                 this.fetchFriends();
             }
@@ -57,6 +75,8 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
             if (this.socket) {
                 this.socket.disconnect();
             }
+            this.cleanupInfiniteScroll();
+            this.cleanupPullToRefresh();
         },
 
         methods: {
@@ -85,14 +105,26 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                 }
             },
             
-            async fetchPosts() {
-                this.isLoading = true;
+            async fetchPosts(reset = false) {
+                if (reset) {
+                    this.offset = 0;
+                    this.hasMore = true;
+                    this.posts = [];
+                    this.isLoading = true;
+                } else if (this.isLoadingMore || !this.hasMore) {
+                    return;
+                }
+                
+                if (!reset && this.offset > 0) {
+                    this.isLoadingMore = true;
+                }
+                
                 try {
-                    const res = await fetch('/api/posts/list');
+                    const res = await fetch(`/api/posts/list?offset=${this.offset}&limit=${this.limit}`);
                     const data = await res.json();
 
                     if (data.success) {
-                        this.posts = data.posts.map(post => ({
+                        const newPosts = data.posts.map(post => ({
                             ...post,
                             showComments: false,
                             commentsList: [],
@@ -114,11 +146,21 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                             editDragActive: false,
                             commentDragActive: false
                         }));
+                        
+                        if (reset) {
+                            this.posts = newPosts;
+                        } else {
+                            this.posts.push(...newPosts);
+                        }
+                        
+                        this.hasMore = data.pagination.hasMore;
+                        this.offset = data.pagination.offset + data.pagination.limit;
                     }
                 } catch (e) {
                     console.error(e);
                 } finally {
                     this.isLoading = false;
+                    this.isLoadingMore = false;
                 }
             },
             
@@ -146,6 +188,7 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                     });
 
                     this.socket.on('connect', () => {
+                        console.log('[Feed] WebSocket connected');
                         this.authenticateSocket();
                     });
 
@@ -159,9 +202,113 @@ if (el && window.Vue && window.PostCardMixin && window.PostComposerMixin) {
                     this.socket.on('notificationCount', (data) => {
                         this.notificationCount = data.count;
                     });
+                    
+                    // Listen for new posts
+                    this.socket.on('newPost', (data) => {
+                        console.log('[Feed] 🔔 New post notification received:', data);
+                        this.hasNewPosts = true;
+                        this.newPostsCount++;
+                        console.log('[Feed] Banner should show. hasNewPosts:', this.hasNewPosts, 'count:', this.newPostsCount);
+                    });
+                    
+                    this.socket.on('disconnect', () => {
+                        console.log('[Feed] WebSocket disconnected');
+                    });
                 } catch (error) {
                     console.error('WebSocket init error:', error);
                 }
+            },
+            
+            // Infinite Scroll
+            setupInfiniteScroll() {
+                this.scrollHandler = () => {
+                    const scrollPosition = window.scrollY + window.innerHeight;
+                    const pageHeight = document.documentElement.scrollHeight;
+                    
+                    // Load more when within 300px of bottom
+                    if (scrollPosition >= pageHeight - 300 && !this.isLoadingMore && this.hasMore && !this.isLoading) {
+                        this.fetchPosts(false);
+                    }
+                };
+                
+                window.addEventListener('scroll', this.scrollHandler);
+            },
+            
+            cleanupInfiniteScroll() {
+                if (this.scrollHandler) {
+                    window.removeEventListener('scroll', this.scrollHandler);
+                }
+            },
+            
+            // Pull to Refresh
+            setupPullToRefresh() {
+                const mainEl = document.querySelector('main');
+                if (!mainEl) return;
+                
+                this.touchStartHandler = (e) => {
+                    if (window.scrollY === 0) {
+                        this.touchStartY = e.touches[0].clientY;
+                    }
+                };
+                
+                this.touchMoveHandler = (e) => {
+                    if (this.touchStartY === 0 || window.scrollY > 0) return;
+                    
+                    const touchY = e.touches[0].clientY;
+                    const pullDistance = touchY - this.touchStartY;
+                    
+                    if (pullDistance > 0) {
+                        this.isPulling = true;
+                        this.pullDistance = Math.min(pullDistance, this.pullThreshold * 1.5);
+                        
+                        // Prevent default scrolling when pulling
+                        if (pullDistance > 10) {
+                            e.preventDefault();
+                        }
+                    }
+                };
+                
+                this.touchEndHandler = async () => {
+                    if (this.pullDistance >= this.pullThreshold) {
+                        await this.refreshFeed();
+                    }
+                    
+                    this.isPulling = false;
+                    this.pullDistance = 0;
+                    this.touchStartY = 0;
+                };
+                
+                mainEl.addEventListener('touchstart', this.touchStartHandler, { passive: true });
+                mainEl.addEventListener('touchmove', this.touchMoveHandler, { passive: false });
+                mainEl.addEventListener('touchend', this.touchEndHandler);
+            },
+            
+            cleanupPullToRefresh() {
+                const mainEl = document.querySelector('main');
+                if (!mainEl) return;
+                
+                if (this.touchStartHandler) {
+                    mainEl.removeEventListener('touchstart', this.touchStartHandler);
+                }
+                if (this.touchMoveHandler) {
+                    mainEl.removeEventListener('touchmove', this.touchMoveHandler);
+                }
+                if (this.touchEndHandler) {
+                    mainEl.removeEventListener('touchend', this.touchEndHandler);
+                }
+            },
+            
+            async refreshFeed() {
+                this.hasNewPosts = false;
+                this.newPostsCount = 0;
+                await this.fetchPosts(true);
+                
+                // Scroll to top smoothly
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            },
+            
+            async loadNewPosts() {
+                await this.refreshFeed();
             },
             
             async authenticateSocket() {

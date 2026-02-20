@@ -347,10 +347,11 @@ const PostCardMixin = {
 
         async saveEdit(post) {
             // Check if there's at least some content (text or images)
-            const hasText = post.editText && post.editText.trim() !== '';
-            const hasExistingImages = post.editImages && post.editImages.length > 0;
-            const hasNewImages = post.newEditImageFiles && post.newEditImageFiles.length > 0;
+            const hasText = post.editText && post.editText.trim().length > 0;
+            const hasExistingImages = (post.editImages && post.editImages.length > 0) || false;
+            const hasNewImages = (post.newEditImageFiles && post.newEditImageFiles.length > 0) || false;
             
+            // Allow saving if there's text OR any images (existing or new)
             if (!hasText && !hasExistingImages && !hasNewImages) {
                 this.showErrorModal({
                     title: 'Empty Post',
@@ -364,7 +365,7 @@ const PostCardMixin = {
             try {
                 const formData = new FormData();
                 formData.append('post_id', post.id);
-                formData.append('content_text', post.editText || '');
+                formData.append('content_text', post.editText || ''); // Allow empty text if there are images
                 formData.append('visibility', post.editVisibility || 'public');
                 
                 // Add images to delete

@@ -7,6 +7,7 @@
  */
 $this->assign('title', 'Profile');
 ?>
+<?= $this->Html->script('components/modal', ['block' => 'script']) ?>
 <?= $this->Html->script('components/post_composer', ['block' => 'script']) ?>
 <?= $this->Html->script('components/post_card', ['block' => 'script']) ?>
 <?= $this->Html->script('components/right_sidebar', ['block' => 'script']) ?>
@@ -65,7 +66,7 @@ if (!empty($user)) {
                            flex items-center justify-center text-white text-3xl lg:text-4xl font-extrabold
                            shadow-lg overflow-hidden">
                         <template v-if="profileUser.profile_photo">
-                            <img :src="'/img/profiles/' + profileUser.profile_photo" 
+                            <img :src="profileUser.profile_photo" 
                                  alt="Profile" class="w-full h-full object-cover" />
                         </template>
                         <template v-else>
@@ -200,7 +201,7 @@ if (!empty($user)) {
     <!-- Confirmation/Alert Modal -->
     <div v-if="modal.show" 
          @click="handleModalCancel"
-         class="fixed inset-0 z-[100] flex items-center justify-center bg-black/30 backdrop-blur-sm p-4"
+         class="fixed inset-0 z-[100] flex items-center justify-center bg-black/20 backdrop-blur-sm p-4"
          style="animation: fadeIn 0.2s ease-in;">
         
         <div @click.stop 

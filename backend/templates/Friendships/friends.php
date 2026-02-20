@@ -81,7 +81,7 @@ $this->assign('title', 'Friends');
                                 <a :href="'/profile/' + request.username" 
                                    class="relative w-14 h-14 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold shadow-lg overflow-hidden flex-shrink-0 ring-2 ring-blue-200 group-hover:ring-blue-300 transition">
                                     <img v-if="request.profile_photo" 
-                                         :src="'/img/profiles/' + request.profile_photo" 
+                                         :src="request.profile_photo" 
                                          :alt="request.full_name"
                                          class="w-full h-full object-cover" />
                                     <span v-else class="text-lg">{{ request.full_name ? request.full_name.charAt(0) : 'U' }}</span>
@@ -139,7 +139,7 @@ $this->assign('title', 'Friends');
                                 <a :href="'/profile/' + request.username" 
                                    class="relative w-14 h-14 rounded-full bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white font-bold shadow-lg overflow-hidden flex-shrink-0 ring-2 ring-amber-200 group-hover:ring-amber-300 transition">
                                     <img v-if="request.profile_photo" 
-                                         :src="'/img/profiles/' + request.profile_photo" 
+                                         :src="request.profile_photo" 
                                          :alt="request.full_name"
                                          class="w-full h-full object-cover" />
                                     <span v-else class="text-lg">{{ request.full_name ? request.full_name.charAt(0) : 'U' }}</span>
@@ -237,7 +237,7 @@ $this->assign('title', 'Friends');
                                         <a :href="'/profile/' + friend.username" 
                                            class="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center text-white font-bold shadow-lg overflow-hidden flex-shrink-0 ring-2 ring-blue-200 group-hover:ring-blue-300 transition">
                                             <img v-if="friend.profile_photo" 
-                                                 :src="'/img/profiles/' + friend.profile_photo" 
+                                                 :src="friend.profile_photo" 
                                                  :alt="friend.full_name"
                                                  class="w-full h-full object-cover" />
                                             <span v-else class="text-lg">{{ friend.full_name ? friend.full_name.charAt(0) : 'U' }}</span>
@@ -286,7 +286,7 @@ $this->assign('title', 'Friends');
                                         <a :href="'/profile/' + suggestion.username" 
                                            class="relative w-20 h-20 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold shadow-lg overflow-hidden flex-shrink-0 ring-4 ring-blue-100 group-hover:ring-blue-200 transition mb-3">
                                             <img v-if="suggestion.profile_photo" 
-                                                 :src="'/img/profiles/' + suggestion.profile_photo" 
+                                                 :src="suggestion.profile_photo" 
                                                  :alt="suggestion.full_name"
                                                  class="w-full h-full object-cover" />
                                             <span v-else class="text-2xl">{{ suggestion.full_name ? suggestion.full_name.charAt(0) : 'U' }}</span>

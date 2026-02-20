@@ -91,7 +91,7 @@ class PostsController extends AppController
                     'user_id' => $c->user_id ?? ($c->user->id ?? null),
                     'id' => $c->id,
                     'author' => $c->user->full_name ?? $c->user->username,
-                    'profile_photo' => $c->user->profile_photo_path ?? null,
+                    'profile_photo' => $c->user->profile_photo_path ? (preg_match('/^https?:\/\//', $c->user->profile_photo_path) ? $c->user->profile_photo_path : '/img/profiles/' . $c->user->profile_photo_path) : null,
                     'initial' => strtoupper(substr(($c->user->full_name ?? $c->user->username ?? 'U'), 0, 1)),
                     'content_text' => $c->content_text,
                     'content_image_path' => $c->content_image_path,
@@ -145,6 +145,11 @@ class PostsController extends AppController
             }
         }
 
+        // Get pagination parameters from query string
+        $offset = (int) $this->request->getQuery('offset', 0);
+        $limit = (int) $this->request->getQuery('limit', 15);
+        $limit = min($limit, 50); // Cap at 50 posts per request
+
         $postsTable = $this->getTableLocator()->get('Posts');
         $likesTable = $this->getTableLocator()->get('Likes');
         $commentsTable = $this->getTableLocator()->get('Comments');
@@ -163,7 +168,7 @@ class PostsController extends AppController
         
         // Get posts with user info and images, ordered by most recent first
         // Filter: public posts OR friends-only posts from friends OR own posts
-        $posts = $postsTable->find()
+        $query = $postsTable->find()
             ->contain(['Users', 'PostImages'])
             ->where(['Posts.deleted_at IS' => null])
             ->where(function ($exp) use ($currentUserId, $friendIds) {
@@ -189,9 +194,16 @@ class PostsController extends AppController
                 }
                 
                 return $conditions;
-            })
+            });
+        
+        // Get total count for pagination
+        $totalCount = $query->count();
+        
+        // Apply pagination
+        $posts = $query
             ->order(['Posts.created_at' => 'DESC'])
-            ->limit(50)
+            ->limit($limit)
+            ->offset($offset)
             ->all();
 
         $result = [];
@@ -256,7 +268,7 @@ class PostsController extends AppController
                 'author' => $authorName,
                 'about' => $user->about ?? '',
                 'initial' => $initial,
-                'profile_photo' => $user->profile_photo_path ?? '',
+                'profile_photo' => $user->profile_photo_path ? (preg_match('/^https?:\/\//', $user->profile_photo_path) ? $user->profile_photo_path : '/img/profiles/' . $user->profile_photo_path) : '',
                 'text' => $post->content_text ?? '',
                 'images' => $images,
                 'time' => $timeAgo,
@@ -269,7 +281,13 @@ class PostsController extends AppController
 
         return $this->response->withStringBody(json_encode([
             'success' => true,
-            'posts' => $result
+            'posts' => $result,
+            'pagination' => [
+                'offset' => $offset,
+                'limit' => $limit,
+                'total' => $totalCount,
+                'hasMore' => ($offset + $limit) < $totalCount
+            ]
         ]));
     }
 
@@ -387,6 +405,20 @@ class PostsController extends AppController
         $authorName = $user->full_name ?? $user->username ?? 'You';
         $initial = strtoupper(substr($authorName, 0, 1));
 
+        // Broadcast new post to all connected users via WebSocket
+        try {
+            $wsClient = new \App\Utility\WebSocketClient();
+            $broadcastResult = $wsClient->broadcastNewPost(
+                $post->id,
+                (int)$userId,
+                $authorName
+            );
+            error_log("WebSocket broadcast new post - Post ID: {$post->id}, Author: {$authorName}, Result: " . ($broadcastResult ? 'success' : 'failed'));
+        } catch (\Exception $e) {
+            // WebSocket broadcast is not critical, continue
+            error_log("Failed to broadcast new post: " . $e->getMessage());
+        }
+
         return $this->response->withStringBody(json_encode([
             'success' => true,
             'post' => [
@@ -396,7 +428,7 @@ class PostsController extends AppController
                 'author' => $authorName,
                 'about' => $user->about ?? '',
                 'initial' => $initial,
-                'profile_photo' => $user->profile_photo_path ?? '',
+                'profile_photo' => $user->profile_photo_path ? (preg_match('/^https?:\/\//', $user->profile_photo_path) ? $user->profile_photo_path : '/img/profiles/' . $user->profile_photo_path) : '',
                 'text' => $post->content_text ?? '',
                 'images' => $uploadedImages,
                 'time' => 'Just now',

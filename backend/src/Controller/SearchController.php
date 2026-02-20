@@ -58,7 +58,7 @@ class SearchController extends AppController
                 'id' => $user->id,
                 'username' => $user->username,
                 'full_name' => $user->full_name,
-                'profile_photo' => $user->profile_photo_path,
+                'profile_photo' => $user->profile_photo_path ? (preg_match('/^https?:\/\//', $user->profile_photo_path) ? $user->profile_photo_path : '/img/profiles/' . $user->profile_photo_path) : '',
                 'initial' => $initial
             ];
         }
@@ -101,7 +101,7 @@ class SearchController extends AppController
                 'id' => $post->id,
                 'content' => $post->content_text,
                 'author' => $author,
-                'profile_photo' => $post->user->profile_photo_path,
+                'profile_photo' => $post->user->profile_photo_path ? (preg_match('/^https?:\/\//', $post->user->profile_photo_path) ? $post->user->profile_photo_path : '/img/profiles/' . $post->user->profile_photo_path) : '',
                 'initial' => $initial,
                 'time' => $timeAgo
             ];

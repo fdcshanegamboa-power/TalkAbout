@@ -204,7 +204,7 @@ CREATE INDEX idx_friendships_status ON friendships(status);
 -- Password: admin123
 -- =====================================================
 INSERT INTO users (full_name, username, password_hash, about, created_at, updated_at) VALUES
-    ('Admin User', 'admin', '$2y$10$vxMJJlmSEg6BItmenrzt7OVLD6wEhRzlK7i1P4qJMQn/T2IhbqJ4u', 'Administrator account for TalkAbout', NOW(), NOW())
+    ('John Wick', 'admin', '$2y$10$vxMJJlmSEg6BItmenrzt7OVLD6wEhRzlK7i1P4qJMQn/T2IhbqJ4u', 'First account for TalkAbout', NOW(), NOW())
 
 ON DUPLICATE KEY UPDATE
     full_name = VALUES(full_name),

@@ -54,7 +54,7 @@ $this->Html->script('profile/edit_profile', ['block' => 'script']);
                                flex items-center justify-center text-white text-3xl lg:text-4xl font-extrabold
                                shadow-lg overflow-hidden">
                             <template v-if="profileUser.profile_photo">
-                                <img :src="'/img/profiles/' + profileUser.profile_photo" 
+                                <img :src="profileUser.profile_photo" 
                                      alt="Profile" class="w-full h-full object-cover" id="current-avatar" />
                             </template>
                             <template v-else>

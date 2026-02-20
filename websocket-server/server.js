@@ -70,6 +70,28 @@ app.post('/notify-count', (req, res) => {
   }
 });
 
+// Endpoint for backend to broadcast new post to all connected users
+app.post('/broadcast-new-post', (req, res) => {
+  const { postId, authorId, authorName } = req.body;
+
+  if (!postId) {
+    return res.status(400).json({ error: 'postId required' });
+  }
+
+  // Broadcast to all connected users except the author
+  let broadcastCount = 0;
+  userSockets.forEach((sockets, userId) => {
+    if (userId !== parseInt(authorId)) {
+      sockets.forEach(socketId => {
+        io.to(socketId).emit('newPost', { postId, authorName });
+        broadcastCount++;
+      });
+    }
+  });
+
+  res.json({ success: true, broadcastCount });
+});
+
 // Socket.IO connection handling
 io.on('connection', (socket) => {
   console.log(`[Socket] New connection: ${socket.id}`);

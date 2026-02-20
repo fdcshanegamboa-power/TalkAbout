@@ -72,7 +72,7 @@
                                     <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 
                                                 flex items-center justify-center text-white font-bold overflow-hidden flex-shrink-0">
                                         <template v-if="user.profile_photo">
-                                            <img :src="'/img/profiles/' + user.profile_photo"
+                                            <img :src="user.profile_photo"
                                                  alt="Profile" class="w-full h-full object-cover" />
                                         </template>
                                         <template v-else>
@@ -99,7 +99,7 @@
                                         <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 
                                                     flex items-center justify-center text-white text-xs font-bold overflow-hidden flex-shrink-0">
                                             <template v-if="post.profile_photo">
-                                                <img :src="'/img/profiles/' + post.profile_photo"
+                                                <img :src="post.profile_photo"
                                                      alt="Profile" class="w-full h-full object-cover" />
                                             </template>
                                             <template v-else>
@@ -241,7 +241,7 @@
                         <div class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 
                                     flex items-center justify-center text-white font-bold shadow overflow-hidden">
                             <template v-if="profileUser.profile_photo">
-                                <img :src="'/img/profiles/' + profileUser.profile_photo"
+                                <img :src="profileUser.profile_photo"
                                      alt="Profile" class="w-full h-full object-cover" />
                             </template>
                             <template v-else>

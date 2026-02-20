@@ -49,6 +49,23 @@ class WebSocketClient
     }
 
     /**
+     * Broadcast new post to all connected users
+     *
+     * @param int $postId The post ID
+     * @param int $authorId The author's user ID
+     * @param string $authorName The author's name
+     * @return bool Success status
+     */
+    public function broadcastNewPost(int $postId, int $authorId, string $authorName): bool
+    {
+        return $this->post('/broadcast-new-post', [
+            'postId' => $postId,
+            'authorId' => $authorId,
+            'authorName' => $authorName
+        ]);
+    }
+
+    /**
      * Send POST request to WebSocket server
      *
      * @param string $endpoint The endpoint path

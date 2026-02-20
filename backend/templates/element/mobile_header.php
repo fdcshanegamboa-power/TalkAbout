@@ -179,7 +179,7 @@
             <div v-if="profileUser" class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white font-bold shadow overflow-hidden flex-shrink-0">
                     <template v-if="profileUser.profile_photo">
-                        <img :src="'/img/profiles/' + profileUser.profile_photo"
+                        <img :src="profileUser.profile_photo"
                             alt="Profile" class="w-full h-full object-cover" />
                     </template>
                     <template v-else>

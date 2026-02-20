@@ -16,7 +16,7 @@ $profilePhoto = $profilePhoto ?? '';
         <div class="flex-shrink-0">
             <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white text-base lg:text-lg font-extrabold overflow-hidden">
                 <template v-if="post.profile_photo">
-                    <img :src="'/img/profiles/' + post.profile_photo" 
+                    <img :src="post.profile_photo" 
                          alt="Profile" class="w-full h-full object-cover" />
                 </template>
                 <template v-else>
@@ -152,7 +152,7 @@ $profilePhoto = $profilePhoto ?? '';
                      @drop.prevent="handleEditDrop($event, post)"
                      :class="post.editDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-gray-50'"
                      class="border-2 border-dashed rounded-lg p-4 text-center transition-colors cursor-pointer"
-                     @click="document.getElementById('edit-post-images-' + post.id).click()">
+                     @click="$refs['edit-post-images-' + post.id] && $refs['edit-post-images-' + post.id].click()">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto text-gray-400 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
@@ -167,7 +167,8 @@ $profilePhoto = $profilePhoto ?? '';
                         </svg>
                         Add Images
                     </label>
-                    <input :id="'edit-post-images-' + post.id" 
+                    <input :id="'edit-post-images-' + post.id"
+                           :ref="'edit-post-images-' + post.id"
                            type="file" 
                            accept="image/*"
                            multiple
@@ -279,7 +280,7 @@ $profilePhoto = $profilePhoto ?? '';
                              @drop.prevent="handleCommentDrop($event, post)"
                              :class="post.commentDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-gray-50'"
                              class="border-2 border-dashed rounded-lg p-3 text-center transition-colors cursor-pointer"
-                             @click="document.getElementById('comment-image-' + post.id).click()">
+                             @click="$refs['comment-image-' + post.id] && $refs['comment-image-' + post.id].click()">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto text-gray-400 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                             </svg>
@@ -294,7 +295,8 @@ $profilePhoto = $profilePhoto ?? '';
                                 </svg>
                                 Image
                             </label>
-                            <input :id="'comment-image-' + post.id" 
+                            <input :id="'comment-image-' + post.id"
+                                   :ref="'comment-image-' + post.id"
                                    type="file" 
                                    accept="image/*"
                                    @change="handleCommentImageSelect($event, post)"
@@ -325,7 +327,7 @@ $profilePhoto = $profilePhoto ?? '';
                             <div class="flex-shrink-0">
                                 <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center text-white text-xs font-bold overflow-hidden">
                                     <template v-if="comment.profile_photo">
-                                        <img :src="'/img/profiles/' + comment.profile_photo" 
+                                        <img :src="comment.profile_photo" 
                                              alt="Profile" class="w-full h-full object-cover" />
                                     </template>
                                     <template v-else>
@@ -382,7 +384,7 @@ $profilePhoto = $profilePhoto ?? '';
 <!-- Image Modal -->
 <div v-if="imageModal.show" 
      @click="closeImageModal"
-     class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+     class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
      style="animation: fadeIn 0.2s ease-in;">
     
     <!-- Close Button -->
@@ -428,7 +430,7 @@ $profilePhoto = $profilePhoto ?? '';
 <!-- Confirmation/Alert Modal -->
 <div v-if="modal.show" 
      @click="handleModalCancel"
-     class="fixed inset-0 z-[100] flex items-center justify-center bg-black/30 backdrop-blur-sm p-4"
+     class="fixed inset-0 z-[100] flex items-center justify-center bg-black/20 backdrop-blur-sm p-4"
      style="animation: fadeIn 0.2s ease-in;">
     
     <div @click.stop 

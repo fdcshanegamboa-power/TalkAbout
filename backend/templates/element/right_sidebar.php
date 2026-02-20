@@ -46,7 +46,7 @@ $showSuggestions = $mode !== 'friends';
                         <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 
                                     flex items-center justify-center text-white font-bold text-sm shadow overflow-hidden flex-shrink-0">
                             <img v-if="friend.profile_photo" 
-                                 :src="'/img/profiles/' + friend.profile_photo" 
+                                 :src="friend.profile_photo" 
                                  :alt="friend.full_name"
                                  class="w-full h-full object-cover" />
                             <span v-else>{{ friend.full_name ? friend.full_name.charAt(0) : 'U' }}</span>
@@ -93,7 +93,7 @@ $showSuggestions = $mode !== 'friends';
                     <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 
                                 flex items-center justify-center text-white font-bold text-sm shadow flex-shrink-0 overflow-hidden">
                         <img v-if="suggestion.profile_photo" 
-                             :src="'/img/profiles/' + suggestion.profile_photo" 
+                             :src="suggestion.profile_photo" 
                              :alt="suggestion.full_name"
                              class="w-full h-full object-cover" />
                         <span v-else>{{ suggestion.full_name ? suggestion.full_name.charAt(0) : 'U' }}</span>
