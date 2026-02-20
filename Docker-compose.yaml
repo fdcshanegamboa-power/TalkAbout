@@ -24,12 +24,13 @@ services:
             - ./backend:/var/www/html
             - ./php/php.ini:/usr/local/etc/php/conf.d/custom.ini
         environment:
-            - DB_HOST=db
-            - DB_PORT=3306
-            - DB_NAME=talkabout_db
-            - DB_USER=talkabout_user
-            - DB_PASSWORD=talkabout@!password
-            - DEBUG=1
+            - DB_HOST=${DB_HOST}
+            - DB_PORT=${DB_PORT}
+            - DB_NAME=${DB_NAME}
+            - DB_USER=${DB_USER}
+            - DB_PASSWORD=${DB_PASSWORD}
+            - SECURITY_SALT=${SECURITY_SALT}
+            - DEBUG=${DEBUG}
         command: sh -c "composer install --no-dev || true && touch /var/www/html/logs/error.log && php-fpm -D && tail -f /var/www/html/logs/error.log"
         depends_on:
             - db
@@ -48,10 +49,10 @@ services:
             - "3306:3306"
         restart: unless-stopped
         environment:  
-            MYSQL_ROOT_PASSWORD: talkabout@!password
-            MYSQL_DATABASE: talkabout_db
-            MYSQL_USER: talkabout_user
-            MYSQL_PASSWORD: talkabout@!password
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_DATABASE: ${DB_NAME}
+            MYSQL_USER: ${DB_USER}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
         networks:
             - talkabout-network
 
@@ -62,10 +63,10 @@ services:
             dockerfile: Dockerfile
         container_name: talkabout-websocket
         ports:
-            - "3000:3000"
+            - "${WEBSOCKET_PORT}:3000"
         environment:
-            - PORT=3000
-            - CORS_ORIGIN=http://localhost
+            - PORT=${WEBSOCKET_PORT}
+            - CORS_ORIGIN=${CORS_ORIGIN}
         restart: unless-stopped
         networks:
             - talkabout-network

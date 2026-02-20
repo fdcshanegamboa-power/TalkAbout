@@ -1,0 +1,33 @@
+# Environment variables (contains sensitive credentials)
+.env
+
+# Backend configuration with credentials
+backend/config/app_local.php
+
+# Dependencies
+backend/vendor/
+websocket-server/node_modules/
+
+# Logs
+backend/logs/*.log
+backend/tmp/logs/*.log
+
+# Session files
+backend/tmp/sessions/sess_*
+
+# Cache
+backend/tmp/cache/
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker volumes
+db_data/

@@ -6,6 +6,13 @@ namespace App\Controller;
 use Cake\Event\Event;
 use Cake\Core\Configure;
 
+/**
+ * Friendships Controller
+ * 
+ * @property \App\Model\Table\FriendshipsTable $Friendships
+ * @property \App\Model\Table\UsersTable $Users
+ */
+
 class FriendshipsController extends AppController
 {
     public function initialize(): void
