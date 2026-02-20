@@ -1,6 +1,6 @@
 # TalkAbout - Social Media Platform
 
-A modern social media platform with CakePHP 5.0 RESTful API backend, Vue.js 3 frontend, and real-time WebSocket notifications.
+A social media platform with CakePHP 5.0 RESTful API backend, Vue.js 3 frontend, and real-time WebSocket notifications.
 
 ## Tech Stack
 
@@ -25,52 +25,6 @@ RESTful API backend serving JSON responses consumed by Vue.js frontend component
 **Notifications:** Real-time WebSocket delivery for likes, comments, friend requests  
 **Search:** User and post search functionality  
 **Responsive:** Mobile-first design with pull-to-refresh, touch optimization
-
-## Quick Start
-
-### Prerequisites
-- Docker Desktop
-- Docker Compose
-
-### Installation
-
-```bash
-# Navigate to project directory
-cd /Users/shanegamboa-intern/Documents/TalkAbout
-
-# Copy environment template
-cp .env.example .env
-
-# Start containers
-docker-compose up -d
-
-# Wait for services to initialize (~30 seconds)
-```
-
-Access the application at **http://localhost:8080**
-
-Default credentials: `admin` / `admin123`
-
-### Container Management
-
-```bash
-# View logs
-docker logs talkabout-backend
-docker logs talkabout-nginx
-docker logs talkabout-websocket
-
-# Access database
-docker exec -it talkabout-db mysql -u talkabout_user -p
-
-# Run CakePHP commands
-docker exec -it talkabout-backend bin/cake [command]
-
-# Stop containers
-docker-compose down
-
-# Restart services
-docker-compose restart
-```
 
 ## API Reference
 
@@ -135,35 +89,7 @@ docker-compose restart
 
 All tables include appropriate indexes on foreign keys and status columns.
 
-## Development
-
-### File Structure
 ```
-backend/
-  config/          # App configuration
-  src/
-    Controller/    # API controllers
-    Model/         # Entities and Tables
-    Utility/       # WebSocket client
-  templates/       # PHP templates with Vue components
-  webroot/
-    js/            # Vue mixins and page scripts
-    img/profiles/  # Uploaded images
-websocket-server/  # Node.js Socket.IO server
-db/                # Database initialization
-nginx/             # Reverse proxy config
-```
-
-### Environment Variables (.env)
-```
-DB_HOST=db
-DB_DATABASE=talkabout_db
-DB_USERNAME=talkabout_user
-DB_PASSWORD=talkabout@!password
-SECURITY_SALT=your_random_salt_string
-```
-
-Never commit `.env` file to version control.
 
 ## Security & Performance
 
@@ -210,11 +136,6 @@ curl http://localhost:3000/health
 - Allowed formats: JPEG, PNG, GIF, WebP
 - Check permissions: `docker exec -it talkabout-backend ls -la webroot/img/profiles/`
 
-## Browser Support
-
-Chrome/Edge, Firefox, Safari (latest versions), iOS Safari, Chrome Mobile
-
-Requires: ES6+, WebSocket, Fetch API, CSS Grid/Flexbox
 
 ## Known Limitations
 
@@ -240,10 +161,4 @@ Requires: ES6+, WebSocket, Fetch API, CSS Grid/Flexbox
 ## License
 
 Educational/development purposes.
-
-## Resources
-
-- [CakePHP 5 Documentation](https://book.cakephp.org/5/en/index.html)
-- [Vue 3 Documentation](https://vuejs.org/)
-- [Docker Documentation](https://docs.docker.com/)
 

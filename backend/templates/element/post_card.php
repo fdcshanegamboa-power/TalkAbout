@@ -351,8 +351,8 @@ $profilePhoto = $profilePhoto ?? '';
                                             </div>
                                         </div>
                                 <div v-if="comment.content_image_path" class="mt-1">
-                                    <img :src="'/img/comments/' + comment.content_image_path" 
-                                         @click="openImageModal('/img/comments/' + comment.content_image_path, 0)"
+                                    <img :src="comment.content_image_path.match(/^https?:\/\//) ? comment.content_image_path : '/img/comments/' + comment.content_image_path" 
+                                         @click="openImageModal(comment.content_image_path.match(/^https?:\/\//) ? comment.content_image_path : '/img/comments/' + comment.content_image_path, 0)"
                                          class="rounded-lg max-h-40 border border-blue-200 cursor-pointer hover:opacity-90 transition" />
                                 </div>
                                 <div class="mt-1 flex items-center gap-2">

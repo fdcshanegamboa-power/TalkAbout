@@ -24,7 +24,9 @@ window.RightSidebarMixin = {
             }
             console.log('RightSidebarMixin: Fetching friends...');
             try {
-                const response = await fetch('/api/friendships/friends');
+                const response = await fetch('/api/friendships/friends?t=' + Date.now(), {
+                    cache: 'no-cache'
+                });
                 const data = await response.json();
 
                 console.log('Friends API response:', data);
@@ -50,7 +52,9 @@ window.RightSidebarMixin = {
         async fetchSuggestions() {
             this.loadingSuggestions = true;
             try {
-                const response = await fetch('/api/friendships/suggestions?limit=10');
+                const response = await fetch('/api/friendships/suggestions?limit=10&t=' + Date.now(), {
+                    cache: 'no-cache'
+                });
                 const data = await response.json();
 
                 console.log('Suggestions API response:', data);

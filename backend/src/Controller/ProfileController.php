@@ -241,7 +241,7 @@ class ProfileController extends AppController
             $images = [];
             if (!empty($post->post_images)) {
                 foreach ($post->post_images as $img) {
-                    $images[] = '/img/posts/' . $img->image_path;
+                    $images[] = preg_match('/^https?:\/\//', $img->image_path) ? $img->image_path : '/img/posts/' . $img->image_path;
                 }
             }
 
@@ -556,7 +556,7 @@ class ProfileController extends AppController
             $images = [];
             if (!empty($post->post_images)) {
                 foreach ($post->post_images as $img) {
-                    $images[] = '/img/posts/' . $img->image_path;
+                    $images[] = preg_match('/^https?:\/\//', $img->image_path) ? $img->image_path : '/img/posts/' . $img->image_path;
                 }
             }
 

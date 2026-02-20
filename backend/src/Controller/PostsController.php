@@ -41,7 +41,7 @@ class PostsController extends AppController
             $images = [];
             if (!empty($post->post_images)) {
                 foreach ($post->post_images as $img) {
-                    $images[] = '/img/posts/' . $img->image_path;
+                    $images[] = preg_match('/^https?:\/\//', $img->image_path) ? $img->image_path : '/img/posts/' . $img->image_path;
                 }
             }
 
@@ -231,7 +231,7 @@ class PostsController extends AppController
             $images = [];
             if (!empty($post->post_images)) {
                 foreach ($post->post_images as $img) {
-                    $images[] = '/img/posts/' . $img->image_path;
+                    $images[] = preg_match('/^https?:\/\//', $img->image_path) ? $img->image_path : '/img/posts/' . $img->image_path;
                 }
             }
 
@@ -604,7 +604,7 @@ class PostsController extends AppController
             
             $allImages = [];
             foreach ($currentImages as $img) {
-                $allImages[] = '/img/posts/' . $img->image_path;
+                $allImages[] = preg_match('/^https?:\/\//', $img->image_path) ? $img->image_path : '/img/posts/' . $img->image_path;
             }
 
             return $this->response->withStringBody(json_encode([

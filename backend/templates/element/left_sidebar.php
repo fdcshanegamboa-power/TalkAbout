@@ -52,7 +52,11 @@ $profileClass = $baseItem . ' ' . (($active === 'profile' || $active === 'editPr
             <div class="relative">
                 <div class="w-20 h-20 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-3xl shadow-lg overflow-hidden flex-shrink-0 ring-4 ring-blue-100 group-hover:ring-blue-200 transition">
                     <?php if (!empty($mePhoto)): ?>
-                        <img src="/img/profiles/<?= $mePhoto ?>" alt="Your Profile" class="w-full h-full object-cover" />
+                        <?php 
+                        // Check if the photo is a URL or a filename
+                        $photoSrc = preg_match('/^https?:\/\//', $mePhoto) ? $mePhoto : '/img/profiles/' . $mePhoto;
+                        ?>
+                        <img src="<?= $photoSrc ?>" alt="Your Profile" class="w-full h-full object-cover" />
                     <?php else: ?>
                         <?= mb_substr($meFullName ?: $meUsername ?: 'U', 0, 1) ?>
                     <?php endif; ?>
