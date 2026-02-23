@@ -35,3 +35,5 @@ webroot/img/comments/*
 !webroot/img/comments/.gitkeep
 webroot/img/posts/*
 !webroot/img/posts/.gitkeep
+webroot/img/profiles/*
+!webroot/img/profiles/.gitkeep
