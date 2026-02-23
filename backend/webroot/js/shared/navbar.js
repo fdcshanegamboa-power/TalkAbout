@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const app = createApp({
             data() {
                 return {
-                    profileUser: null,
+                    sidebarUser: null,
                     notifications: [],
                     notificationCount: 0,
                     showNotifications: false,
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const data = await response.json();
                         if (data.success) {
                             const user = data.user;
-                            this.profileUser = {
+                            this.sidebarUser = {
                                 full_name: user.full_name || '',
                                 username: user.username || '',
                                 about: user.about || '',

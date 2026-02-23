@@ -235,17 +235,17 @@
                 </div>
 
                 <!-- User Profile Dropdown -->
-                <div v-if="profileUser" class="relative" id="user-menu-container" data-user-menu>
+                <div v-if="sidebarUser" class="relative" id="user-menu-container" data-user-menu>
                     <button @click="toggleUserMenu" 
                             class="flex items-center gap-2 p-1 rounded-full hover:bg-blue-50 transition-colors">
                         <div class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 
                                     flex items-center justify-center text-white font-bold shadow overflow-hidden">
-                            <template v-if="profileUser.profile_photo">
-                                <img :src="profileUser.profile_photo"
+                            <template v-if="sidebarUser.profile_photo">
+                                <img :src="sidebarUser.profile_photo"
                                      alt="Profile" class="w-full h-full object-cover" />
                             </template>
                             <template v-else>
-                                {{ profileUser.initial }}
+                                {{ sidebarUser.initial }}
                             </template>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" 
@@ -261,16 +261,16 @@
                         <!-- User Info -->
                         <div class="px-4 py-3 border-b border-blue-100">
                             <p class="text-sm font-semibold text-blue-900">
-                                {{ profileUser.full_name || 'User' }}
+                                {{ sidebarUser.full_name || 'User' }}
                             </p>
                             <p class="text-xs text-blue-500">
-                                @{{ profileUser.username || 'username' }}
+                                @{{ sidebarUser.username || 'username' }}
                             </p>
                         </div>
 
                         <!-- Menu Items -->
                         <div class="py-2">
-                            <a v-if="profileUser" :href="'/profile/' + profileUser.username"
+                            <a v-if="sidebarUser" :href="'/profile/' + sidebarUser.username"
                                 class="flex items-center gap-3 px-4 py-2 text-sm text-blue-800 hover:bg-blue-50 transition-colors" title="Profile">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

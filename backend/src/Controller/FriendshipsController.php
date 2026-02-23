@@ -25,8 +25,7 @@ class FriendshipsController extends AppController
      */
     public function friends()
     {
-        $identity = $this->Authentication->getIdentity();
-        $userId = $this->_getUserId($identity);
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->redirect(['controller' => 'Sessions', 'action' => 'login']);
@@ -50,8 +49,7 @@ class FriendshipsController extends AppController
             ]));
         }
 
-        $identity = $this->Authentication->getIdentity();
-        $userId = $this->_getUserId($identity);
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->response->withStringBody(json_encode([
@@ -134,8 +132,7 @@ class FriendshipsController extends AppController
             ]));
         }
 
-        $identity = $this->Authentication->getIdentity();
-        $userId = $this->_getUserId($identity);
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->response->withStringBody(json_encode([
@@ -212,8 +209,7 @@ class FriendshipsController extends AppController
             ]));
         }
 
-        $identity = $this->Authentication->getIdentity();
-        $userId = $this->_getUserId($identity);
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->response->withStringBody(json_encode([
@@ -273,8 +269,7 @@ class FriendshipsController extends AppController
             ]));
         }
 
-        $identity = $this->Authentication->getIdentity();
-        $userId = $this->_getUserId($identity);
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->response->withStringBody(json_encode([
@@ -332,8 +327,7 @@ class FriendshipsController extends AppController
             ]));
         }
 
-        $identity = $this->Authentication->getIdentity();
-        $userId = $this->_getUserId($identity);
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->response->withStringBody(json_encode([
@@ -398,8 +392,7 @@ class FriendshipsController extends AppController
             ]));
         }
 
-        $identity = $this->Authentication->getIdentity();
-        $userId = $this->_getUserId($identity);
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->response->withStringBody(json_encode([
@@ -466,8 +459,7 @@ class FriendshipsController extends AppController
             ]));
         }
 
-        $identity = $this->Authentication->getIdentity();
-        $userId = $this->_getUserId($identity);
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->response->withStringBody(json_encode([
@@ -532,8 +524,7 @@ class FriendshipsController extends AppController
             ]));
         }
 
-        $identity = $this->Authentication->getIdentity();
-        $userId = $this->_getUserId($identity);
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->response->withStringBody(json_encode([
@@ -578,8 +569,7 @@ class FriendshipsController extends AppController
             ]));
         }
 
-        $identity = $this->Authentication->getIdentity();
-        $userId = $this->_getUserId($identity);
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->response->withStringBody(json_encode([
@@ -624,8 +614,7 @@ class FriendshipsController extends AppController
             ]));
         }
 
-        $identity = $this->Authentication->getIdentity();
-        $userId = $this->_getUserId($identity);
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->response->withStringBody(json_encode([
@@ -676,8 +665,7 @@ class FriendshipsController extends AppController
                 ]));
             }
 
-            $identity = $this->Authentication->getIdentity();
-            $userId = $this->_getUserId($identity);
+            $userId = $this->getAuthenticatedUserId();
 
             if (empty($userId)) {
                 return $this->response->withStringBody(json_encode([
@@ -754,8 +742,7 @@ class FriendshipsController extends AppController
             ]));
         }
 
-        $identity = $this->Authentication->getIdentity();
-        $userId = $this->_getUserId($identity);
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->response->withStringBody(json_encode([
@@ -811,8 +798,7 @@ class FriendshipsController extends AppController
             ]));
         }
 
-        $identity = $this->Authentication->getIdentity();
-        $userId = $this->_getUserId($identity);
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->response->withStringBody(json_encode([
@@ -846,25 +832,5 @@ class FriendshipsController extends AppController
             'suggestions' => $formattedSuggestions,
             'count' => count($formattedSuggestions)
         ]));
-    }
-
-    /**
-     * Helper method to extract user ID from identity
-     */
-    private function _getUserId($identity)
-    {
-        if (!$identity) {
-            return null;
-        }
-
-        if (method_exists($identity, 'getIdentifier')) {
-            return $identity->getIdentifier();
-        } elseif (method_exists($identity, 'get')) {
-            return $identity->get('id');
-        } elseif (isset($identity->id)) {
-            return $identity->id;
-        }
-
-        return null;
     }
 }

@@ -34,39 +34,39 @@ window.PostCardMixin = {
                 credentials: 'same-origin',
                 body: form
             })
-            .then(async (r) => {
-                const text = await r.text().catch(() => '');
-                let json = null;
-                try {
-                    json = text ? JSON.parse(text) : null;
-                } catch (e) {
-                    console.error('Failed to parse response:', text);
-                }
+                .then(async (r) => {
+                    const text = await r.text().catch(() => '');
+                    let json = null;
+                    try {
+                        json = text ? JSON.parse(text) : null;
+                    } catch (e) {
+                        console.error('Failed to parse response:', text);
+                    }
 
-                if (!r.ok) {
-                    console.error('Like request failed:', r.status, text);
+                    if (!r.ok) {
+                        console.error('Like request failed:', r.status, text);
+                        post.liked = wasLiked;
+                        post.likes = prevLikes;
+                        return;
+                    }
+
+                    const d = json || {};
+                    if (!d.success) {
+                        console.error('Like action unsuccessful:', d);
+                        post.liked = wasLiked;
+                        post.likes = prevLikes;
+                    }
+                })
+                .catch((err) => {
+                    console.error('Network error liking post:', err);
                     post.liked = wasLiked;
                     post.likes = prevLikes;
-                    return;
-                }
-
-                const d = json || {};
-                if (!d.success) {
-                    console.error('Like action unsuccessful:', d);
-                    post.liked = wasLiked;
-                    post.likes = prevLikes;
-                }
-            })
-            .catch((err) => {
-                console.error('Network error liking post:', err);
-                post.liked = wasLiked;
-                post.likes = prevLikes;
-            });
+                });
         },
 
         toggleComments(post) {
             post.showComments = !post.showComments;
-            
+
             if (post.showComments && (!post.commentsList || post.commentsList.length === 0)) {
                 this.loadComments(post);
             }
@@ -90,21 +90,21 @@ window.PostCardMixin = {
         handleCommentImageSelect(event, post) {
             const file = event.target.files[0];
             if (!file) return;
-            
+
             this.processCommentImageFile(file, post);
             event.target.value = '';
         },
-        
+
         handleCommentDragOver(post) {
             if (!post.commentDragActive) {
                 post.commentDragActive = true;
             }
         },
-        
+
         handleCommentDragLeave(post) {
             post.commentDragActive = false;
         },
-        
+
         handleCommentDrop(event, post) {
             post.commentDragActive = false;
             const files = event.dataTransfer.files;
@@ -112,11 +112,11 @@ window.PostCardMixin = {
                 this.processCommentImageFile(files[0], post);
             }
         },
-        
+
         processCommentImageFile(file, post) {
             const maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
             const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-            
+
             if (!allowedTypes.includes(file.type)) {
                 const typeName = file.type || 'unknown type';
                 this.showErrorModal({
@@ -125,7 +125,7 @@ window.PostCardMixin = {
                 });
                 return;
             }
-            
+
             if (file.size === 0) {
                 this.showErrorModal({
                     title: 'Invalid File',
@@ -133,7 +133,7 @@ window.PostCardMixin = {
                 });
                 return;
             }
-            
+
             if (file.size > maxFileSize) {
                 const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
                 this.showErrorModal({
@@ -142,14 +142,30 @@ window.PostCardMixin = {
                 });
                 return;
             }
-            
+
             post.commentImageFile = file;
-            
+
             const reader = new FileReader();
             reader.onload = (e) => {
                 post.commentImagePreview = e.target.result;
             };
             reader.readAsDataURL(file);
+        },
+
+        triggerCommentFileInput(post) {
+            const refName = 'comment-image-' + post.id;
+            const input = this.$refs[refName];
+
+            // Vue returns an array of refs when used inside v-for
+            const element = Array.isArray(input) ? input[0] : input;
+
+            if (element) {
+                element.click();
+            } else {
+                console.error(
+                    `Ref ${refName} not found. Check your input ref attribute.`
+                );
+            }
         },
 
         removeCommentImage(post) {
@@ -162,25 +178,25 @@ window.PostCardMixin = {
         async submitComment(post) {
             if (post.isSubmittingComment) return;
             if (!post.newCommentText && !post.commentImageFile) return;
-            
+
             post.isSubmittingComment = true;
-            
+
             try {
                 const formData = new FormData();
                 formData.append('post_id', post.id);
                 formData.append('content_text', post.newCommentText || '');
-                
+
                 if (post.commentImageFile) {
                     formData.append('image', post.commentImageFile);
                 }
-                
+
                 const response = await fetch('/api/comments/add', {
                     method: 'POST',
                     body: formData
                 });
-                
+
                 const data = await response.json();
-                
+
                 if (data.success) {
                     // Add new comment to the list and initialize expansion state
                     if (!post.commentsList) post.commentsList = [];
@@ -244,7 +260,7 @@ window.PostCardMixin = {
             post.editVisibility = post.visibility || 'public';
             post.isEditing = true;
             post.showMenu = false;
-            
+
             // Initialize image editing data
             post.editImages = post.images ? post.images.map((path, idx) => ({
                 path: path,
@@ -258,7 +274,7 @@ window.PostCardMixin = {
         cancelEdit(post) {
             post.isEditing = false;
             post.editText = post.text;
-            
+
             // Clear image editing data
             post.editImages = [];
             post.newEditImages = [];
@@ -282,30 +298,30 @@ window.PostCardMixin = {
             this.processEditImageFiles(files, post);
             event.target.value = '';
         },
-        
+
         handleEditDragOver(post) {
             if (!post.editDragActive) {
                 post.editDragActive = true;
             }
         },
-        
+
         handleEditDragLeave(post) {
             post.editDragActive = false;
         },
-        
+
         handleEditDrop(event, post) {
             post.editDragActive = false;
             const files = Array.from(event.dataTransfer.files || []);
             this.processEditImageFiles(files, post);
         },
-        
+
         processEditImageFiles(files, post) {
             const maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
             const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-            
+
             let hasErrors = false;
             const errors = [];
-            
+
             files.forEach(file => {
                 if (!allowedTypes.includes(file.type)) {
                     const typeName = file.type || 'unknown type';
@@ -313,20 +329,20 @@ window.PostCardMixin = {
                     hasErrors = true;
                     return;
                 }
-                
+
                 if (file.size === 0) {
                     errors.push(`"${file.name}" is empty`);
                     hasErrors = true;
                     return;
                 }
-                
+
                 if (file.size > maxFileSize) {
                     const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
                     errors.push(`"${file.name}" (${fileSizeMB}MB) exceeds the 5MB limit`);
                     hasErrors = true;
                     return;
                 }
-                
+
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     post.newEditImages.push({
@@ -336,7 +352,7 @@ window.PostCardMixin = {
                 reader.readAsDataURL(file);
                 post.newEditImageFiles.push(file);
             });
-            
+
             if (hasErrors) {
                 this.showErrorModal({
                     title: 'Some Files Not Added',
@@ -350,7 +366,7 @@ window.PostCardMixin = {
             const hasText = post.editText && post.editText.trim().length > 0;
             const hasExistingImages = (post.editImages && post.editImages.length > 0) || false;
             const hasNewImages = (post.newEditImageFiles && post.newEditImageFiles.length > 0) || false;
-            
+
             // Allow saving if there's text OR any images (existing or new)
             if (!hasText && !hasExistingImages && !hasNewImages) {
                 this.showErrorModal({
@@ -359,34 +375,34 @@ window.PostCardMixin = {
                 });
                 return;
             }
-            
+
             post.isSaving = true;
-            
+
             try {
                 const formData = new FormData();
                 formData.append('post_id', post.id);
                 formData.append('content_text', post.editText || ''); // Allow empty text if there are images
                 formData.append('visibility', post.editVisibility || 'public');
-                
+
                 // Add images to delete
                 if (post.imagesToDelete && post.imagesToDelete.length > 0) {
                     post.imagesToDelete.forEach(img => formData.append('images_to_delete[]', img));
                 }
-                
+
                 // Add new images
                 if (post.newEditImageFiles && post.newEditImageFiles.length > 0) {
                     post.newEditImageFiles.forEach((file, index) => {
                         formData.append(`new_images[${index}]`, file);
                     });
                 }
-                
+
                 const response = await fetch('/api/posts/update', {
                     method: 'POST',
                     body: formData
                 });
-                
+
                 const data = await response.json();
-                
+
                 if (data.success) {
                     // Update post in UI with proper Vue reactivity
                     post.text = post.editText;
@@ -402,7 +418,7 @@ window.PostCardMixin = {
                     post.newEditImages = [];
                     post.newEditImageFiles = [];
                     post.imagesToDelete = [];
-                    
+
                     // Force Vue reactivity update
                     if (this.$forceUpdate) {
                         this.$forceUpdate();
@@ -441,13 +457,13 @@ window.PostCardMixin = {
                 confirmText: 'Delete',
                 cancelText: 'Cancel'
             });
-            
+
             if (!confirmed) {
                 return;
             }
-            
+
             post.showMenu = false;
-            
+
             try {
                 const response = await fetch('/api/posts/delete', {
                     method: 'POST',
@@ -458,18 +474,18 @@ window.PostCardMixin = {
                         post_id: post.id
                     })
                 });
-                
+
                 const data = await response.json();
-                
+
                 if (data.success) {
-                    
+
                     if (this.posts) {
                         const index = this.posts.findIndex(p => p.id === post.id);
                         if (index !== -1) {
                             this.posts.splice(index, 1);
                         }
                     }
-                    
+
                     if (this.post && this.post.id === post.id) {
                         window.location.href = '/dashboard';
                     }
@@ -535,34 +551,34 @@ window.PostCardMixin = {
                 credentials: 'same-origin',
                 body: form
             })
-            .then(async (r) => {
-                const text = await r.text().catch(() => '');
-                let json = null;
-                try {
-                    json = text ? JSON.parse(text) : null;
-                } catch (e) {
-                    console.error('Failed to parse response:', text);
-                }
+                .then(async (r) => {
+                    const text = await r.text().catch(() => '');
+                    let json = null;
+                    try {
+                        json = text ? JSON.parse(text) : null;
+                    } catch (e) {
+                        console.error('Failed to parse response:', text);
+                    }
 
-                if (!r.ok) {
-                    console.error('Comment like request failed:', r.status, text);
+                    if (!r.ok) {
+                        console.error('Comment like request failed:', r.status, text);
+                        comment.liked = wasLiked;
+                        comment.likes = prevLikes;
+                        return;
+                    }
+
+                    const d = json || {};
+                    if (!d.success) {
+                        console.error('Comment like action unsuccessful:', d);
+                        comment.liked = wasLiked;
+                        comment.likes = prevLikes;
+                    }
+                })
+                .catch((err) => {
+                    console.error('Network error liking comment:', err);
                     comment.liked = wasLiked;
                     comment.likes = prevLikes;
-                    return;
-                }
-
-                const d = json || {};
-                if (!d.success) {
-                    console.error('Comment like action unsuccessful:', d);
-                    comment.liked = wasLiked;
-                    comment.likes = prevLikes;
-                }
-            })
-            .catch((err) => {
-                console.error('Network error liking comment:', err);
-                comment.liked = wasLiked;
-                comment.likes = prevLikes;
-            });
+                });
         },
 
         async deleteComment(comment, post) {
@@ -575,7 +591,7 @@ window.PostCardMixin = {
                 confirmText: 'Delete',
                 cancelText: 'Cancel'
             });
-            
+
             if (!confirmed) return;
 
             comment.isDeleting = true;
@@ -642,7 +658,7 @@ window.PostCardMixin = {
             }
             this.imageModal.currentIndex = index;
             this.imageModal.show = true;
-            
+
             // Add keyboard event listener
             document.addEventListener('keydown', this.handleModalKeydown);
             // Prevent body scroll when modal is open
@@ -653,7 +669,7 @@ window.PostCardMixin = {
             this.imageModal.show = false;
             this.imageModal.images = [];
             this.imageModal.currentIndex = 0;
-            
+
             // Remove keyboard event listener
             document.removeEventListener('keydown', this.handleModalKeydown);
             // Restore body scroll
@@ -674,7 +690,7 @@ window.PostCardMixin = {
 
         handleModalKeydown(e) {
             if (!this.imageModal.show) return;
-            
+
             if (e.key === 'Escape') {
                 this.closeImageModal();
             } else if (e.key === 'ArrowRight') {

@@ -273,19 +273,21 @@ $profilePhoto = $profilePhoto ?? '';
                         </div>
                         
                         <!-- Drag and Drop Zone for Comment Images -->
-                        <div v-if="!post.commentImagePreview"
-                             class="mt-2"
-                             @dragover.prevent="handleCommentDragOver(post)"
-                             @dragleave.prevent="handleCommentDragLeave(post)"
-                             @drop.prevent="handleCommentDrop($event, post)"
-                             :class="post.commentDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-gray-50'"
-                             class="border-2 border-dashed rounded-lg p-3 text-center transition-colors cursor-pointer"
-                             @click="$refs['comment-image-' + post.id] && $refs['comment-image-' + post.id].click()">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto text-gray-400 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        <div v-if="!post.commentImagePreview" @dragover.prevent="handleCommentDragOver(post)"
+                            @dragleave.prevent="handleCommentDragLeave(post)"
+                            @drop.prevent="handleCommentDrop($event, post)" @click="triggerCommentFileInput(post)"
+                            class="mt-2 border-2 border-dashed rounded-lg p-3 text-center transition-colors cursor-pointer"
+                            :class="post.commentDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-gray-50'">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto text-gray-400 mb-1"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903 A5 5 0 1115.9 6 L16 6 a5 5 0 011 9.9 M15 13l-3-3 m0 0l-3 3 m3-3v12" />
                             </svg>
-                            <p class="text-xs text-gray-600">Drag & drop or click to add image</p>
-                            <p class="text-xs text-gray-400 mt-0.5">JPEG, PNG, GIF, WebP • Max 5MB</p>
+                            <p class="text-xs text-gray-600">
+                                Drag & drop or click to add image
+                            </p>
+                            <p class="text-xs text-gray-400 mt-0.5">
+                                JPEG, PNG, GIF, WebP • Max 5MB
+                            </p>
                         </div>
                         
                         <div class="mt-2 flex items-center gap-2">

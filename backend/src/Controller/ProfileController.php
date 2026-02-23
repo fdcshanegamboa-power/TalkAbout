@@ -24,17 +24,7 @@ class ProfileController extends AppController
         // Redirect to /profile/{username} for consistency
         $usersTable = $this->getTableLocator()->get('Users');
 
-        $identity = $this->Authentication->getIdentity();
-        $id = null;
-        if ($identity) {
-            if (method_exists($identity, 'getIdentifier')) {
-                $id = $identity->getIdentifier();
-            } elseif (method_exists($identity, 'get')) {
-                $id = $identity->get('id');
-            } elseif (isset($identity->id)) {
-                $id = $identity->id;
-            }
-        }
+        $id = $this->getAuthenticatedUserId();
 
         if (empty($id)) {
             $this->Flash->error('User not found.');
@@ -58,17 +48,7 @@ class ProfileController extends AppController
     {
         $usersTable = $this->getTableLocator()->get('Users');
 
-        $identity = $this->Authentication->getIdentity();
-        $id = null;
-        if ($identity) {
-            if (method_exists($identity, 'getIdentifier')) {
-                $id = $identity->getIdentifier();
-            } elseif (method_exists($identity, 'get')) {
-                $id = $identity->get('id');
-            } elseif (isset($identity->id)) {
-                $id = $identity->id;
-            }
-        }
+        $id = $this->getAuthenticatedUserId();
 
         if (empty($id)) {
             $this->Flash->error('User not found.');
@@ -182,17 +162,7 @@ class ProfileController extends AppController
         $this->autoRender = false;
         $this->response = $this->response->withType('application/json');
 
-        $identity = $this->Authentication->getIdentity();
-        $userId = null;
-        if ($identity) {
-            if (method_exists($identity, 'getIdentifier')) {
-                $userId = $identity->getIdentifier();
-            } elseif (method_exists($identity, 'get')) {
-                $userId = $identity->get('id');
-            } elseif (isset($identity->id)) {
-                $userId = $identity->id;
-            }
-        }
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->response->withStringBody(json_encode([
@@ -322,17 +292,7 @@ class ProfileController extends AppController
         $userId = $user->id;
 
         // Get current logged-in user ID to check if viewing own profile
-        $identity = $this->Authentication->getIdentity();
-        $currentUserId = null;
-        if ($identity) {
-            if (method_exists($identity, 'getIdentifier')) {
-                $currentUserId = $identity->getIdentifier();
-            } elseif (method_exists($identity, 'get')) {
-                $currentUserId = $identity->get('id');
-            } elseif (isset($identity->id)) {
-                $currentUserId = $identity->id;
-            }
-        }
+        $currentUserId = $this->getAuthenticatedUserId();
 
         $isOwnProfile = ($currentUserId == $userId);
         
@@ -347,27 +307,12 @@ class ProfileController extends AppController
         $this->autoRender = false;
         $this->response = $this->response->withType('application/json');
 
-        $identity = $this->Authentication->getIdentity();
-        if (!$identity) {
-            return $this->response->withStringBody(json_encode([
-                'success' => false,
-                'message' => 'Not authenticated'
-            ]));
-        }
-
-        $id = null;
-        if (method_exists($identity, 'getIdentifier')) {
-            $id = $identity->getIdentifier();
-        } elseif (method_exists($identity, 'get')) {
-            $id = $identity->get('id');
-        } elseif (isset($identity->id)) {
-            $id = $identity->id;
-        }
+        $id = $this->getAuthenticatedUserId();
 
         if (empty($id)) {
             return $this->response->withStringBody(json_encode([
                 'success' => false,
-                'message' => 'User ID not found'
+                'message' => 'Not authenticated'
             ]));
         }
 
@@ -480,17 +425,7 @@ class ProfileController extends AppController
         $userId = $targetUser->id;
 
         // Get current user ID
-        $identity = $this->Authentication->getIdentity();
-        $currentUserId = null;
-        if ($identity) {
-            if (method_exists($identity, 'getIdentifier')) {
-                $currentUserId = $identity->getIdentifier();
-            } elseif (method_exists($identity, 'get')) {
-                $currentUserId = $identity->get('id');
-            } elseif (isset($identity->id)) {
-                $currentUserId = $identity->id;
-            }
-        }
+        $currentUserId = $this->getAuthenticatedUserId();
 
         $postsTable = $this->getTableLocator()->get('Posts');
         $likesTable = $this->getTableLocator()->get('Likes');

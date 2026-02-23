@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const { createApp } = Vue;
 
         const mixins = [PostCardMixin];
+        if (window.ModalMixin) {
+            mixins.push(window.ModalMixin);
+        }
         if (window.LeftSidebarMixin) {
             mixins.push(window.LeftSidebarMixin);
         }
@@ -30,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             mounted() {
                 this.fetchCurrentUserProfile();
+                this.fetchNotifications();
                 
                 // Fetch friends and suggestions for right sidebar
                 if (this.fetchFriends) {
@@ -122,6 +126,19 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             
             // Notification methods for mobile header
+            async fetchNotifications() {
+                try {
+                    const res = await fetch('/api/notifications');
+                    const data = await res.json();
+                    if (data.success) {
+                        this.notifications = data.notifications || [];
+                        this.notificationCount = this.notifications.filter(n => !n.is_read).length;
+                    }
+                } catch (e) {
+                    console.error('Error fetching notifications:', e);
+                }
+            },
+            
             toggleNotifications() {
                 this.showNotifications = !this.showNotifications;
             },

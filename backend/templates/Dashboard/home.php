@@ -12,36 +12,6 @@ $this->assign('title', 'Home');
 <?= $this->Html->script('components/right_sidebar', ['block' => 'script']) ?>
 <?= $this->Html->script('dashboard/home', ['block' => 'script']) ?>
 
-<style>
-    [v-cloak] {
-        display: none;
-    }
-    .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
-    
-    /* Slide down transition for new posts banner */
-    .slide-down-enter-active,
-    .slide-down-leave-active {
-        transition: all 0.3s ease;
-    }
-    
-    .slide-down-enter-from {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-    
-    .slide-down-leave-to {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-</style>
-
 <?= $this->element('top_navbar') ?>
 
 <div id="dashboard-app" v-cloak class="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-100">
@@ -141,47 +111,7 @@ $this->assign('title', 'Home');
 
     <?= $this->element('mobile_nav', ['active' => 'home']) ?>
     
-    <!-- Confirmation/Alert Modal -->
-    <div v-if="modal.show" 
-         @click="handleModalCancel"
-         class="fixed inset-0 z-[100] flex items-center justify-center bg-black/20 backdrop-blur-sm p-4"
-         style="animation: fadeIn 0.2s ease-in;">
-        
-        <div @click.stop 
-             class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden transform transition-all"
-             style="animation: scaleIn 0.2s ease-out;">
-            
-            <!-- Modal Header -->
-            <div class="px-6 pt-6 pb-4">
-                <div class="flex items-start gap-4">
-                    <div class="flex-shrink-0" v-html="modalIcon"></div>
-                    <div class="flex-1">
-                        <h3 class="text-lg font-bold text-gray-900">{{ modal.title }}</h3>
-                        <p class="mt-2 text-sm text-gray-600 whitespace-pre-line">{{ modal.message }}</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Modal Footer -->
-            <div class="px-6 pb-6 flex justify-end gap-3">
-                <button v-if="modal.type === 'confirm' && modal.onCancel"
-                        @click="handleModalCancel"
-                        class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition">
-                    {{ modal.cancelText }}
-                </button>
-                <button @click="handleModalConfirm"
-                        :class="{
-                            'bg-blue-600 hover:bg-blue-700': modal.type === 'confirm' || modal.type === 'info',
-                            'bg-green-600 hover:bg-green-700': modal.type === 'success',
-                            'bg-red-600 hover:bg-red-700': modal.type === 'error',
-                            'bg-yellow-600 hover:bg-yellow-700': modal.type === 'warning'
-                        }"
-                        class="px-4 py-2 text-white rounded-lg font-semibold transition">
-                    {{ modal.confirmText }}
-                </button>
-            </div>
-        </div>
-    </div>
+    <?= $this->element('modal') ?>
 </div>
 
 <script>

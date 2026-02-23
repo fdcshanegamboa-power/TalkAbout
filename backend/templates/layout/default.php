@@ -8,35 +8,57 @@
 
     <title><?= $this->fetch('title') ?> - TalkAbout</title>
 
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    maxWidth: {
+                        '9xl': '96rem',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.2s ease-in',
+                        'scale-in': 'scaleIn 0.2s ease-out',
+                        'slide-down': 'slideDown 0.3s ease-out',
+                        'highlight-pulse': 'highlightPulse 2s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.9)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        slideDown: {
+                            '0%': { transform: 'translateY(-100%)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        highlightPulse: {
+                            '0%, 100%': { backgroundColor: 'transparent' },
+                            '50%': { backgroundColor: 'rgba(59, 130, 246, 0.2)' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+
     <!-- Vue 3 CDN -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
     <!-- Socket.io Client CDN -->
     <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
 
-    <!-- Tailwind CSS CDN for quick styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
 
     <style>
-        [v-cloak] {
-            display: none;
-        }
+        [v-cloak] { display: none; }
         
-        /* Animation keyframes */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes scaleIn {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        
-        /* Scrollbar hiding */
+        /* Scrollbar hiding utility */
         .no-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -45,26 +67,34 @@
             display: none;
         }
         
-        /* Mobile safe area padding */
-        @media (max-width: 767px) {
-            body {
-                padding-bottom: env(safe-area-inset-bottom, 0);
+        /* Mobile safe area */
+        @supports (padding-bottom: env(safe-area-inset-bottom)) {
+            .safe-area-inset-bottom {
+                padding-bottom: env(safe-area-inset-bottom);
             }
+        }
+        
+        /* Highlight animation for comments */
+        .highlight-comment {
+            animation: highlightPulse 2s ease-in-out;
+        }
+        
+        @keyframes highlightPulse {
+            0%, 100% { background-color: transparent; }
+            50% { background-color: rgba(59, 130, 246, 0.2); }
         }
     </style>
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-gray-100 antialiased">
     <div id="app">
-        <!-- Flash Messages -->
         <?php $flash = $this->Flash->render() ?>
         <?php if ($flash): ?>
-            <div class="fixed top-20 md:top-4 right-4 z-[60]">
+            <div class="fixed top-20 md:top-4 right-4 z-[60] max-w-sm">
                 <?= $flash ?>
             </div>
         <?php endif; ?>
 
-        <!-- Main Content -->
         <main class="min-h-screen">
             <?= $this->fetch('content') ?>
         </main>
@@ -78,7 +108,6 @@
     <script src="<?= $this->Url->build('/js/shared/mobile_menu.js') ?>?v=<?= time() ?>"></script>
     <script src="<?= $this->Url->build('/js/shared/navbar.js') ?>?v=<?= time() ?>"></script>
     <?php
-    // Expose current user id to frontend JS for permission checks (e.g. comment deletion)
     $me = $this->request->getAttribute('identity');
     $meId = null;
     if ($me) {

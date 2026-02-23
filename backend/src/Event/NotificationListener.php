@@ -294,7 +294,7 @@ class NotificationListener implements EventListenerInterface
                     'id' => $actor->id,
                     'username' => $actor->username,
                     'full_name' => $actor->full_name,
-                    'profile_photo' => $actor->profile_photo_path,
+                    'profile_photo' => $actor->profile_photo_path ? (preg_match('/^https?:\/\//', $actor->profile_photo_path) ? $actor->profile_photo_path : '/img/profiles/' . $actor->profile_photo_path) : '',
                 ] : null,
             ];
 

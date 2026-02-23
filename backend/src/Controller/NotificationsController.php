@@ -29,30 +29,6 @@ class NotificationsController extends AppController
     }
 
     /**
-     * Helper method to get authenticated user ID
-     * 
-     * @return int|null
-     */
-    private function getAuthenticatedUserId(): ?int
-    {
-        $identity = $this->Authentication->getIdentity();
-        
-        if (!$identity) {
-            return null;
-        }
-
-        if (method_exists($identity, 'getIdentifier')) {
-            return $identity->getIdentifier();
-        } elseif (method_exists($identity, 'get')) {
-            return $identity->get('id');
-        } elseif (isset($identity->id)) {
-            return $identity->id;
-        }
-
-        return null;
-    }
-
-    /**
      * API: Get all notifications for the logged-in user
      * 
      * @return \Cake\Http\Response|null
@@ -81,6 +57,12 @@ class NotificationsController extends AppController
         $out = [];
         foreach ($notifications as $n) {
             $item = $n->toArray();
+
+            // Transform actor profile photo path
+            if (!empty($item['actor']) && !empty($item['actor']['profile_photo_path'])) {
+                $path = $item['actor']['profile_photo_path'];
+                $item['actor']['profile_photo'] = preg_match('/^https?:\/\//', $path) ? $path : '/img/profiles/' . $path;
+            }
 
             if (!empty($item['type']) && $item['type'] === 'comment_liked' && !empty($item['target_id'])) {
                 try {
@@ -136,6 +118,12 @@ class NotificationsController extends AppController
         $out = [];
         foreach ($notifications as $n) {
             $item = $n->toArray();
+
+            // Transform actor profile photo path
+            if (!empty($item['actor']) && !empty($item['actor']['profile_photo_path'])) {
+                $path = $item['actor']['profile_photo_path'];
+                $item['actor']['profile_photo'] = preg_match('/^https?:\/\//', $path) ? $path : '/img/profiles/' . $path;
+            }
 
             if (!empty($item['type']) && $item['type'] === 'comment_liked' && !empty($item['target_id'])) {
                 try {

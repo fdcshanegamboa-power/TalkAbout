@@ -1,13 +1,8 @@
 <?php
 $this->assign('title', 'Post Not Found');
+$this->Html->script('components/left_sidebar', ['block' => 'script']);
 $this->Html->script('components/right_sidebar', ['block' => 'script']);
 ?>
-
-<style>
-    [v-cloak] {
-        display: none;
-    }
-</style>
 
 <?= $this->element('top_navbar') ?>
 
@@ -79,11 +74,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         createApp({
             mixins: [
+                ...(window.LeftSidebarMixin ? [window.LeftSidebarMixin] : []),
                 ...(window.RightSidebarMixin ? [window.RightSidebarMixin] : [])
             ],
             data() {
                 return {
-                    profileUser: null
+                    notifications: [],
+                    notificationCount: 0,
+                    showNotifications: false
                 };
             },
             
@@ -92,36 +90,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (this.fetchFriends) {
                     this.fetchFriends();
                 }
+                if (this.fetchSuggestions) {
+                    this.fetchSuggestions();
+                }
             },
             
             methods: {
-                async fetchCurrentUserProfile() {
-                    try {
-                        const response = await fetch('/api/profile/current');
-                        if (!response.ok) return;
-                        
-                        const data = await response.json();
-                        if (data.success) {
-                            const user = data.user;
-                            this.profileUser = {
-                                full_name: user.full_name || '',
-                                username: user.username || '',
-                                about: user.about || '',
-                                profile_photo: user.profile_photo_path || '',
-                                initial: (user.full_name || user.username || 'U').charAt(0).toUpperCase()
-                            };
-                        }
-                    } catch (error) {
-                        console.error('Error fetching profile:', error);
-                    }
-                },
-                
                 goBack() {
                     if (window.history.length > 1) {
                         window.history.back();
                     } else {
                         window.location.href = '<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'dashboard']) ?>';
                     }
+                },
+                
+                toggleNotifications() {
+                    this.showNotifications = !this.showNotifications;
                 }
             }
         }).mount('#not-found-app');

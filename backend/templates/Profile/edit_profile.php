@@ -9,18 +9,7 @@ $username = $user->username ?? '';
 $this->Html->script('components/left_sidebar', ['block' => 'script']);
 $this->Html->script('components/right_sidebar', ['block' => 'script']);
 $this->Html->script('profile/edit_profile', ['block' => 'script']);
-
 ?>
-
-<style>
-.no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-}
-.no-scrollbar::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-}
-</style>
 
 <?= $this->element('top_navbar') ?>
 
@@ -34,9 +23,9 @@ $this->Html->script('profile/edit_profile', ['block' => 'script']);
 
             <main class="flex-1 space-y-4 lg:space-y-6 mt-4 md:mt-0">
 
-            <div v-if="profileUser" class="flex items-center gap-2 text-sm text-blue-600 font-medium">
+            <div v-if="sidebarUser" class="flex items-center gap-2 text-sm text-blue-600 font-medium">
                 <a href="/profile" class="text-blue-800 font-semibold hover:text-blue-900 hover:underline transition">
-                    {{ profileUser.full_name || 'Account' }}
+                    {{ sidebarUser.full_name || 'Account' }}
                 </a>
                 <span class="text-blue-400">→</span>
                 <span class="text-blue-700">Edit profile</span>
@@ -49,17 +38,17 @@ $this->Html->script('profile/edit_profile', ['block' => 'script']);
                     'class' => 'space-y-6'
                 ]) ?>
 
-                <div v-if="profileUser" class="flex flex-col items-center pb-6 border-b border-blue-100">
+                <div v-if="sidebarUser" class="flex flex-col items-center pb-6 border-b border-blue-100">
                     <div class="relative group">
                         <div id="avatar-preview" class="w-24 h-24 lg:w-32 lg:h-32 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600
                                flex items-center justify-center text-white text-3xl lg:text-4xl font-extrabold
                                shadow-lg overflow-hidden">
-                            <template v-if="profileUser.profile_photo">
-                                <img :src="profileUser.profile_photo" 
+                            <template v-if="sidebarUser.profile_photo">
+                                <img :src="sidebarUser.profile_photo" 
                                      alt="Profile" class="w-full h-full object-cover" id="current-avatar" />
                             </template>
                             <template v-else>
-                                <span id="avatar-initial">{{ profileUser.initial }}</span>
+                                <span id="avatar-initial">{{ sidebarUser.initial }}</span>
                             </template>
                         </div>
                         
@@ -148,7 +137,7 @@ $this->Html->script('profile/edit_profile', ['block' => 'script']);
 
                 <div class="flex flex-col sm:flex-row justify-between items-center gap-3 pt-4">
                     <a
-                            :href="profileUser ? '/profile/' + (profileUser.username) : '/profile'"
+                            :href="sidebarUser ? '/profile/' + (sidebarUser.username) : '/profile'"
                             class="text-sm font-medium text-blue-600 hover:underline order-2 sm:order-1"
                         >
                             Cancel

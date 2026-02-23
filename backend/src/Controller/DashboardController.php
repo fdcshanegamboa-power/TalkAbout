@@ -20,28 +20,18 @@ class DashboardController extends AppController
     public function home()
     {
         $usersTable = $this->getTableLocator()->get('Users');
-        $identity = $this->Authentication->getIdentity();
         
+        $id = $this->getAuthenticatedUserId();
         $user = null;
-        if ($identity) {
-            $id = null;
-            if (method_exists($identity, 'getIdentifier')) {
-                $id = $identity->getIdentifier();
-            } elseif (method_exists($identity, 'get')) {
-                $id = $identity->get('id');
-            } elseif (isset($identity->id)) {
-                $id = $identity->id;
-            }
-            
-            if (!empty($id)) {
-                try {
-                    $user = $usersTable->get($id);
-                } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
-                    // User no longer exists, logout
-                    $this->Authentication->logout();
-                    $this->Flash->error('Your session has expired. Please login again.');
-                    return $this->redirect(['controller' => 'Sessions', 'action' => 'login']);
-                }
+        
+        if (!empty($id)) {
+            try {
+                $user = $usersTable->get($id);
+            } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+                // User no longer exists, logout
+                $this->Authentication->logout();
+                $this->Flash->error('Your session has expired. Please login again.');
+                return $this->redirect(['controller' => 'Sessions', 'action' => 'login']);
             }
         }
         
@@ -52,17 +42,7 @@ class DashboardController extends AppController
     {
         $usersTable = $this->getTableLocator()->get('Users');
 
-        $identity = $this->Authentication->getIdentity();
-        $id = null;
-        if ($identity) {
-            if (method_exists($identity, 'getIdentifier')) {
-                $id = $identity->getIdentifier();
-            } elseif (method_exists($identity, 'get')) {
-                $id = $identity->get('id');
-            } elseif (isset($identity->id)) {
-                $id = $identity->id;
-            }
-        }
+        $id = $this->getAuthenticatedUserId();
 
         if (empty($id)) {
             $this->Flash->error('User not found.');

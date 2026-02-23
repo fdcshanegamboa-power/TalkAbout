@@ -176,22 +176,22 @@
             </div>
             
             <!-- User Info -->
-            <div v-if="profileUser" class="flex items-center gap-3">
+            <div v-if="sidebarUser" class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white font-bold shadow overflow-hidden flex-shrink-0">
-                    <template v-if="profileUser.profile_photo">
-                        <img :src="profileUser.profile_photo"
+                    <template v-if="sidebarUser.profile_photo">
+                        <img :src="sidebarUser.profile_photo"
                             alt="Profile" class="w-full h-full object-cover" />
                     </template>
                     <template v-else>
-                        {{ profileUser.initial }}
+                        {{ sidebarUser.initial }}
                     </template>
                 </div>
                 <div class="flex-1 min-w-0">
                     <div class="text-white font-semibold truncate">
-                        {{ profileUser.full_name || 'User' }}
+                        {{ sidebarUser.full_name || 'User' }}
                     </div>
                     <div class="text-white/80 text-sm truncate">
-                        @{{ profileUser.username || 'username' }}
+                        @{{ sidebarUser.username || 'username' }}
                     </div>
                 </div>
             </div>

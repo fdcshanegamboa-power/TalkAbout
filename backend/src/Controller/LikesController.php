@@ -27,17 +27,7 @@ class LikesController extends AppController
             ]));
         }
 
-        $identity = $this->Authentication->getIdentity();
-        $userId = null;
-        if ($identity) {
-            if (method_exists($identity, 'getIdentifier')) {
-                $userId = $identity->getIdentifier();
-            } elseif (method_exists($identity, 'get')) {
-                $userId = $identity->get('id');
-            } elseif (isset($identity->id)) {
-                $userId = $identity->id;
-            }
-        }
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->response->withStringBody(json_encode([
@@ -122,17 +112,7 @@ class LikesController extends AppController
             ]));
         }
 
-        $identity = $this->Authentication->getIdentity();
-        $userId = null;
-        if ($identity) {
-            if (method_exists($identity, 'getIdentifier')) {
-                $userId = $identity->getIdentifier();
-            } elseif (method_exists($identity, 'get')) {
-                $userId = $identity->get('id');
-            } elseif (isset($identity->id)) {
-                $userId = $identity->id;
-            }
-        }
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->response->withStringBody(json_encode([

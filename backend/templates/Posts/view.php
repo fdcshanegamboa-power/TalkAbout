@@ -13,13 +13,14 @@ $payload = [
     'author' => $author->full_name ?? $author->username ?? '',
     'about' => $author->about ?? '',
     'initial' => strtoupper(substr($author->full_name ?? $author->username ?? 'U', 0, 1)),
-    'profile_photo' => $author->profile_photo_path ?? '',
+    'profile_photo' => $author->profile_photo_path ? (preg_match('/^https?:\/\//', $author->profile_photo_path) ? $author->profile_photo_path : '/img/profiles/' . $author->profile_photo_path) : '',
     'text' => $post->content_text ?? '',
     'images' => $images ?? [],
     'time' => $post->created_at ? $post->created_at->format('M j, Y H:i') : '',
     'created_at' => $post->created_at ? $post->created_at->format(DATE_ATOM) : '',
     'likes' => (int)($likesCount ?? 0),
     'liked' => $userLiked ?? false,
+    'visibility' => $post->visibility ?? 'public',
     'comments' => count($comments ?? []),
     'commentsList' => array_map(function($c) {
         return [
@@ -40,6 +41,7 @@ $payload = [
     'showMenu' => false,
     'isEditing' => false,
     'editText' => $post->content_text ?? '',
+    'editVisibility' => $post->visibility ?? 'public',
     'newCommentText' => '',
     'commentImageFile' => null,
     'commentImagePreview' => null,
@@ -47,40 +49,6 @@ $payload = [
     'isSubmittingComment' => false
 ];
 ?>
-
-<style>
-    [v-cloak] {
-        display: none;
-    }
-    
-    .highlight-comment {
-        animation: highlight-pulse 2s ease-in-out;
-    }
-    
-    @keyframes highlight-pulse {
-        0%, 100% {
-            background-color: transparent;
-        }
-        50% {
-            background-color: rgba(59, 130, 246, 0.2);
-        }
-    }
-    
-    .animate-fade-in {
-        animation: fade-in 0.3s ease-out;
-    }
-    
-    @keyframes fade-in {
-        from {
-            opacity: 0;
-            transform: translate(-50%, -10px);
-        }
-        to {
-            opacity: 1;
-            transform: translate(-50%, 0);
-        }
-    }
-</style>
 
 <?= $this->element('top_navbar') ?>
 
@@ -93,9 +61,18 @@ $payload = [
             <?= $this->element('left_sidebar', ['active' => 'home']) ?>
 
             <main class="flex-1 space-y-4 lg:space-y-6 mt-4 md:mt-0">
-                <div class="max-w-3xl mx-auto">
-                    <?= $this->element('post_card', ['canEdit' => false]) ?>
-                </div>
+                <!-- Back Button -->
+                <button @click="$event.preventDefault(); window.history.back()"
+                        class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 
+                               bg-white/80 backdrop-blur rounded-xl shadow-sm border border-blue-100 
+                               hover:bg-blue-50 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Back
+                </button>
+
+                <?= $this->element('post_card', ['canEdit' => false]) ?>
             </main>
 
             <?= $this->element('right_sidebar') ?>
@@ -103,6 +80,8 @@ $payload = [
     </div>
 
     <?= $this->element('mobile_nav', ['active' => 'home']) ?>
+    
+    <?= $this->element('modal') ?>
 </div>
 
 <script>

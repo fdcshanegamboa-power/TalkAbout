@@ -50,17 +50,7 @@ class PostsController extends AppController
             $likesTable = $this->getTableLocator()->get('Likes');
 
             // Get current user id (needed to compute whether the current user liked comments)
-            $identity = $this->Authentication->getIdentity();
-            $currentUserId = null;
-            if ($identity) {
-                if (method_exists($identity, 'getIdentifier')) {
-                    $currentUserId = $identity->getIdentifier();
-                } elseif (method_exists($identity, 'get')) {
-                    $currentUserId = $identity->get('id');
-                } elseif (isset($identity->id)) {
-                    $currentUserId = $identity->id;
-                }
-            }
+            $currentUserId = $this->getAuthenticatedUserId();
 
             $commentsQuery = $commentsTable->find()
                 ->where(['Comments.post_id' => $post->id, 'Comments.deleted_at IS' => null])
@@ -133,17 +123,7 @@ class PostsController extends AppController
         $this->autoRender = false;
         $this->response = $this->response->withType('application/json');
 
-        $identity = $this->Authentication->getIdentity();
-        $currentUserId = null;
-        if ($identity) {
-            if (method_exists($identity, 'getIdentifier')) {
-                $currentUserId = $identity->getIdentifier();
-            } elseif (method_exists($identity, 'get')) {
-                $currentUserId = $identity->get('id');
-            } elseif (isset($identity->id)) {
-                $currentUserId = $identity->id;
-            }
-        }
+        $currentUserId = $this->getAuthenticatedUserId();
 
         // Get pagination parameters from query string
         $offset = (int) $this->request->getQuery('offset', 0);
@@ -306,17 +286,7 @@ class PostsController extends AppController
             ]));
         }
 
-        $identity = $this->Authentication->getIdentity();
-        $userId = null;
-        if ($identity) {
-            if (method_exists($identity, 'getIdentifier')) {
-                $userId = $identity->getIdentifier();
-            } elseif (method_exists($identity, 'get')) {
-                $userId = $identity->get('id');
-            } elseif (isset($identity->id)) {
-                $userId = $identity->id;
-            }
-        }
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->response->withStringBody(json_encode([
@@ -454,17 +424,7 @@ class PostsController extends AppController
             ]));
         }
 
-        $identity = $this->Authentication->getIdentity();
-        $userId = null;
-        if ($identity) {
-            if (method_exists($identity, 'getIdentifier')) {
-                $userId = $identity->getIdentifier();
-            } elseif (method_exists($identity, 'get')) {
-                $userId = $identity->get('id');
-            } elseif (isset($identity->id)) {
-                $userId = $identity->id;
-            }
-        }
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->response->withStringBody(json_encode([
@@ -658,17 +618,7 @@ class PostsController extends AppController
             ]));
         }
 
-        $identity = $this->Authentication->getIdentity();
-        $userId = null;
-        if ($identity) {
-            if (method_exists($identity, 'getIdentifier')) {
-                $userId = $identity->getIdentifier();
-            } elseif (method_exists($identity, 'get')) {
-                $userId = $identity->get('id');
-            } elseif (isset($identity->id)) {
-                $userId = $identity->id;
-            }
-        }
+        $userId = $this->getAuthenticatedUserId();
 
         if (empty($userId)) {
             return $this->response->withStringBody(json_encode([
