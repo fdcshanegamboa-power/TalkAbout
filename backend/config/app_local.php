@@ -55,6 +55,12 @@ return [
             'password' => env('DB_PASSWORD', 'talkabout@!password'),
 
             'database' => env('DB_NAME', 'talkabout_db'),
+            
+            /**
+             * Enable identifier quoting for reserved words and special characters
+             */
+            'quoteIdentifiers' => true,
+            
             /*
              * If not using the default 'public' schema with the PostgreSQL driver
              * set it here.
@@ -77,6 +83,7 @@ return [
             'password' => 'secret',
             'database' => 'test_myapp',
             //'schema' => 'myapp',
+            'quoteIdentifiers' => true,
             'url' => env('DATABASE_TEST_URL', 'sqlite://127.0.0.1/tmp/tests.sqlite'),
         ],
     ],

@@ -85,7 +85,7 @@ return [
             'flags' => [],
             'cacheMetadata' => true,
             'log' => false,
-            'quoteIdentifiers' => false,
+            'quoteIdentifiers' => true,
         ],
         'test' => [
             'className' => Connection::class,
@@ -95,7 +95,7 @@ return [
             'encoding' => 'utf8mb4',
             'flags' => [],
             'cacheMetadata' => true,
-            'quoteIdentifiers' => false,
+            'quoteIdentifiers' => true,
             'log' => false,
         ],
     ],
