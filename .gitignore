@@ -31,3 +31,7 @@ Thumbs.db
 
 # Docker volumes
 db_data/
+webroot/img/comments/*
+!webroot/img/comments/.gitkeep
+webroot/img/posts/*
+!webroot/img/posts/.gitkeep
