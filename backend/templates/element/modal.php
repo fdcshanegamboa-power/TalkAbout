@@ -12,11 +12,11 @@
 <!-- Confirmation/Alert Modal -->
 <div v-if="modal.show" 
      @click="handleModalCancel"
-     class="fixed inset-0 z-[100] flex items-center justify-center bg-black/20 backdrop-blur-sm p-4"
-     style="animation: fadeIn 0.2s ease-in;">
+     class="fixed inset-0 z-[100] flex items-center justify-center p-4"
+     style="background-color: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px);">
     
     <div @click.stop 
-         class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden transform transition-all"
+         class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden transform transition-all scale-100"
          style="animation: scaleIn 0.2s ease-out;">
         
         <!-- Modal Header -->

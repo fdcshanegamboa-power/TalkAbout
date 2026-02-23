@@ -5,6 +5,7 @@ window.PostCardMixin = {
     data() {
         return {
             currentUserId: (typeof window !== 'undefined' && window.currentUserId) ? window.currentUserId : null,
+            csrfToken: (typeof document !== 'undefined') ? document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') : null,
             imageModal: {
                 show: false,
                 images: [],
@@ -21,13 +22,10 @@ window.PostCardMixin = {
             post.likes += post.liked ? 1 : -1;
 
             const url = post.liked ? '/api/posts/like' : '/api/posts/unlike';
-            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
-
-            if (!csrfToken) console.warn('CSRF token not found for like request');
 
             const form = new FormData();
             form.append('post_id', post.id);
-            if (csrfToken) form.append('_csrfToken', csrfToken);
+            if (this.csrfToken) form.append('_csrfToken', this.csrfToken);
 
             fetch(url, {
                 method: 'POST',
@@ -539,12 +537,11 @@ window.PostCardMixin = {
             comment.likes += comment.liked ? 1 : -1;
 
             const url = comment.liked ? '/api/comments/like' : '/api/comments/unlike';
-            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
 
             // Use FormData to avoid preflight
             const form = new FormData();
             form.append('comment_id', comment.id);
-            if (csrfToken) form.append('_csrfToken', csrfToken);
+            if (this.csrfToken) form.append('_csrfToken', this.csrfToken);
 
             fetch(url, {
                 method: 'POST',
@@ -599,8 +596,7 @@ window.PostCardMixin = {
             try {
                 const form = new FormData();
                 form.append('comment_id', comment.id);
-                const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
-                if (csrfToken) form.append('_csrfToken', csrfToken);
+                if (this.csrfToken) form.append('_csrfToken', this.csrfToken);
 
                 const resp = await fetch('/api/comments/delete', {
                     method: 'POST',
